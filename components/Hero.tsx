@@ -5,7 +5,7 @@ interface StatItemProps {
 
 function StatItem({ value, label }: StatItemProps) {
   return (
-    <div className="flex-1 flex flex-col justify-center items-center md:items-start gap-[8px] py-[28px]">
+    <div className="flex-1 flex flex-col justify-center items-center md:items-start gap-[8px] py-[28px] px-[28px]">
       <span className="font-display text-[clamp(32px,4vw,48px)] font-bold text-brand-yellow leading-none tracking-[-0.01em]">{value}</span>
       <span className="font-mono text-[10px] font-400 tracking-[2.5px] uppercase text-nav-text/45">{label}</span>
     </div>

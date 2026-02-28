@@ -47,7 +47,7 @@ export default function Hero() {
         <div className="hero-right">
           <div className="hero-terminal-image">
             <img
-              src="https://cdn.builder.io/api/v1/image/assets%2F0d74d6500f4d4101a69c1e5625bc65eb%2F6b5f8c6589e04db4ae43037088d73531?format=webp&width=800&height=1200"
+              src="https://api.builder.io/api/v1/image/assets/TEMP/e7a48826f4f3592b62edc4a4adaa3da19d8075e3"
               alt="WagerBird signal cards terminal"
               className="hero-terminal-img"
             />

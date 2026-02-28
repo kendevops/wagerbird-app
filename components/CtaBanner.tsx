@@ -7,13 +7,13 @@ export default function CtaBanner() {
     <section className="cta-section">
       <motion.span
         initial={{ opacity: 0, scale: 0.9 }}
-        whileInView={{ opacity: 0.07, scale: 1 }}
+        whileInView={{ opacity: 0.05, scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 1.5, ease: "easeOut" }}
         className="cta-watermark"
         aria-hidden="true"
       >
-        WagerBird
+        WIN
       </motion.span>
       <motion.div
         initial={{ opacity: 0, y: 30 }}

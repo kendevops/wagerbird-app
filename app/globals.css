@@ -1231,15 +1231,15 @@ body {
 
 .cta-watermark {
   position: absolute;
-  top: 50%;
+  top: -60px;
   left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: var(--font-oswald), sans-serif;
-  font-size: clamp(100px, 18vw, 240px);
+  transform: translateX(-50%);
+  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
+  font-size: clamp(200px, 20vw, 380px);
   font-weight: 900;
   text-transform: uppercase;
-  color: rgba(0, 0, 0, 0.07);
-  letter-spacing: -4px;
+  color: rgba(0, 0, 0, 1);
+  letter-spacing: -10px;
   line-height: 1;
   white-space: nowrap;
   pointer-events: none;

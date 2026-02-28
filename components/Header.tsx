@@ -74,11 +74,11 @@ export default function Header() {
             href="/login"
             className="hidden sm:flex items-center justify-center px-[20px] py-[9px] border border-nav-border font-mono text-[11px] font-400 tracking-[1px] uppercase text-nav-text-muted hover:border-[#F0F0E8]/50 hover:text-nav-text transition-colors whitespace-nowrap"
           >
-            Terminal Login
+            Login
           </a>
           <a
             href="/get-access"
-            className="flex items-center justify-center px-[14px] md:px-[22px] py-[8px] md:py-[10px] h-[36px] bg-brand-yellow font-mono text-[11px] font-bold tracking-[1px] uppercase text-brand-blue whitespace-nowrap hover:bg-[#cdd91e] transition-colors"
+            className="flex items-center justify-center px-[14px] md:px-[22px] py-[8px] md:py-[10px] h-[36px] bg-brand-yellow font-mono text-[11px] font-bold tracking-[1px] uppercase text-brand-blue whitespace-nowrap hover:bg-[#cdd91e] transition-colors clip-btn"
           >
             Get Access
           </a>

@@ -193,15 +193,16 @@ body {
 }
 
 .signals-panel-footer {
-  padding: 14px 20px;
-  border-top: 1px dashed rgba(255, 255, 255, 0.12);
+  padding: 16px 24px;
+  border-top: 1px dashed rgba(228, 242, 34, 0.3);
   font-family: var(--font-space-mono), monospace;
   font-size: 10px;
-  font-weight: 400;
-  letter-spacing: 1.5px;
+  font-weight: 700;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  color: rgba(240, 240, 232, 0.35);
+  color: var(--color-yellow);
   text-align: center;
+  background: rgba(228, 242, 34, 0.03);
 }
 
 /* ─── Signal Card ─────────────────────────────────── */
@@ -209,8 +210,6 @@ body {
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
   padding: 18px 24px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.07);
   background: #111111;
@@ -224,7 +223,7 @@ body {
 }
 
 .signal-card--locked {
-  opacity: 0.7;
+  cursor: not-allowed;
 }
 
 /* Yellow left accent bar */
@@ -236,6 +235,22 @@ body {
   width: 3px;
   background: var(--color-yellow);
   transform-origin: top;
+}
+
+/* Inner content wrapper */
+.signal-card-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  min-width: 0;
+}
+
+.signal-card-inner--blurred {
+  filter: blur(5px);
+  pointer-events: none;
+  user-select: none;
 }
 
 /* Info side */
@@ -254,10 +269,6 @@ body {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.signal-card-matchup--locked {
-  color: rgba(240, 240, 232, 0.5);
 }
 
 .signal-card-meta {
@@ -287,10 +298,6 @@ body {
   text-align: right;
 }
 
-.signal-card-score--locked {
-  color: rgba(228, 242, 34, 0.4);
-}
-
 /* Confidence bars visualizer */
 .signal-bars {
   display: flex;
@@ -303,19 +310,4 @@ body {
   width: 3px;
   background: var(--color-yellow);
   border-radius: 1px;
-}
-
-/* Locked badge */
-.signal-locked-badge {
-  display: inline-flex;
-  align-items: center;
-  padding: 4px 10px;
-  border: 1px solid rgba(240, 240, 232, 0.2);
-  font-family: var(--font-space-mono), monospace;
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: rgba(240, 240, 232, 0.4);
-  background: rgba(255, 255, 255, 0.04);
 }

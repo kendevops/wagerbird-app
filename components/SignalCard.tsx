@@ -3,11 +3,10 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 
-// Bar heights pattern for the confidence visualizer (10 bars)
-const BAR_HEIGHTS = [4, 8, 12, 16, 20, 24, 20, 14, 10, 6];
+// Waveform-style bar heights (12 bars)
+const BAR_HEIGHTS = [5, 10, 18, 26, 32, 28, 22, 30, 18, 12, 7, 14];
 
 function ConfidenceBars({ confidence }: { confidence: number }) {
-  // Scale bars based on confidence (70–100 range)
   const scale = confidence / 100;
   return (
     <div className="signal-bars" aria-hidden="true">
@@ -15,7 +14,7 @@ function ConfidenceBars({ confidence }: { confidence: number }) {
         <span
           key={i}
           className="signal-bar"
-          style={{ height: `${Math.round(h * scale + h * 0.4)}px` }}
+          style={{ height: `${Math.round(h * scale + h * 0.35)}px` }}
         />
       ))}
     </div>
@@ -47,15 +46,16 @@ export default function SignalCard({
       onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}
       animate={{
-        boxShadow: hovered
-          ? "0 0 0 1px rgba(228,242,34,0.25), 0 8px 32px rgba(228,242,34,0.12)"
-          : "0 0 0 0px rgba(228,242,34,0), 0 0px 0px rgba(228,242,34,0)",
+        boxShadow:
+          hovered && !locked
+            ? "0 0 0 1px rgba(228,242,34,0.28), 0 8px 36px rgba(228,242,34,0.14)"
+            : "0 0 0 0px rgba(228,242,34,0), 0 0px 0px rgba(228,242,34,0)",
       }}
       transition={{ duration: 0.22, ease: "easeOut" }}
     >
-      {/* Yellow left accent bar */}
+      {/* Yellow left accent bar — only for unlocked on hover */}
       <AnimatePresence>
-        {hovered && (
+        {hovered && !locked && (
           <motion.span
             className="signal-card-accent"
             initial={{ scaleY: 0, originY: 0 }}
@@ -66,26 +66,21 @@ export default function SignalCard({
         )}
       </AnimatePresence>
 
-      {/* Left: matchup info */}
-      <div className="signal-card-info">
-        <span className={`signal-card-matchup${locked ? " signal-card-matchup--locked" : ""}`}>
-          {matchup}
-        </span>
-        <span className="signal-card-meta">
-          {sport} &nbsp;·&nbsp; {time} &nbsp;·&nbsp; {betType}
-        </span>
-      </div>
+      {/* Inner content — blurred when locked */}
+      <div className={`signal-card-inner${locked ? " signal-card-inner--blurred" : ""}`}>
+        {/* Left: matchup info */}
+        <div className="signal-card-info">
+          <span className="signal-card-matchup">{matchup}</span>
+          <span className="signal-card-meta">
+            {sport}&nbsp;·&nbsp;{time}&nbsp;·&nbsp;{betType}
+          </span>
+        </div>
 
-      {/* Right: confidence display */}
-      <div className="signal-card-score-area">
-        {locked ? (
-          <span className="signal-locked-badge">LOCKED</span>
-        ) : (
+        {/* Right: bars + score */}
+        <div className="signal-card-score-area">
           <ConfidenceBars confidence={confidence} />
-        )}
-        <span className={`signal-card-score${locked ? " signal-card-score--locked" : ""}`}>
-          {confidence}
-        </span>
+          <span className="signal-card-score">{confidence}</span>
+        </div>
       </div>
     </motion.div>
   );

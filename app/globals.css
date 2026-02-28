@@ -1231,8 +1231,8 @@ body {
 
 .cta-watermark {
   position: absolute;
-  top: -40px;
-  left: 20%;
+  top: -60px;
+  left: 30%;
   transform: translateX(-50%);
   font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
   font-size: 380px;

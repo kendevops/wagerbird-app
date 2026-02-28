@@ -3,6 +3,7 @@ import Ticker from "@/components/Ticker";
 import Signals from "@/components/Signals";
 import Packs from "@/components/Packs";
 import HowItWorks from "@/components/HowItWorks";
+import Hotsheet from "@/components/Hotsheet";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <Signals />
       <Packs />
       <HowItWorks />
+      <Hotsheet />
     </main>
   );
 }

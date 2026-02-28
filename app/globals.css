@@ -783,19 +783,19 @@ body {
 /* Bottom stats bar */
 .hero-stats {
   display: flex;
-  align-items: center;
-  gap: 0;
-  padding: 20px 48px 24px;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 24px 48px 28px;
   position: relative;
   z-index: 1;
   flex-shrink: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .hero-stat-item {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  padding-right: 52px;
+  gap: 5px;
 }
 
 .hero-stat-num {
@@ -860,11 +860,10 @@ body {
 
   .hero-stats {
     padding: 20px 20px 28px;
-    gap: 0;
   }
 
   .hero-stat-item {
-    padding-right: 32px;
+    align-items: center;
   }
 }
 

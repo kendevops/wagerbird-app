@@ -3,13 +3,36 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --color-blue-4: #07070F;
+  --color-yellow: #E4F222;
+  --color-yellow-border: rgba(228, 242, 34, 0.12);
+  --color-nav-bg: rgba(5, 5, 16, 0.90);
+  --color-nav-text: rgba(240, 240, 232, 0.90);
+  --color-nav-text-muted: rgba(240, 240, 232, 0.60);
+  --color-nav-border: rgba(240, 240, 232, 0.20);
+  --font-space-mono: var(--font-space-mono, 'Space Mono', monospace);
+  --font-oswald: var(--font-oswald, 'Oswald', sans-serif);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-mono: var(--font-space-mono);
+  --font-display: var(--font-oswald);
+  
+  --color-brand-yellow: var(--color-yellow);
+  --color-brand-blue: var(--color-blue-4);
+  --color-nav-bg: var(--color-nav-bg);
+  --color-nav-text: var(--color-nav-text);
+  --color-nav-text-muted: var(--color-nav-text-muted);
+  --color-nav-border: var(--color-nav-border);
+  --color-yellow-border: var(--color-yellow-border);
+
+  @keyframes live-pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 6px var(--color-yellow); }
+    50% { opacity: 0.3; box-shadow: none; }
+  }
 }
 
 @media (prefers-color-scheme: dark) {

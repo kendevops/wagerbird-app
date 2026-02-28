@@ -1300,6 +1300,18 @@ body {
   transform: translateY(-2px);
 }
 
+/* Clip button for buttons with edges */
+.clip-btn {
+  clip-path: polygon(12px 0%,
+      calc(100% - 12px) 0%,
+      100% 12px,
+      100% calc(100% - 12px),
+      calc(100% - 12px) 100%,
+      12px 100%,
+      0% calc(100% - 12px),
+      0% 12px);
+}
+
 @media (max-width: 768px) {
   .cta-section {
     padding: 72px 24px 80px;

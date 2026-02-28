@@ -1,6 +1,6 @@
 export default function Hero() {
   return (
-    <section className="hero-section">
+    <section className="hero-section" style={{ backgroundColor: '#050510' }}>
       <div className="hero-bg-glow" aria-hidden="true" />
 
       {/* Ticker bar */}

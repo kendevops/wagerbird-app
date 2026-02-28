@@ -1,3 +1,7 @@
+"use client";
+
+import { useState, useEffect } from "react";
+
 interface StatItemProps {
   value: string;
   label: string;
@@ -13,6 +17,20 @@ function StatItem({ value, label }: StatItemProps) {
 }
 
 export default function Hero() {
+  const [dateStr, setDateStr] = useState("");
+
+  useEffect(() => {
+    const now = new Date();
+    setDateStr(
+      now.toLocaleDateString("en-US", {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      })
+    );
+  }, []);
+
   return (
     <section className="relative w-full min-h-[calc(100vh-64px)] bg-[#050510] flex flex-col overflow-hidden" style={{ backgroundColor: '#050510' }}>
       <div className="absolute right-0 top-0 w-[58%] h-full bg-[radial-gradient(ellipse_at_55%_40%,rgba(32,95,255,0.38)_0%,rgba(10,10,100,0.18)_45%,transparent_72%)] pointer-events-none z-0" aria-hidden="true" />
@@ -25,7 +43,7 @@ export default function Hero() {
             <span className="w-[6px] h-[6px] rounded-full bg-brand-yellow shrink-0 animate-[live-pulse_2.5s_cubic-bezier(0.4,0,0.6,1)_infinite]" aria-hidden="true" />
             Live Signals Active
           </div>
-          <span className="hidden sm:block font-mono text-[10px] font-400 tracking-[1.5px] uppercase text-nav-text/35 text-right">Thursday, February 19, 2020</span>
+          <span className="hidden sm:block font-mono text-[10px] font-400 tracking-[1.5px] uppercase text-nav-text/35 text-right">{dateStr}</span>
         </div>
       </div>
 

@@ -70,7 +70,7 @@ export default function Hero() {
       </div>
 
       {/* Bottom stats */}
-      <div className="flex flex-col md:flex-row items-center md:items-stretch relative z-[1] shrink-0 border-t border-white/8 bg-[#050510] min-h-[104px] px-[20px] md:px-[48px]">
+      <div className="flex flex-col md:flex-row items-center md:items-stretch relative z-[1] shrink-0 border-t border-white/8 bg-[#050510] min-h-[104px]">
         <StatItem value="68%" label="Season Win Rate" />
         <div className="hidden md:block w-[1px] self-stretch bg-white/8 shrink-0 m-0" />
         <StatItem value="12K+" label="Active Bettors" />

@@ -5,12 +5,14 @@ export default function Hero() {
 
       {/* Ticker bar */}
       <div className="hero-ticker">
-        <span className="hero-ticker-brand">Wagerbird Terminal — Confidence-Scored Signals</span>
-        <span className="hero-ticker-live">
-          <span className="hero-live-dot" aria-hidden="true" />
-          Live Signals Active
-        </span>
-        <span className="hero-ticker-date">Thursday, February 19, 2020</span>
+        <div className="hero-ticker-inner">
+          <span className="hero-ticker-brand">Wagerbird Terminal — Confidence-Scored Signals</span>
+          <div className="hero-ticker-live">
+            <span className="hero-live-dot" aria-hidden="true" />
+            Live Signals Active
+          </div>
+          <span className="hero-ticker-date">Thursday, February 19, 2020</span>
+        </div>
       </div>
 
       {/* Two-column main */}
@@ -45,7 +47,7 @@ export default function Hero() {
         <div className="hero-right">
           <div className="hero-terminal-image">
             <img
-              src="https://api.builder.io/api/v1/image/assets/TEMP/e7a48826f4f3592b62edc4a4adaa3da19d8075e3"
+              src="https://cdn.builder.io/api/v1/image/assets%2F0d74d6500f4d4101a69c1e5625bc65eb%2F6b5f8c6589e04db4ae43037088d73531?format=webp&width=800&height=1200"
               alt="WagerBird signal cards terminal"
               className="hero-terminal-img"
             />
@@ -55,18 +57,22 @@ export default function Hero() {
 
       {/* Bottom stats */}
       <div className="hero-stats">
+        <div className="hero-stat-divider" />
         <div className="hero-stat-item">
           <span className="hero-stat-num">68%</span>
           <span className="hero-stat-lbl">Season Win Rate</span>
         </div>
+        <div className="hero-stat-divider" />
         <div className="hero-stat-item">
           <span className="hero-stat-num">12K+</span>
           <span className="hero-stat-lbl">Active Bettors</span>
         </div>
+        <div className="hero-stat-divider" />
         <div className="hero-stat-item">
           <span className="hero-stat-num">5</span>
           <span className="hero-stat-lbl">Sports Covered</span>
         </div>
+        <div className="hero-stat-divider" />
       </div>
     </section>
   );

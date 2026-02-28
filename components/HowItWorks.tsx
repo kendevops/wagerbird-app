@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import HowItWorksStep from "./HowItWorksStep";
 
 const steps = [
@@ -21,12 +22,33 @@ const steps = [
   },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+};
+
 export default function HowItWorks() {
   return (
     <section className="hiw-section">
       <div className="hiw-container">
         {/* Header */}
-        <div className="hiw-header">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="hiw-header"
+        >
           <span className="hiw-label">// How It Works</span>
           <h2 className="hiw-heading">
             Simple.
@@ -35,14 +57,22 @@ export default function HowItWorks() {
             <br />
             <em className="hiw-heading-accent">Profitable.</em>
           </h2>
-        </div>
+        </motion.div>
 
         {/* Steps */}
-        <div className="hiw-steps">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="hiw-steps"
+        >
           {steps.map((step, i) => (
-            <HowItWorksStep key={i} {...step} />
+            <motion.div key={i} variants={itemVariants}>
+              <HowItWorksStep {...step} />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

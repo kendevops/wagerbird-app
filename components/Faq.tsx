@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import FaqItem from "./FaqItem";
 
 const faqs = [
@@ -28,24 +29,53 @@ const faqs = [
   },
 ];
 
+const listVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, x: -20 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.5 } }
+};
+
 export default function Faq() {
   return (
     <section className="faq-section">
       <div className="faq-container">
-        <div className="faq-header">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="faq-header"
+        >
           <span className="faq-label">// FAQ</span>
           <h2 className="faq-heading">
             Common
             <br />
             <em className="faq-heading-accent">Questions.</em>
           </h2>
-        </div>
+        </motion.div>
 
-        <div className="faq-list">
+        <motion.div
+          variants={listVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="faq-list"
+        >
           {faqs.map((item) => (
-            <FaqItem key={item.question} question={item.question} answer={item.answer} />
+            <motion.div key={item.question} variants={itemVariants}>
+              <FaqItem question={item.question} answer={item.answer} />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

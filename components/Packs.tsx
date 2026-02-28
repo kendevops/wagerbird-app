@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import PriceCard from "./PriceCard";
 
 export default function Packs() {
@@ -7,7 +8,13 @@ export default function Packs() {
       <PacksHeader />
 
       {/* Cards grid */}
-      <div className="packs-grid">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        className="packs-grid"
+      >
         <PriceCard
           name="Starter Pack"
           points="600 Points"
@@ -30,22 +37,34 @@ export default function Packs() {
           price={199}
           ctaLabel="Get Advanced Pack"
         />
-      </div>
+      </motion.div>
 
       {/* Footnote */}
-      <p className="packs-footnote">
+      <motion.p
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1, delay: 0.5 }}
+        className="packs-footnote"
+      >
         Points act as credits to unlock signals (<strong>Picks</strong>). Each signal's cost is based
         on its confidence rating. You can also use points to access{" "}
         <strong className="packs-footnote-brand">WAGERVISION</strong>{" "}
         (live in-game signals).
-      </p>
+      </motion.p>
     </section>
   );
 }
 
 function PacksHeader() {
   return (
-    <div className="packs-header">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+      className="packs-header"
+    >
       <span className="packs-label">// Choose Your Pack</span>
       <h2 className="packs-heading">
         Points Never Expire.
@@ -56,6 +75,6 @@ function PacksHeader() {
         All customers see the same transparent pricing. The more you buy
         upfront, the lower your per-point cost.
       </p>
-    </div>
+    </motion.div>
   );
 }

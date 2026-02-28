@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 export default function EmailCapture() {
   const [email, setEmail] = useState("");
@@ -13,19 +14,45 @@ export default function EmailCapture() {
   return (
     <section className="email-capture-section">
       <div className="email-capture-inner">
-        <span className="email-capture-label">// Free Daily Picks</span>
-        <h2 className="email-capture-heading">
+        <motion.span
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="email-capture-label"
+        >
+          // Free Daily Picks
+        </motion.span>
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.1 }}
+          className="email-capture-heading"
+        >
           Today&rsquo;s Top Signals.
           <br />
           <em className="email-capture-heading-accent">Free, In Your Inbox.</em>
-        </h2>
-        <p className="email-capture-subtext">
+        </motion.h2>
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          className="email-capture-subtext"
+        >
           No credit card. No fluff. Just the model&rsquo;s top 3 picks,
           <br className="email-capture-br" />
           every morning before game time.
-        </p>
+        </motion.p>
 
-        <div className="email-capture-card-wrap">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.98, y: 30 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="email-capture-card-wrap"
+        >
           <div className="email-capture-card">
             <h3 className="email-capture-card-heading">Join 12,000+ Sharp Bettors</h3>
             <p className="email-capture-card-sub">
@@ -48,7 +75,7 @@ export default function EmailCapture() {
               No spam. Unsubscribe anytime. Your data stays private.
             </p>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

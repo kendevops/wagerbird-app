@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import SignalCard, { SignalCardProps } from "./SignalCard";
 
 const signals: SignalCardProps[] = [
@@ -12,7 +13,13 @@ export default function Signals() {
   return (
     <section className="signals-section">
       {/* Left — copy */}
-      <div className="signals-copy">
+      <motion.div
+        initial={{ opacity: 0, x: -30 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="signals-copy"
+      >
         <span className="signals-label">// The Terminal</span>
 
         <h2 className="signals-heading">
@@ -29,10 +36,16 @@ export default function Signals() {
         <a href="/packs" className="signals-cta">
           Unlock All Signals →
         </a>
-      </div>
+      </motion.div>
 
       {/* Right — signal cards panel */}
-      <div className="signals-panel">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        className="signals-panel"
+      >
         <div className="signals-cards">
           {signals.map((signal, i) => (
             <SignalCard key={i} {...signal} />
@@ -42,7 +55,7 @@ export default function Signals() {
         <div className="signals-panel-footer">
           + 47 more signals locked — Buy points to unlock
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

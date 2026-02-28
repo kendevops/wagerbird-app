@@ -1,8 +1,16 @@
+import { motion } from "framer-motion";
+
 export default function Hotsheet() {
   return (
     <section className="hotsheet-section">
       {/* Left — copy */}
-      <div className="hotsheet-content">
+      <motion.div
+        initial={{ opacity: 0, x: -30 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="hotsheet-content"
+      >
         <span className="hotsheet-label">// Hotsheet</span>
 
         <h2 className="hotsheet-heading">
@@ -27,10 +35,16 @@ export default function Hotsheet() {
         <a href="/hotsheet" className="hotsheet-cta">
           Get Hotsheet →
         </a>
-      </div>
+      </motion.div>
 
       {/* Right — video */}
-      <div className="hotsheet-video-panel">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1, delay: 0.2 }}
+        className="hotsheet-video-panel"
+      >
         {/* Replace `src` with your actual video URL */}
         <video
           className="hotsheet-video"
@@ -41,7 +55,7 @@ export default function Hotsheet() {
           playsInline
           aria-label="Hotsheet preview"
         />
-      </div>
+      </motion.div>
     </section>
   );
 }

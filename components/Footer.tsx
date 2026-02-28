@@ -1,12 +1,12 @@
 export default function Footer() {
   return (
-    <footer className="site-footer">
-      <div className="footer-inner">
-        <div className="footer-top">
+    <footer className="w-full bg-brand-blue border-t border-yellow-border">
+      <div className="px-[20px] sm:px-[24px] md:px-[48px] pt-[40px] sm:pt-[48px] md:pt-[64px]">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-[48px] lg:gap-[80px] pb-[64px]">
           {/* Brand column */}
-          <div className="footer-brand">
-            <a href="/" className="footer-logo" aria-label="WagerBird Home">
-              <svg width="177" height="28" viewBox="0 0 177 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <div className="flex flex-col gap-[24px] max-w-full lg:max-w-[300px]">
+            <a href="/" className="inline-flex shrink-0" aria-label="WagerBird Home">
+              <svg width="177" height="28" viewBox="0 0 177 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-[28px] w-auto block">
                 <g clipPath="url(#clip0_footer)">
                   <mask id="mask0_footer" style={{maskType:"luminance"}} maskUnits="userSpaceOnUse" x="0" y="0" width="177" height="28">
                     <path d="M176.296 0H0V28H176.296V0Z" fill="white"/>
@@ -19,7 +19,7 @@ export default function Footer() {
                     <path d="M141.99 20.2013V8.06299H148.502C149.748 8.06299 150.812 8.22696 151.694 8.55492C152.579 8.87893 153.254 9.33925 153.716 9.93589C154.184 10.5286 154.417 11.226 154.417 12.0281C154.417 12.8341 154.18 13.5276 153.708 14.1084C153.235 14.6853 152.55 15.1278 151.653 15.436C150.761 15.7442 149.681 15.8983 148.413 15.8983H144.054V13.8358H147.849C148.515 13.8358 149.069 13.7686 149.51 13.6343C149.949 13.5 150.277 13.2984 150.493 13.0298C150.713 12.7611 150.823 12.4272 150.823 12.0281C150.823 11.625 150.713 11.2853 150.493 11.0087C150.277 10.732 149.947 10.5226 149.501 10.3804C149.061 10.2342 148.505 10.1611 147.833 10.1611H145.48V20.2013H141.99ZM150.903 14.6774L155.005 20.2013H151.153L147.14 14.6774H150.903Z" fill="#FCFCFC"/>
                     <path d="M139.221 8.06299V20.2013H135.732V8.06299H139.221Z" fill="#FCFCFC"/>
                     <path d="M120.78 20.2013V8.06299H127.389C128.603 8.06299 129.615 8.19536 130.426 8.46009C131.238 8.72483 131.848 9.0923 132.255 9.56249C132.664 10.0287 132.868 10.5661 132.868 11.1746C132.868 11.6488 132.74 12.0657 132.481 12.4252C132.223 12.7808 131.869 13.0732 131.417 13.3024C130.972 13.5276 130.461 13.6876 129.887 13.7825V13.901C130.515 13.9207 131.103 14.0512 131.652 14.2922C132.205 14.5332 132.654 14.871 132.997 15.3057C133.341 15.7363 133.513 16.25 133.513 16.8467C133.513 17.4907 133.296 18.0656 132.86 18.5714C132.431 19.0732 131.794 19.4703 130.95 19.7626C130.107 20.0551 129.068 20.2013 127.831 20.2013H120.78ZM124.269 18.1032H127.114C128.087 18.1032 128.796 17.9668 129.242 17.6942C129.688 17.4176 129.911 17.0502 129.911 16.5918C129.911 16.2559 129.801 15.9596 129.58 15.7027C129.36 15.446 129.046 15.2444 128.637 15.0983C128.235 14.952 127.754 14.8789 127.195 14.8789H124.269V18.1032ZM124.269 13.1423H126.857C127.335 13.1423 127.759 13.0811 128.13 12.9586C128.505 12.8321 128.801 12.6544 129.016 12.4252C129.237 12.196 129.347 11.9214 129.347 11.6014C129.347 11.1628 129.134 10.8091 128.71 10.5405C128.291 10.2717 127.695 10.1374 126.921 10.1374H124.269V13.1423Z" fill="#FCFCFC"/>
-                    <path d="M106.176 20.2013V8.06299H112.688C113.934 8.06299 114.998 8.19536 115.88 8.55492C116.766 8.87893 117.44 9.33925 117.902 9.93589C118.369 10.5286 118.603 11.226 118.603 12.0281C118.603 12.8341 118.366 13.5276 117.895 14.1084C117.422 14.6853 116.736 15.1278 115.839 15.436C114.947 15.7442 113.868 15.8983 112.599 15.8983H108.24V13.8358H112.035C112.701 13.8358 113.255 13.7686 113.696 13.6343C114.136 13.5 114.464 13.2984 114.679 13.0298C114.899 12.7611 115.009 12.4272 115.009 12.0281C115.009 11.625 114.899 11.2853 114.679 11.0087C114.464 10.732 114.133 10.5226 113.687 10.3804C113.247 10.2342 112.691 10.1611 112.019 10.1611H109.666V20.2013H106.176ZM115.089 14.6774L119.192 20.2013H115.339L111.326 14.6774H115.089Z" fill="#FCFCFC"/>
+                    <path d="M106.176 20.2013V8.06299H112.688C113.934 8.06299 114.998 8.22696 115.88 8.55492C116.766 8.87893 117.44 9.33925 117.902 9.93589C118.369 10.5286 118.603 11.226 118.603 12.0281C118.603 12.8341 118.366 13.5276 117.895 14.1084C117.422 14.6853 116.736 15.1278 115.839 15.436C114.947 15.7442 113.868 15.8983 112.599 15.8983H108.24V13.8358H112.035C112.701 13.8358 113.255 13.7686 113.696 13.6343C114.136 13.5 114.464 13.2984 114.679 13.0298C114.899 12.7611 115.009 12.4272 115.009 12.0281C115.009 11.625 114.899 11.2853 114.679 11.0087C114.464 10.732 114.133 10.5226 113.687 10.3804C113.247 10.2342 112.691 10.1611 112.019 10.1611H109.666V20.2013H106.176ZM115.089 14.6774L119.192 20.2013H115.339L111.326 14.6774H115.089Z" fill="#FCFCFC"/>
                     <path d="M92.6155 20.2013V8.06299H103.737V10.1789H96.105V13.0713H103.165V15.1871H96.105V18.0853H103.769V20.2013H92.6155Z" fill="#FCFCFC"/>
                     <path d="M86.6367 11.9865C86.5238 11.6981 86.3654 11.4432 86.1612 11.222C85.9571 10.9967 85.7073 10.8071 85.4117 10.653C85.1216 10.4949 84.7885 10.3744 84.4124 10.2914C84.0418 10.2085 83.6308 10.167 83.1795 10.167C82.336 10.167 81.5946 10.3211 80.9552 10.6293C80.3213 10.9374 79.8269 11.3859 79.4724 11.9747C79.1178 12.5595 78.9405 13.2747 78.9405 14.1202C78.9405 14.9658 79.1151 15.6849 79.4643 16.2777C79.8136 16.8703 80.3078 17.3228 80.9472 17.6349C81.5865 17.943 82.3413 18.0971 83.2117 18.0971C84.0014 18.0971 84.6757 17.9945 85.2345 17.7889C85.7986 17.5795 86.2284 17.2852 86.5238 16.9059C86.8248 16.5265 86.9751 16.0781 86.9751 15.5604L87.6844 15.6375H83.4293V13.7054H90.3357V15.2345C90.3357 16.3013 90.0294 17.218 89.417 17.9846C88.8045 18.7471 87.9611 19.3359 86.8865 19.7508C85.812 20.1617 84.5817 20.3672 83.1956 20.3672C81.6483 20.3672 80.289 20.1162 79.1178 19.6144C77.9466 19.1087 77.0333 18.3915 76.3779 17.463C75.7277 16.5305 75.4027 15.4242 75.4027 14.1439C75.4027 13.1601 75.5961 12.2829 75.983 11.5124C76.3752 10.7379 76.9231 10.082 77.627 9.54466C78.3307 9.00729 79.1501 8.59833 80.0849 8.31779C81.0196 8.03724 82.0324 7.89697 83.1231 7.89697C84.0579 7.89697 84.9282 7.99773 85.7341 8.19925C86.54 8.39681 87.2545 8.67735 87.8778 9.04087C88.5063 9.40439 89.0195 9.83705 89.417 10.3389C89.8146 10.8367 90.0698 11.3859 90.1826 11.9865H86.6367Z" fill="#FCFCFC"/>
                     <path d="M62.3375 20.2013H58.5983L64.2959 8.06299H68.7927L74.4822 20.2013H70.7429L66.6088 10.8368H66.4798L62.3375 20.2013ZM62.1039 15.4301H70.9363V17.4335H62.1039V15.4301Z" fill="#FCFCFC"/>
@@ -34,47 +34,47 @@ export default function Footer() {
                 </defs>
               </svg>
             </a>
-            <p className="footer-tagline">
+            <p className="font-mono text-[11px] font-400 leading-[1.8] tracking-[0.3px] text-nav-text-muted m-0">
               Confidence-scored betting signals for every sport. Priced by conviction. Backed by the model. Not a sportsbook.
             </p>
           </div>
 
           {/* Nav columns */}
-          <div className="footer-nav-columns">
-            <div className="footer-nav-col">
-              <h3 className="footer-col-heading">Products</h3>
-              <ul className="footer-col-links">
-                <li><a href="/terminal" className="footer-link">Terminal</a></li>
-                <li><a href="/hotsheet" className="footer-link">Hotsheet</a></li>
-                <li><a href="/packs" className="footer-link">Packs</a></li>
-                <li><a href="/signals" className="footer-link">Signals</a></li>
+          <div className="flex flex-wrap lg:flex-nowrap gap-[32px] md:gap-[40px] lg:gap-[80px]">
+            <div className="flex flex-col gap-[20px]">
+              <h3 className="font-mono text-[11px] font-400 tracking-[1.5px] uppercase text-nav-text-muted m-0 pb-[12px] border-b border-nav-border min-w-[140px] md:min-w-[120px] lg:min-w-[160px]">Products</h3>
+              <ul className="flex flex-col gap-[16px] list-none m-0 p-0">
+                <li><a href="/terminal" className="font-mono text-[11px] font-400 tracking-[1.5px] uppercase text-nav-text hover:text-white transition-colors">Terminal</a></li>
+                <li><a href="/hotsheet" className="font-mono text-[11px] font-400 tracking-[1.5px] uppercase text-nav-text hover:text-white transition-colors">Hotsheet</a></li>
+                <li><a href="/packs" className="font-mono text-[11px] font-400 tracking-[1.5px] uppercase text-nav-text hover:text-white transition-colors">Packs</a></li>
+                <li><a href="/signals" className="font-mono text-[11px] font-400 tracking-[1.5px] uppercase text-nav-text hover:text-white transition-colors">Signals</a></li>
               </ul>
             </div>
 
-            <div className="footer-nav-col">
-              <h3 className="footer-col-heading">Resources</h3>
-              <ul className="footer-col-links">
-                <li><a href="/results" className="footer-link">Results</a></li>
-                <li><a href="/live-odds" className="footer-link">Live Odds</a></li>
-                <li><a href="/faq" className="footer-link">FAQ</a></li>
+            <div className="flex flex-col gap-[20px]">
+              <h3 className="font-mono text-[11px] font-400 tracking-[1.5px] uppercase text-nav-text-muted m-0 pb-[12px] border-b border-nav-border min-w-[140px] md:min-w-[120px] lg:min-w-[160px]">Resources</h3>
+              <ul className="flex flex-col gap-[16px] list-none m-0 p-0">
+                <li><a href="/results" className="font-mono text-[11px] font-400 tracking-[1.5px] uppercase text-nav-text hover:text-white transition-colors">Results</a></li>
+                <li><a href="/live-odds" className="font-mono text-[11px] font-400 tracking-[1.5px] uppercase text-nav-text hover:text-white transition-colors">Live Odds</a></li>
+                <li><a href="/faq" className="font-mono text-[11px] font-400 tracking-[1.5px] uppercase text-nav-text hover:text-white transition-colors">FAQ</a></li>
               </ul>
             </div>
 
-            <div className="footer-nav-col">
-              <h3 className="footer-col-heading">Company</h3>
-              <ul className="footer-col-links">
-                <li><a href="/about" className="footer-link">About</a></li>
-                <li><a href="/contact" className="footer-link">Contact</a></li>
-                <li><a href="/privacy-policy" className="footer-link">Privacy Policy</a></li>
-                <li><a href="/terms-of-service" className="footer-link">Terms of Service</a></li>
+            <div className="flex flex-col gap-[20px]">
+              <h3 className="font-mono text-[11px] font-400 tracking-[1.5px] uppercase text-nav-text-muted m-0 pb-[12px] border-b border-nav-border min-w-[140px] md:min-w-[120px] lg:min-w-[160px]">Company</h3>
+              <ul className="flex flex-col gap-[16px] list-none m-0 p-0">
+                <li><a href="/about" className="font-mono text-[11px] font-400 tracking-[1.5px] uppercase text-nav-text hover:text-white transition-colors">About</a></li>
+                <li><a href="/contact" className="font-mono text-[11px] font-400 tracking-[1.5px] uppercase text-nav-text hover:text-white transition-colors">Contact</a></li>
+                <li><a href="/privacy-policy" className="font-mono text-[11px] font-400 tracking-[1.5px] uppercase text-nav-text hover:text-white transition-colors">Privacy Policy</a></li>
+                <li><a href="/terms-of-service" className="font-mono text-[11px] font-400 tracking-[1.5px] uppercase text-nav-text hover:text-white transition-colors">Terms of Service</a></li>
               </ul>
             </div>
           </div>
         </div>
 
-        <div className="footer-bottom">
-          <p className="footer-copyright">© 2028 WagerBird. All rights reserved.</p>
-          <p className="footer-legal">
+        <div className="flex flex-col md:flex-row items-start justify-between gap-[16px] md:gap-[40px] py-[24px] border-t border-nav-border">
+          <p className="font-mono text-[11px] font-400 tracking-[0.5px] text-nav-text-muted m-0 whitespace-nowrap">© 2028 WagerBird. All rights reserved.</p>
+          <p className="font-mono text-[11px] font-400 tracking-[0.3px] leading-[1.8] text-nav-text-muted m-0 text-left md:text-right max-w-full md:max-w-[420px]">
             WagerBird does not facilitate wagering. All signals are for informational purposes only. Must be 21+ and located in a jurisdiction where sports betting is legal.
           </p>
         </div>

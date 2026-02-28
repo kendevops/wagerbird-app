@@ -1303,11 +1303,11 @@ body {
 /* Clip button for buttons with edges */
 .clip-btn {
   clip-path: polygon(0% 0%,                 /* top left */
-    calc(100% - 16px) 0%, /* near top right */
-    100% 16px,            /* cut top right */
+    calc(100% - 12px) 0%, /* near top right */
+    100% 12px,            /* cut top right */
     100% 100%,            /* bottom right */
-    16px 100%,            /* near bottom left */
-    0% calc(100% - 16px)  /* cut bottom left */
+    12px 100%,            /* near bottom left */
+    0% calc(100% - 12px)  /* cut bottom left */
   );
 }
 

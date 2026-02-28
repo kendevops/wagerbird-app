@@ -97,3 +97,225 @@ body {
   font-weight: 900;
   color: var(--color-dark-blue);
 }
+
+/* ─── Signals Section ─────────────────────────────── */
+.signals-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 64px;
+  padding: 80px 64px;
+  background: #0d0d0d;
+}
+
+@media (max-width: 1024px) {
+  .signals-section {
+    grid-template-columns: 1fr;
+    padding: 60px 32px;
+    gap: 48px;
+  }
+}
+
+@media (max-width: 640px) {
+  .signals-section {
+    padding: 48px 20px;
+    gap: 40px;
+  }
+}
+
+/* Copy column */
+.signals-label {
+  display: block;
+  font-family: var(--font-space-mono), monospace;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(228, 242, 34, 0.6);
+  margin-bottom: 24px;
+}
+
+.signals-heading {
+  font-family: var(--font-oswald), sans-serif;
+  font-size: clamp(42px, 6vw, 72px);
+  font-weight: 700;
+  line-height: 1.02;
+  text-transform: uppercase;
+  color: #fff;
+  margin: 0 0 28px;
+}
+
+.signals-heading-accent {
+  font-style: italic;
+  color: var(--color-yellow);
+}
+
+.signals-description {
+  font-family: var(--font-space-mono), monospace;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.9;
+  color: rgba(240, 240, 232, 0.45);
+  max-width: 380px;
+  margin: 0 0 40px;
+}
+
+.signals-cta {
+  display: inline-flex;
+  align-items: center;
+  padding: 14px 32px;
+  background: var(--color-yellow);
+  font-family: var(--font-space-mono), monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #000;
+  text-decoration: none;
+  transition: background 0.18s, transform 0.18s;
+}
+
+.signals-cta:hover {
+  background: #fff;
+  transform: translateY(-1px);
+}
+
+/* Panel column */
+.signals-panel {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #111111;
+  overflow: hidden;
+}
+
+.signals-cards {
+  display: flex;
+  flex-direction: column;
+}
+
+.signals-panel-footer {
+  padding: 14px 20px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.12);
+  font-family: var(--font-space-mono), monospace;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(240, 240, 232, 0.35);
+  text-align: center;
+}
+
+/* ─── Signal Card ─────────────────────────────────── */
+.signal-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  background: #111111;
+  cursor: default;
+  overflow: hidden;
+  transition: background 0.2s;
+}
+
+.signal-card:hover {
+  background: #161616;
+}
+
+.signal-card--locked {
+  opacity: 0.7;
+}
+
+/* Yellow left accent bar */
+.signal-card-accent {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--color-yellow);
+  transform-origin: top;
+}
+
+/* Info side */
+.signal-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.signal-card-matchup {
+  font-family: var(--font-oswald), sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.signal-card-matchup--locked {
+  color: rgba(240, 240, 232, 0.5);
+}
+
+.signal-card-meta {
+  font-family: var(--font-space-mono), monospace;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(240, 240, 232, 0.3);
+}
+
+/* Score side */
+.signal-card-score-area {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+.signal-card-score {
+  font-family: var(--font-oswald), sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--color-yellow);
+  line-height: 1;
+  min-width: 36px;
+  text-align: right;
+}
+
+.signal-card-score--locked {
+  color: rgba(228, 242, 34, 0.4);
+}
+
+/* Confidence bars visualizer */
+.signal-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.signal-bar {
+  display: block;
+  width: 3px;
+  background: var(--color-yellow);
+  border-radius: 1px;
+}
+
+/* Locked badge */
+.signal-locked-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border: 1px solid rgba(240, 240, 232, 0.2);
+  font-family: var(--font-space-mono), monospace;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(240, 240, 232, 0.4);
+  background: rgba(255, 255, 255, 0.04);
+}

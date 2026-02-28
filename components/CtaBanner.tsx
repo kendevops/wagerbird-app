@@ -30,7 +30,7 @@ export default function CtaBanner() {
         <p className="cta-subtext">
           Join 12,000+ bettors who trade with confidence-scored signals.
         </p>
-        <a href="/packs" className="cta-btn clip-path">
+        <a href="/packs" className="cta-btn clip-btn">
           Buy a Pack Now &rarr;
         </a>
       </motion.div>

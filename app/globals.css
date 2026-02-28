@@ -881,3 +881,202 @@ body {
     min-height: 320px;
   }
 }
+
+/* ─── Email Capture Section ───────────────────────── */
+.email-capture-section {
+  background: #EDEEE9;
+  padding: 100px 24px 112px;
+  display: flex;
+  justify-content: center;
+}
+
+.email-capture-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 720px;
+  width: 100%;
+}
+
+.email-capture-label {
+  display: block;
+  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--color-dark-blue);
+  margin-bottom: 20px;
+}
+
+.email-capture-heading {
+  font-family: var(--font-oswald), sans-serif;
+  font-size: clamp(48px, 8vw, 96px);
+  font-weight: 900;
+  line-height: 0.97;
+  text-transform: uppercase;
+  color: #07070F;
+  margin: 0 0 24px;
+  letter-spacing: -1px;
+}
+
+.email-capture-heading-accent {
+  font-style: italic;
+  color: var(--color-dark-blue);
+  display: block;
+}
+
+.email-capture-subtext {
+  font-family: var(--font-space-mono), monospace;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.85;
+  color: rgba(7, 7, 15, 0.45);
+  margin: 0 0 56px;
+}
+
+.email-capture-br {
+  display: inline;
+}
+
+/* Card wrapper — creates the offset yellow border effect */
+.email-capture-card-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.email-capture-card-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 2px solid var(--color-yellow);
+  transform: translate(8px, 8px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.email-capture-card {
+  position: relative;
+  z-index: 1;
+  background: #ffffff;
+  padding: 48px 56px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 2px 32px rgba(7, 7, 15, 0.06);
+}
+
+@media (max-width: 640px) {
+  .email-capture-card {
+    padding: 36px 24px 32px;
+  }
+}
+
+.email-capture-card-heading {
+  font-family: var(--font-oswald), sans-serif;
+  font-size: clamp(22px, 4vw, 30px);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #07070F;
+  letter-spacing: 0.5px;
+  margin: 0;
+}
+
+.email-capture-card-sub {
+  font-family: var(--font-space-mono), monospace;
+  font-size: 12.5px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: rgba(7, 7, 15, 0.45);
+  margin: 0 0 8px;
+  text-align: center;
+}
+
+.email-capture-form {
+  display: flex;
+  width: 100%;
+  gap: 0;
+  margin-top: 8px;
+}
+
+.email-capture-input {
+  flex: 1;
+  padding: 16px 20px;
+  border: 1.5px solid rgba(7, 7, 15, 0.15);
+  border-right: none;
+  font-family: var(--font-space-mono), monospace;
+  font-size: 13px;
+  color: #07070F;
+  background: #fff;
+  outline: none;
+  min-width: 0;
+}
+
+.email-capture-input::placeholder {
+  color: rgba(7, 7, 15, 0.3);
+}
+
+.email-capture-input:focus {
+  border-color: var(--color-dark-blue);
+}
+
+.email-capture-btn {
+  padding: 16px 28px;
+  background: var(--color-dark-blue);
+  color: #fff;
+  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.18s, transform 0.18s;
+}
+
+.email-capture-btn:hover {
+  background: #001bb5;
+  transform: translateY(-1px);
+}
+
+.email-capture-disclaimer {
+  font-family: var(--font-space-mono), monospace;
+  font-size: 10.5px;
+  font-weight: 400;
+  font-style: italic;
+  color: rgba(7, 7, 15, 0.3);
+  margin: 4px 0 0;
+  letter-spacing: 0.2px;
+}
+
+@media (max-width: 520px) {
+  .email-capture-form {
+    flex-direction: column;
+  }
+
+  .email-capture-input {
+    border-right: 1.5px solid rgba(7, 7, 15, 0.15);
+    border-bottom: none;
+  }
+
+  .email-capture-btn {
+    width: 100%;
+  }
+
+  .email-capture-br {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .email-capture-section {
+    padding: 80px 20px 88px;
+  }
+
+  .email-capture-subtext {
+    margin-bottom: 40px;
+  }
+}

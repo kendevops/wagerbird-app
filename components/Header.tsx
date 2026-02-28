@@ -1,7 +1,22 @@
+"use client";
+
+import { usePathname } from "next/navigation";
+
+const navLinks = [
+  { label: "Signals",      href: "/signals" },
+  { label: "Sportsbooks",  href: "/sportsbooks" },
+  { label: "Hotsheet",     href: "/hotsheet" },
+  { label: "Pricing",      href: "/pricing" },
+];
+
 export default function Header() {
+  const pathname = usePathname();
+
   return (
     <header className="sticky top-0 z-[100] w-full h-[64px] bg-nav-bg backdrop-blur-[8px] border-b border-yellow-border">
       <nav className="grid grid-cols-[auto_1fr_auto] items-center h-full px-[20px] md:px-[48px] gap-[16px] md:gap-[32px]">
+
+        {/* Logo */}
         <a href="/" className="flex items-center shrink-0" aria-label="WagerBird Home">
           <svg width="177" height="28" viewBox="0 0 177 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-[22px] md:h-[28px] w-auto block">
             <g clipPath="url(#clip0_2501_1394)">
@@ -21,7 +36,7 @@ export default function Header() {
                 <path d="M86.6367 11.9865C86.5238 11.6981 86.3654 11.4432 86.1612 11.222C85.9571 10.9967 85.7073 10.8071 85.4117 10.653C85.1216 10.4949 84.7885 10.3744 84.4124 10.2914C84.0418 10.2085 83.6308 10.167 83.1795 10.167C82.336 10.167 81.5946 10.3211 80.9552 10.6293C80.3213 10.9374 79.8269 11.3859 79.4724 11.9747C79.1178 12.5595 78.9405 13.2747 78.9405 14.1202C78.9405 14.9658 79.1151 15.6849 79.4643 16.2777C79.8136 16.8703 80.3078 17.3228 80.9472 17.6349C81.5865 17.943 82.3413 18.0971 83.2117 18.0971C84.0014 18.0971 84.6757 17.9945 85.2345 17.7889C85.7986 17.5795 86.2284 17.2852 86.5238 16.9059C86.8248 16.5265 86.9751 16.0781 86.9751 15.5604L87.6844 15.6375H83.4293V13.7054H90.3357V15.2345C90.3357 16.3013 90.0294 17.218 89.417 17.9846C88.8045 18.7471 87.9611 19.3359 86.8865 19.7508C85.812 20.1617 84.5817 20.3672 83.1956 20.3672C81.6483 20.3672 80.289 20.1162 79.1178 19.6144C77.9466 19.1087 77.0333 18.3915 76.3779 17.463C75.7277 16.5305 75.4027 15.4242 75.4027 14.1439C75.4027 13.1601 75.5961 12.2829 75.983 11.5124C76.3752 10.7379 76.9231 10.082 77.627 9.54466C78.3307 9.00729 79.1501 8.59833 80.0849 8.31779C81.0196 8.03724 82.0324 7.89697 83.1231 7.89697C84.0579 7.89697 84.9282 7.99773 85.7341 8.19925C86.54 8.39681 87.2545 8.67735 87.8778 9.04087C88.5063 9.40439 89.0195 9.83705 89.417 10.3389C89.8146 10.8367 90.0698 11.3859 90.1826 11.9865H86.6367Z" fill="#FCFCFC"/>
                 <path d="M62.3375 20.2013H58.5983L64.2959 8.06299H68.7927L74.4822 20.2013H70.7429L66.6088 10.8368H66.4798L62.3375 20.2013ZM62.1039 15.4301H70.9363V17.4335H62.1039V15.4301Z" fill="#FCFCFC"/>
                 <path d="M41.3562 20.2013L36.6338 8.06299H40.4456L43.1776 16.497H43.3146L46.3285 8.06299H49.5924L52.5983 16.5147H52.7433L55.4753 8.06299H59.2871L54.5646 20.2013H51.1638L48.0208 12.2652H47.8919L44.7571 20.2013H41.3562Z" fill="#FCFCFC"/>
-                <path d="M173.384 9.58351C172.954 9.58351 172.567 9.49028 172.223 9.30382C171.886 9.11018 171.616 8.84483 171.416 8.50776C171.222 8.1707 171.126 7.78343 171.126 7.34595C171.126 6.90849 171.222 6.52122 171.416 6.18415C171.616 5.84708 171.886 5.58531 172.223 5.39885C172.567 5.20522 172.954 5.1084 173.384 5.1084C173.815 5.1084 174.198 5.20522 174.535 5.39885C174.88 5.58531 175.148 5.84708 175.342 6.18415C175.543 6.52122 175.643 6.90849 175.643 7.34595C175.643 7.78343 175.543 8.1707 175.342 8.50776C175.148 8.84483 174.88 9.11018 174.535 9.30382C174.198 9.49028 173.815 9.58351 173.384 9.58351ZM173.384 9.1317C173.923 9.1317 174.353 8.97033 174.675 8.64761C175.005 8.31772 175.17 7.88383 175.17 7.34595C175.17 6.80808 175.005 6.37778 174.675 6.05506C174.353 5.72516 173.923 5.56021 173.384 5.56021C172.846 5.56021 172.413 5.72516 172.083 6.05506C171.76 6.37778 171.599 6.80808 171.599 7.34595C171.599 7.88383 171.76 8.31772 172.083 8.64761C172.413 8.97033 172.846 9.1317 173.384 9.1317ZM172.61 8.51852V6.13036H173.524C173.79 6.13036 173.99 6.1949 174.127 6.32399C174.263 6.45308 174.331 6.60369 174.331 6.77581C174.331 6.91207 174.295 7.03399 174.223 7.14156C174.159 7.24197 174.051 7.32085 173.901 7.37822V7.48581C174.022 7.49297 174.108 7.53242 174.159 7.60413C174.216 7.67585 174.245 7.77267 174.245 7.89458V8.51852H173.793V7.87307C173.793 7.72247 173.718 7.64717 173.567 7.64717H173.062V8.51852H172.61ZM173.062 7.23838H173.524C173.646 7.23838 173.736 7.20252 173.793 7.13081C173.85 7.05909 173.879 6.97661 173.879 6.88338C173.879 6.78297 173.85 6.70051 173.793 6.63596C173.736 6.57142 173.646 6.53915 173.524 6.53915H173.062V7.23838Z" fill="white"/>
+                <path d="M173.384 9.58351C172.954 9.58351 172.567 9.49028 172.223 9.30382C171.886 9.11018 171.616 8.84483 171.416 8.50776C171.222 8.1707 171.126 7.78343 171.126 7.34595C171.126 6.90849 171.222 6.52122 171.416 6.18415C171.616 5.84708 171.886 5.58531 172.223 5.39885C172.567 5.20522 172.954 5.1084 173.384 5.1084C173.815 5.1084 174.198 5.20522 174.535 5.39885C174.88 5.58531 175.148 5.84708 175.342 6.18415C175.543 6.52122 175.643 6.90849 175.643 7.34595C175.643 7.78343 175.543 8.1707 175.342 8.50776C175.148 8.84483 174.88 9.11018 174.535 9.30382C174.198 9.49028 173.815 9.58351 173.384 9.58351ZM173.384 9.1317C173.923 9.1317 174.353 8.97033 174.675 8.64761C175.005 8.31772 175.17 7.88383 175.17 7.34595C175.17 6.80808 175.005 6.37778 174.675 6.05506C174.353 5.72516 173.923 5.56021 173.384 5.56021C172.846 5.56021 172.413 5.72516 172.083 6.05506C171.76 6.37778 171.599 6.80808 171.599 7.34595C171.599 7.88383 171.76 8.31772 172.083 8.64761C172.413 8.97033 172.846 9.1317 173.384 9.1317ZM172.61 8.51852V6.13036H173.524C173.79 6.13036 173.99 6.1949 174.127 6.32399C174.263 6.45308 174.331 6.60369 174.331 6.77581C174.331 6.91207 174.295 7.03399 174.223 7.14156C174.159 7.24197 174.051 7.32085 173.901 7.37822V7.48581C174.022 7.49297 174.108 7.53242 174.159 7.60413C174.216 7.67585 174.245 7.77267 174.245 7.89458V8.51852H173.793V7.87307C173.793 7.72247 173.718 7.64717 173.567 7.64717H173.062V8.51852H172.61ZM173.062 7.23838H173.524C173.646 7.23838 173.736 7.20252 173.793 7.13081C173.851 7.0591 173.879 6.97305 173.879 6.87264C173.879 6.77222 173.851 6.68976 173.793 6.62522C173.736 6.55709 173.646 6.52302 173.524 6.52302H173.062V7.23838Z" fill="#FCFCFC"/>
               </g>
             </g>
             <defs>
@@ -32,16 +47,41 @@ export default function Header() {
           </svg>
         </a>
 
+        {/* Nav links */}
         <ul className="hidden md:flex items-center justify-center gap-[32px] list-none m-0 p-0">
-          <li><a href="/signals" className="font-mono text-[11px] font-400 tracking-[1.5px] uppercase text-nav-text hover:text-white transition-colors">Signals</a></li>
-          <li><a href="/packs" className="font-mono text-[11px] font-400 tracking-[1.5px] uppercase text-nav-text hover:text-white transition-colors">Packs</a></li>
-          <li><a href="/hotsheet" className="font-mono text-[11px] font-400 tracking-[1.5px] uppercase text-nav-text hover:text-white transition-colors">Hotsheet</a></li>
-          <li><a href="/faq" className="font-mono text-[11px] font-400 tracking-[1.5px] uppercase text-nav-text hover:text-white transition-colors">FAQ</a></li>
+          {navLinks.map(({ label, href }) => {
+            const isActive = pathname === href;
+            return (
+              <li key={href}>
+                <a
+                  href={href}
+                  className={`font-mono text-[11px] font-400 tracking-[1.5px] uppercase transition-colors ${
+                    isActive
+                      ? "text-brand-yellow font-bold"
+                      : "text-nav-text-muted hover:text-white"
+                  }`}
+                >
+                  {label}
+                </a>
+              </li>
+            );
+          })}
         </ul>
 
+        {/* CTA buttons */}
         <div className="flex items-center gap-[12px] shrink-0">
-          <a href="/login" className="hidden sm:flex items-center justify-center px-[20px] py-[9px] border border-nav-border font-mono text-[11px] font-400 tracking-[1px] uppercase text-nav-text-muted hover:border-[#F0F0E8]/50 hover:text-nav-text transition-colors">Login</a>
-          <a href="/get-access" className="flex items-center justify-center px-[14px] md:px-[22px] py-[8px] md:py-[10px] h-[36px] bg-brand-yellow font-mono text-[11px] font-bold tracking-[1px] uppercase text-brand-blue whitespace-nowrap hover:bg-[#cdd91e] transition-colors">Get Access</a>
+          <a
+            href="/login"
+            className="hidden sm:flex items-center justify-center px-[20px] py-[9px] border border-nav-border font-mono text-[11px] font-400 tracking-[1px] uppercase text-nav-text-muted hover:border-[#F0F0E8]/50 hover:text-nav-text transition-colors whitespace-nowrap"
+          >
+            Terminal Login
+          </a>
+          <a
+            href="/get-access"
+            className="flex items-center justify-center px-[14px] md:px-[22px] py-[8px] md:py-[10px] h-[36px] bg-brand-yellow font-mono text-[11px] font-bold tracking-[1px] uppercase text-brand-blue whitespace-nowrap hover:bg-[#cdd91e] transition-colors"
+          >
+            Get Access
+          </a>
         </div>
       </nav>
     </header>

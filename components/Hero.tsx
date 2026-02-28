@@ -1,3 +1,17 @@
+interface StatItemProps {
+  value: string;
+  label: string;
+}
+
+function StatItem({ value, label }: StatItemProps) {
+  return (
+    <div className="hero-stat-item">
+      <span className="hero-stat-num">{value}</span>
+      <span className="hero-stat-lbl">{label}</span>
+    </div>
+  );
+}
+
 export default function Hero() {
   return (
     <section className="hero-section" style={{ backgroundColor: '#050510' }}>
@@ -57,22 +71,11 @@ export default function Hero() {
 
       {/* Bottom stats */}
       <div className="hero-stats">
+        <StatItem value="68%" label="Season Win Rate" />
         <div className="hero-stat-divider" />
-        <div className="hero-stat-item">
-          <span className="hero-stat-num">68%</span>
-          <span className="hero-stat-lbl">Season Win Rate</span>
-        </div>
+        <StatItem value="12K+" label="Active Bettors" />
         <div className="hero-stat-divider" />
-        <div className="hero-stat-item">
-          <span className="hero-stat-num">12K+</span>
-          <span className="hero-stat-lbl">Active Bettors</span>
-        </div>
-        <div className="hero-stat-divider" />
-        <div className="hero-stat-item">
-          <span className="hero-stat-num">5</span>
-          <span className="hero-stat-lbl">Sports Covered</span>
-        </div>
-        <div className="hero-stat-divider" />
+        <StatItem value="5" label="Sports Covered" />
       </div>
     </section>
   );

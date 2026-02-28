@@ -1216,3 +1216,104 @@ body {
     margin-bottom: 40px;
   }
 }
+
+/* ─── CTA Banner Section ──────────────────────────── */
+.cta-section {
+  position: relative;
+  background: var(--color-yellow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 88px 24px 96px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.cta-watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-oswald), sans-serif;
+  font-size: clamp(100px, 18vw, 240px);
+  font-weight: 900;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.07);
+  letter-spacing: -4px;
+  line-height: 1;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+
+.cta-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  max-width: 780px;
+  width: 100%;
+}
+
+.cta-heading {
+  font-family: var(--font-oswald), sans-serif;
+  font-size: clamp(56px, 9vw, 112px);
+  font-weight: 900;
+  text-transform: uppercase;
+  color: #07070F;
+  line-height: 0.95;
+  letter-spacing: -2px;
+  margin: 0;
+}
+
+.cta-subtext {
+  font-family: var(--font-space-mono), monospace;
+  font-style: italic;
+  font-size: clamp(12px, 1.5vw, 15px);
+  font-weight: 400;
+  color: rgba(7, 7, 15, 0.5);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 48px;
+  background: #07070F;
+  color: var(--color-yellow);
+  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  margin-top: 8px;
+  transition: background 0.18s, transform 0.18s;
+}
+
+.cta-btn:hover {
+  background: #1a1a2e;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .cta-section {
+    padding: 72px 24px 80px;
+  }
+
+  .cta-btn {
+    padding: 18px 36px;
+    width: 100%;
+    max-width: 360px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cta-section {
+    padding: 64px 20px 72px;
+  }
+}

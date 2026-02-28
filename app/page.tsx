@@ -6,6 +6,7 @@ import HowItWorks from "@/components/HowItWorks";
 import Hotsheet from "@/components/Hotsheet";
 import EmailCapture from "@/components/EmailCapture";
 import Faq from "@/components/Faq";
+import CtaBanner from "@/components/CtaBanner";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
       <Hotsheet />
       <EmailCapture />
       <Faq />
+      <CtaBanner />
     </main>
   );
 }

@@ -313,3 +313,298 @@ body {
   background: var(--color-yellow);
   border-radius: 1px;
 }
+
+/* ─── Packs Section ───────────────────────────────── */
+.packs-section {
+  background: #080810;
+  padding: 100px 48px 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 64px;
+}
+
+@media (max-width: 768px) {
+  .packs-section {
+    padding: 72px 20px 60px;
+    gap: 48px;
+  }
+}
+
+/* Header */
+.packs-header {
+  text-align: center;
+  max-width: 680px;
+}
+
+.packs-label {
+  display: block;
+  font-family: var(--font-space-mono), monospace;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(228, 242, 34, 0.55);
+  margin-bottom: 20px;
+}
+
+.packs-heading {
+  font-family: var(--font-oswald), sans-serif;
+  font-size: clamp(44px, 7vw, 80px);
+  font-weight: 700;
+  line-height: 1.0;
+  text-transform: uppercase;
+  color: #fff;
+  margin: 0 0 24px;
+}
+
+.packs-heading-accent {
+  font-style: italic;
+  color: var(--color-yellow);
+  display: block;
+}
+
+.packs-subtext {
+  font-family: var(--font-space-mono), monospace;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.85;
+  color: rgba(240, 240, 232, 0.4);
+  margin: 0;
+}
+
+/* Cards grid */
+.packs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0;
+  align-items: center;
+  width: 100%;
+  max-width: 1080px;
+}
+
+@media (max-width: 900px) {
+  .packs-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    max-width: 480px;
+  }
+}
+
+/* Footnote */
+.packs-footnote {
+  font-family: var(--font-space-mono), monospace;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.85;
+  color: rgba(240, 240, 232, 0.35);
+  text-align: center;
+  max-width: 520px;
+  margin: 0;
+}
+
+.packs-footnote strong {
+  color: rgba(240, 240, 232, 0.7);
+}
+
+.packs-footnote-brand {
+  color: rgba(240, 240, 232, 0.85) !important;
+  letter-spacing: 0.5px;
+}
+
+/* ─── Price Card ──────────────────────────────────── */
+.price-card {
+  position: relative;
+  border-radius: 16px;
+  background: #141520;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  overflow: visible;
+}
+
+.price-card-body {
+  padding: 32px 28px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Popular variant — elevated, blue gradient */
+.price-card--popular {
+  background: linear-gradient(160deg, #0e1e8c 0%, #1630c8 55%, #0b1660 100%);
+  border: 1.5px solid #4466ff;
+  border-radius: 16px;
+  z-index: 2;
+  transform: translateY(-20px);
+  box-shadow: 0 24px 80px rgba(30, 60, 255, 0.25);
+}
+
+@media (max-width: 900px) {
+  .price-card--popular {
+    transform: none;
+  }
+}
+
+/* Animated glow ring overlay */
+.price-card-glow-ring {
+  position: absolute;
+  inset: -2px;
+  border-radius: 18px;
+  border: 2px solid #4466ff;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Most popular badge */
+.price-card-popular-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 16px;
+  background: rgba(10, 18, 90, 0.8);
+  border-bottom: 1px solid rgba(68, 102, 255, 0.4);
+  border-radius: 16px 16px 0 0;
+  font-family: var(--font-space-mono), monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.price-card-popular-icon {
+  font-size: 12px;
+}
+
+/* Header */
+.price-card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.price-card-name {
+  font-family: var(--font-space-mono), monospace;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: rgba(240, 240, 232, 0.55);
+}
+
+.price-card-points {
+  font-family: var(--font-oswald), sans-serif;
+  font-size: clamp(26px, 3vw, 34px);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.1;
+}
+
+/* Good for */
+.price-card-good-for {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.price-card-good-label {
+  font-family: var(--font-space-mono), monospace;
+  font-size: 11px;
+  font-weight: 400;
+  color: rgba(240, 240, 232, 0.4);
+}
+
+.price-card-picks-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 12px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  font-family: var(--font-space-mono), monospace;
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(240, 240, 232, 0.85);
+  letter-spacing: 0.5px;
+}
+
+.price-card--popular .price-card-picks-badge {
+  background: rgba(68, 102, 255, 0.2);
+  border-color: rgba(68, 102, 255, 0.4);
+}
+
+/* Price row */
+.price-card-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.price-card-amount {
+  font-family: var(--font-oswald), sans-serif;
+  font-size: clamp(44px, 5vw, 60px);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+}
+
+.price-card-period {
+  font-family: var(--font-space-mono), monospace;
+  font-size: 11px;
+  font-weight: 400;
+  color: rgba(240, 240, 232, 0.4);
+}
+
+/* CTA button */
+.price-card-cta {
+  width: 100%;
+  padding: 16px 24px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.06);
+  font-family: var(--font-space-mono), monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.18s, border-color 0.18s;
+}
+
+.price-card-cta:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+.price-card-cta--popular {
+  background: #3d66ff;
+  border-color: #3d66ff;
+  color: #fff;
+}
+
+.price-card-cta--popular:hover {
+  background: #5580ff;
+  border-color: #5580ff;
+}
+
+/* Security note */
+.price-card-security {
+  font-family: var(--font-space-mono), monospace;
+  font-size: 10px;
+  font-weight: 400;
+  color: rgba(240, 240, 232, 0.3);
+  text-align: center;
+  letter-spacing: 0.3px;
+}
+
+/* Glow animation keyframe */
+@keyframes pack-glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 24px 4px rgba(68, 102, 255, 0.5),
+                0 0 80px rgba(68, 102, 255, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 56px 14px rgba(68, 102, 255, 0.8),
+                0 0 140px rgba(68, 102, 255, 0.3);
+  }
+}

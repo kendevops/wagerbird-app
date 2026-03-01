@@ -40,12 +40,12 @@ export default function Packs({
   label = "// Choose Your Pack",
   title = (
     <>
-      Points Never Expire.
+      One-Time.
       <br />
-      <em className="packs-heading-accent">Buy Once. Win Forever.</em>
+      <em className="packs-heading-accent">Points Never Expire.</em>
     </>
   ),
-  description = "All customers see the same transparent pricing. The more you buy upfront, the lower your per-point cost.",
+  description = "Every pack gives you confidence-scored signals. Unlock only the picks you want — pay nothing extra.",
   packs = defaultPacks,
   footnote = (
     <>

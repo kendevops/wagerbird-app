@@ -5,7 +5,7 @@ import SportsbooksSection from "@/components/SportsbooksSection";
 import { SportsbookCardProps } from "@/components/SportsbookCard";
 import HowItWorks from "@/components/HowItWorks";
 import MapSection from "@/components/MapSection";
-import SportsbooksCtaBanner from "@/components/SportsbooksCtaBanner";
+import CtaBanner from "@/components/CtaBanner";
 import Faq from "@/components/Faq";
 
 /* ── Sportsbooks "How It Works" step icons ── */
@@ -218,7 +218,18 @@ export default function SportsbooksPage() {
         items={faqItems}
       />
 
-      <SportsbooksCtaBanner />
+      <CtaBanner
+        watermark="FREE"
+        title={
+          <>
+            Open 3 Books.<br />
+            <em className="cta-heading-accent">Get $117 Free.</em>
+          </>
+        }
+        subtitle="Takes 30 minutes. Points never expire. Start winning with credits on us."
+        ctaLabel="Find My Sportsbooks →"
+        ctaHref="#partner-sportsbooks"
+      />
     </main>
   );
 }

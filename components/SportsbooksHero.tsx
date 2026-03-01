@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 interface RewardRow {
@@ -36,12 +37,49 @@ const rewardRows: RewardRow[] = [
   },
 ];
 
+const heroStats = [
+  { value: "3+",    label: "Recommended\nAccounts" },
+  { value: "$117",  label: "Max Free\nValue" },
+  { value: "1,800", label: "Free Points\nEarned" },
+];
+
 export default function SportsbooksHero() {
+  const [dateStr, setDateStr] = useState("");
+
+  useEffect(() => {
+    const now = new Date();
+    setDateStr(
+      now.toLocaleDateString("en-US", {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      })
+    );
+  }, []);
+
   return (
     <section className="sportsbooks-hero-section">
+
+      {/* ── Ticker bar ── */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        className="sportsbooks-ticker-bar"
+      >
+        <span className="sportsbooks-ticker-left">Wagerbird Sportsbooks — Open Accounts. Earn Free Picks.</span>
+        <div className="sportsbooks-ticker-center">
+          <span className="sportsbooks-ticker-dot" aria-hidden="true" />
+          New Accounts Eligible
+        </div>
+        <span className="sportsbooks-ticker-right">{dateStr}</span>
+      </motion.div>
+
+      {/* ── Two-column main ── */}
       <div className="sportsbooks-hero-container">
 
-        {/* ── Left Column ── */}
+        {/* Left Column */}
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
@@ -83,7 +121,7 @@ export default function SportsbooksHero() {
           </div>
         </motion.div>
 
-        {/* ── Right Column — Rewards Table ── */}
+        {/* Right Column — Rewards Table */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -95,12 +133,10 @@ export default function SportsbooksHero() {
 
           {/* Table card */}
           <div className="rewards-card">
-            {/* Card header */}
             <div className="rewards-card-header">
               <span className="rewards-card-header-text">Your Reward Grows With Every Account You Open</span>
             </div>
 
-            {/* Column headers */}
             <div className="rewards-table-col-headers">
               <span className="rewards-col-label">Accounts</span>
               <span className="rewards-col-label">Free Packs</span>
@@ -108,7 +144,6 @@ export default function SportsbooksHero() {
               <span className="rewards-col-label">Value</span>
             </div>
 
-            {/* Rows */}
             {rewardRows.map((row, i) => (
               <div
                 key={i}
@@ -123,33 +158,20 @@ export default function SportsbooksHero() {
                   </span>
                 </div>
                 <div className="rewards-cell">
-                  <span className={`rewards-cell-value${row.highlighted ? " rewards-cell-value--highlighted" : ""}`}>
-                    {row.packs}
-                  </span>
-                  <span className={`rewards-cell-label${row.highlighted ? " rewards-cell-label--highlighted" : ""}`}>
-                    Free Packs
-                  </span>
+                  <span className={`rewards-cell-value${row.highlighted ? " rewards-cell-value--highlighted" : ""}`}>{row.packs}</span>
+                  <span className={`rewards-cell-label${row.highlighted ? " rewards-cell-label--highlighted" : ""}`}>Free Packs</span>
                 </div>
                 <div className="rewards-cell">
-                  <span className={`rewards-cell-value${row.highlighted ? " rewards-cell-value--highlighted" : ""}`}>
-                    {row.points}
-                  </span>
-                  <span className={`rewards-cell-label${row.highlighted ? " rewards-cell-label--highlighted" : ""}`}>
-                    Points
-                  </span>
+                  <span className={`rewards-cell-value${row.highlighted ? " rewards-cell-value--highlighted" : ""}`}>{row.points}</span>
+                  <span className={`rewards-cell-label${row.highlighted ? " rewards-cell-label--highlighted" : ""}`}>Points</span>
                 </div>
                 <div className="rewards-cell">
-                  <span className={`rewards-cell-value${row.highlighted ? " rewards-cell-value--highlighted" : ""}`}>
-                    {row.value}
-                  </span>
-                  <span className={`rewards-cell-label${row.highlighted ? " rewards-cell-label--highlighted" : ""}`}>
-                    Value
-                  </span>
+                  <span className={`rewards-cell-value${row.highlighted ? " rewards-cell-value--highlighted" : ""}`}>{row.value}</span>
+                  <span className={`rewards-cell-label${row.highlighted ? " rewards-cell-label--highlighted" : ""}`}>Value</span>
                 </div>
               </div>
             ))}
 
-            {/* Max value badge */}
             <div className="rewards-max-badge">
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <path d="M5.42946 1.75625C5.60946 1.20365 6.39126 1.20365 6.57066 1.75625L7.21266 3.73145C7.25188 3.85174 7.32813 3.95655 7.4305 4.03091C7.53287 4.10526 7.65613 4.14535 7.78266 4.14545H9.85986C10.4413 4.14545 10.6825 4.88945 10.2127 5.23145L8.53266 6.45185C8.43008 6.52626 8.35369 6.63125 8.31446 6.75176C8.27522 6.87226 8.27515 7.0021 8.31426 7.12265L8.95626 9.09785C9.13626 9.65045 8.50326 10.1106 8.03226 9.76865L6.35226 8.54825C6.24978 8.47385 6.12639 8.43378 5.99976 8.43378C5.87312 8.43378 5.74973 8.47385 5.64726 8.54825L3.96726 9.76865C3.49686 10.1106 2.86446 9.65045 3.04386 9.09785L3.68586 7.12265C3.72496 7.0021 3.72489 6.87226 3.68566 6.75176C3.64642 6.63125 3.57004 6.52626 3.46746 6.45185L1.78806 5.23205C1.31826 4.89005 1.56006 4.14605 2.14086 4.14605H4.21746C4.34409 4.14608 4.46748 4.10605 4.56997 4.03169C4.67247 3.95732 4.7488 3.85244 4.78806 3.73205L5.43006 1.75685L5.42946 1.75625Z" fill="#E4F222"/>
@@ -158,7 +180,6 @@ export default function SportsbooksHero() {
             </div>
           </div>
 
-          {/* Footnote */}
           <p className="rewards-footnote">
             New accounts only · Does not apply to existing sportsbook accounts.
             <br />
@@ -167,6 +188,26 @@ export default function SportsbooksHero() {
         </motion.div>
 
       </div>
+
+      {/* ── Bottom stats bar ── */}
+      <div className="sportsbooks-stats-bar">
+        {heroStats.map((stat, i) => (
+          <div key={i} className="sportsbooks-stats-bar-group">
+            {i > 0 && <div className="sportsbooks-stats-divider" aria-hidden="true" />}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: i * 0.1 }}
+              className="sportsbooks-stat-item"
+            >
+              <span className="sportsbooks-stat-value">{stat.value}</span>
+              <span className="sportsbooks-stat-label">{stat.label}</span>
+            </motion.div>
+          </div>
+        ))}
+      </div>
+
     </section>
   );
 }

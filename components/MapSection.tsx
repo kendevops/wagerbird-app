@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import LicenseBadge from "./LicenseBadge";
-import USADotMap from "./USADotMap";
 
 /* ── Icons for badges ── */
 const CheckIcon = () => (
@@ -107,7 +106,11 @@ export default function MapSection({
           viewport={{ once: true }}
           transition={{ delay: 0.1, duration: 0.6 }}
         >
-          <USADotMap />
+          <img
+            src="https://api.builder.io/api/v1/image/assets/TEMP/7fad18f5e95f14d992167878bfacc8b9e06346d6"
+            alt="USA Map showing licensed sportsbooks"
+            className="usa-map-image"
+          />
         </motion.div>
       </div>
 

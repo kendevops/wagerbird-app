@@ -1991,6 +1991,15 @@ body {
   }
 }
 
+/* Map image */
+.usa-map-image {
+  width: 100%;
+  max-width: 760px;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
 /* SVG dot map */
 .usa-dot-map {
   width: 100%;

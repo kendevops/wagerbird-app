@@ -417,6 +417,86 @@ body {
   letter-spacing: 0.5px;
 }
 
+/* ─── Value Strip ─────────────────────────────────── */
+.value-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: #080810;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.value-strip-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 32px 40px;
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.value-strip-item:last-child {
+  border-right: none;
+}
+
+.value-strip-value {
+  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 800;
+  line-height: 1;
+  color: var(--color-yellow);
+  letter-spacing: -1px;
+}
+
+.value-strip-label {
+  font-family: var(--font-space-mono), monospace;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-yellow);
+  opacity: 0.7;
+}
+
+.value-strip-desc {
+  font-family: var(--font-space-mono), monospace;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: rgba(240, 240, 232, 0.35);
+  margin-top: 2px;
+}
+
+@media (max-width: 900px) {
+  .value-strip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .value-strip-item:nth-child(2) {
+    border-right: none;
+  }
+
+  .value-strip-item:nth-child(3),
+  .value-strip-item:nth-child(4) {
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+}
+
+@media (max-width: 480px) {
+  .value-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .value-strip-item {
+    padding: 24px 20px;
+    border-right: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .value-strip-item:first-child {
+    border-top: none;
+  }
+}
+
 /* ─── Price Card ──────────────────────────────────── */
 .price-card {
   position: relative;

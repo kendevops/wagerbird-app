@@ -2,6 +2,7 @@
 
 import Hero from "@/components/Hero";
 import Packs from "@/components/Packs";
+import ValueStrip from "@/components/ValueStrip";
 import HowItWorks from "@/components/HowItWorks";
 import Faq from "@/components/Faq";
 import CtaBanner from "@/components/CtaBanner";
@@ -110,6 +111,8 @@ export default function PricingPage() {
       <div id="packs">
         <Packs />
       </div>
+
+      <ValueStrip />
 
       <div id="how-it-works">
         <HowItWorks

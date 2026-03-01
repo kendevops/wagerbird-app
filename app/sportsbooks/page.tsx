@@ -1,6 +1,6 @@
 "use client";
 
-import Hero from "@/components/Hero";
+import SportsbooksHero from "@/components/SportsbooksHero";
 import SportsbookCard, { SportsbookCardProps } from "@/components/SportsbookCard";
 import CtaBanner from "@/components/CtaBanner";
 import Faq from "@/components/Faq";
@@ -69,21 +69,7 @@ const faqItems = [
 export default function SportsbooksPage() {
   return (
     <main>
-      <Hero
-        title={
-          <>
-            Top Rated<br />
-            <em className="text-brand-yellow italic font-bold not-italic">Sportsbooks.</em><br />
-            Best Odds.
-          </>
-        }
-        description="The WagerBird guide to the best sportsbooks in the industry. Compare offers, find the best lines, and maximize your edge."
-        primaryCtaLabel="View All Offers ↓"
-        primaryCtaHref="#offers"
-        secondaryCtaLabel="Back to Terminal"
-        secondaryCtaHref="/"
-        imageUrl="https://images.pexels.com/photos/5700769/pexels-photo-5700769.jpeg"
-      />
+      <SportsbooksHero />
 
       <section id="offers" className="py-[80px] md:py-[120px] bg-[#050510] px-[20px] md:px-[48px]">
         <div className="max-w-[1440px] mx-auto">

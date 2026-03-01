@@ -213,8 +213,8 @@ export default function SportsbooksPage() {
 
       <MapSection />
 
-      <Faq 
-        title={<>Sportsbook<br/><em className="faq-heading-accent">FAQ.</em></>}
+      <Faq
+        title={<>Common<br /><em className="faq-heading-accent">Questions.</em></>}
         items={faqItems}
       />
 

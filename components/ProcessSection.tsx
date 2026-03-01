@@ -93,19 +93,58 @@ export default function ProcessSection({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.55, delay: i * 0.1 }}
+              whileHover="hover"
+              variants={{
+                hover: {
+                  y: -8,
+                  backgroundColor: "rgba(255, 255, 255, 0.05)",
+                  borderColor: "rgba(255, 255, 255, 0.15)",
+                  transition: { duration: 0.2, ease: "easeOut" }
+                }
+              }}
             >
               {/* Step number watermark */}
-              <span className="process-step-number" aria-hidden="true">
+              <motion.span
+                className="process-step-number"
+                aria-hidden="true"
+                variants={{
+                  hover: {
+                    scale: 1.1,
+                    opacity: 0.08,
+                    x: -10,
+                    transition: { duration: 0.4, ease: "easeOut" }
+                  }
+                }}
+              >
                 {step.number}
-              </span>
+              </motion.span>
 
               {/* Icon */}
-              <div className="process-step-icon-wrap">
+              <motion.div
+                className="process-step-icon-wrap"
+                variants={{
+                  hover: {
+                    scale: 1.1,
+                    rotate: [0, -5, 5, 0],
+                    transition: { duration: 0.4 }
+                  }
+                }}
+              >
                 {step.icon}
-              </div>
+              </motion.div>
 
               {/* Content */}
-              <h3 className="process-step-title">{step.title}</h3>
+              <motion.h3
+                className="process-step-title"
+                variants={{
+                  hover: {
+                    color: "#FFFFFF",
+                    transition: { duration: 0.2 }
+                  }
+                }}
+              >
+                {step.title}
+              </motion.h3>
               <p className="process-step-desc">{step.description}</p>
             </motion.div>
           ))}

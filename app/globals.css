@@ -1843,6 +1843,189 @@ body {
   }
 }
 
+/* ─── Map Section ──────────────────────────────────── */
+.map-section {
+  background: #E8E9E2;
+  display: flex;
+  flex-direction: column;
+}
+
+.map-section-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  min-height: 680px;
+}
+
+@media (max-width: 900px) {
+  .map-section-inner {
+    grid-template-columns: 1fr;
+    min-height: unset;
+  }
+}
+
+/* Left column */
+.map-section-left {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding: 80px 56px 80px 120px;
+}
+
+@media (max-width: 1200px) {
+  .map-section-left {
+    padding: 80px 48px 80px 64px;
+  }
+}
+
+@media (max-width: 900px) {
+  .map-section-left {
+    padding: 72px 32px 48px;
+  }
+}
+
+@media (max-width: 480px) {
+  .map-section-left {
+    padding: 56px 20px 40px;
+    gap: 24px;
+  }
+}
+
+/* Heading */
+.map-section-heading {
+  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
+  font-size: clamp(48px, 6vw, 78px);
+  font-weight: 800;
+  line-height: 0.95;
+  text-transform: uppercase;
+  color: #07070F;
+  letter-spacing: -1px;
+  margin: 0;
+}
+
+/* Description */
+.map-section-description {
+  font-family: var(--font-space-mono), monospace;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.85;
+  color: rgba(7, 7, 15, 0.55);
+  max-width: 420px;
+  margin: 0;
+}
+
+/* Badges grid */
+.map-section-badges {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  max-width: 420px;
+}
+
+@media (max-width: 480px) {
+  .map-section-badges {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Individual badge */
+.license-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 14px;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(7, 7, 15, 0.12);
+  border-radius: 3px;
+}
+
+.license-badge-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(7, 7, 15, 0.45);
+  flex-shrink: 0;
+}
+
+.license-badge-label {
+  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.license-badge-text {
+  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: rgba(7, 7, 15, 0.65);
+  line-height: 1.2;
+}
+
+/* Right column — map */
+.map-section-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  overflow: hidden;
+  height: 100%;
+  min-height: 460px;
+}
+
+@media (max-width: 900px) {
+  .map-section-right {
+    justify-content: center;
+    min-height: 300px;
+    padding: 0 32px 72px;
+  }
+}
+
+@media (max-width: 480px) {
+  .map-section-right {
+    padding: 0 20px 56px;
+    min-height: 240px;
+  }
+}
+
+/* SVG dot map */
+.usa-dot-map {
+  width: 100%;
+  max-width: 760px;
+  height: auto;
+  display: block;
+}
+
+/* Bottom disclaimer */
+.map-section-disclaimer-wrap {
+  padding: 24px 32px 32px;
+  border-top: 1px solid rgba(7, 7, 15, 0.08);
+  text-align: center;
+}
+
+.map-section-disclaimer {
+  font-family: var(--font-space-mono), monospace;
+  font-size: 10.5px;
+  font-weight: 400;
+  line-height: 1.8;
+  color: rgba(7, 7, 15, 0.38);
+  margin: 0;
+}
+
+.map-section-disclaimer-link {
+  color: rgba(7, 7, 15, 0.5);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.15s;
+}
+
+.map-section-disclaimer-link:hover {
+  color: rgba(7, 7, 15, 0.75);
+}
+
 /* ─── Sportsbooks Section (Filter + Card Grid) ───── */
 .sb-section {
   background: #07070F;

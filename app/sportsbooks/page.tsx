@@ -4,6 +4,7 @@ import SportsbooksHero from "@/components/SportsbooksHero";
 import SportsbooksSection from "@/components/SportsbooksSection";
 import { SportsbookCardProps } from "@/components/SportsbookCard";
 import HowItWorks from "@/components/HowItWorks";
+import MapSection from "@/components/MapSection";
 import CtaBanner from "@/components/CtaBanner";
 import Faq from "@/components/Faq";
 
@@ -197,6 +198,8 @@ export default function SportsbooksPage() {
           sportsbooks={sportsbooks}
         />
       </div>
+
+      <MapSection />
 
       <Faq 
         title={<>Sportsbook<br/><em className="faq-heading-accent">FAQ.</em></>}

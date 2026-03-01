@@ -1,11 +1,11 @@
 "use client";
 
 import SportsbooksHero from "@/components/SportsbooksHero";
-import SportsbookCard, { SportsbookCardProps } from "@/components/SportsbookCard";
+import SportsbooksSection from "@/components/SportsbooksSection";
+import { SportsbookCardProps } from "@/components/SportsbookCard";
 import HowItWorks from "@/components/HowItWorks";
 import CtaBanner from "@/components/CtaBanner";
 import Faq from "@/components/Faq";
-import { motion } from "framer-motion";
 
 /* ── Sportsbooks "How It Works" step icons ── */
 const IconPickSportsbooks = () => (
@@ -54,46 +54,107 @@ const sportsbooksSteps = [
 
 const sportsbooks: SportsbookCardProps[] = [
   {
-    name: "FanDuel",
-    logoUrl: "",
-    offer: "Bet $5, Get $150 in Bonus Bets",
-    ctaLabel: "Join FanDuel",
-    ctaHref: "https://www.fanduel.com",
+    name: "DraftKings",
+    brandColor: "#1B5E2E",
+    description: "One of the largest U.S. books. Deep markets, strong live betting.",
+    pointsPack: "+1 FREE POINTS PACK ($39)",
+    ctaHref: "https://www.draftkings.com",
+    states: [
+      "Arizona", "Colorado", "Connecticut", "Illinois", "Indiana", "Iowa",
+      "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts",
+      "Michigan", "Montana", "Nebraska", "New Hampshire", "New Jersey",
+      "New York", "North Carolina", "Ohio", "Oregon", "Pennsylvania",
+      "Rhode Island", "Tennessee", "Vermont", "Virginia", "West Virginia",
+      "Wyoming",
+    ],
   },
   {
-    name: "DraftKings",
-    logoUrl: "",
-    offer: "Bet $5, Get $200 in Bonus Bets",
-    ctaLabel: "Join DraftKings",
-    ctaHref: "https://www.draftkings.com",
+    name: "FanDuel",
+    brandColor: "#1A4FC4",
+    description: "Top-rated mobile experience. Competitive odds, fast payouts.",
+    pointsPack: "+1 FREE POINTS PACK ($39)",
+    ctaHref: "https://www.fanduel.com",
+    states: [
+      "Arizona", "Colorado", "Connecticut", "Illinois", "Indiana", "Iowa",
+      "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts",
+      "Michigan", "Montana", "Nebraska", "New Hampshire", "New Jersey",
+      "New York", "North Carolina", "Ohio", "Pennsylvania", "Rhode Island",
+      "Tennessee", "Vermont", "Virginia", "West Virginia", "Wyoming",
+    ],
   },
   {
     name: "BetMGM",
-    logoUrl: "",
-    offer: "Up to $1,500 Back in Bonus Bets",
-    ctaLabel: "Join BetMGM",
+    brandColor: "#8B7D2A",
+    description: "Casino + sports under one login. Wide parlay coverage.",
+    pointsPack: "+1 FREE POINTS PACK ($39)",
     ctaHref: "https://www.betmgm.com",
+    states: [
+      "Arizona", "Colorado", "Illinois", "Indiana", "Iowa", "Kansas",
+      "Kentucky", "Louisiana", "Maryland", "Massachusetts", "Michigan",
+      "Mississippi", "Nevada", "New Hampshire", "New Jersey", "New York",
+      "North Carolina", "Ohio", "Pennsylvania", "Tennessee", "Virginia",
+      "Washington", "West Virginia", "Wyoming",
+    ],
   },
   {
     name: "Caesars",
-    logoUrl: "",
-    offer: "Up to $1,000 First Bet on Caesars",
-    ctaLabel: "Join Caesars",
+    brandColor: "#4A4A1A",
+    description: "Generous rewards program. Best for loyalty-focused bettors.",
+    pointsPack: "+1 FREE POINTS PACK ($39)",
     ctaHref: "https://www.caesars.com/sportsbook",
+    states: [
+      "Arizona", "Colorado", "Illinois", "Indiana", "Iowa", "Kansas",
+      "Kentucky", "Louisiana", "Maryland", "Massachusetts", "Michigan",
+      "Nevada", "New Hampshire", "New Jersey", "New York", "North Carolina",
+      "Ohio", "Pennsylvania", "Tennessee", "Virginia", "West Virginia",
+      "Wyoming",
+    ],
   },
   {
-    name: "BetRivers",
-    logoUrl: "",
-    offer: "Up to $500 2nd Chance Bet",
-    ctaLabel: "Join BetRivers",
-    ctaHref: "https://www.betrivers.com",
+    name: "ESPN Bet",
+    brandColor: "#CC1F1F",
+    description: "Seamless integration with ESPN stats and live game data.",
+    pointsPack: "+1 FREE POINTS PACK ($39)",
+    ctaHref: "https://www.espnbet.com",
+    states: [
+      "Arizona", "Colorado", "Illinois", "Indiana", "Iowa", "Kansas",
+      "Kentucky", "Louisiana", "Maryland", "Massachusetts", "Michigan",
+      "New Jersey", "North Carolina", "Ohio", "Pennsylvania", "Tennessee",
+      "Virginia", "West Virginia", "Wyoming",
+    ],
   },
   {
-    name: "Pinnacle",
-    logoUrl: "",
-    offer: "Best Odds. Lowest Juice.",
-    ctaLabel: "Join Pinnacle",
-    ctaHref: "https://www.pinnacle.com",
+    name: "bet365",
+    brandColor: "#1A6B3A",
+    description: "Global leader. Exceptional live streaming and in-play markets.",
+    pointsPack: "+1 FREE POINTS PACK ($39)",
+    ctaHref: "https://www.bet365.com",
+    states: [
+      "Colorado", "Indiana", "Iowa", "Kentucky", "Louisiana", "New Jersey",
+      "Ohio", "Virginia",
+    ],
+  },
+  {
+    name: "PointsBet",
+    brandColor: "#C0392B",
+    description: "Unique PointsBetting format — ideal for high-conviction plays.",
+    pointsPack: "+1 FREE POINTS PACK ($39)",
+    ctaHref: "https://www.pointsbet.com",
+    states: [
+      "Colorado", "Illinois", "Indiana", "Iowa", "Kansas", "Michigan",
+      "New Jersey", "New York", "Pennsylvania", "Virginia", "West Virginia",
+    ],
+  },
+  {
+    name: "Hard Rock Bet",
+    brandColor: "#7B1F1F",
+    description: "Strong Florida presence. Fast, clean mobile experience.",
+    pointsPack: "+1 FREE POINTS PACK ($39)",
+    ctaHref: "https://www.hardrock.bet",
+    states: [
+      "Indiana", "Iowa", "New Jersey", "Ohio", "Tennessee", "Virginia",
+      "Wyoming",
+    ],
   },
 ];
 
@@ -131,39 +192,11 @@ export default function SportsbooksPage() {
         />
       </div>
 
-      <section id="offers" className="py-[80px] md:py-[120px] bg-[#050510] px-[20px] md:px-[48px]">
-        <div className="max-w-[1440px] mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="flex flex-col gap-[16px] mb-[64px]"
-          >
-            <span className="font-mono text-[10px] font-400 tracking-[1.5px] uppercase text-nav-text/35">// The Lineup</span>
-            <h2 className="font-display text-[clamp(32px,5vw,48px)] font-bold text-nav-text leading-tight uppercase">
-              Curated <em className="text-brand-yellow not-italic">Partners.</em>
-            </h2>
-            <p className="font-mono text-[13px] font-400 leading-[1.8] text-nav-text/55 max-w-[540px]">
-              We only recommend sportsbooks that are fully licensed, secure, and known for fair lines. 
-              Signing up through these links helps support WagerBird.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[24px]">
-            {sportsbooks.map((sb, i) => (
-              <motion.div
-                key={sb.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-              >
-                <SportsbookCard {...sb} />
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <div id="partner-sportsbooks">
+        <SportsbooksSection
+          sportsbooks={sportsbooks}
+        />
+      </div>
 
       <Faq 
         title={<>Sportsbook<br/><em className="faq-heading-accent">FAQ.</em></>}

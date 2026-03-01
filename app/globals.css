@@ -725,6 +725,19 @@ body {
   }
 }
 
+/* Step icon (circular badge — used for sportsbooks variant) */
+.hiw-step-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--color-dark-blue);
+  flex-shrink: 0;
+  margin-bottom: 8px;
+}
+
 /* Step number */
 .hiw-step-number {
   font-family: var(--font-oswald), sans-serif;

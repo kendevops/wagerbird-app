@@ -7,6 +7,7 @@ interface Step {
   number: string;
   title: string;
   description: string;
+  icon?: React.ReactNode;
 }
 
 interface HowItWorksProps {

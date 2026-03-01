@@ -23,7 +23,42 @@ function StatItem({ value, label }: StatItemProps) {
   );
 }
 
-export default function Hero() {
+interface HeroProps {
+  tickerText?: string;
+  badgeText?: string;
+  title: React.ReactNode;
+  description: string;
+  primaryCtaLabel?: string;
+  primaryCtaHref?: string;
+  secondaryCtaLabel?: string;
+  secondaryCtaHref?: string;
+  imageUrl?: string;
+  stats?: StatItemProps[];
+}
+
+export default function Hero({
+  tickerText = "Wagerbird Terminal — Confidence-Scored Signals",
+  badgeText = "MLB · NBA · NFL · NHL — All Sports Covered",
+  title = (
+    <>
+      Access<br />
+      The <em className="text-brand-yellow italic font-bold not-italic">Edge.</em><br />
+      Trade<br />
+      The Game.
+    </>
+  ),
+  description = "Signals scored by confidence. Priced by conviction. Stop guessing — start winning with the model on your side.",
+  primaryCtaLabel = "Buy a Pack →",
+  primaryCtaHref = "/packs",
+  secondaryCtaLabel = "Free Picks via Email",
+  secondaryCtaHref = "/picks",
+  imageUrl = "https://api.builder.io/api/v1/image/assets/TEMP/e7a48826f4f3592b62edc4a4adaa3da19d8075e3",
+  stats = [
+    { value: "68%", label: "Season Win Rate" },
+    { value: "12K+", label: "Active Bettors" },
+    { value: "5", label: "Sports Covered" },
+  ],
+}: HeroProps) {
   const [dateStr, setDateStr] = useState("");
 
   useEffect(() => {
@@ -50,7 +85,7 @@ export default function Hero() {
         className="border-b border-white/5 bg-black/25 relative z-[1] shrink-0"
       >
         <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto_1fr] items-center px-[20px] md:px-[48px] py-[8px] md:py-[10px] gap-2 sm:gap-0">
-          <span className="font-mono text-[10px] font-400 tracking-[1.5px] uppercase text-nav-text/35 text-center sm:text-left">Wagerbird Terminal — Confidence-Scored Signals</span>
+          <span className="font-mono text-[10px] font-400 tracking-[1.5px] uppercase text-nav-text/35 text-center sm:text-left">{tickerText}</span>
           <div className="flex items-center justify-center gap-[8px] text-white min-w-0 sm:min-w-[200px] font-mono text-[10px] font-400 tracking-[1.5px] uppercase">
             <span className="w-[6px] h-[6px] rounded-full bg-brand-yellow shrink-0 animate-[live-pulse_2.5s_cubic-bezier(0.4,0,0.6,1)_infinite]" aria-hidden="true" />
             Live Signals Active
@@ -70,7 +105,7 @@ export default function Hero() {
             className="inline-flex items-center gap-[10px] px-[16px] py-[8px] border border-brand-yellow/25 bg-brand-yellow/4 mb-[20px] md:mb-[32px] w-fit"
           >
             <span className="w-[5px] h-[5px] rounded-full bg-brand-yellow shrink-0" aria-hidden="true" />
-            <span className="font-mono text-[10px] font-400 tracking-[1.5px] uppercase text-nav-text/85">MLB · NBA · NFL · NHL — All Sports Covered</span>
+            <span className="font-mono text-[10px] font-400 tracking-[1.5px] uppercase text-nav-text/85">{badgeText}</span>
           </motion.div>
 
           <motion.h1
@@ -79,10 +114,7 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="font-display text-[clamp(42px,13vw,60px)] md:text-[clamp(48px,6.5vw,88px)] font-bold leading-[0.94] tracking-[-0.01em] uppercase text-nav-text/98 m-0 mb-[20px] md:mb-[32px]"
           >
-            Access<br />
-            The <em className="text-brand-yellow italic font-bold not-italic">Edge.</em><br />
-            Trade<br />
-            The Game.
+            {title}
           </motion.h1>
 
           <motion.div
@@ -92,7 +124,7 @@ export default function Hero() {
             className="border-l-2 border-brand-yellow pl-[20px] mb-[48px]"
           >
             <p className="font-mono text-[13px] font-400 leading-[1.95] text-nav-text/55 m-0 max-w-[360px]">
-              Signals scored by confidence. Priced by conviction. Stop guessing — start winning with the model on your side.
+              {description}
             </p>
           </motion.div>
 
@@ -102,8 +134,8 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.5 }}
             className="flex flex-col sm:flex-row items-start sm:items-center gap-[12px] md:gap-[20px]"
           >
-            <a href="/packs" className="w-full sm:w-auto inline-flex items-center justify-center px-[32px] py-[15px] bg-brand-yellow font-mono text-[11px] font-bold tracking-[1.5px] uppercase text-black whitespace-nowrap transition-all hover:bg-white hover:-translate-y-[1px]">Buy a Pack →</a>
-            <a href="/picks" className="w-full sm:w-auto inline-flex items-center justify-center px-[32px] py-[14px] border border-nav-text/15 font-mono text-[11px] font-400 tracking-[1.5px] uppercase text-nav-text/55 whitespace-nowrap transition-all hover:border-nav-text/40 hover:text-white hover:bg-white/3">Free Picks via Email</a>
+            <a href={primaryCtaHref} className="w-full sm:w-auto inline-flex items-center justify-center px-[32px] py-[15px] bg-brand-yellow font-mono text-[11px] font-bold tracking-[1.5px] uppercase text-black whitespace-nowrap transition-all hover:bg-white hover:-translate-y-[1px]">{primaryCtaLabel}</a>
+            <a href={secondaryCtaHref} className="w-full sm:w-auto inline-flex items-center justify-center px-[32px] py-[14px] border border-nav-text/15 font-mono text-[11px] font-400 tracking-[1.5px] uppercase text-nav-text/55 whitespace-nowrap transition-all hover:border-nav-text/40 hover:text-white hover:bg-white/3">{secondaryCtaLabel}</a>
           </motion.div>
         </div>
 
@@ -116,7 +148,7 @@ export default function Hero() {
         >
           <div className="w-full h-full">
             <img
-              src="https://api.builder.io/api/v1/image/assets/TEMP/e7a48826f4f3592b62edc4a4adaa3da19d8075e3"
+              src={imageUrl}
               alt="WagerBird signal cards terminal"
               className="w-full h-full object-cover object-center block"
             />
@@ -126,11 +158,14 @@ export default function Hero() {
 
       {/* Bottom stats */}
       <div className="flex flex-col md:flex-row items-center md:items-stretch relative z-[1] shrink-0 border-t border-white/8 bg-[#050510] min-h-[104px]">
-        <StatItem value="68%" label="Season Win Rate" />
-        <div className="hidden md:block w-[1px] self-stretch bg-white/8 shrink-0 m-0" />
-        <StatItem value="12K+" label="Active Bettors" />
-        <div className="hidden md:block w-[1px] self-stretch bg-white/8 shrink-0 m-0" />
-        <StatItem value="5" label="Sports Covered" />
+        {stats.map((stat, i) => (
+          <div key={i} className="flex flex-col md:flex-row items-center md:items-stretch flex-1">
+            <StatItem value={stat.value} label={stat.label} />
+            {i < stats.length - 1 && (
+              <div className="hidden md:block w-[1px] self-stretch bg-white/8 shrink-0 m-0" />
+            )}
+          </div>
+        ))}
       </div>
     </section>
   );

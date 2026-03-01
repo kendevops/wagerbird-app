@@ -2,14 +2,29 @@
 
 import { usePathname } from "next/navigation";
 
-const navLinks = [
+interface NavLink {
+  label: string;
+  href: string;
+}
+
+interface HeaderProps {
+  navLinks?: NavLink[];
+  loginHref?: string;
+  getAccessHref?: string;
+}
+
+const defaultNavLinks = [
   { label: "Signals",      href: "/signals" },
   { label: "Sportsbooks",  href: "/sportsbooks" },
   { label: "Hotsheet",     href: "/hotsheet" },
   { label: "Pricing",      href: "/pricing" },
 ];
 
-export default function Header() {
+export default function Header({
+  navLinks = defaultNavLinks,
+  loginHref = "/login",
+  getAccessHref = "/get-access"
+}: HeaderProps) {
   const pathname = usePathname();
 
   return (
@@ -71,13 +86,13 @@ export default function Header() {
         {/* CTA buttons */}
         <div className="flex items-center gap-[12px] shrink-0">
           <a
-            href="/login"
+            href={loginHref}
             className="hidden sm:flex items-center justify-center px-[20px] py-[9px] border border-nav-border font-mono text-[11px] font-400 tracking-[1px] uppercase text-nav-text-muted hover:border-[#F0F0E8]/50 hover:text-nav-text transition-colors whitespace-nowrap"
           >
             Login
           </a>
           <a
-            href="/get-access"
+            href={getAccessHref}
             className="flex items-center justify-center px-[14px] md:px-[22px] py-[8px] md:py-[10px] h-[36px] bg-brand-yellow font-mono text-[11px] font-bold tracking-[1px] uppercase text-brand-blue whitespace-nowrap hover:bg-[#cdd91e] transition-colors clip-btn"
           >
             Get Access

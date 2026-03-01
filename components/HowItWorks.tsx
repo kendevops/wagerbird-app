@@ -3,7 +3,19 @@
 import { motion } from "framer-motion";
 import HowItWorksStep from "./HowItWorksStep";
 
-const steps = [
+interface Step {
+  number: string;
+  title: string;
+  description: string;
+}
+
+interface HowItWorksProps {
+  label?: string;
+  title?: React.ReactNode;
+  steps?: Step[];
+}
+
+const defaultSteps: Step[] = [
   {
     number: "01",
     title: "Buy Points",
@@ -39,7 +51,19 @@ const itemVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
 };
 
-export default function HowItWorks() {
+export default function HowItWorks({
+  label = "// How It Works",
+  title = (
+    <>
+      Simple.
+      <br />
+      Transparent.
+      <br />
+      <em className="hiw-heading-accent">Profitable.</em>
+    </>
+  ),
+  steps = defaultSteps
+}: HowItWorksProps) {
   return (
     <section className="hiw-section">
       <div className="hiw-container">
@@ -51,13 +75,9 @@ export default function HowItWorks() {
           transition={{ duration: 0.6 }}
           className="hiw-header"
         >
-          <span className="hiw-label">// How It Works</span>
+          <span className="hiw-label">{label}</span>
           <h2 className="hiw-heading">
-            Simple.
-            <br />
-            Transparent.
-            <br />
-            <em className="hiw-heading-accent">Profitable.</em>
+            {title}
           </h2>
         </motion.div>
 

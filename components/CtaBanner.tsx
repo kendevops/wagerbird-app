@@ -2,7 +2,26 @@
 
 import { motion } from "framer-motion";
 
-export default function CtaBanner() {
+interface CtaBannerProps {
+  watermark?: string;
+  title?: React.ReactNode;
+  subtitle?: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+}
+
+export default function CtaBanner({
+  watermark = "WIN",
+  title = (
+    <>
+      Stop Guessing.<br />
+      Start Winning.
+    </>
+  ),
+  subtitle = "Join 12,000+ bettors who trade with confidence-scored signals.",
+  ctaLabel = "Buy a Pack Now →",
+  ctaHref = "/packs"
+}: CtaBannerProps) {
   return (
     <section className="cta-section">
       <motion.span
@@ -13,7 +32,7 @@ export default function CtaBanner() {
         className="cta-watermark"
         aria-hidden="true"
       >
-        WIN
+        {watermark}
       </motion.span>
       <motion.div
         initial={{ opacity: 0, y: 30 }}
@@ -23,15 +42,13 @@ export default function CtaBanner() {
         className="cta-content"
       >
         <h2 className="cta-heading">
-          Stop Guessing.
-          <br />
-          Start Winning.
+          {title}
         </h2>
         <p className="cta-subtext">
-          Join 12,000+ bettors who trade with confidence-scored signals.
+          {subtitle}
         </p>
-        <a href="/packs" className="cta-btn clip-btn">
-          Buy a Pack Now &rarr;
+        <a href={ctaHref} className="cta-btn clip-btn">
+          {ctaLabel}
         </a>
       </motion.div>
     </section>

@@ -47,9 +47,19 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${spaceMono.variable} ${oswald.variable} ${barlowCondensed.variable} antialiased`}
       >
-        <Header />
+        <Header
+          navLinks={[
+            { label: "Signals",      href: "/signals" },
+            { label: "Sportsbooks",  href: "/sportsbooks" },
+            { label: "Hotsheet",     href: "/hotsheet" },
+            { label: "Pricing",      href: "/pricing" },
+          ]}
+        />
         {children}
-        <Footer />
+        <Footer
+          description="Confidence-scored betting signals for every sport. Priced by conviction. Backed by the model. Not a sportsbook."
+          copyright="© 2028 WagerBird. All rights reserved."
+        />
       </body>
     </html>
   );

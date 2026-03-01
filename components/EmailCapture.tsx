@@ -3,7 +3,35 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-export default function EmailCapture() {
+interface EmailCaptureProps {
+  label?: string;
+  title?: React.ReactNode;
+  subtitle?: React.ReactNode;
+  cardTitle?: string;
+  cardSubtitle?: string;
+  buttonLabel?: string;
+  disclaimer?: string;
+}
+
+export default function EmailCapture({
+  label = "// Free Daily Picks",
+  title = (
+    <>
+      Today&rsquo;s Top Signals.<br />
+      <em className="email-capture-heading-accent">Free, In Your Inbox.</em>
+    </>
+  ),
+  subtitle = (
+    <>
+      No credit card. No fluff. Just the model&rsquo;s top 3 picks,<br className="email-capture-br" />
+      every morning before game time.
+    </>
+  ),
+  cardTitle = "Join 12,000+ Sharp Bettors",
+  cardSubtitle = "Get the model\u2019s top picks before game time \u2014 free, every day.",
+  buttonLabel = "Send My Picks",
+  disclaimer = "No spam. Unsubscribe anytime. Your data stays private."
+}: EmailCaptureProps) {
   const [email, setEmail] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -21,7 +49,7 @@ export default function EmailCapture() {
           transition={{ duration: 0.5 }}
           className="email-capture-label"
         >
-          // Free Daily Picks
+          {label}
         </motion.span>
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -30,9 +58,7 @@ export default function EmailCapture() {
           transition={{ duration: 0.7, delay: 0.1 }}
           className="email-capture-heading"
         >
-          Today&rsquo;s Top Signals.
-          <br />
-          <em className="email-capture-heading-accent">Free, In Your Inbox.</em>
+          {title}
         </motion.h2>
         <motion.p
           initial={{ opacity: 0 }}
@@ -41,9 +67,7 @@ export default function EmailCapture() {
           transition={{ duration: 0.7, delay: 0.2 }}
           className="email-capture-subtext"
         >
-          No credit card. No fluff. Just the model&rsquo;s top 3 picks,
-          <br className="email-capture-br" />
-          every morning before game time.
+          {subtitle}
         </motion.p>
 
         <motion.div
@@ -54,9 +78,9 @@ export default function EmailCapture() {
           className="email-capture-card-wrap"
         >
           <div className="email-capture-card">
-            <h3 className="email-capture-card-heading">Join 12,000+ Sharp Bettors</h3>
+            <h3 className="email-capture-card-heading">{cardTitle}</h3>
             <p className="email-capture-card-sub">
-              Get the model&rsquo;s top picks before game time — free, every day.
+              {cardSubtitle}
             </p>
             <form className="email-capture-form" onSubmit={handleSubmit}>
               <input
@@ -68,11 +92,11 @@ export default function EmailCapture() {
                 required
               />
               <button type="submit" className="email-capture-btn">
-                Send My Picks
+                {buttonLabel}
               </button>
             </form>
             <p className="email-capture-disclaimer">
-              No spam. Unsubscribe anytime. Your data stays private.
+              {disclaimer}
             </p>
           </div>
         </motion.div>

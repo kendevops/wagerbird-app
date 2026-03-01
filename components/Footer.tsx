@@ -1,4 +1,55 @@
-export default function Footer() {
+interface FooterLink {
+  label: string;
+  href: string;
+}
+
+interface FooterSection {
+  title: string;
+  links: FooterLink[];
+}
+
+interface FooterProps {
+  description?: string;
+  sections?: FooterSection[];
+  copyright?: string;
+  disclaimer?: string;
+}
+
+const defaultSections: FooterSection[] = [
+  {
+    title: "Products",
+    links: [
+      { label: "Terminal", href: "/terminal" },
+      { label: "Hotsheet", href: "/hotsheet" },
+      { label: "Packs", href: "/packs" },
+      { label: "Signals", href: "/signals" },
+    ],
+  },
+  {
+    title: "Resources",
+    links: [
+      { label: "Results", href: "/results" },
+      { label: "Live Odds", href: "/live-odds" },
+      { label: "FAQ", href: "/faq" },
+    ],
+  },
+  {
+    title: "Company",
+    links: [
+      { label: "About", href: "/about" },
+      { label: "Contact", href: "/contact" },
+      { label: "Privacy Policy", href: "/privacy-policy" },
+      { label: "Terms of Service", href: "/terms-of-service" },
+    ],
+  },
+];
+
+export default function Footer({
+  description = "Confidence-scored betting signals for every sport. Priced by conviction. Backed by the model. Not a sportsbook.",
+  sections = defaultSections,
+  copyright = "© 2028 WagerBird. All rights reserved.",
+  disclaimer = "WagerBird does not facilitate wagering. All signals are for informational purposes only. Must be 21+ and located in a jurisdiction where sports betting is legal."
+}: FooterProps) {
   return (
     <footer className="w-full bg-brand-blue border-t border-yellow-border">
       <div className="px-[20px] sm:px-[24px] md:px-[48px] pt-[40px] sm:pt-[48px] md:pt-[64px]">
@@ -35,47 +86,31 @@ export default function Footer() {
               </svg>
             </a>
             <p className="font-mono text-[11px] font-400 leading-[1.8] tracking-[0.3px] text-nav-text-muted m-0">
-              Confidence-scored betting signals for every sport. Priced by conviction. Backed by the model. Not a sportsbook.
+              {description}
             </p>
           </div>
 
           {/* Nav columns */}
           <div className="flex flex-wrap lg:flex-nowrap gap-[32px] md:gap-[40px] lg:gap-[80px]">
-            <div className="flex flex-col gap-[20px]">
-              <h3 className="font-mono text-[11px] font-400 tracking-[1.5px] uppercase text-nav-text-muted m-0 pb-[12px] border-b border-nav-border min-w-[140px] md:min-w-[120px] lg:min-w-[160px]">Products</h3>
-              <ul className="flex flex-col gap-[16px] list-none m-0 p-0">
-                <li><a href="/terminal" className="font-mono text-[11px] font-400 tracking-[1.5px] uppercase text-nav-text hover:text-white transition-colors">Terminal</a></li>
-                <li><a href="/hotsheet" className="font-mono text-[11px] font-400 tracking-[1.5px] uppercase text-nav-text hover:text-white transition-colors">Hotsheet</a></li>
-                <li><a href="/packs" className="font-mono text-[11px] font-400 tracking-[1.5px] uppercase text-nav-text hover:text-white transition-colors">Packs</a></li>
-                <li><a href="/signals" className="font-mono text-[11px] font-400 tracking-[1.5px] uppercase text-nav-text hover:text-white transition-colors">Signals</a></li>
-              </ul>
-            </div>
-
-            <div className="flex flex-col gap-[20px]">
-              <h3 className="font-mono text-[11px] font-400 tracking-[1.5px] uppercase text-nav-text-muted m-0 pb-[12px] border-b border-nav-border min-w-[140px] md:min-w-[120px] lg:min-w-[160px]">Resources</h3>
-              <ul className="flex flex-col gap-[16px] list-none m-0 p-0">
-                <li><a href="/results" className="font-mono text-[11px] font-400 tracking-[1.5px] uppercase text-nav-text hover:text-white transition-colors">Results</a></li>
-                <li><a href="/live-odds" className="font-mono text-[11px] font-400 tracking-[1.5px] uppercase text-nav-text hover:text-white transition-colors">Live Odds</a></li>
-                <li><a href="/faq" className="font-mono text-[11px] font-400 tracking-[1.5px] uppercase text-nav-text hover:text-white transition-colors">FAQ</a></li>
-              </ul>
-            </div>
-
-            <div className="flex flex-col gap-[20px]">
-              <h3 className="font-mono text-[11px] font-400 tracking-[1.5px] uppercase text-nav-text-muted m-0 pb-[12px] border-b border-nav-border min-w-[140px] md:min-w-[120px] lg:min-w-[160px]">Company</h3>
-              <ul className="flex flex-col gap-[16px] list-none m-0 p-0">
-                <li><a href="/about" className="font-mono text-[11px] font-400 tracking-[1.5px] uppercase text-nav-text hover:text-white transition-colors">About</a></li>
-                <li><a href="/contact" className="font-mono text-[11px] font-400 tracking-[1.5px] uppercase text-nav-text hover:text-white transition-colors">Contact</a></li>
-                <li><a href="/privacy-policy" className="font-mono text-[11px] font-400 tracking-[1.5px] uppercase text-nav-text hover:text-white transition-colors">Privacy Policy</a></li>
-                <li><a href="/terms-of-service" className="font-mono text-[11px] font-400 tracking-[1.5px] uppercase text-nav-text hover:text-white transition-colors">Terms of Service</a></li>
-              </ul>
-            </div>
+            {sections.map((section) => (
+              <div key={section.title} className="flex flex-col gap-[20px]">
+                <h3 className="font-mono text-[11px] font-400 tracking-[1.5px] uppercase text-nav-text-muted m-0 pb-[12px] border-b border-nav-border min-w-[140px] md:min-w-[120px] lg:min-w-[160px]">{section.title}</h3>
+                <ul className="flex flex-col gap-[16px] list-none m-0 p-0">
+                  {section.links.map((link) => (
+                    <li key={link.href}>
+                      <a href={link.href} className="font-mono text-[11px] font-400 tracking-[1.5px] uppercase text-nav-text hover:text-white transition-colors">{link.label}</a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </div>
 
         <div className="flex flex-col md:flex-row items-start justify-between gap-[16px] md:gap-[40px] py-[24px] border-t border-nav-border">
-          <p className="font-mono text-[11px] font-400 tracking-[0.5px] text-nav-text-muted m-0 whitespace-nowrap">© 2028 WagerBird. All rights reserved.</p>
+          <p className="font-mono text-[11px] font-400 tracking-[0.5px] text-nav-text-muted m-0 whitespace-nowrap">{copyright}</p>
           <p className="font-mono text-[11px] font-400 tracking-[0.3px] leading-[1.8] text-nav-text-muted m-0 text-left md:text-right max-w-full md:max-w-[420px]">
-            WagerBird does not facilitate wagering. All signals are for informational purposes only. Must be 21+ and located in a jurisdiction where sports betting is legal.
+            {disclaimer}
           </p>
         </div>
       </div>

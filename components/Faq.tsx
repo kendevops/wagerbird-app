@@ -3,7 +3,13 @@
 import { motion } from "framer-motion";
 import FaqItem from "./FaqItem";
 
-const faqs = [
+interface FaqProps {
+  label?: string;
+  title?: React.ReactNode;
+  items?: { question: string; answer: string }[];
+}
+
+const defaultFaqs = [
   {
     question: "Do my points expire?",
     answer:
@@ -46,7 +52,16 @@ const itemVariants = {
   visible: { opacity: 1, x: 0, transition: { duration: 0.5 } }
 };
 
-export default function Faq() {
+export default function Faq({
+  label = "// FAQ",
+  title = (
+    <>
+      Common<br />
+      <em className="faq-heading-accent">Questions.</em>
+    </>
+  ),
+  items = defaultFaqs
+}: FaqProps) {
   return (
     <section className="faq-section">
       <div className="faq-container">
@@ -57,11 +72,9 @@ export default function Faq() {
           transition={{ duration: 0.6 }}
           className="faq-header"
         >
-          <span className="faq-label">// FAQ</span>
+          <span className="faq-label">{label}</span>
           <h2 className="faq-heading">
-            Common
-            <br />
-            <em className="faq-heading-accent">Questions.</em>
+            {title}
           </h2>
         </motion.div>
 
@@ -72,7 +85,7 @@ export default function Faq() {
           viewport={{ once: true }}
           className="faq-list"
         >
-          {faqs.map((item) => (
+          {items.map((item) => (
             <motion.div key={item.question} variants={itemVariants}>
               <FaqItem question={item.question} answer={item.answer} />
             </motion.div>

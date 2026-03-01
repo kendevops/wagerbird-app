@@ -47,9 +47,48 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${spaceMono.variable} ${oswald.variable} ${barlowCondensed.variable} antialiased`}
       >
-        <Header />
+        <Header
+          navLinks={[
+            { label: "Signals",      href: "/signals" },
+            { label: "Sportsbooks",  href: "/sportsbooks" },
+            { label: "Hotsheet",     href: "/hotsheet" },
+            { label: "Pricing",      href: "/pricing" },
+          ]}
+        />
         {children}
-        <Footer />
+        <Footer
+          description="Confidence-scored betting signals for every sport. Priced by conviction. Backed by the model. Not a sportsbook."
+          copyright="© 2028 WagerBird. All rights reserved."
+          sections={[
+            {
+              title: "Products",
+              links: [
+                { label: "Terminal", href: "/" },
+                { label: "Signals", href: "/signals" },
+                { label: "Sportsbooks", href: "/sportsbooks" },
+                { label: "Hotsheet", href: "/hotsheet" },
+                { label: "Packs", href: "/packs" },
+              ],
+            },
+            {
+              title: "Resources",
+              links: [
+                { label: "Results", href: "/results" },
+                { label: "Live Odds", href: "/live-odds" },
+                { label: "FAQ", href: "/faq" },
+              ],
+            },
+            {
+              title: "Company",
+              links: [
+                { label: "About", href: "/about" },
+                { label: "Contact", href: "/contact" },
+                { label: "Privacy Policy", href: "/privacy-policy" },
+                { label: "Terms of Service", href: "/terms-of-service" },
+              ],
+            },
+          ]}
+        />
       </body>
     </html>
   );

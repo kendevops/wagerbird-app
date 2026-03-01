@@ -1,13 +1,63 @@
 "use client";
 
 import { motion } from "framer-motion";
-import PriceCard from "./PriceCard";
+import PriceCard, { PriceCardProps } from "./PriceCard";
 
-export default function Packs() {
+interface PacksProps {
+  label?: string;
+  title?: React.ReactNode;
+  description?: string;
+  packs?: PriceCardProps[];
+  footnote?: React.ReactNode;
+}
+
+const defaultPacks: PriceCardProps[] = [
+  {
+    name: "Starter Pack",
+    points: "600 Points",
+    goodFor: "~7–9 Premium Picks",
+    price: 39,
+    ctaLabel: "Get Instant Access",
+  },
+  {
+    name: "Core Pack",
+    points: "1,700 Points",
+    goodFor: "~20–26 Premium Picks",
+    price: 99,
+    ctaLabel: "Get Core Pack",
+    popular: true,
+  },
+  {
+    name: "Advanced Pack",
+    points: "3,600 Points",
+    goodFor: "~42–55 Premium Picks",
+    price: 199,
+    ctaLabel: "Get Advanced Pack",
+  },
+];
+
+export default function Packs({
+  label = "// Choose Your Pack",
+  title = (
+    <>
+      One-Time.
+      <br />
+      <em className="packs-heading-accent">Points Never Expire.</em>
+    </>
+  ),
+  description = "Every pack gives you confidence-scored signals. Unlock only the picks you want — pay nothing extra.",
+  packs = defaultPacks,
+  footnote = (
+    <>
+      Points act as credits to unlock signals (<strong>Picks</strong>). Each signal's cost is based on its confidence rating. You can also use points to access{" "}
+      <strong className="packs-footnote-brand">WAGERVISION</strong> (live in-game signals).
+    </>
+  )
+}: PacksProps) {
   return (
     <section className="packs-section">
       {/* Header */}
-      <PacksHeader />
+      <PacksHeader label={label} title={title} description={description} />
 
       {/* Cards grid */}
       <motion.div
@@ -17,28 +67,9 @@ export default function Packs() {
         transition={{ duration: 0.8, delay: 0.2 }}
         className="packs-grid"
       >
-        <PriceCard
-          name="Starter Pack"
-          points="600 Points"
-          goodFor="~7–9 Premium Picks"
-          price={39}
-          ctaLabel="Get Instant Access"
-        />
-        <PriceCard
-          name="Core Pack"
-          points="1,700 Points"
-          goodFor="~20–26 Premium Picks"
-          price={99}
-          ctaLabel="Get Core Pack"
-          popular
-        />
-        <PriceCard
-          name="Advanced Pack"
-          points="3,600 Points"
-          goodFor="~42–55 Premium Picks"
-          price={199}
-          ctaLabel="Get Advanced Pack"
-        />
+        {packs.map((pack, i) => (
+          <PriceCard key={i} {...pack} />
+        ))}
       </motion.div>
 
       {/* Footnote */}
@@ -49,16 +80,19 @@ export default function Packs() {
         transition={{ duration: 1, delay: 0.5 }}
         className="packs-footnote"
       >
-        Points act as credits to unlock signals (<strong>Picks</strong>). Each signal's cost is based
-        on its confidence rating. You can also use points to access{" "}
-        <strong className="packs-footnote-brand">WAGERVISION</strong>{" "}
-        (live in-game signals).
+        {footnote}
       </motion.p>
     </section>
   );
 }
 
-function PacksHeader() {
+interface PacksHeaderProps {
+  label: string;
+  title: React.ReactNode;
+  description: string;
+}
+
+function PacksHeader({ label, title, description }: PacksHeaderProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -67,15 +101,12 @@ function PacksHeader() {
       transition={{ duration: 0.6 }}
       className="packs-header"
     >
-      <span className="packs-label">// Choose Your Pack</span>
+      <span className="packs-label">{label}</span>
       <h2 className="packs-heading">
-        Points Never Expire.
-        <br />
-        <em className="packs-heading-accent">Buy Once. Win Forever.</em>
+        {title}
       </h2>
       <p className="packs-subtext">
-        All customers see the same transparent pricing. The more you buy
-        upfront, the lower your per-point cost.
+        {description}
       </p>
     </motion.div>
   );

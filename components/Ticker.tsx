@@ -8,7 +8,11 @@ interface TickerItem {
   confidence: number;
 }
 
-const tickerItems: TickerItem[] = [
+interface TickerProps {
+  items?: TickerItem[];
+}
+
+const defaultTickerItems: TickerItem[] = [
   { sport: "MLB", matchup: "Yankees vs Red Sox", confidence: 89 },
   { sport: "NFL", matchup: "Chiefs vs Ravens", confidence: 91 },
   { sport: "NBA", matchup: "Lakers vs Warriors", confidence: 76 },
@@ -27,9 +31,9 @@ function TickerEntry({ sport, matchup, confidence }: TickerItem) {
   );
 }
 
-export default function Ticker() {
+export default function Ticker({ items = defaultTickerItems }: TickerProps) {
   // Duplicate items to create a seamless loop
-  const allItems = [...tickerItems, ...tickerItems];
+  const allItems = [...items, ...items];
 
   return (
     <div className="ticker-wrapper">

@@ -4,6 +4,7 @@ import Hero from "@/components/Hero";
 import Packs from "@/components/Packs";
 import ValueStrip from "@/components/ValueStrip";
 import ProcessSection from "@/components/ProcessSection";
+import AccessModels from "@/components/AccessModels";
 import Faq from "@/components/Faq";
 import CtaBanner from "@/components/CtaBanner";
 
@@ -68,6 +69,8 @@ export default function PricingPage() {
       <ValueStrip />
 
       <ProcessSection />
+
+      <AccessModels />
 
       <Faq
         title={

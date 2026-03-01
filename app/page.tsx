@@ -21,6 +21,11 @@ export default function Home() {
           </>
         }
         description="Signals scored by confidence. Priced by conviction. Stop guessing — start winning with the model on your side."
+        stats={[
+          { value: "68%", label: "Season Win Rate" },
+          { value: "12K+", label: "Active Bettors" },
+          { value: "5", label: "Sports Covered" },
+        ]}
       />
       <Ticker />
       <Signals

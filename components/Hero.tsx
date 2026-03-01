@@ -53,11 +53,7 @@ export default function Hero({
   secondaryCtaLabel = "Free Picks via Email",
   secondaryCtaHref = "/picks",
   imageUrl = "https://api.builder.io/api/v1/image/assets/TEMP/e7a48826f4f3592b62edc4a4adaa3da19d8075e3",
-  stats = [
-    { value: "68%", label: "Season Win Rate" },
-    { value: "12K+", label: "Active Bettors" },
-    { value: "5", label: "Sports Covered" },
-  ],
+  stats,
 }: HeroProps) {
   const [dateStr, setDateStr] = useState("");
 
@@ -157,16 +153,18 @@ export default function Hero({
       </div>
 
       {/* Bottom stats */}
-      <div className="flex flex-col md:flex-row items-center md:items-stretch relative z-[1] shrink-0 border-t border-white/8 bg-[#050510] min-h-[104px]">
-        {stats.map((stat, i) => (
-          <div key={i} className="flex flex-col md:flex-row items-center md:items-stretch flex-1">
-            <StatItem value={stat.value} label={stat.label} />
-            {i < stats.length - 1 && (
-              <div className="hidden md:block w-[1px] self-stretch bg-white/8 shrink-0 m-0" />
-            )}
-          </div>
-        ))}
-      </div>
+      {stats && stats.length > 0 && (
+        <div className="flex flex-col md:flex-row items-center md:items-stretch relative z-[1] shrink-0 border-t border-white/8 bg-[#050510] min-h-[104px]">
+          {stats.map((stat, i) => (
+            <div key={i} className="flex flex-col md:flex-row items-center md:items-stretch flex-1">
+              <StatItem value={stat.value} label={stat.label} />
+              {i < stats.length - 1 && (
+                <div className="hidden md:block w-[1px] self-stretch bg-white/8 shrink-0 m-0" />
+              )}
+            </div>
+          ))}
+        </div>
+      )}
     </section>
   );
 }

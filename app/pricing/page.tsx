@@ -55,11 +55,6 @@ export default function PricingPage() {
         secondaryCtaLabel="How It Works"
         secondaryCtaHref="#how-it-works"
         imageUrl="https://api.builder.io/api/v1/image/assets/TEMP/bc93b8c5e939c79c4dc82e9fb08dc657d35b4b67"
-        stats={[
-          { value: "3", label: "Pack Sizes" },
-          { value: "∞", label: "Points Never Expire" },
-          { value: "68%", label: "Season Win Rate" },
-        ]}
       />
 
       <div id="packs">

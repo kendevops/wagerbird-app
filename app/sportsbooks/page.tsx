@@ -161,17 +161,29 @@ const sportsbooks: SportsbookCardProps[] = [
 
 const faqItems = [
   {
-    question: "How do I choose the best sportsbook?",
-    answer: "It depends on what you value most — FanDuel and DraftKings often have the best mobile apps, while BetMGM and Caesars offer huge rewards. We recommend having accounts at multiple books to 'line shop' and always get the best odds."
+    question: "How do I get my free Points Packs?",
+    answer: "Open a new sportsbook account through one of our referral links below and make a qualifying deposit. Once your account is verified, WagerBird automatically credits a free $39 Points Pack (600 points) to your account — no code required. Open three books and you'll receive three packs, totalling $117 in free picks.",
   },
   {
-    question: "Is sports betting legal everywhere?",
-    answer: "No, sports betting is regulated on a state-by-state basis in the US. Check our list to see which books are licensed in your location before signing up."
+    question: 'What counts as a "new" account?',
+    answer: "A new account means you have never previously held an account with that sportsbook operator. If you already have an existing account — even if it's inactive or zeroed out — it does not qualify. The offer applies to first-time signups only, using our referral link at the point of registration.",
   },
   {
-    question: "Do sportsbooks have sign-up bonuses?",
-    answer: "Yes, almost every major sportsbook offers a sign-up bonus or 'first bet' protection to new users. Make sure to read the terms and conditions for each offer."
-  }
+    question: "What can I do with WagerBird Points?",
+    answer: "Points unlock premium confidence-scored signals in the WagerBird Terminal. Each signal costs points equal to its confidence score, so a 90-rated pick costs 90 points. Points never expire and work across all sports — NFL, NBA, MLB, NHL, and more.",
+  },
+  {
+    question: "Can I claim a Pack for each sportsbook I open?",
+    answer: "Yes. You earn one free $39 Points Pack for every new qualifying sportsbook account you open through WagerBird. There's no cap — open more books, earn more packs. Most users open three to five books and collect between $117–$195 in free points.",
+  },
+  {
+    question: "When will my Points be credited?",
+    answer: "Points are credited to your WagerBird account typically within 3–5 business days of your sportsbook account being verified and your qualifying deposit being confirmed. You'll receive an email notification as soon as your pack is applied.",
+  },
+  {
+    question: "Why do you recommend three or more accounts?",
+    answer: "Opening three books is the sweet spot — it maximises your free points ($117) while giving you access to multiple books so you can always find the best line on any given game. More accounts also means more promotional offers from each sportsbook over time.",
+  },
 ];
 
 export default function SportsbooksPage() {

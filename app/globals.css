@@ -497,6 +497,176 @@ body {
   }
 }
 
+/* ─── Process Section ────────────────────────────── */
+.process-section {
+  background: radial-gradient(ellipse at 50% 40%, #2a2a2a 0%, #1a1a1a 40%, #111111 100%);
+  padding: 96px 0 100px;
+}
+
+.process-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+
+@media (max-width: 1024px) {
+  .process-inner {
+    padding: 0 64px;
+  }
+}
+
+@media (max-width: 768px) {
+  .process-section {
+    padding: 72px 0 80px;
+  }
+  .process-inner {
+    padding: 0 32px;
+    gap: 48px;
+  }
+}
+
+@media (max-width: 480px) {
+  .process-inner {
+    padding: 0 20px;
+  }
+}
+
+/* Header */
+.process-header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 600px;
+}
+
+.process-label {
+  font-family: var(--font-space-mono), monospace;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(228, 242, 34, 0.65);
+}
+
+.process-heading {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-oswald), sans-serif;
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 700;
+  line-height: 1.1;
+  color: #fff;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.process-heading-line {
+  display: block;
+}
+
+.process-description {
+  font-family: var(--font-space-mono), monospace;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.85;
+  color: rgba(240, 240, 232, 0.4);
+  margin: 0;
+  max-width: 480px;
+}
+
+/* Steps */
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+@media (max-width: 900px) {
+  .process-steps {
+    grid-template-columns: 1fr;
+  }
+}
+
+.process-step {
+  position: relative;
+  padding: 36px 32px 40px;
+  background: #141520;
+  border-right: 1px solid rgba(255, 255, 255, 0.07);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.process-step:last-child {
+  border-right: none;
+}
+
+@media (max-width: 900px) {
+  .process-step {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  }
+  .process-step:last-child {
+    border-bottom: none;
+  }
+}
+
+/* Watermark step number */
+.process-step-number {
+  position: absolute;
+  top: -8px;
+  right: 20px;
+  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
+  font-size: 100px;
+  font-weight: 900;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.04);
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: -2px;
+}
+
+/* Icon wrapper */
+.process-step-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+}
+
+/* Step title */
+.process-step-title {
+  font-family: var(--font-oswald), sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--color-yellow);
+  margin: 0;
+  line-height: 1.2;
+}
+
+/* Step description */
+.process-step-desc {
+  font-family: var(--font-space-mono), monospace;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.8;
+  color: rgba(240, 240, 232, 0.38);
+  margin: 0;
+}
+
 /* ─── Price Card ──────────────────────────────────── */
 .price-card {
   position: relative;

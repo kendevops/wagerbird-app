@@ -3,56 +3,9 @@
 import Hero from "@/components/Hero";
 import Packs from "@/components/Packs";
 import ValueStrip from "@/components/ValueStrip";
-import HowItWorks from "@/components/HowItWorks";
+import ProcessSection from "@/components/ProcessSection";
 import Faq from "@/components/Faq";
 import CtaBanner from "@/components/CtaBanner";
-
-/* ── Pricing How It Works step icons ── */
-const IconBuyPoints = () => (
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <circle cx="12" cy="12" r="9" stroke="white" strokeWidth="2"/>
-    <path d="M12 6V8M12 16V18M9 9.5C9 8.12 10.34 7 12 7C13.66 7 15 8.12 15 9.5C15 10.88 13.66 12 12 12C10.34 12 9 13.12 9 14.5C9 15.88 10.34 17 12 17C13.66 17 15 15.88 15 14.5" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-  </svg>
-);
-
-const IconBrowseSignals = () => (
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <rect x="3" y="3" width="18" height="18" rx="2" stroke="white" strokeWidth="2"/>
-    <path d="M7 8h10M7 12h7M7 16h4" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-  </svg>
-);
-
-const IconUnlockPick = () => (
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <rect x="3" y="11" width="18" height="11" rx="2" stroke="white" strokeWidth="2"/>
-    <path d="M7 11V7a5 5 0 0 1 10 0" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-    <circle cx="12" cy="16" r="1.5" fill="white"/>
-  </svg>
-);
-
-const pricingSteps = [
-  {
-    number: "01",
-    icon: <IconBuyPoints />,
-    title: "Buy a Points Pack",
-    description:
-      "Choose the pack that fits your season — Starter, Core, or Advanced. Points never expire. No subscription, no lock-in, no pressure.",
-  },
-  {
-    number: "02",
-    icon: <IconBrowseSignals />,
-    title: "Browse the Signal Feed",
-    description:
-      "Open the Terminal and filter signals by sport, confidence score, or game time. Every pick shows its cost in points before you unlock it.",
-  },
-  {
-    number: "03",
-    icon: <IconUnlockPick />,
-    title: "Unlock & Place Your Pick",
-    description:
-      "Spend points to unlock any signal. The cost equals its confidence score — so a 90-rated pick costs 90 points. Transparent. Always.",
-  },
-];
 
 const pricingFaqs = [
   {
@@ -114,19 +67,7 @@ export default function PricingPage() {
 
       <ValueStrip />
 
-      <div id="how-it-works">
-        <HowItWorks
-          label="// How It Works"
-          title={
-            <>
-              Three Steps.
-              <br />
-              <em className="hiw-heading-accent">Instant Edge.</em>
-            </>
-          }
-          steps={pricingSteps}
-        />
-      </div>
+      <ProcessSection />
 
       <Faq
         title={

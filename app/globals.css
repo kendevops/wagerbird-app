@@ -1319,6 +1319,120 @@ body {
   transform: translateY(-2px);
 }
 
+/* ─── Sportsbooks CTA Banner ─────────────────────── */
+.sb-cta-section {
+  position: relative;
+  background: var(--color-yellow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 96px 24px 108px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.sb-cta-watermark {
+  position: absolute;
+  top: 50%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
+  font-size: clamp(200px, 28vw, 420px);
+  font-weight: 900;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.12);
+  letter-spacing: -10px;
+  line-height: 1;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+
+.sb-cta-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  max-width: 900px;
+  width: 100%;
+}
+
+.sb-cta-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
+  font-size: clamp(64px, 9vw, 120px);
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #000;
+  line-height: 0.95;
+  letter-spacing: -2px;
+  margin: 0;
+}
+
+.sb-cta-heading-line {
+  display: block;
+  font-style: normal;
+}
+
+.sb-cta-heading-italic {
+  font-style: italic;
+}
+
+.sb-cta-subtext {
+  font-family: var(--font-space-mono), monospace;
+  font-size: clamp(11px, 1.3vw, 14px);
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.65);
+  margin: 0;
+  line-height: 1.65;
+  max-width: 440px;
+}
+
+.sb-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 48px;
+  background: #07070F;
+  color: #fff;
+  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  margin-top: 8px;
+  transition: background 0.18s, transform 0.18s;
+}
+
+.sb-cta-btn:hover {
+  background: #1a1a2e;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .sb-cta-section {
+    padding: 72px 24px 80px;
+  }
+  .sb-cta-watermark {
+    left: 50%;
+  }
+}
+
+@media (max-width: 480px) {
+  .sb-cta-section {
+    padding: 64px 20px 72px;
+  }
+  .sb-cta-btn {
+    padding: 16px 32px;
+    font-size: 14px;
+  }
+}
+
 /* ─── Sportsbooks Hero Section ────────────────────── */
 .sportsbooks-hero-section {
   width: 100%;

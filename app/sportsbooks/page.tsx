@@ -5,7 +5,7 @@ import SportsbooksSection from "@/components/SportsbooksSection";
 import { SportsbookCardProps } from "@/components/SportsbookCard";
 import HowItWorks from "@/components/HowItWorks";
 import MapSection from "@/components/MapSection";
-import CtaBanner from "@/components/CtaBanner";
+import SportsbooksCtaBanner from "@/components/SportsbooksCtaBanner";
 import Faq from "@/components/Faq";
 
 /* ── Sportsbooks "How It Works" step icons ── */
@@ -218,12 +218,7 @@ export default function SportsbooksPage() {
         items={faqItems}
       />
 
-      <CtaBanner 
-        title={<>Ready to Place<br/>Your First Trade?</>}
-        subtitle="Access confidence-scored signals and start winning with the model on your side."
-        ctaLabel="Get Started Now →"
-        ctaHref="/packs"
-      />
+      <SportsbooksCtaBanner />
     </main>
   );
 }

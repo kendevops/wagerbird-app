@@ -1896,6 +1896,431 @@ body {
   text-transform: uppercase;
 }
 
+/* ─── HotsheetPricing Section ───────────────────────── */
+.hsp-section {
+  background: #07070F;
+  padding: 100px 0 120px;
+  overflow: hidden;
+}
+
+.hsp-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+
+@media (max-width: 1024px) { .hsp-inner { padding: 0 40px; } }
+@media (max-width: 768px)  { .hsp-inner { padding: 0 24px; gap: 48px; } }
+@media (max-width: 480px)  {
+  .hsp-section { padding: 72px 0 88px; }
+  .hsp-inner   { padding: 0 20px; gap: 36px; }
+}
+
+/* Header */
+.hsp-header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 560px;
+}
+
+.hsp-label {
+  font-family: var(--font-space-mono), monospace;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(228, 242, 34, 0.65);
+}
+
+.hsp-heading {
+  font-family: var(--font-barlow-condensed), sans-serif;
+  font-size: clamp(52px, 7vw, 96px);
+  font-weight: 900;
+  line-height: 0.9;
+  text-transform: uppercase;
+  letter-spacing: -2px;
+  color: #fff;
+  margin: 0;
+}
+
+.hsp-heading-accent {
+  color: var(--color-yellow);
+  font-style: italic;
+  font-weight: 900;
+}
+
+.hsp-description {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.4);
+  margin: 0;
+  max-width: 460px;
+}
+
+/* Cards grid */
+.hsp-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+@media (max-width: 840px) {
+  .hsp-cards { grid-template-columns: 1fr; max-width: 520px; }
+}
+
+/* Card outer wrapper — handles tilt perspective + glow */
+.hsp-card-outer {
+  position: relative;
+}
+
+/* Radial glow behind popular card */
+.hsp-card-glow {
+  position: absolute;
+  inset: -60px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at 50% 60%,
+    rgba(66, 99, 255, 0.55) 0%,
+    rgba(30, 60, 200, 0.25) 40%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity 0.4s ease;
+  filter: blur(24px);
+}
+
+/* Card base */
+.hsp-card {
+  position: relative;
+  border-radius: 20px;
+  background: #12121F;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  z-index: 1;
+}
+
+.hsp-card--popular {
+  background: #1E3FD8;
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Mouse-follow shine */
+.hsp-card-shine {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at var(--glow-x, 50%) var(--glow-y, 50%),
+    rgba(255, 255, 255, 0.18),
+    transparent 65%
+  );
+  transition: opacity 0.3s ease;
+}
+
+/* Most popular badge */
+.hsp-card-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px 4px 8px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 99px;
+  font-family: var(--font-space-mono), monospace;
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 20px 20px 0;
+  width: fit-content;
+}
+
+.hsp-card-badge__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-yellow);
+  flex-shrink: 0;
+}
+
+/* Phone mockup */
+.hsp-mockup {
+  margin: 20px 20px 0;
+  background: #1A1A2E;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.hsp-mockup--popular {
+  background: #182AB8;
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.hsp-mockup__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 12px 14px 8px;
+}
+
+.hsp-mockup__top-left {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.hsp-mockup__label {
+  font-family: var(--font-space-mono), monospace;
+  font-size: 8px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(228, 242, 34, 0.65);
+}
+
+.hsp-mockup__sublabel {
+  font-family: var(--font-space-mono), monospace;
+  font-size: 7px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.hsp-mockup__score {
+  font-family: var(--font-barlow-condensed), sans-serif;
+  font-size: 30px;
+  font-weight: 900;
+  color: var(--color-yellow);
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.hsp-mockup__main {
+  padding: 0 14px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.hsp-mockup__matchup-row {
+  display: flex;
+  align-items: flex-start;
+}
+
+.hsp-mockup__matchup {
+  font-family: var(--font-barlow-condensed), sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #fff;
+  line-height: 1.1;
+}
+
+.hsp-mockup__conf {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.45);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.hsp-mockup__conf strong { color: rgba(255, 255, 255, 0.7); }
+
+.hsp-mockup__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #4ADE80;
+  flex-shrink: 0;
+}
+
+.hsp-mockup__tap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 10px;
+  background: var(--color-yellow);
+  color: #07070F;
+  font-family: var(--font-barlow-condensed), sans-serif;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 8px;
+  cursor: default;
+}
+
+.hsp-mockup__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.hsp-mockup__secondary {
+  font-family: var(--font-barlow-condensed), sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.hsp-mockup__secondary-meta {
+  font-family: var(--font-space-mono), monospace;
+  font-size: 8px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(228, 242, 34, 0.5);
+}
+
+/* Card body */
+.hsp-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 24px 24px 20px;
+}
+
+.hsp-card-title {
+  font-family: var(--font-barlow-condensed), sans-serif;
+  font-size: clamp(22px, 2.5vw, 28px);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #fff;
+  margin: 0 0 2px;
+  line-height: 1;
+}
+
+.hsp-card-subtitle {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.45);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.hsp-card--popular .hsp-card-subtitle {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.hsp-card-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.hsp-card-price {
+  font-family: var(--font-barlow-condensed), sans-serif;
+  font-size: clamp(48px, 6vw, 72px);
+  font-weight: 900;
+  line-height: 1;
+  color: var(--color-yellow);
+  letter-spacing: -2px;
+}
+
+.hsp-card-price-suffix {
+  font-family: var(--font-space-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+/* Feature list */
+.hsp-card-features {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.hsp-card-feature {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.3;
+}
+
+.hsp-card--popular .hsp-card-feature {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* CTA button */
+.hsp-card-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 0;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  font-family: var(--font-barlow-condensed), sans-serif;
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #fff;
+  text-decoration: none;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.hsp-card-cta:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.hsp-card-cta--popular {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.hsp-card-cta--popular:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Footer note */
+.hsp-card-footer {
+  font-family: var(--font-space-mono), monospace;
+  font-size: 8.5px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.25);
+  text-align: center;
+  margin: 0;
+}
+
+.hsp-card--popular .hsp-card-footer {
+  color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 6px 10px;
+  width: fit-content;
+  margin: 0 auto;
+}
+
 /* ─── HotsheetFeatures Section ──────────────────────── */
 .hsf-section {
   position: relative;

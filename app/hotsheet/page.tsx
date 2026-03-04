@@ -5,6 +5,7 @@ import ValueStrip from "@/components/ValueStrip";
 import Ticker from "@/components/Ticker";
 import HowItWorks from "@/components/HowItWorks";
 import HotsheetFeatures from "@/components/HotsheetFeatures";
+import HotsheetPricing from "@/components/HotsheetPricing";
 import ProcessSection from "@/components/ProcessSection";
 import EmailCapture from "@/components/EmailCapture";
 import Faq from "@/components/Faq";
@@ -126,6 +127,9 @@ export default function HotsheetPage() {
           { sport: "NFL", matchup: "Eagles vs Cowboys", confidence: 78 },
         ]}
       />
+
+      {/* One-Time Pricing */}
+      <HotsheetPricing />
 
       {/* What You Get feature cards */}
       <HotsheetFeatures />

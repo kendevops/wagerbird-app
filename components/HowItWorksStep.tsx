@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import SpotlightCard from "./animations/SpotlightCard";
 
 export interface HowItWorksStepProps {
   number: string;
@@ -14,7 +15,7 @@ export default function HowItWorksStep({
   icon,
 }: HowItWorksStepProps) {
   return (
-    <div className="hiw-step">
+    <SpotlightCard className="hiw-step" spotlightColor="rgba(255, 255, 255, 0.05)">
       {icon ? (
         <div className="hiw-step-icon" aria-hidden="true">{icon}</div>
       ) : (
@@ -22,6 +23,6 @@ export default function HowItWorksStep({
       )}
       <h3 className="hiw-step-title">{title}</h3>
       <p className="hiw-step-description">{description}</p>
-    </div>
+    </SpotlightCard>
   );
 }

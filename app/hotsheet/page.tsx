@@ -135,8 +135,10 @@ export default function HotsheetPage() {
 
       {/* One-Time Pricing */}
       <HotsheetPricing />
-{/* Why Hotsheet — features list + sample cards */}
+
+      {/* Why Hotsheet — features list + sample cards */}
       <HotsheetWhy />
+
       {/* Social Proof — Testimonials */}
       <ProofSection />
 z

@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import SpotlightCard from "./animations/SpotlightCard";
 import ShinyText from "./animations/ShinyText";
 import SplitText from "./animations/SplitText";
-import DecryptedText from "./animations/DecryptedText";
 
 interface RewardRow {
   accountCount: string;
@@ -94,7 +93,7 @@ export default function SportsbooksHero() {
           <div className="sportsbooks-hero-badge">
             <span className="sportsbooks-hero-badge-dot">●</span>
             <span className="sportsbooks-hero-badge-text">
-              <DecryptedText text="Open 3 Books · Earn $117 Free" />
+              <SplitText text="Open 3 Books · Earn $117 Free" />
             </span>
           </div>
 

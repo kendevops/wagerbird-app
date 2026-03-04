@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import DecryptedText from "./animations/DecryptedText";
+import SplitText from "./animations/SplitText";
 
 interface StatItemProps {
   value: string;
@@ -103,7 +103,7 @@ export default function Hero({
           >
             <span className="w-[5px] h-[5px] rounded-full bg-brand-yellow shrink-0" aria-hidden="true" />
             <span className="font-mono text-[10px] font-400 tracking-[1.5px] uppercase text-nav-text/85">
-              <DecryptedText text={badgeText} />
+              <SplitText text={badgeText} />
             </span>
           </motion.div>
 
@@ -113,12 +113,8 @@ export default function Hero({
             transition={{ duration: 0.8, delay: 0.3 }}
             className="font-display text-[clamp(42px,13vw,60px)] md:text-[clamp(48px,6.5vw,88px)] font-bold leading-[0.94] tracking-[-0.01em] uppercase text-nav-text/98 m-0 mb-[20px] md:mb-[32px]"
           >
-            <DecryptedText
+            <SplitText
               text="Access The Edge. Trade The Game."
-              animateOn="view"
-              speed={40}
-              maxIterations={15}
-              sequential={true}
             />
           </motion.h1>
 

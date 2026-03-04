@@ -23,7 +23,7 @@ export default function TargetCursor() {
       mouseY.set(e.clientY);
 
       const target = e.target as HTMLElement;
-      const cursorTarget = target.closest(".cursor-target") as HTMLElement;
+      const cursorTarget = target.closest("a, button, [role='button'], .cursor-target") as HTMLElement;
 
       if (cursorTarget) {
         setIsHovering(true);
@@ -90,13 +90,14 @@ export default function TargetCursor() {
             align-items: center;
             justify-content: center;
             transition: border-color 0.3s ease;
+            mix-blend-mode: difference;
           }
 
           .corner {
             position: absolute;
             width: 8px;
             height: 8px;
-            border-color: #E4F222; /* brand-yellow */
+            border-color: #FFFFFF;
             border-style: solid;
           }
 
@@ -127,7 +128,7 @@ export default function TargetCursor() {
           .center-dot {
             width: 4px;
             height: 4px;
-            background: #E4F222;
+            background: #FFFFFF;
             border-radius: 50%;
           }
 

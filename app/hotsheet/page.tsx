@@ -66,8 +66,8 @@ export default function HotsheetPage() {
         ]}
       />
 
-      {/* Why Hotsheet — features list + sample cards */}
-      <HotsheetWhy />
+       {/* What You Get feature cards */}
+      <HotsheetFeatures />
 
       {/* From Terminal. To Your Inbox. — process steps */}
       <HowItWorks
@@ -135,10 +135,8 @@ export default function HotsheetPage() {
 
       {/* One-Time Pricing */}
       <HotsheetPricing />
-
-      {/* What You Get feature cards */}
-      <HotsheetFeatures />
-
+{/* Why Hotsheet — features list + sample cards */}
+      <HotsheetWhy />
       {/* Social Proof — Testimonials */}
       <ProofSection />
 z

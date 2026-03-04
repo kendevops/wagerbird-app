@@ -165,7 +165,7 @@ interface StackCardProps {
 }
 
 function StackCard({ sport, matchup, market, confidence, min, max, court, locked, unlockHref }: StackCardProps) {
-  const barPct = ((confidence - min) / (max - min)) * 100;
+  const barPct = max === min ? 100 : ((confidence - min) / (max - min)) * 100;
 
   return (
     <div className={`hss-card${locked ? " hss-card--locked" : ""}`}>

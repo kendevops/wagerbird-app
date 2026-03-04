@@ -141,7 +141,7 @@ export default function HotsheetPage() {
 
       {/* Social Proof — Testimonials */}
       <ProofSection />
-z
+
       <Faq
         label="// FAQ"
         title={

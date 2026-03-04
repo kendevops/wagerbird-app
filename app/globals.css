@@ -98,6 +98,27 @@ body {
   color: var(--color-dark-blue);
 }
 
+/* Dark variant — yellow text on near-black background */
+.ticker-wrapper--dark {
+  background: #05060F;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.ticker-wrapper--dark .ticker-sport,
+.ticker-wrapper--dark .ticker-matchup {
+  color: var(--color-yellow);
+}
+
+.ticker-wrapper--dark .ticker-star {
+  color: rgba(228, 242, 34, 0.45);
+}
+
+.ticker-wrapper--dark .ticker-confidence {
+  color: var(--color-yellow);
+  opacity: 0.7;
+}
+
 /* ─── Signals Section ─────────────────────────────── */
 .signals-section {
   display: grid;

@@ -2,6 +2,7 @@
 
 import Hotsheet from "@/components/Hotsheet";
 import ValueStrip from "@/components/ValueStrip";
+import Ticker from "@/components/Ticker";
 import HotsheetFeatures from "@/components/HotsheetFeatures";
 import ProcessSection from "@/components/ProcessSection";
 import EmailCapture from "@/components/EmailCapture";
@@ -44,6 +45,20 @@ export default function HotsheetPage() {
           { value: "2-6", label: "Signals Per Email", description: "Focused, curated picks — not noise" },
           { value: "$2", label: "Per Day Average", description: "Less than a coffee for daily winning intel" },
           { value: "5", label: "Sports Covered", description: "NFL · NBA · MLB · NHL · Soccer" },
+        ]}
+      />
+
+      {/* Scrolling signal ticker */}
+      <Ticker
+        variant="dark"
+        items={[
+          { sport: "MLB", matchup: "Yankees vs Red Sox", confidence: 89 },
+          { sport: "NFL", matchup: "Chiefs vs Ravens", confidence: 91 },
+          { sport: "NBA", matchup: "Lakers vs Warriors", confidence: 76 },
+          { sport: "NHL", matchup: "Bruins vs Maple Leafs", confidence: 82 },
+          { sport: "MLB", matchup: "Braves vs Padres", confidence: 91 },
+          { sport: "NBA", matchup: "Celtics vs Heat", confidence: 84 },
+          { sport: "NFL", matchup: "Eagles vs Cowboys", confidence: 78 },
         ]}
       />
 

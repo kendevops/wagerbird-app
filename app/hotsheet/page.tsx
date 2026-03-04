@@ -1,6 +1,7 @@
 "use client";
 
 import Hotsheet from "@/components/Hotsheet";
+import ValueStrip from "@/components/ValueStrip";
 import HotsheetFeatures from "@/components/HotsheetFeatures";
 import ProcessSection from "@/components/ProcessSection";
 import EmailCapture from "@/components/EmailCapture";
@@ -35,6 +36,16 @@ export default function HotsheetPage() {
     <main>
       {/* Hero — the MagicBento hotsheet section */}
       <Hotsheet />
+
+      {/* Stats strip */}
+      <ValueStrip
+        items={[
+          { value: "76+", label: "Min Confidence Score", description: "Only signals scoring 76 or higher make the cut" },
+          { value: "2-6", label: "Signals Per Email", description: "Focused, curated picks — not noise" },
+          { value: "$2", label: "Per Day Average", description: "Less than a coffee for daily winning intel" },
+          { value: "5", label: "Sports Covered", description: "NFL · NBA · MLB · NHL · Soccer" },
+        ]}
+      />
 
       {/* What You Get feature cards */}
       <HotsheetFeatures />

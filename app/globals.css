@@ -3073,14 +3073,14 @@ body {
 
 .cta-watermark {
   position: absolute;
-  top: -5%;
+  top: 40%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
   font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
   font-size: clamp(140px, 24vw, 380px);
   font-weight: 900;
   text-transform: uppercase;
-  color: rgba(0, 0, 0, 0.10);
+  color: rgba(0, 0, 0, 0.12);
   letter-spacing: -8px;
   line-height: 1;
   white-space: nowrap;

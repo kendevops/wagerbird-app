@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import SpotlightCard from "./animations/SpotlightCard";
 
 interface ProcessStep {
   number: string;
@@ -88,64 +89,70 @@ export default function ProcessSection({
           {steps.map((step, i) => (
             <motion.div
               key={i}
-              className="process-step"
+              className="process-step-wrapper" // wrapper to hold the spotlight card
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.55, delay: i * 0.1 }}
-              whileHover="hover"
-              variants={{
-                hover: {
-                  y: -8,
-                  backgroundColor: "rgba(255, 255, 255, 0.05)",
-                  borderColor: "rgba(255, 255, 255, 0.15)",
-                  transition: { duration: 0.2, ease: "easeOut" }
-                }
-              }}
             >
-              {/* Step number watermark */}
-              <motion.span
-                className="process-step-number"
-                aria-hidden="true"
-                variants={{
-                  hover: {
-                    scale: 1.1,
-                    opacity: 0.08,
-                    x: -10,
-                    transition: { duration: 0.4, ease: "easeOut" }
-                  }
-                }}
-              >
-                {step.number}
-              </motion.span>
+              <SpotlightCard className="h-full rounded-2xl">
+                <motion.div
+                  className="process-step h-full"
+                  whileHover="hover"
+                  variants={{
+                    hover: {
+                      y: -8,
+                      backgroundColor: "rgba(255, 255, 255, 0.05)",
+                      borderColor: "rgba(255, 255, 255, 0.15)",
+                      transition: { duration: 0.2, ease: "easeOut" }
+                    }
+                  }}
+                >
+                  {/* Step number watermark */}
+                  <motion.span
+                    className="process-step-number"
+                    aria-hidden="true"
+                    variants={{
+                      hover: {
+                        scale: 1.1,
+                        opacity: 0.08,
+                        x: -10,
+                        transition: { duration: 0.4, ease: "easeOut" }
+                      }
+                    }}
+                  >
+                    {step.number}
+                  </motion.span>
 
-              {/* Icon */}
-              <motion.div
-                className="process-step-icon-wrap"
-                variants={{
-                  hover: {
-                    scale: 1.1,
-                    rotate: [0, -5, 5, 0],
-                    transition: { duration: 0.4 }
-                  }
-                }}
-              >
-                {step.icon}
-              </motion.div>
+                  {/* Icon */}
+                  <motion.div
+                    className="process-step-icon-wrap"
+                    variants={{
+                      hover: {
+                        scale: 1.1,
+                        rotate: [0, -5, 5, 0],
+                        transition: { duration: 0.4 }
+                      }
+                    }}
+                  >
+                    {step.icon}
+                  </motion.div>
 
-              {/* Content */}
-              <motion.h3
-                className="process-step-title"
-                variants={{
-                  hover: {
-                    color: "#FFFFFF",
-                    transition: { duration: 0.2 }
-                  }
-                }}
-              >
-                {step.title}
-              </motion.h3>
-              <p className="process-step-desc">{step.description}</p>
+                  {/* Content */}
+                  <motion.h3
+                    className="process-step-title"
+                    variants={{
+                      hover: {
+                        color: "#FFFFFF",
+                        transition: { duration: 0.2 }
+                      }
+                    }}
+                  >
+                    {step.title}
+                  </motion.h3>
+                  <p className="process-step-desc">{step.description}</p>
+                </motion.div>
+              </SpotlightCard>
             </motion.div>
           ))}
         </div>

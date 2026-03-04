@@ -6,6 +6,7 @@ import Ticker from "@/components/Ticker";
 import HowItWorks from "@/components/HowItWorks";
 import HotsheetFeatures from "@/components/HotsheetFeatures";
 import HotsheetPricing from "@/components/HotsheetPricing";
+import HotsheetWhy from "@/components/HotsheetWhy";
 import ProcessSection from "@/components/ProcessSection";
 import EmailCapture from "@/components/EmailCapture";
 import Faq from "@/components/Faq";
@@ -127,6 +128,9 @@ export default function HotsheetPage() {
           { sport: "NFL", matchup: "Eagles vs Cowboys", confidence: 78 },
         ]}
       />
+
+      {/* Why Hotsheet — features list + sample cards */}
+      <HotsheetWhy />
 
       {/* One-Time Pricing */}
       <HotsheetPricing />

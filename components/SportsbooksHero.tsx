@@ -2,6 +2,9 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import SpotlightCard from "./animations/SpotlightCard";
+import ShinyText from "./animations/ShinyText";
+import SplitText from "./animations/SplitText";
 
 interface RewardRow {
   accountCount: string;
@@ -89,16 +92,21 @@ export default function SportsbooksHero() {
           {/* Badge */}
           <div className="sportsbooks-hero-badge">
             <span className="sportsbooks-hero-badge-dot">●</span>
-            <span className="sportsbooks-hero-badge-text">Open 3 Books · Earn $117 Free</span>
+            <span className="sportsbooks-hero-badge-text">
+              <SplitText text="Open 3 Books · Earn $117 Free" />
+            </span>
           </div>
 
           {/* Heading */}
           <h1 className="sportsbooks-hero-heading">
-            Open Books.<br />
-            Get{" "}
-            <span className="sportsbooks-hero-heading-accent">Free</span>
+            <SplitText text="Open Books." />
             <br />
-            Picks.
+            <SplitText text="Get " />
+            <span className="sportsbooks-hero-heading-accent">
+              <SplitText text="Free" delay={0.5} />
+            </span>
+            <br />
+            <SplitText text="Picks." delay={0.8} />
           </h1>
 
           {/* Bordered description */}
@@ -113,7 +121,7 @@ export default function SportsbooksHero() {
           {/* CTA buttons */}
           <div className="sportsbooks-hero-ctas">
             <a href="#offers" className="sportsbooks-hero-cta-primary">
-              Find My Sportsbooks <span className="sportsbooks-hero-cta-arrow">→</span>
+              <ShinyText text="Find My Sportsbooks" color="inherit" shineColor="#fff" speed={3} /> <span className="sportsbooks-hero-cta-arrow">→</span>
             </a>
             <a href="#how-it-works" className="sportsbooks-hero-cta-secondary">
               How It Works
@@ -132,7 +140,7 @@ export default function SportsbooksHero() {
           <div className="sportsbooks-hero-glow" aria-hidden="true" />
 
           {/* Table card */}
-          <div className="rewards-card">
+          <SpotlightCard className="rewards-card" spotlightColor="rgba(228, 242, 34, 0.2)">
             <div className="rewards-card-header">
               <span className="rewards-card-header-text">Your Reward Grows With Every Account You Open</span>
             </div>
@@ -178,7 +186,7 @@ export default function SportsbooksHero() {
               </svg>
               <span className="rewards-max-badge-text">Max Value — Recommended</span>
             </div>
-          </div>
+          </SpotlightCard>
 
           <p className="rewards-footnote">
             New accounts only · Does not apply to existing sportsbook accounts.

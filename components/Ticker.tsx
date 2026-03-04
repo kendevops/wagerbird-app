@@ -10,6 +10,7 @@ interface TickerItem {
 
 interface TickerProps {
   items?: TickerItem[];
+  variant?: "yellow" | "dark";
 }
 
 const defaultTickerItems: TickerItem[] = [
@@ -31,12 +32,12 @@ function TickerEntry({ sport, matchup, confidence }: TickerItem) {
   );
 }
 
-export default function Ticker({ items = defaultTickerItems }: TickerProps) {
+export default function Ticker({ items = defaultTickerItems, variant = "yellow" }: TickerProps) {
   // Duplicate items to create a seamless loop
   const allItems = [...items, ...items];
 
   return (
-    <div className="ticker-wrapper">
+    <div className={`ticker-wrapper${variant === "dark" ? " ticker-wrapper--dark" : ""}`}>
       <motion.div
         className="ticker-track"
         animate={{ x: "-50%" }}

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import HowItWorksStep from "./HowItWorksStep";
 
 interface Step {
@@ -14,6 +14,7 @@ interface HowItWorksProps {
   label?: string;
   title?: React.ReactNode;
   steps?: Step[];
+  stepVariant?: "badge" | "card";
 }
 
 const defaultSteps: Step[] = [
@@ -37,7 +38,7 @@ const defaultSteps: Step[] = [
   },
 ];
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -47,7 +48,7 @@ const containerVariants = {
   }
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
 };
@@ -63,7 +64,8 @@ export default function HowItWorks({
       <em className="hiw-heading-accent">Profitable.</em>
     </>
   ),
-  steps = defaultSteps
+  steps = defaultSteps,
+  stepVariant = "badge",
 }: HowItWorksProps) {
   return (
     <section className="hiw-section">
@@ -92,7 +94,7 @@ export default function HowItWorks({
         >
           {steps.map((step, i) => (
             <motion.div key={i} variants={itemVariants}>
-              <HowItWorksStep {...step} />
+              <HowItWorksStep {...step} variant={stepVariant} />
             </motion.div>
           ))}
         </motion.div>

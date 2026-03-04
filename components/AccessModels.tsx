@@ -99,11 +99,11 @@ export default function AccessModels({
           <div className="access-table-head">
             <div className="access-table-label-col" />
             <div className="access-table-packs-col">
-              <span className="access-col-tag access-col-tag--packs">// Recommended</span>
+              <span className="access-col-tag access-col-tag--packs">{"// Recommended"}</span>
               <span className="access-col-title access-col-title--packs">Points Packs</span>
             </div>
             <div className="access-table-terminal-col">
-              <span className="access-col-tag access-col-tag--terminal">// Alternative</span>
+              <span className="access-col-tag access-col-tag--terminal">{"// Alternative"}</span>
               <span className="access-col-title">Terminal Plans</span>
             </div>
           </div>

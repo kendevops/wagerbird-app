@@ -49,7 +49,7 @@ export default function Packs({
   packs = defaultPacks,
   footnote = (
     <>
-      Points act as credits to unlock signals (<strong>Picks</strong>). Each signal's cost is based on its confidence rating. You can also use points to access{" "}
+      Points act as credits to unlock signals (<strong>Picks</strong>). Each signal&rsquo;s cost is based on its confidence rating. You can also use points to access{" "}
       <strong className="packs-footnote-brand">WAGERVISION</strong> (live in-game signals).
     </>
   )

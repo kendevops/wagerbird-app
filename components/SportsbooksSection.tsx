@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import SportsbookCard, { SportsbookCardProps } from "./SportsbookCard";
+import TiltedCard from "./animations/TiltedCard";
 
 const US_STATES = [
   "All states (default)",
@@ -144,13 +145,15 @@ export default function SportsbooksSection({
             {filteredBooks.map((sb, i) => (
               <motion.div
                 key={sb.name}
-                className="sb-card-wrapper"
+                className="sb-card-wrapper h-full"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.07 }}
               >
-                <SportsbookCard {...sb} />
+                <TiltedCard className="h-full">
+                  <SportsbookCard {...sb} />
+                </TiltedCard>
               </motion.div>
             ))}
           </div>
@@ -160,7 +163,7 @@ export default function SportsbooksSection({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           >
-            <p>No partner sportsbooks are currently available in <strong>{activeState}</strong>. Check back soon — we're adding books regularly.</p>
+            <p>No partner sportsbooks are currently available in <strong>{activeState}</strong>. Check back soon &mdash; we&rsquo;re adding books regularly.</p>
           </motion.div>
         )}
 

@@ -1,6 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import { usePathname } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface NavLink {
   label: string;
@@ -26,13 +28,16 @@ export default function Header({
   getAccessHref = "/get-access"
 }: HeaderProps) {
   const pathname = usePathname();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
     <header className="sticky top-0 z-[100] w-full h-[64px] bg-nav-bg backdrop-blur-[8px] border-b border-yellow-border">
-      <nav className="grid grid-cols-[auto_1fr_auto] items-center h-full px-[20px] md:px-[48px] gap-[16px] md:gap-[32px]">
+      <nav className="flex items-center justify-between h-full px-[20px] md:px-[48px] gap-[16px] md:gap-[32px]">
 
         {/* Logo */}
-        <a href="/" className="flex items-center shrink-0" aria-label="WagerBird Home">
+        <a href="/" className="flex items-center shrink-0 cursor-target" aria-label="WagerBird Home">
           <svg width="177" height="28" viewBox="0 0 177 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-[22px] md:h-[28px] w-auto block">
             <g clipPath="url(#clip0_2501_1394)">
               <mask id="mask0_2501_1394" style={{maskType:"luminance"}} maskUnits="userSpaceOnUse" x="0" y="0" width="177" height="28">
@@ -62,15 +67,15 @@ export default function Header({
           </svg>
         </a>
 
-        {/* Nav links */}
-        <ul className="hidden md:flex items-center justify-center gap-[32px] list-none m-0 p-0">
+        {/* Nav links - Center on desktop */}
+        <ul className="hidden md:flex flex-1 items-center justify-center gap-[32px] list-none m-0 p-0">
           {navLinks.map(({ label, href }) => {
             const isActive = pathname === href;
             return (
               <li key={href}>
                 <a
                   href={href}
-                  className={`font-mono text-[11px] font-400 tracking-[1.5px] uppercase transition-colors ${
+                  className={`font-mono text-[11px] font-400 tracking-[1.5px] uppercase transition-colors cursor-target ${
                     isActive
                       ? "text-brand-yellow font-bold"
                       : "text-nav-text-muted hover:text-white"
@@ -87,18 +92,91 @@ export default function Header({
         <div className="flex items-center gap-[12px] shrink-0">
           <a
             href={loginHref}
-            className="hidden sm:flex items-center justify-center px-[20px] py-[9px] border border-nav-border font-mono text-[11px] font-400 tracking-[1px] uppercase text-nav-text-muted hover:border-[#F0F0E8]/50 hover:text-nav-text transition-colors whitespace-nowrap"
+            className="hidden lg:flex items-center justify-center px-[20px] py-[9px] border border-nav-border font-mono text-[11px] font-400 tracking-[1px] uppercase text-nav-text-muted hover:border-[#F0F0E8]/50 hover:text-nav-text transition-colors whitespace-nowrap cursor-target"
           >
             Login
           </a>
           <a
             href={getAccessHref}
-            className="flex items-center justify-center px-[14px] md:px-[22px] py-[8px] md:py-[10px] h-[36px] bg-brand-yellow font-mono text-[11px] font-bold tracking-[1px] uppercase text-brand-blue whitespace-nowrap hover:bg-[#cdd91e] transition-colors clip-btn"
+            className="hidden sm:flex items-center justify-center px-[14px] md:px-[22px] py-[8px] md:py-[10px] h-[36px] bg-brand-yellow font-mono text-[11px] font-bold tracking-[1px] uppercase text-brand-blue whitespace-nowrap hover:bg-[#cdd91e] transition-colors clip-btn cursor-target"
           >
             Get Access
           </a>
+
+          {/* Mobile menu toggle */}
+          <button
+            onClick={toggleMenu}
+            className="flex md:hidden flex-col items-center justify-center w-[36px] h-[36px] gap-[4px] cursor-target z-[110]"
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          >
+            <motion.span
+              animate={isMenuOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
+              className="w-[20px] h-[2px] bg-white rounded-full block"
+            />
+            <motion.span
+              animate={isMenuOpen ? { opacity: 0 } : { opacity: 1 }}
+              className="w-[20px] h-[2px] bg-white rounded-full block"
+            />
+            <motion.span
+              animate={isMenuOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
+              className="w-[20px] h-[2px] bg-white rounded-full block"
+            />
+          </button>
         </div>
       </nav>
+
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, x: "100%" }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: "100%" }}
+            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+            className="fixed inset-0 z-[105] bg-[#050510]/80 backdrop-blur-lg flex flex-col pt-[84px] px-[20px]"
+          >
+            <div className="flex flex-col gap-[32px]">
+              <ul className="flex flex-col gap-[24px] list-none p-0 m-0">
+                {navLinks.map(({ label, href }) => {
+                  const isActive = pathname === href;
+                  return (
+                    <li key={href}>
+                      <a
+                        href={href}
+                        onClick={() => setIsMenuOpen(false)}
+                        className={`font-display text-[32px] font-bold tracking-[-0.01em] uppercase transition-colors block ${
+                          isActive ? "text-brand-yellow" : "text-white"
+                        }`}
+                      >
+                        {label}
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
+
+              <div className="h-[1px] bg-white/10 w-full" />
+
+              <div className="flex flex-col gap-[16px]">
+                <a
+                  href={loginHref}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="w-full flex items-center justify-center py-[16px] border border-white/10 font-mono text-[13px] font-bold tracking-[1.5px] uppercase text-white"
+                >
+                  Login
+                </a>
+                <a
+                  href={getAccessHref}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="w-full flex items-center justify-center py-[16px] bg-brand-yellow font-mono text-[13px] font-bold tracking-[1.5px] uppercase text-black"
+                >
+                  Get Access
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

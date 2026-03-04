@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import SplitText from "./animations/SplitText";
 
 interface StatItemProps {
   value: string;
@@ -33,6 +34,8 @@ interface HeroProps {
   secondaryCtaLabel?: string;
   secondaryCtaHref?: string;
   imageUrl?: string;
+  videoUrl?: string;
+  titleText?: string;
   stats?: StatItemProps[];
 }
 
@@ -53,6 +56,8 @@ export default function Hero({
   secondaryCtaLabel = "Free Picks via Email",
   secondaryCtaHref = "/picks",
   imageUrl = "https://api.builder.io/api/v1/image/assets/TEMP/e7a48826f4f3592b62edc4a4adaa3da19d8075e3",
+  videoUrl,
+  titleText,
   stats,
 }: HeroProps) {
   const [dateStr, setDateStr] = useState("");
@@ -98,10 +103,12 @@ export default function Hero({
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="inline-flex items-center gap-[10px] px-[16px] py-[8px] border border-brand-yellow/25 bg-brand-yellow/4 mb-[20px] md:mb-[32px] w-fit"
+            className="inline-flex items-center gap-[10px] px-[16px] py-[8px] border border-brand-yellow/25 bg-brand-yellow/4 mb-[20px] md:mb-[32px] w-fit cursor-target"
           >
             <span className="w-[5px] h-[5px] rounded-full bg-brand-yellow shrink-0" aria-hidden="true" />
-            <span className="font-mono text-[10px] font-400 tracking-[1.5px] uppercase text-nav-text/85">{badgeText}</span>
+            <span className="font-mono text-[10px] font-400 tracking-[1.5px] uppercase text-nav-text/85">
+              <SplitText text={badgeText} />
+            </span>
           </motion.div>
 
           <motion.h1
@@ -110,7 +117,13 @@ export default function Hero({
             transition={{ duration: 0.8, delay: 0.3 }}
             className="font-display text-[clamp(42px,13vw,60px)] md:text-[clamp(48px,6.5vw,88px)] font-bold leading-[0.94] tracking-[-0.01em] uppercase text-nav-text/98 m-0 mb-[20px] md:mb-[32px]"
           >
-            {title}
+            {titleText ? (
+              <SplitText text={titleText} />
+            ) : typeof title === "string" ? (
+              <SplitText text={title} />
+            ) : (
+              title
+            )}
           </motion.h1>
 
           <motion.div
@@ -130,24 +143,35 @@ export default function Hero({
             transition={{ duration: 0.8, delay: 0.5 }}
             className="flex flex-col sm:flex-row items-start sm:items-center gap-[12px] md:gap-[20px]"
           >
-            <a href={primaryCtaHref} className="w-full sm:w-auto inline-flex items-center justify-center px-[32px] py-[15px] bg-brand-yellow font-mono text-[11px] font-bold tracking-[1.5px] uppercase text-black whitespace-nowrap transition-all hover:bg-white hover:-translate-y-[1px]">{primaryCtaLabel}</a>
-            <a href={secondaryCtaHref} className="w-full sm:w-auto inline-flex items-center justify-center px-[32px] py-[14px] border border-nav-text/15 font-mono text-[11px] font-400 tracking-[1.5px] uppercase text-nav-text/55 whitespace-nowrap transition-all hover:border-nav-text/40 hover:text-white hover:bg-white/3">{secondaryCtaLabel}</a>
+            <a href={primaryCtaHref} className="w-full sm:w-auto inline-flex items-center justify-center px-[32px] py-[15px] bg-brand-yellow font-mono text-[11px] font-bold tracking-[1.5px] uppercase text-black whitespace-nowrap transition-all hover:bg-white hover:-translate-y-[1px] cursor-target">{primaryCtaLabel}</a>
+            <a href={secondaryCtaHref} className="w-full sm:w-auto inline-flex items-center justify-center px-[32px] py-[14px] border border-nav-text/15 font-mono text-[11px] font-400 tracking-[1.5px] uppercase text-nav-text/55 whitespace-nowrap transition-all hover:border-nav-text/40 hover:text-white hover:bg-white/3 cursor-target">{secondaryCtaLabel}</a>
           </motion.div>
         </div>
 
-        {/* Right column — hero image */}
+        {/* Right column — hero media */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.2 }}
-          className="hidden md:block relative"
+          className="hidden md:block relative overflow-hidden"
         >
           <div className="w-full h-full">
-            <img
-              src={imageUrl}
-              alt="WagerBird signal cards terminal"
-              className="w-full h-full object-cover object-center block"
-            />
+            {videoUrl ? (
+              <video
+                src={videoUrl}
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="w-full h-full object-cover object-center block"
+              />
+            ) : (
+              <img
+                src={imageUrl}
+                alt="WagerBird signal cards terminal"
+                className="w-full h-full object-cover object-center block"
+              />
+            )}
           </div>
         </motion.div>
       </div>

@@ -1,5 +1,7 @@
 "use client";
 
+import SpotlightCard from "./animations/SpotlightCard";
+
 export interface SportsbookCardProps {
   name: string;
   brandColor: string;
@@ -17,7 +19,7 @@ export default function SportsbookCard({
   ctaHref,
 }: SportsbookCardProps) {
   return (
-    <div className="sb-card">
+    <SpotlightCard className="sb-card" spotlightColor="rgba(255, 255, 255, 0.1)">
       <div className="sb-card-header" style={{ backgroundColor: brandColor }}>
         <span className="sb-card-header-name">{name}</span>
       </div>
@@ -34,6 +36,6 @@ export default function SportsbookCard({
           Open Account →
         </a>
       </div>
-    </div>
+    </SpotlightCard>
   );
 }

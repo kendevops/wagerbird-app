@@ -34,7 +34,7 @@ export default function Header({
 
   return (
     <header className="sticky top-0 z-[100] w-full h-[64px] bg-nav-bg backdrop-blur-[8px] border-b border-yellow-border">
-      <nav className="grid grid-cols-[auto_1fr_auto] items-center h-full px-[20px] md:px-[48px] gap-[16px] md:gap-[32px]">
+      <nav className="flex items-center justify-between h-full px-[20px] md:px-[48px] gap-[16px] md:gap-[32px]">
 
         {/* Logo */}
         <a href="/" className="flex items-center shrink-0 cursor-target" aria-label="WagerBird Home">
@@ -67,8 +67,8 @@ export default function Header({
           </svg>
         </a>
 
-        {/* Nav links */}
-        <ul className="hidden md:flex items-center justify-center gap-[32px] list-none m-0 p-0">
+        {/* Nav links - Center on desktop */}
+        <ul className="hidden md:flex flex-1 items-center justify-center gap-[32px] list-none m-0 p-0">
           {navLinks.map(({ label, href }) => {
             const isActive = pathname === href;
             return (
@@ -133,7 +133,7 @@ export default function Header({
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed inset-0 z-[105] bg-[#050510] flex flex-col pt-[84px] px-[20px]"
+            className="fixed inset-0 z-[105] bg-[#050510]/80 backdrop-blur-lg flex flex-col pt-[84px] px-[20px]"
           >
             <div className="flex flex-col gap-[32px]">
               <ul className="flex flex-col gap-[24px] list-none p-0 m-0">

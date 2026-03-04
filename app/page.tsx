@@ -55,16 +55,7 @@ export default function Home() {
           </>
         }
       />
-      <Hotsheet
-        title={
-          <>
-            The Cheat<br />
-            Code. <em className="hotsheet-heading-accent">Built</em><br />
-            To Hit.
-          </>
-        }
-        videoSrc="https://cdn.builder.io/o/assets%2F0d74d6500f4d4101a69c1e5625bc65eb%2F691c4d6e898a44b0910ee280b41889fc?alt=media&token=b46e7fbb-e8c7-4839-9d62-4b9f0667a724&apiKey=0d74d6500f4d4101a69c1e5625bc65eb"
-      />
+      <Hotsheet />
       <EmailCapture
         title={
           <>

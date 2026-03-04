@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, Variants } from 'framer-motion';
 
 interface SplitTextProps {
   text: string;
@@ -25,7 +25,7 @@ const SplitText: React.FC<SplitTextProps> = ({
 
   const letters = text.split('');
 
-  const container = {
+  const container: Variants = {
     hidden: { opacity: 0 },
     visible: (i: number = 1) => ({
       opacity: 1,
@@ -33,12 +33,12 @@ const SplitText: React.FC<SplitTextProps> = ({
     }),
   };
 
-  const child = {
+  const child: Variants = {
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        type: 'spring',
+        type: 'spring' as const,
         damping: 12,
         stiffness: 100,
         duration: duration,

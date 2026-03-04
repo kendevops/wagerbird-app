@@ -1,7 +1,7 @@
 "use client";
 
-import Hero from "@/components/Hero";
 import Hotsheet from "@/components/Hotsheet";
+import HotsheetFeatures from "@/components/HotsheetFeatures";
 import ProcessSection from "@/components/ProcessSection";
 import EmailCapture from "@/components/EmailCapture";
 import Faq from "@/components/Faq";
@@ -33,42 +33,21 @@ const hotsheetFaqs = [
 export default function HotsheetPage() {
   return (
     <main>
-      <Hero
-        tickerText="Daily Hotsheet Live — The Cheat Code"
-        badgeText="THE HOTSHEET · DAILY CHEAT SHEET"
-        title={
-          <>
-            The Daily<br />
-            <em className="text-brand-yellow italic font-bold">Cheat Sheet.</em><br />
-            Built To Hit.
-          </>
-        }
-        description="Don't waste hours scanning markets. We deliver the day's highest-conviction signals directly to your phone. Simple, scored, and sharp."
-        primaryCtaLabel="Get Hotsheet Now →"
-        primaryCtaHref="#hotsheet-main"
-        secondaryCtaLabel="How It Works"
-        secondaryCtaHref="#process"
-        imageUrl="https://api.builder.io/api/v1/image/assets/TEMP/bc93b8c5e939c79c4dc82e9fb08dc657d35b4b67"
-        stats={[
-          { value: "5-7", label: "Daily Plays" },
-          { value: "Daily", label: "Frequency" },
-          { value: "$2", label: "Cost Per Day" },
-        ]}
-      />
+      {/* Hero — the MagicBento hotsheet section */}
+      <Hotsheet />
 
-      <div id="hotsheet-main">
-        <Hotsheet />
-      </div>
+      {/* What You Get feature cards */}
+      <HotsheetFeatures />
 
       <div id="process">
-        <ProcessSection 
+        <ProcessSection
           label="// Simple Setup"
           heading="Simple Steps. To The Sheet."
           description="Getting started with the Hotsheet is seamless. Subscribe once, receive daily, and bet with confidence every single morning."
         />
       </div>
 
-      <EmailCapture 
+      <EmailCapture
         title={
           <>
             Not Ready?<br />
@@ -77,7 +56,7 @@ export default function HotsheetPage() {
         }
       />
 
-      <Faq 
+      <Faq
         title={
           <>
             Hotsheet
@@ -88,7 +67,7 @@ export default function HotsheetPage() {
         items={hotsheetFaqs}
       />
 
-      <CtaBanner 
+      <CtaBanner
         watermark="WIN"
         title={
           <>
@@ -98,7 +77,7 @@ export default function HotsheetPage() {
         }
         subtitle="Join 12,000+ traders getting the daily edge in their inbox."
         ctaLabel="Subscribe for $59/mo →"
-        ctaHref="#hotsheet-main"
+        ctaHref="#"
       />
     </main>
   );

@@ -6,6 +6,7 @@ import { motion, useSpring, useMotionValue, AnimatePresence } from "framer-motio
 export default function TargetCursor() {
   const [isHovering, setIsHovering] = useState(false);
   const [targetRect, setTargetRect] = useState<DOMRect | null>(null);
+  const [scrollHue, setScrollHue] = useState(0);
 
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
@@ -29,7 +30,7 @@ export default function TargetCursor() {
         setIsHovering(true);
         const rect = cursorTarget.getBoundingClientRect();
         setTargetRect(rect);
-        
+
         // Lock to target center or expand to cover?
         // Let's expand to cover with some padding
         const padding = 8;
@@ -45,12 +46,27 @@ export default function TargetCursor() {
       }
     };
 
+    const handleScroll = () => {
+      // Change color based on scroll position
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercentage = window.scrollY / scrollHeight;
+      setScrollHue(scrollPercentage * 360);
+    };
+
     window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    window.addEventListener("scroll", handleScroll);
+
+    // Initial check for scroll position
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, [mouseX, mouseY, sizeX, sizeY]);
 
   return (
-    <div className="target-cursor-wrapper">
+    <div className="target-cursor-wrapper" style={{ "--cursor-color": `hsl(${scrollHue}, 100%, 70%)` } as React.CSSProperties}>
       <motion.div
         className="target-cursor"
         style={{
@@ -97,7 +113,7 @@ export default function TargetCursor() {
             position: absolute;
             width: 8px;
             height: 8px;
-            border-color: #FFFFFF;
+            border-color: var(--cursor-color, #FFFFFF);
             border-style: solid;
           }
 
@@ -128,7 +144,7 @@ export default function TargetCursor() {
           .center-dot {
             width: 4px;
             height: 4px;
-            background: #FFFFFF;
+            background: var(--cursor-color, #FFFFFF);
             border-radius: 50%;
           }
 

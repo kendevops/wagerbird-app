@@ -32,7 +32,7 @@ export default function Header({
       <nav className="grid grid-cols-[auto_1fr_auto] items-center h-full px-[20px] md:px-[48px] gap-[16px] md:gap-[32px]">
 
         {/* Logo */}
-        <a href="/" className="flex items-center shrink-0" aria-label="WagerBird Home">
+        <a href="/" className="flex items-center shrink-0 cursor-target" aria-label="WagerBird Home">
           <svg width="177" height="28" viewBox="0 0 177 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-[22px] md:h-[28px] w-auto block">
             <g clipPath="url(#clip0_2501_1394)">
               <mask id="mask0_2501_1394" style={{maskType:"luminance"}} maskUnits="userSpaceOnUse" x="0" y="0" width="177" height="28">
@@ -70,7 +70,7 @@ export default function Header({
               <li key={href}>
                 <a
                   href={href}
-                  className={`font-mono text-[11px] font-400 tracking-[1.5px] uppercase transition-colors ${
+                  className={`font-mono text-[11px] font-400 tracking-[1.5px] uppercase transition-colors cursor-target ${
                     isActive
                       ? "text-brand-yellow font-bold"
                       : "text-nav-text-muted hover:text-white"
@@ -87,13 +87,13 @@ export default function Header({
         <div className="flex items-center gap-[12px] shrink-0">
           <a
             href={loginHref}
-            className="hidden sm:flex items-center justify-center px-[20px] py-[9px] border border-nav-border font-mono text-[11px] font-400 tracking-[1px] uppercase text-nav-text-muted hover:border-[#F0F0E8]/50 hover:text-nav-text transition-colors whitespace-nowrap"
+            className="hidden sm:flex items-center justify-center px-[20px] py-[9px] border border-nav-border font-mono text-[11px] font-400 tracking-[1px] uppercase text-nav-text-muted hover:border-[#F0F0E8]/50 hover:text-nav-text transition-colors whitespace-nowrap cursor-target"
           >
             Login
           </a>
           <a
             href={getAccessHref}
-            className="flex items-center justify-center px-[14px] md:px-[22px] py-[8px] md:py-[10px] h-[36px] bg-brand-yellow font-mono text-[11px] font-bold tracking-[1px] uppercase text-brand-blue whitespace-nowrap hover:bg-[#cdd91e] transition-colors clip-btn"
+            className="flex items-center justify-center px-[14px] md:px-[22px] py-[8px] md:py-[10px] h-[36px] bg-brand-yellow font-mono text-[11px] font-bold tracking-[1px] uppercase text-brand-blue whitespace-nowrap hover:bg-[#cdd91e] transition-colors clip-btn cursor-target"
           >
             Get Access
           </a>

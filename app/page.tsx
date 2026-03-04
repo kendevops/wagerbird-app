@@ -12,6 +12,7 @@ export default function Home() {
   return (
     <main>
       <Hero
+        titleText="Access The Edge. Trade The Game."
         title={
           <>
             Access<br />

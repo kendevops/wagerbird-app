@@ -42,6 +42,7 @@ export default function PricingPage() {
       <Hero
         tickerText="Points Packs — Pay As You Go · No Subscription Required"
         badgeText="POINTS PACKS · PAY AS YOU GO"
+        titleText="Unlock Real Picks. Any Time."
         title={
           <>
             Unlock<br />

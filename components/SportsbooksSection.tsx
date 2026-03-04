@@ -160,7 +160,7 @@ export default function SportsbooksSection({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           >
-            <p>No partner sportsbooks are currently available in <strong>{activeState}</strong>. Check back soon — we're adding books regularly.</p>
+            <p>No partner sportsbooks are currently available in <strong>{activeState}</strong>. Check back soon &mdash; we&rsquo;re adding books regularly.</p>
           </motion.div>
         )}
 

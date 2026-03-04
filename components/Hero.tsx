@@ -35,6 +35,7 @@ interface HeroProps {
   secondaryCtaHref?: string;
   imageUrl?: string;
   videoUrl?: string;
+  titleText?: string;
   stats?: StatItemProps[];
 }
 
@@ -56,6 +57,7 @@ export default function Hero({
   secondaryCtaHref = "/picks",
   imageUrl = "https://api.builder.io/api/v1/image/assets/TEMP/e7a48826f4f3592b62edc4a4adaa3da19d8075e3",
   videoUrl,
+  titleText,
   stats,
 }: HeroProps) {
   const [dateStr, setDateStr] = useState("");
@@ -115,9 +117,13 @@ export default function Hero({
             transition={{ duration: 0.8, delay: 0.3 }}
             className="font-display text-[clamp(42px,13vw,60px)] md:text-[clamp(48px,6.5vw,88px)] font-bold leading-[0.94] tracking-[-0.01em] uppercase text-nav-text/98 m-0 mb-[20px] md:mb-[32px]"
           >
-            <SplitText
-              text="Access The Edge. Trade The Game."
-            />
+            {titleText ? (
+              <SplitText text={titleText} />
+            ) : typeof title === "string" ? (
+              <SplitText text={title} />
+            ) : (
+              title
+            )}
           </motion.h1>
 
           <motion.div

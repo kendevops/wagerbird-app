@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo, CSSProperties } from "react";
+import React, { useMemo, useId, CSSProperties } from "react";
 
 export interface ShinyTextProps {
   text: string;
@@ -36,7 +36,11 @@ const ShinyText: React.FC<ShinyTextProps> = ({
     return `linear-gradient(${direction === "left" ? angle : -angle}deg, ${color} 0%, ${color} 35%, ${shineColor} 50%, ${color} 65%, ${color} 100%)`;
   }, [color, shineColor, spread, direction]);
 
-  const animationName = useMemo(() => `shine-${Math.random().toString(36).slice(2, 7)}`, []);
+  const id = useId().replace(/:/g, "");
+  const animationName = `shine-${id}`;
+  const cls = `shiny-${id}`;
+  const combinedCls = ["shiny-text", cls, className, disabled ? "disabled" : ""].filter(Boolean).join(" ");
+
   const duration = `${speed}s`;
   const delayMs = `${delay}s`;
 
@@ -63,13 +67,11 @@ const ShinyText: React.FC<ShinyTextProps> = ({
     ...(style || {}),
   };
 
-  const cls = ["shiny-text", className, disabled ? "disabled" : ""].filter(Boolean).join(" ");
-
   return (
     <>
       <style>{keyframes}</style>
       <span
-        className={cls}
+        className={combinedCls}
         style={rootStyle}
         aria-label={text}
       >

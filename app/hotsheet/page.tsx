@@ -15,24 +15,24 @@ import CtaBanner from "@/components/CtaBanner";
 
 const hotsheetFaqs = [
   {
-    question: "What is the WagerBird Hotsheet?",
-    answer: "The Hotsheet is our premier daily email and SMS product. It's a curated list of the day's highest-conviction plays, delivered directly to your device so you never miss a sharp move.",
+    question: "What is the Hotsheet?",
+    answer: "The Hotsheet is a curated daily email delivering the top 2–6 picks from the WAGERBIRD Terminal directly to your inbox. Every play is confidence-scored and selected by our model — no research required on your end. Open it, read the plays, execute.",
   },
   {
-    question: "How often do I receive it?",
-    answer: "Every single day. The Hotsheet goes out by 12:00 PM EST daily to ensure you have enough time to shop for lines and place your wagers.",
+    question: "What's the difference between Half-Day and Full-Day?",
+    answer: "The On-Demand pass ($25) delivers 2–3 of our top signals for the morning window. The Full-Day Pass ($40) covers both the morning and evening windows — 6+ signals total — and includes 3 days of free Terminal access. Both are one-time payments, no subscription.",
   },
   {
-    question: "How much does it cost?",
-    answer: "The Hotsheet is a separate subscription product priced at roughly $2 per day ($59/month). It provides a full season's worth of value for a fraction of the cost of typical tout services.",
+    question: "Do I need an account to use the Hotsheet?",
+    answer: "No. The Hotsheet is delivered directly to your email. You don't need to create an account, download an app, or log in anywhere. Just enter your email at checkout and your picks land in your inbox before game time.",
   },
   {
-    question: "Can I cancel anytime?",
-    answer: "Absolutely. There are no long-term commitments. You can manage your subscription and cancel anytime through your account settings with just a couple of clicks.",
+    question: "How are the signals scored?",
+    answer: "Every signal is run through the WAGERBIRD Terminal model and assigned a confidence score from 1–100. Only signals scoring 76 or above make it into the Hotsheet. A score of 88 means bet stronger. A score of 76 means size down but still worth acting on.",
   },
   {
-    question: "What's the difference between Hotsheet and Terminal?",
-    answer: "The Terminal is for active traders who want to unlock specific, individual signals. The Hotsheet is for bettors who want a daily 'cheat sheet' of the top picks delivered to them automatically.",
+    question: "What sports are covered?",
+    answer: "The Hotsheet covers NFL, NBA, MLB, NHL, and select international soccer markets. Coverage depends on the day's schedule — we only include sports where the model has high-confidence output. No filler picks, ever.",
   },
 ];
 
@@ -160,11 +160,11 @@ export default function HotsheetPage() {
       />
 
       <Faq
+        label="// FAQ"
         title={
           <>
-            Hotsheet
-            <br />
-            <em className="faq-heading-accent">Knowledge.</em>
+            Common
+            <em className="faq-heading-accent">Questions.</em>
           </>
         }
         items={hotsheetFaqs}

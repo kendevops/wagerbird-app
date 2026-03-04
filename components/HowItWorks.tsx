@@ -14,6 +14,7 @@ interface HowItWorksProps {
   label?: string;
   title?: React.ReactNode;
   steps?: Step[];
+  stepVariant?: "badge" | "card";
 }
 
 const defaultSteps: Step[] = [
@@ -63,7 +64,8 @@ export default function HowItWorks({
       <em className="hiw-heading-accent">Profitable.</em>
     </>
   ),
-  steps = defaultSteps
+  steps = defaultSteps,
+  stepVariant = "badge",
 }: HowItWorksProps) {
   return (
     <section className="hiw-section">
@@ -92,7 +94,7 @@ export default function HowItWorks({
         >
           {steps.map((step, i) => (
             <motion.div key={i} variants={itemVariants}>
-              <HowItWorksStep {...step} />
+              <HowItWorksStep {...step} variant={stepVariant} />
             </motion.div>
           ))}
         </motion.div>

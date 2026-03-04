@@ -1322,6 +1322,24 @@ body {
   margin: 0;
 }
 
+/* Card variant — STEP label */
+.hiw-step-label {
+  font-family: var(--font-space-mono), monospace;
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(7, 7, 15, 0.35);
+  margin-bottom: 12px;
+  display: block;
+}
+
+/* Card variant — icon container (no circular badge) */
+.hiw-step-card-icon {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
 /* Step description */
 .hiw-step-description {
   font-family: var(--font-space-mono), monospace;
@@ -1331,6 +1349,67 @@ body {
   color: rgba(7, 7, 15, 0.5);
   margin: 0;
   max-width: 300px;
+}
+
+/* ─── HowItWorks Mockcard (used in hotsheet process steps) ── */
+.hiw-mockcard {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px 16px;
+  background: rgba(7, 7, 15, 0.05);
+  border: 1px solid rgba(7, 7, 15, 0.10);
+  border-radius: 10px;
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.hiw-mockcard--blue {
+  background: rgba(30, 64, 175, 0.06);
+  border-color: rgba(30, 64, 175, 0.18);
+}
+
+.hiw-mockcard__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.hiw-mockcard__source {
+  font-family: var(--font-space-mono), monospace;
+  font-size: 8px;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(7, 7, 15, 0.4);
+}
+
+.hiw-mockcard--blue .hiw-mockcard__source {
+  color: rgba(30, 64, 175, 0.6);
+}
+
+.hiw-mockcard__score {
+  font-family: var(--font-barlow-condensed), sans-serif;
+  font-size: 26px;
+  font-weight: 900;
+  line-height: 1;
+  color: #1E40AF;
+  letter-spacing: -1px;
+}
+
+.hiw-mockcard__content {
+  font-family: var(--font-barlow-condensed), sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #07070F;
+  line-height: 1.1;
+}
+
+.hiw-mockcard--blue .hiw-mockcard__content {
+  color: #1E3A8A;
 }
 
 /* ─── Hotsheet Hero (new Figma design) ───────────────── */

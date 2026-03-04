@@ -56,7 +56,7 @@ export default function Footer({
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-[48px] lg:gap-[80px] pb-[64px]">
           {/* Brand column */}
           <div className="flex flex-col gap-[24px] max-w-full lg:max-w-[300px]">
-            <a href="/" className="inline-flex shrink-0" aria-label="WagerBird Home">
+            <a href="/" data-cursor-label="HOME" className="inline-flex shrink-0" aria-label="WagerBird Home">
               <svg width="177" height="28" viewBox="0 0 177 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-[28px] w-auto block">
                 <g clipPath="url(#clip0_footer)">
                   <mask id="mask0_footer" style={{maskType:"luminance"}} maskUnits="userSpaceOnUse" x="0" y="0" width="177" height="28">
@@ -98,7 +98,7 @@ export default function Footer({
                 <ul className="flex flex-col gap-[16px] list-none m-0 p-0">
                   {section.links.map((link) => (
                     <li key={link.href}>
-                      <a href={link.href} className="font-mono text-[11px] font-400 tracking-[1.5px] uppercase text-nav-text hover:text-white transition-colors">{link.label}</a>
+                      <a href={link.href} data-cursor-label="GO" className="font-mono text-[11px] font-400 tracking-[1.5px] uppercase text-nav-text hover:text-white transition-colors">{link.label}</a>
                     </li>
                   ))}
                 </ul>

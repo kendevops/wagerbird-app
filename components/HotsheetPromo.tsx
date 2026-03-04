@@ -45,7 +45,7 @@ export default function HotsheetPromo({
           $2/day · Cancel anytime · No commitment
         </p>
 
-        <a href={ctaHref} className="hs-promo__cta">
+        <a href={ctaHref} data-cursor-label="BUY" className="hs-promo__cta">
           {ctaLabel}
         </a>
       </motion.div>

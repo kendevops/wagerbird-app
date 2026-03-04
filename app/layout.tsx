@@ -3,7 +3,7 @@ import { Geist, Geist_Mono, Space_Mono, Oswald, Barlow_Condensed } from "next/fo
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import TargetCursor from "@/components/animations/TargetCursor";
+import DynamicCursor from "@/components/animations/DynamicCursor";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -48,7 +48,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${spaceMono.variable} ${oswald.variable} ${barlowCondensed.variable} antialiased`}
       >
-        <TargetCursor />
+        <DynamicCursor />
         <Header
           navLinks={[
             { label: "Signals",      href: "/signals" },

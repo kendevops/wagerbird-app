@@ -34,6 +34,7 @@ interface HeroProps {
   secondaryCtaLabel?: string;
   secondaryCtaHref?: string;
   imageUrl?: string;
+  videoUrl?: string;
   stats?: StatItemProps[];
 }
 
@@ -54,6 +55,7 @@ export default function Hero({
   secondaryCtaLabel = "Free Picks via Email",
   secondaryCtaHref = "/picks",
   imageUrl = "https://api.builder.io/api/v1/image/assets/TEMP/e7a48826f4f3592b62edc4a4adaa3da19d8075e3",
+  videoUrl,
   stats,
 }: HeroProps) {
   const [dateStr, setDateStr] = useState("");
@@ -140,19 +142,30 @@ export default function Hero({
           </motion.div>
         </div>
 
-        {/* Right column — hero image */}
+        {/* Right column — hero media */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.2 }}
-          className="hidden md:block relative"
+          className="hidden md:block relative overflow-hidden"
         >
           <div className="w-full h-full">
-            <img
-              src={imageUrl}
-              alt="WagerBird signal cards terminal"
-              className="w-full h-full object-cover object-center block"
-            />
+            {videoUrl ? (
+              <video
+                src={videoUrl}
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="w-full h-full object-cover object-center block"
+              />
+            ) : (
+              <img
+                src={imageUrl}
+                alt="WagerBird signal cards terminal"
+                className="w-full h-full object-cover object-center block"
+              />
+            )}
           </div>
         </motion.div>
       </div>

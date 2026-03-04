@@ -3,7 +3,7 @@ import Ticker from "@/components/Ticker";
 import Signals from "@/components/Signals";
 import Packs from "@/components/Packs";
 import HowItWorks from "@/components/HowItWorks";
-import Hotsheet from "@/components/Hotsheet";
+import HotsheetPromo from "@/components/HotsheetPromo";
 import EmailCapture from "@/components/EmailCapture";
 import Faq from "@/components/Faq";
 import CtaBanner from "@/components/CtaBanner";
@@ -55,7 +55,7 @@ export default function Home() {
           </>
         }
       />
-      <Hotsheet />
+      <HotsheetPromo />
       <EmailCapture
         title={
           <>

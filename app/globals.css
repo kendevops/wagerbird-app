@@ -4582,3 +4582,142 @@ body {
   .hsw-inner { padding: 0 24px; gap: 48px; }
   .hsw-heading { font-size: 52px; }
 }
+
+/* ═══════════════════════════════════════════════════════════
+   ProofSection — Testimonials
+   ═══════════════════════════════════════════════════════════ */
+
+.proof-section {
+  position: relative;
+  background: #07070F;
+  overflow: hidden;
+  padding: 120px 0;
+}
+
+.proof-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 60px;
+}
+
+.proof-header {
+  margin-bottom: 64px;
+}
+
+.proof-label {
+  font-family: var(--font-space-mono), monospace;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(228, 242, 34, 0.7);
+  display: block;
+  margin-bottom: 24px;
+}
+
+.proof-heading {
+  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
+  font-size: clamp(64px, 8vw, 112px);
+  font-weight: 900;
+  line-height: 0.85;
+  letter-spacing: -2px;
+  text-transform: uppercase;
+  color: #fff;
+  margin: 0;
+}
+
+.proof-heading-accent {
+  font-style: italic;
+  color: #E4F222;
+}
+
+.proof-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.proof-card {
+  height: 100%;
+  border-radius: 12px;
+  background: #12121E;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: border-color 0.25s ease;
+}
+
+.proof-card:hover {
+  border-color: rgba(228, 242, 34, 0.2);
+}
+
+.proof-card-inner {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.proof-card-stars {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 16px;
+}
+
+.proof-card-badge {
+  font-family: var(--font-space-mono), monospace;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #E4F222;
+  padding: 4px 10px;
+  border-radius: 4px;
+  background: rgba(228, 242, 34, 0.08);
+  border: 1px solid rgba(228, 242, 34, 0.15);
+  width: fit-content;
+  margin-bottom: 32px;
+}
+
+.proof-card-text {
+  font-family: var(--font-dm-sans), 'DM Sans', sans-serif;
+  font-size: 17px;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0 0 48px;
+  flex-grow: 1;
+}
+
+.proof-card-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.proof-card-name {
+  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.proof-card-location {
+  font-family: var(--font-space-mono), monospace;
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.25);
+}
+
+@media (max-width: 1024px) {
+  .proof-grid { grid-template-columns: 1fr; gap: 32px; }
+  .proof-inner { padding: 0 40px; }
+}
+
+@media (max-width: 768px) {
+  .proof-section { padding: 80px 0; }
+  .proof-inner { padding: 0 24px; }
+}

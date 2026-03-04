@@ -7,6 +7,7 @@ import HowItWorks from "@/components/HowItWorks";
 import HotsheetFeatures from "@/components/HotsheetFeatures";
 import HotsheetPricing from "@/components/HotsheetPricing";
 import HotsheetWhy from "@/components/HotsheetWhy";
+import ProofSection from "@/components/ProofSection";
 import ProcessSection from "@/components/ProcessSection";
 import EmailCapture from "@/components/EmailCapture";
 import Faq from "@/components/Faq";
@@ -137,6 +138,9 @@ export default function HotsheetPage() {
 
       {/* What You Get feature cards */}
       <HotsheetFeatures />
+
+      {/* Social Proof — Testimonials */}
+      <ProofSection />
 
       <div id="process">
         <ProcessSection

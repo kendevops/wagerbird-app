@@ -171,15 +171,15 @@ export default function HotsheetPage() {
       />
 
       <CtaBanner
-        watermark="WIN"
+        watermark="HOTSHEET"
         title={
           <>
-            Stop Guessing.<br />
-            Start Winning.
+            Today&apos;s Top<br />
+            Signals. Your Inbox.
           </>
         }
-        subtitle="Join 12,000+ traders getting the daily edge in their inbox."
-        ctaLabel="Subscribe for $59/mo →"
+        subtitle="No login. No subscription. Just the picks that matter, before game time."
+        ctaLabel="Get Hotsheet →"
         ctaHref="#"
       />
     </main>

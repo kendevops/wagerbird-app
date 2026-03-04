@@ -3062,26 +3062,26 @@ body {
 /* ─── CTA Banner Section ──────────────────────────── */
 .cta-section {
   position: relative;
-  background: var(--color-yellow);
+  background: #E4F222;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 88px 24px 96px;
+  padding: 96px 24px 104px;
   overflow: hidden;
   text-align: center;
 }
 
 .cta-watermark {
   position: absolute;
-  top: -10%;
-  left: 25%;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
   font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
-  font-size: clamp(200px, 28vw, 420px);
+  font-size: clamp(120px, 22vw, 340px);
   font-weight: 900;
   text-transform: uppercase;
-  color: rgba(0, 0, 0, 1);
-  letter-spacing: -10px;
+  color: rgba(0, 0, 0, 0.12);
+  letter-spacing: -8px;
   line-height: 1;
   white-space: nowrap;
   pointer-events: none;
@@ -3115,30 +3115,36 @@ body {
 }
 
 .cta-subtext {
-  font-family: var(--font-space-mono), monospace;
+  font-family: var(--font-dm-sans), 'DM Sans', sans-serif;
   font-style: italic;
-  font-size: clamp(12px, 1.5vw, 15px);
-  font-weight: 400;
-  color: rgba(7, 7, 15, 0.5);
+  font-size: clamp(13px, 1.4vw, 16px);
+  font-weight: 300;
+  color: rgba(7, 7, 15, 0.55);
   margin: 0;
-  line-height: 1.6;
+  line-height: 1.55;
+  max-width: 420px;
 }
 
 .cta-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 20px 48px;
+  padding: 18px 48px;
   background: #07070F;
-  color: var(--color-yellow);
+  color: #fff;
   font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
   font-size: 16px;
   font-weight: 700;
-  letter-spacing: 2.5px;
+  letter-spacing: 3px;
   text-transform: uppercase;
   text-decoration: none;
   margin-top: 8px;
-  transition: background 0.18s, transform 0.18s;
+  transition: background 0.2s, transform 0.18s;
+}
+
+.cta-btn:hover {
+  background: #1a1a2e;
+  transform: translateY(-1px);
 }
 
 .cta-btn:hover {

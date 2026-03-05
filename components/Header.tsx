@@ -136,7 +136,7 @@ export default function Header({
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed inset-0 z-[105] bg-[#00000] backdrop-blur-lg flex flex-col pt-[84px] px-[20px]"
+            className="fixed inset-0 z-[105] bg-[#050510] backdrop-blur-lg flex flex-col pt-[84px] px-[20px]"
           >
             <div className="flex flex-col gap-[32px]">
               <ul className="flex flex-col gap-[24px] list-none p-0 m-0">

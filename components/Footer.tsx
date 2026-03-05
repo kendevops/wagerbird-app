@@ -21,8 +21,10 @@ const defaultSections: FooterSection[] = [
     links: [
       { label: "Home", href: "/" },
       { label: "Terminal", href: "/terminal" },
-      { label: "Odds", href: "/odds" },
       { label: "Hotsheet", href: "/hotsheet" },
+      { label: "Sportsbooks", href: "/sportsbooks" },
+      { label: "Pricing", href: "/pricing" },
+      { label: "Odds", href: "/odds" },
       { label: "Packs", href: "/packs" },
     ],
   },

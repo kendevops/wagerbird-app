@@ -52,10 +52,10 @@ export default function RootLayout({
         <Header
           navLinks={[
             { label: "Terminal",     href: "/terminal" },
-            { label: "Odds",         href: "/odds" },
-            { label: "Sportsbooks",  href: "/sportsbooks" },
             { label: "Hotsheet",     href: "/hotsheet" },
+            { label: "Sportsbooks",  href: "/sportsbooks" },
             { label: "Pricing",      href: "/pricing" },
+            { label: "Odds",         href: "/odds" },
           ]}
         />
         {children}
@@ -68,9 +68,10 @@ export default function RootLayout({
               links: [
                 { label: "Home", href: "/" },
                 { label: "Terminal", href: "/terminal" },
-                { label: "Odds", href: "/odds" },
-                { label: "Sportsbooks", href: "/sportsbooks" },
                 { label: "Hotsheet", href: "/hotsheet" },
+                { label: "Sportsbooks", href: "/sportsbooks" },
+                { label: "Pricing", href: "/pricing" },
+                { label: "Odds", href: "/odds" },
                 { label: "Packs", href: "/packs" },
               ],
             },

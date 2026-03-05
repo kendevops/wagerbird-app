@@ -3092,7 +3092,7 @@ body {
 
 .cta-watermark {
   position: absolute;
-  top: 20%;
+  top: -10%;
   left: 20%;
   transform: translate(-50%, -50%);
   font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;

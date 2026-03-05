@@ -99,7 +99,7 @@ export default function Hotsheet({
         </div>
 
         {/* CTA */}
-        <a href={ctaHref} className="hotsheet-hero__cta">
+        <a href={ctaHref} className="hotsheet-hero__cta clip-btn">
           {ctaLabel}
         </a>
       </motion.div>

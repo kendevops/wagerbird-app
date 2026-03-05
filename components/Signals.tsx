@@ -56,7 +56,7 @@ export default function Signals({
           {description}
         </p>
 
-        <a href={ctaHref} className="signals-cta">
+        <a href={ctaHref} className="signals-cta clip-btn">
           {ctaLabel}
         </a>
       </motion.div>

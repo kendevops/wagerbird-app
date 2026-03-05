@@ -116,7 +116,7 @@ export default function Hero({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="font-display text-[clamp(42px,13vw,60px)] md:text-[clamp(48px,6.5vw,88px)] font-bold leading-[0.94] tracking-[-0.01em] uppercase text-nav-text/98 m-0 mb-[20px] md:mb-[32px]"
+            className="hero-heading m-0 mb-[20px] md:mb-[32px]"
           >
             {titleText ? (
               <SplitText text={titleText} />

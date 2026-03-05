@@ -12,11 +12,10 @@ export default function Home() {
   return (
     <main>
       <Hero
-        titleText="Access The Edge. Trade The Game."
         title={
           <>
             Access<br />
-            The <em className="text-brand-yellow italic font-bold not-italic">Edge.</em><br />
+            The <em className="text-brand-yellow italic font-black">Edge.</em><br />
             Trade<br />
             The Game.
           </>

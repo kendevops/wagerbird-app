@@ -40,13 +40,13 @@ export default function DynamicCursor() {
 
         // Detect if we should use the "light/blue" theme
         const blueTrigger = cursorTarget.classList.contains("cursor-blue") ||
-                            !!cursorTarget.closest(".bg-white, .section-light, .theme-light");
+                            !!cursorTarget.closest(".bg-white, .section-light, .theme-light, .cta-section, .hiw-section, .map-section, .email-capture-section, .access-models-section");
         if (isBlue !== blueTrigger) setIsBlue(blueTrigger);
       } else {
         setIsHovering(false);
         if (label !== "") setLabel("");
         // Reset to default blue state based on section
-        const blueTrigger = !!target.closest(".bg-white, .section-light, .theme-light");
+        const blueTrigger = !!target.closest(".bg-white, .section-light, .theme-light, .cta-section, .hiw-section, .map-section, .email-capture-section, .access-models-section");
         if (isBlue !== blueTrigger) setIsBlue(blueTrigger);
       }
     };
@@ -136,10 +136,11 @@ export default function DynamicCursor() {
           height: 38px;
           border-radius: 50%;
           border: 1.5px solid rgba(228, 242, 34, .5);
-          transition: 
-            width .45s cubic-bezier(.16,1,.3,1), 
-            height .45s, 
-            border-color .3s, 
+          mix-blend-mode: difference;
+          transition:
+            width .45s cubic-bezier(.16,1,.3,1),
+            height .45s,
+            border-color .3s,
             background .3s;
           will-change: transform;
         }
@@ -176,6 +177,7 @@ export default function DynamicCursor() {
           opacity: 0;
           transition: opacity .2s;
           pointer-events: none;
+          mix-blend-mode: difference;
         }
 
         #cr.sl::after {

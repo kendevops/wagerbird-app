@@ -57,7 +57,7 @@ const sportsbooks: SportsbookCardProps[] = [
   {
     name: "BetMGM",
     brandColor: "#8B7D2A",
-    description: "Casino + sports under one login. Wide parlay coverage.",
+    description: "Wide parlay coverage and exclusive BetMGM rewards. The 'King of Sportsbooks' delivers deep markets across all major leagues.",
     pointsPack: "+1 FREE POINTS PACK ($39)",
     ctaHref: "https://www.betmgm.com",
     states: [
@@ -71,7 +71,7 @@ const sportsbooks: SportsbookCardProps[] = [
   {
     name: "Caesars",
     brandColor: "#4A4A1A",
-    description: "Generous rewards program. Best for loyalty-focused bettors.",
+    description: "The gold standard in sportsbook rewards. Caesars offers premium odds, massive boosts, and a legendary betting experience.",
     pointsPack: "+1 FREE POINTS PACK ($39)",
     ctaHref: "https://www.caesars.com/sportsbook",
     states: [
@@ -85,7 +85,7 @@ const sportsbooks: SportsbookCardProps[] = [
   {
     name: "DraftKings",
     brandColor: "#1B5E2E",
-    description: "One of the largest U.S. books. Deep markets, strong live betting.",
+    description: "The industry leader in live betting and same-game parlays. Fast, reliable, and featuring the most betting markets available.",
     pointsPack: "+1 FREE POINTS PACK ($39)",
     ctaHref: "https://www.draftkings.com",
     states: [
@@ -100,7 +100,7 @@ const sportsbooks: SportsbookCardProps[] = [
   {
     name: "Fanatics",
     brandColor: "#000000",
-    description: "A new era of sports betting with integrated Fanatics Rewards.",
+    description: "A new standard in sportsbook experiences. Integrated rewards and a mobile-first platform built for the modern bettor.",
     pointsPack: "+1 FREE POINTS PACK ($39)",
     ctaHref: "https://www.fanatics.com/sportsbook",
     states: ["Arizona", "Colorado", "Connecticut", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Maryland", "Massachusetts", "Michigan", "New Jersey", "New York", "North Carolina", "Ohio", "Pennsylvania", "Tennessee", "Vermont", "Virginia", "West Virginia", "Wyoming"],
@@ -108,7 +108,7 @@ const sportsbooks: SportsbookCardProps[] = [
   {
     name: "FanDuel",
     brandColor: "#1A4FC4",
-    description: "Top-rated mobile experience. Competitive odds, fast payouts.",
+    description: "America's #1 sportsbook. Top-rated mobile experience, competitive odds, and the fastest payouts in the game.",
     pointsPack: "+1 FREE POINTS PACK ($39)",
     ctaHref: "https://www.fanduel.com",
     states: [
@@ -122,7 +122,7 @@ const sportsbooks: SportsbookCardProps[] = [
   {
     name: "Onyx",
     brandColor: "#5D3FD3",
-    description: "Premium sports betting experience for high-conviction traders.",
+    description: "Premium sports betting platform for sophisticated traders. Onyx delivers sharp lines and a high-conviction experience.",
     pointsPack: "+1 FREE POINTS PACK ($39)",
     ctaHref: "https://www.onyx.io",
     states: ["Arizona", "Colorado", "Indiana", "Iowa", "New Jersey", "Ohio", "Pennsylvania", "Virginia"],
@@ -130,7 +130,7 @@ const sportsbooks: SportsbookCardProps[] = [
   {
     name: "Rebet",
     brandColor: "#FF4500",
-    description: "The social sportsbook. Follow picks and bet with your squad.",
+    description: "The social sportsbook built for squads. Share your picks, tail your friends, and bet together in a new social environment.",
     pointsPack: "+1 FREE POINTS PACK ($39)",
     ctaHref: "https://rebet.me",
     states: ["Arizona", "Colorado", "Indiana", "Iowa", "New Jersey", "Ohio", "Pennsylvania", "Virginia"],
@@ -138,7 +138,7 @@ const sportsbooks: SportsbookCardProps[] = [
   {
     name: "Sleeper",
     brandColor: "#2F95DC",
-    description: "Fantasy sports and prop betting with the best community features.",
+    description: "The home of fantasy and prop betting. Sleeper combines elite social features with a fast, modern betting interface.",
     pointsPack: "+1 FREE POINTS PACK ($39)",
     ctaHref: "https://sleeper.com",
     states: ["Arizona", "California", "Colorado", "Florida", "Georgia", "Illinois", "Indiana", "Kansas", "Kentucky", "Maryland", "Massachusetts", "Michigan", "Minnesota", "New York", "North Carolina", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "South Carolina", "Tennessee", "Texas", "Utah", "Virginia", "Washington", "Wisconsin"],
@@ -146,7 +146,7 @@ const sportsbooks: SportsbookCardProps[] = [
   {
     name: "Underdog",
     brandColor: "#FFD700",
-    description: "The ultimate destination for best ball and daily fantasy sports.",
+    description: "The ultimate destination for daily fantasy and best ball. Fast, fun, and built for players who want to win.",
     pointsPack: "+1 FREE POINTS PACK ($39)",
     ctaHref: "https://underdogfantasy.com",
     states: ["Arizona", "California", "Colorado", "Florida", "Georgia", "Illinois", "Indiana", "Kansas", "Kentucky", "Maryland", "Massachusetts", "Michigan", "Minnesota", "New York", "North Carolina", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "South Carolina", "Tennessee", "Texas", "Utah", "Virginia", "Washington", "Wisconsin"],

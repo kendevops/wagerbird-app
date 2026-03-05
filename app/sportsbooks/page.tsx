@@ -188,7 +188,7 @@ const faqItems = [
 
 export default function SportsbooksPage() {
   return (
-    <main>
+    <main className="sportsbooks-page-dark">
       <SportsbooksHero />
 
       <div id="how-it-works">

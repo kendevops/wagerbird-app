@@ -66,18 +66,16 @@ export default function RootLayout({
             {
               title: "Products",
               links: [
-                { label: "Home", href: "/" },
                 { label: "Terminal", href: "/terminal" },
                 { label: "Hotsheet", href: "/hotsheet" },
                 { label: "Sportsbooks", href: "/sportsbooks" },
-                { label: "Pricing", href: "/pricing" },
-                { label: "Odds", href: "/odds" },
-                { label: "Packs", href: "/packs" },
+                { label: "Learn", href: "/learn" },
               ],
             },
             {
               title: "Resources",
               links: [
+                { label: "Affiliates", href: "/affiliates" },
                 { label: "Results", href: "/results" },
                 { label: "Live Odds", href: "/live-odds" },
                 { label: "FAQ", href: "/faq" },

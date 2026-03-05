@@ -40,13 +40,14 @@ export default function DynamicCursor() {
 
         // Detect if we should use the "light/blue" theme
         const blueTrigger = cursorTarget.classList.contains("cursor-blue") ||
-                            !!cursorTarget.closest(".bg-white, .section-light, .theme-light, .cta-section, .hiw-section, .map-section, .email-capture-section, .access-models-section");
+                            cursorTarget.classList.contains("bg-brand-yellow") ||
+                            !!cursorTarget.closest(".bg-white, .section-light, .theme-light, .cta-section, .hiw-section, .map-section, .email-capture-section, .access-models-section, .hs-promo__cta, .sb-filter-btn, .sb-card-cta, .sportsbooks-hero-cta-primary");
         if (isBlue !== blueTrigger) setIsBlue(blueTrigger);
       } else {
         setIsHovering(false);
         if (label !== "") setLabel("");
         // Reset to default blue state based on section
-        const blueTrigger = !!target.closest(".bg-white, .section-light, .theme-light, .cta-section, .hiw-section, .map-section, .email-capture-section, .access-models-section");
+        const blueTrigger = !!target.closest(".bg-white, .section-light, .theme-light, .cta-section, .hiw-section, .map-section, .email-capture-section, .access-models-section, .hs-promo__cta, .sb-filter-btn, .sb-card-cta, .sportsbooks-hero-cta-primary");
         if (isBlue !== blueTrigger) setIsBlue(blueTrigger);
       }
     };
@@ -135,7 +136,7 @@ export default function DynamicCursor() {
           width: 38px;
           height: 38px;
           border-radius: 50%;
-          border: 1.5px solid rgba(228, 242, 34, .5);
+          border: 1.5px solid rgba(228, 242, 34, .8);
           mix-blend-mode: difference;
           transition:
             width .45s cubic-bezier(.16,1,.3,1),
@@ -153,7 +154,7 @@ export default function DynamicCursor() {
         }
 
         #cr.l {
-          border-color: rgba(0, 37, 225, .4);
+          border-color: rgba(0, 37, 225, .8);
         }
 
         #cr.l.h {

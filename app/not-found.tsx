@@ -1,5 +1,5 @@
-import { redirect } from 'next/navigation';
+import ComingSoonPage from './coming-soon/page';
 
 export default function NotFound() {
-  redirect('/coming-soon');
+  return <ComingSoonPage />;
 }

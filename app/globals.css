@@ -1270,38 +1270,12 @@ body {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  padding: 0 40px 0 0;
-  border-right: 1px solid rgba(7, 7, 15, 0.12);
-}
-
-.hiw-step:first-child {
-  padding-left: 0;
-}
-
-.hiw-step:last-child {
-  border-right: none;
-  padding-right: 0;
-  padding-left: 40px;
-}
-
-.hiw-step:nth-child(2) {
-  padding-left: 40px;
+  height: 100%;
 }
 
 @media (max-width: 768px) {
   .hiw-step {
-    padding: 32px 0;
-    border-right: none;
-    border-bottom: 1px solid rgba(7, 7, 15, 0.1);
-  }
-
-  .hiw-step:last-child {
-    border-bottom: none;
-    padding-left: 0;
-  }
-
-  .hiw-step:nth-child(2) {
-    padding-left: 0;
+    padding: 16px 0;
   }
 }
 

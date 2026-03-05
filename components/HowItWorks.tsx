@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, Variants } from "framer-motion";
+import { motion, Variants, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 import HowItWorksStep from "./HowItWorksStep";
 
 interface Step {
@@ -67,6 +68,8 @@ export default function HowItWorks({
   steps = defaultSteps,
   stepVariant = "badge",
 }: HowItWorksProps) {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
   return (
     <section className="hiw-section">
       <div className="hiw-container">
@@ -93,8 +96,33 @@ export default function HowItWorks({
           className="hiw-steps"
         >
           {steps.map((step, i) => (
-            <motion.div key={i} variants={itemVariants}>
-              <HowItWorksStep {...step} variant={stepVariant} />
+            <motion.div
+              key={i}
+              variants={itemVariants}
+              className="relative group block p-4 h-full w-full"
+              onMouseEnter={() => setHoveredIndex(i)}
+              onMouseLeave={() => setHoveredIndex(null)}
+            >
+              <AnimatePresence>
+                {hoveredIndex === i && (
+                  <motion.span
+                    className="absolute inset-0 h-full w-full bg-white block rounded-[32px] shadow-[0_8px_30px_rgb(0,0,0,0.04)] ring-1 ring-black/5"
+                    layoutId="hoverBackground"
+                    initial={{ opacity: 0 }}
+                    animate={{
+                      opacity: 1,
+                      transition: { duration: 0.15 },
+                    }}
+                    exit={{
+                      opacity: 0,
+                      transition: { duration: 0.15, delay: 0.1 },
+                    }}
+                  />
+                )}
+              </AnimatePresence>
+              <div className="relative z-20 h-full w-full">
+                <HowItWorksStep {...step} variant={stepVariant} />
+              </div>
             </motion.div>
           ))}
         </motion.div>

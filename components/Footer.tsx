@@ -86,7 +86,7 @@ export default function Footer({
                 </defs>
               </svg>
             </a>
-            <p className="font-mono text-[11px] font-400 leading-[1.8] tracking-[0.3px] text-nav-text-muted m-0">
+            <p className="font-[family-name:var(--font-barlow-condensed)] text-[13px] font-normal leading-[1.6] text-nav-text-muted m-0">
               {description}
             </p>
           </div>
@@ -95,11 +95,11 @@ export default function Footer({
           <div className="flex flex-wrap lg:flex-nowrap gap-[32px] md:gap-[40px] lg:gap-[80px]">
             {sections.map((section) => (
               <div key={section.title} className="flex flex-col gap-[20px]">
-                <h3 className="font-mono text-[11px] font-400 tracking-[1.5px] uppercase text-nav-text-muted m-0 pb-[12px] border-b border-nav-border min-w-[140px] md:min-w-[120px] lg:min-w-[160px]">{section.title}</h3>
-                <ul className="flex flex-col gap-[16px] list-none m-0 p-0">
+                <h3 className="font-[family-name:var(--font-barlow-condensed)] text-[13px] font-bold tracking-[2px] uppercase text-nav-text-muted m-0 pb-[12px] border-b border-nav-border min-w-[140px] md:min-w-[120px] lg:min-w-[160px]">{section.title}</h3>
+                <ul className="flex flex-col gap-[14px] list-none m-0 p-0">
                   {section.links.map((link) => (
                     <li key={link.href}>
-                      <a href={link.href} data-cursor-label="GO" className="font-mono text-[11px] font-400 tracking-[1.5px] uppercase text-nav-text hover:text-white transition-colors">{link.label}</a>
+                      <a href={link.href} data-cursor-label="GO" className="font-[family-name:var(--font-barlow-condensed)] text-[15px] font-semibold uppercase tracking-[0.5px] text-nav-text hover:text-white transition-colors">{link.label}</a>
                     </li>
                   ))}
                 </ul>
@@ -109,8 +109,8 @@ export default function Footer({
         </div>
 
         <div className="flex flex-col md:flex-row items-start justify-between gap-[16px] md:gap-[40px] py-[24px] border-t border-nav-border">
-          <p className="font-mono text-[11px] font-400 tracking-[0.5px] text-nav-text-muted m-0 whitespace-nowrap">{copyright}</p>
-          <p className="font-mono text-[11px] font-400 tracking-[0.3px] leading-[1.8] text-nav-text-muted m-0 text-left md:text-right max-w-full md:max-w-[420px]">
+          <p className="font-[family-name:var(--font-barlow-condensed)] text-[12px] font-normal tracking-[0.5px] text-nav-text-muted m-0 whitespace-nowrap">{copyright}</p>
+          <p className="font-[family-name:var(--font-barlow-condensed)] text-[12px] font-normal leading-[1.7] text-nav-text-muted m-0 text-left md:text-right max-w-full md:max-w-[420px]">
             {disclaimer}
           </p>
         </div>

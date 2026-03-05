@@ -51,7 +51,8 @@ export default function RootLayout({
         <DynamicCursor />
         <Header
           navLinks={[
-            { label: "Signals",      href: "/signals" },
+            { label: "Terminal",     href: "/terminal" },
+            { label: "Odds",         href: "/odds" },
             { label: "Sportsbooks",  href: "/sportsbooks" },
             { label: "Hotsheet",     href: "/hotsheet" },
             { label: "Pricing",      href: "/pricing" },
@@ -65,8 +66,9 @@ export default function RootLayout({
             {
               title: "Products",
               links: [
-                { label: "Terminal", href: "/" },
-                { label: "Signals", href: "/signals" },
+                { label: "Home", href: "/" },
+                { label: "Terminal", href: "/terminal" },
+                { label: "Odds", href: "/odds" },
                 { label: "Sportsbooks", href: "/sportsbooks" },
                 { label: "Hotsheet", href: "/hotsheet" },
                 { label: "Packs", href: "/packs" },

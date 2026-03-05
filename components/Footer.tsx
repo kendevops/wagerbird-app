@@ -19,10 +19,11 @@ const defaultSections: FooterSection[] = [
   {
     title: "Products",
     links: [
+      { label: "Home", href: "/" },
       { label: "Terminal", href: "/terminal" },
+      { label: "Odds", href: "/odds" },
       { label: "Hotsheet", href: "/hotsheet" },
       { label: "Packs", href: "/packs" },
-      { label: "Signals", href: "/signals" },
     ],
   },
   {

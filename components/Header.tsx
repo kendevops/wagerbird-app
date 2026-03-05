@@ -17,10 +17,11 @@ interface HeaderProps {
 
 const defaultNavLinks = [
   { label: "Terminal",      href: "/terminal" },
+  { label: "Odds",          href: "/odds" },
   { label: "Hotsheet",     href: "/hotsheet" },
   { label: "Sportsbooks",  href: "/sportsbooks" },
   { label: "Pricing",      href: "/pricing" },
-];=
+];
 
 export default function Header({
   navLinks = defaultNavLinks,

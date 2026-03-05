@@ -2743,18 +2743,24 @@ body {
 }
 
 .sportsbooks-page-dark .hiw-section,
-.sportsbooks-page-dark .map-section {
+.sportsbooks-page-dark .map-section,
+.sportsbooks-page-dark .sb-section,
+.sportsbooks-page-dark .faq-section,
+.sportsbooks-page-dark .cta-section {
   background: transparent !important;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .sportsbooks-page-dark .hiw-heading,
-.sportsbooks-page-dark .map-section-heading {
+.sportsbooks-page-dark .map-section-heading,
+.sportsbooks-page-dark .faq-heading,
+.sportsbooks-page-dark .sb-section-title {
   color: #fff;
 }
 
 .sportsbooks-page-dark .hiw-label,
-.sportsbooks-page-dark .faq-label {
+.sportsbooks-page-dark .faq-label,
+.sportsbooks-page-dark .sb-section-label {
   color: var(--color-yellow);
 }
 
@@ -2769,7 +2775,8 @@ body {
 }
 
 .sportsbooks-page-dark .hiw-step-title,
-.sportsbooks-page-dark .hiw-step-description {
+.sportsbooks-page-dark .hiw-step-description,
+.sportsbooks-page-dark .sb-section-description {
   color: #fff;
 }
 
@@ -3234,7 +3241,7 @@ body {
 /* ─── Sportsbooks Hero Section ────────────────────── */
 .sportsbooks-hero-section {
   width: 100%;
-  background: #060813;
+  background: #05070a;
   display: flex;
   flex-direction: column;
 }
@@ -3357,7 +3364,7 @@ body {
   display: flex;
   align-items: stretch;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-  background: #080a18;
+  background: #05070a;
   min-height: 88px;
 }
 
@@ -3519,10 +3526,10 @@ body {
   align-items: center;
   padding: 16px 32px;
   background: var(--color-yellow);
-  font-family: Inter, var(--font-geist-sans), sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-  letter-spacing: 0.4px;
+  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: 2px;
   text-transform: uppercase;
   color: #000;
   text-decoration: none;
@@ -3541,10 +3548,10 @@ body {
   padding: 16px 32px;
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.3);
-  font-family: Inter, var(--font-geist-sans), sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  letter-spacing: 0.4px;
+  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 2px;
   text-transform: uppercase;
   color: #fff;
   text-decoration: none;

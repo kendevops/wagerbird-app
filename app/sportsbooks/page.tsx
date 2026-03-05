@@ -227,7 +227,7 @@ export default function SportsbooksPage() {
           </>
         }
         subtitle="Takes 30 minutes. Points never expire. Start winning with credits on us."
-        ctaLabel="Find My Sportsbooks →"
+        ctaLabel="FIND MY SPORTSBOOKS →"
         ctaHref="#partner-sportsbooks"
       />
     </main>

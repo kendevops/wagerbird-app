@@ -36,19 +36,18 @@ export default function DynamicCursor() {
         setIsHovering(true);
         // Extract label from data-cursor-label or data-label
         const newLabel = cursorTarget.getAttribute("data-cursor-label") || cursorTarget.getAttribute("data-label") || "";
-        setLabel(newLabel);
-        
+        if (label !== newLabel) setLabel(newLabel);
+
         // Detect if we should use the "light/blue" theme
-        // This is triggered by a specific class or being inside a light section
-        const blueTrigger = cursorTarget.classList.contains("cursor-blue") || 
+        const blueTrigger = cursorTarget.classList.contains("cursor-blue") ||
                             !!cursorTarget.closest(".bg-white, .section-light, .theme-light");
-        setIsBlue(blueTrigger);
+        if (isBlue !== blueTrigger) setIsBlue(blueTrigger);
       } else {
         setIsHovering(false);
-        setLabel("");
+        if (label !== "") setLabel("");
         // Reset to default blue state based on section
         const blueTrigger = !!target.closest(".bg-white, .section-light, .theme-light");
-        setIsBlue(blueTrigger);
+        if (isBlue !== blueTrigger) setIsBlue(blueTrigger);
       }
     };
 

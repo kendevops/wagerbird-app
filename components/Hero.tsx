@@ -76,8 +76,10 @@ export default function Hero({
   }, []);
 
   return (
-    <section className="relative w-full min-h-[calc(100vh-64px)] bg-[#050510] flex flex-col overflow-hidden" style={{ backgroundColor: '#050510' }}>
-      <div className="absolute right-0 top-0 w-[58%] h-full bg-[radial-gradient(ellipse_at_55%_40%,rgba(32,95,255,0.38)_0%,rgba(10,10,100,0.18)_45%,transparent_72%)] pointer-events-none z-0" aria-hidden="true" />
+    <section className="relative w-full min-h-[calc(100vh-64px)] bg-[#050510] flex flex-col overflow-hidden" style={{ backgroundColor: videoUrl ? '#0a0a0a' : '#050510' }}>
+      {!videoUrl && (
+        <div className="absolute right-0 top-0 w-[58%] h-full bg-[radial-gradient(ellipse_at_55%_40%,rgba(32,95,255,0.38)_0%,rgba(10,10,100,0.18)_45%,transparent_72%)] pointer-events-none z-0" aria-hidden="true" />
+      )}
 
       {/* Ticker bar */}
       <motion.div
@@ -149,10 +151,30 @@ export default function Hero({
           </motion.div>
         </div>
 
-        {/* Right column — animated signal stack */}
-        <div className="hidden md:flex relative overflow-hidden items-center justify-center">
-          <HeroSignalStack />
-        </div>
+        {/* Right column — video or animated signal stack */}
+        {videoUrl ? (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.2, delay: 0.3 }}
+            className="hidden md:block relative overflow-hidden"
+          >
+            <video
+              src={videoUrl}
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            {/* Subtle left-edge gradient fade to blend with left panel */}
+            <div className="absolute inset-y-0 left-0 w-[120px] bg-gradient-to-r from-[#0a0a0a] to-transparent pointer-events-none z-10" aria-hidden="true" />
+          </motion.div>
+        ) : (
+          <div className="hidden md:flex relative overflow-hidden items-center justify-center">
+            <HeroSignalStack />
+          </div>
+        )}
       </div>
 
       {/* Bottom stats */}

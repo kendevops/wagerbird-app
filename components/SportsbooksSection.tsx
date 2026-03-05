@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import SportsbookCard, { SportsbookCardProps } from "./SportsbookCard";
-import TiltedCard from "./animations/TiltedCard";
+import WobbleCard from "./animations/WobbleCard";
 
 const US_STATES = [
   "All states (default)",
@@ -151,9 +151,9 @@ export default function SportsbooksSection({
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.07 }}
               >
-                <TiltedCard className="h-full">
+                <WobbleCard className="h-full">
                   <SportsbookCard {...sb} />
-                </TiltedCard>
+                </WobbleCard>
               </motion.div>
             ))}
           </div>

@@ -2736,74 +2736,6 @@ body {
   padding: 112px 0 128px;
 }
 
-/* ─── Sportsbooks Page Dark Theme ───────────────────── */
-.sportsbooks-page-dark {
-  background: #05070a;
-  color: #fff;
-}
-
-.sportsbooks-page-dark .hiw-section,
-.sportsbooks-page-dark .map-section,
-.sportsbooks-page-dark .sb-section,
-.sportsbooks-page-dark .faq-section,
-.sportsbooks-page-dark .cta-section {
-  background: transparent !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.sportsbooks-page-dark .hiw-heading,
-.sportsbooks-page-dark .map-section-heading,
-.sportsbooks-page-dark .faq-heading,
-.sportsbooks-page-dark .sb-section-title {
-  color: #fff;
-}
-
-.sportsbooks-page-dark .hiw-label,
-.sportsbooks-page-dark .faq-label,
-.sportsbooks-page-dark .sb-section-label {
-  color: var(--color-yellow);
-}
-
-.sportsbooks-page-dark .hiw-heading-accent,
-.sportsbooks-page-dark .faq-heading-accent,
-.sportsbooks-page-dark .sb-section-title-accent {
-  color: var(--color-yellow);
-}
-
-.sportsbooks-page-dark .hiw-step {
-  border-right: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.sportsbooks-page-dark .hiw-step-title,
-.sportsbooks-page-dark .hiw-step-description,
-.sportsbooks-page-dark .sb-section-description {
-  color: #fff;
-}
-
-.sportsbooks-page-dark .hiw-step-number {
-  color: rgba(255, 255, 255, 0.05);
-}
-
-.sportsbooks-page-dark .map-section-description {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.sportsbooks-page-dark .license-badge-text {
-  color: #fff;
-}
-
-.sportsbooks-page-dark .map-section-disclaimer-wrap {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.sportsbooks-page-dark .map-section-disclaimer {
-  color: rgba(255, 255, 255, 0.4);
-}
-
-.sportsbooks-page-dark .map-section-disclaimer-link {
-  color: var(--color-yellow);
-}
-
 .faq-container {
   max-width: 1280px;
   margin: 0 auto;
@@ -3569,27 +3501,6 @@ body {
   font-size: 20px;
   font-weight: 700;
   margin-left: 8px;
-}
-
-.sportsbooks-hero-cta-secondary {
-  display: inline-flex;
-  align-items: center;
-  padding: 16px 32px;
-  border: 1px solid rgba(7, 7, 15, 0.2);
-  font-family: Inter, var(--font-geist-sans), sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  letter-spacing: 0.4px;
-  text-transform: uppercase;
-  color: rgba(7, 7, 15, 0.65);
-  text-decoration: none;
-  transition: border-color 0.18s, color 0.18s;
-  white-space: nowrap;
-}
-
-.sportsbooks-hero-cta-secondary:hover {
-  border-color: rgba(7, 7, 15, 0.5);
-  color: rgba(7, 7, 15, 0.9);
 }
 
 /* Right column */

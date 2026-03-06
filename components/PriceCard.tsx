@@ -8,6 +8,7 @@ export interface PriceCardProps {
   goodFor: string;
   price: number;
   ctaLabel: string;
+  ctaHref?: string;
   popular?: boolean;
 }
 
@@ -17,6 +18,7 @@ export default function PriceCard({
   goodFor,
   price,
   ctaLabel,
+  ctaHref = "https://app.wagerbird.com/register",
   popular = false,
 }: PriceCardProps) {
   return (
@@ -68,9 +70,14 @@ export default function PriceCard({
         </div>
 
         {/* CTA */}
-        <button className={`price-card-cta${popular ? " price-card-cta--popular" : ""}`}>
+        <a
+          href={ctaHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`price-card-cta${popular ? " price-card-cta--popular" : ""}`}
+        >
           {ctaLabel}
-        </button>
+        </a>
 
         {/* Security note */}
         <span className="price-card-security">

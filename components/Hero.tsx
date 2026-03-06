@@ -54,7 +54,7 @@ export default function Hero({
   ),
   description = "Signals scored by confidence. Priced by conviction. Stop guessing — start winning with the model on your side.",
   primaryCtaLabel = "Buy a Pack →",
-  primaryCtaHref = "/packs",
+  primaryCtaHref = "https://app.wagerbird.com/register",
   secondaryCtaLabel = "Free Picks via Email",
   secondaryCtaHref = "/picks",
   imageUrl = "https://api.builder.io/api/v1/image/assets/TEMP/e7a48826f4f3592b62edc4a4adaa3da19d8075e3",
@@ -149,7 +149,15 @@ export default function Hero({
             transition={{ duration: 0.8, delay: 0.5 }}
             className="flex flex-col sm:flex-row items-start sm:items-center gap-[12px] md:gap-[20px]"
           >
-            <a href={primaryCtaHref} data-cursor-label="BUY" className="w-full sm:w-auto inline-flex items-center justify-center px-[32px] py-[15px] bg-brand-yellow font-mono text-[11px] font-bold tracking-[1.5px] uppercase text-black whitespace-nowrap transition-all hover:bg-white hover:-translate-y-[1px] cursor-target clip-btn">{primaryCtaLabel}</a>
+            <a
+              href={primaryCtaHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-cursor-label="BUY"
+              className="w-full sm:w-auto inline-flex items-center justify-center px-[32px] py-[15px] bg-brand-yellow font-mono text-[11px] font-bold tracking-[1.5px] uppercase text-black whitespace-nowrap transition-all hover:bg-white hover:-translate-y-[1px] cursor-target clip-btn"
+            >
+              {primaryCtaLabel}
+            </a>
             {secondaryCtaLabel && secondaryCtaHref && (
               <a href={secondaryCtaHref} data-cursor-label="FREE" className="w-full sm:w-auto inline-flex items-center justify-center px-[32px] py-[14px] border border-nav-text/15 font-mono text-[11px] font-400 tracking-[1.5px] uppercase text-nav-text/55 whitespace-nowrap transition-all hover:border-nav-text/40 hover:text-white hover:bg-white/3 cursor-target">{secondaryCtaLabel}</a>
             )}

@@ -25,8 +25,8 @@ const defaultNavLinks = [
 
 export default function Header({
   navLinks = defaultNavLinks,
-  loginHref = "/login",
-  getAccessHref = "/get-access"
+  loginHref = "https://app.wagerbird.com/login",
+  getAccessHref = "https://app.wagerbird.com/register"
 }: HeaderProps) {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -94,12 +94,16 @@ export default function Header({
         <div className="flex items-center gap-[12px] shrink-0">
           <a
             href={loginHref}
+            target="_blank"
+            rel="noopener noreferrer"
             className="hidden lg:flex items-center justify-center px-[20px] py-[9px] border border-nav-border font-mono text-[11px] font-400 tracking-[1px] uppercase text-nav-text-muted hover:border-[#F0F0E8]/50 hover:text-nav-text transition-colors whitespace-nowrap cursor-target"
           >
             Login
           </a>
           <a
             href={getAccessHref}
+            target="_blank"
+            rel="noopener noreferrer"
             data-cursor-label="GO"
             className="hidden sm:flex items-center justify-center px-[14px] md:px-[22px] py-[8px] md:py-[10px] h-[36px] bg-brand-yellow font-mono text-[11px] font-bold tracking-[1px] uppercase text-brand-blue whitespace-nowrap hover:bg-[#cdd91e] transition-colors clip-btn cursor-target"
           >
@@ -163,6 +167,8 @@ export default function Header({
               <div className="flex flex-col gap-[16px]">
                 <a
                   href={loginHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   onClick={() => setIsMenuOpen(false)}
                   className="w-full flex items-center justify-center py-[16px] border border-white/10 font-mono text-[13px] font-bold tracking-[1.5px] uppercase text-white"
                 >
@@ -170,6 +176,8 @@ export default function Header({
                 </a>
                 <a
                   href={getAccessHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   onClick={() => setIsMenuOpen(false)}
                   className="w-full flex items-center justify-center py-[16px] bg-brand-yellow font-mono text-[13px] font-bold tracking-[1.5px] uppercase text-black"
                 >

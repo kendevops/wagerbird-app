@@ -58,9 +58,9 @@ export default function AccessModels({
   subtitle = "Packs are for bettors who want flexibility. Terminal Plans are for daily grinders.",
   rows = defaultRows,
   packsCtaLabel = "Get Core Pack →",
-  packsCtaHref = "#packs",
+  packsCtaHref = "https://app.wagerbird.com/register",
   terminalCtaLabel = "Check Monthly Plans",
-  terminalCtaHref = "#terminal",
+  terminalCtaHref = "https://app.wagerbird.com/register",
 }: AccessModelsProps) {
   const defaultHeading = (
     <>
@@ -127,12 +127,22 @@ export default function AccessModels({
           <div className="access-table-cta-row">
             <div className="access-table-label-col" />
             <div className="access-table-packs-col">
-              <a href={packsCtaHref} className="access-cta access-cta--packs">
+              <a
+                href={packsCtaHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="access-cta access-cta--packs"
+              >
                 {packsCtaLabel}
               </a>
             </div>
             <div className="access-table-terminal-col">
-              <a href={terminalCtaHref} className="access-cta access-cta--terminal">
+              <a
+                href={terminalCtaHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="access-cta access-cta--terminal"
+              >
                 {terminalCtaLabel}
               </a>
             </div>

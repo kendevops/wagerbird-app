@@ -198,7 +198,9 @@ function StackCard({ sport, matchup, market, confidence, min, max, court, locked
             <div className="hss-card__unlock-court">{court}</div>
             {/* Glowing unlock button */}
             <a
-              href={unlockHref ?? "/packs"}
+              href={unlockHref ?? "https://app.wagerbird.com/register"}
+              target="_blank"
+              rel="noopener noreferrer"
               className="hss-card__unlock-btn"
             >
               UNLOCK SIGNAL
@@ -241,7 +243,7 @@ const CARDS: StackCardProps[] = [
     min: 82,
     max: 87,
     locked: true,
-    unlockHref: "/packs",
+    unlockHref: "https://app.wagerbird.com/register",
     court: <BaseballDiamond />,
   },
   {

@@ -20,7 +20,7 @@ export default function CtaBanner({
   ),
   subtitle = "Join 12,000+ bettors who trade with confidence-scored signals.",
   ctaLabel = "Buy a Pack Now →",
-  ctaHref = "/packs"
+  ctaHref = "https://app.wagerbird.com/register"
 }: CtaBannerProps) {
   return (
     <section className="cta-section">
@@ -47,7 +47,13 @@ export default function CtaBanner({
         <p className="cta-subtext">
           {subtitle}
         </p>
-        <a href={ctaHref} data-cursor-label="GO" className="cta-btn clip-btn">
+        <a
+          href={ctaHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-cursor-label="GO"
+          className="cta-btn clip-btn"
+        >
           {ctaLabel}
         </a>
       </motion.div>

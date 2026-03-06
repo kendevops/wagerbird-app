@@ -54,7 +54,7 @@ const DeliveryCard = () => (
 
 export default function Hotsheet({
   ctaLabel = "Get Hotsheet →",
-  ctaHref = "/hotsheet",
+  ctaHref = "https://app.wagerbird.com/register",
 }: HotsheetProps) {
   return (
     <section className="hotsheet-hero">
@@ -99,7 +99,12 @@ export default function Hotsheet({
         </div>
 
         {/* CTA */}
-        <a href={ctaHref} className="hotsheet-hero__cta clip-btn">
+        <a
+          href={ctaHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hotsheet-hero__cta clip-btn"
+        >
           {ctaLabel}
         </a>
       </motion.div>

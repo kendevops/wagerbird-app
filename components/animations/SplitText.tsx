@@ -53,7 +53,7 @@ const SplitText: React.FC<SplitTextProps> = ({
   return (
     <motion.span
       ref={ref}
-      style={{ overflow: 'hidden', display: 'inline-flex', flexWrap: 'wrap' }}
+      style={{ overflow: 'hidden', display: 'inline-flex', flexWrap: 'wrap', paddingRight: '0.15em', marginRight: '-0.15em' }}
       variants={container}
       initial="hidden"
       animate={isInView ? 'visible' : 'hidden'}

@@ -29,7 +29,7 @@ const defaultItems: ValueStripItem[] = [
     description: "Points stay until you use them",
   },
   {
-    value: "5",
+    value: "5+",
     label: "Sports Covered",
     description: "NFL · NBA · MLB · NHL · Soccer",
   },

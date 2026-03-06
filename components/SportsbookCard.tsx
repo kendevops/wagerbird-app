@@ -32,8 +32,9 @@ export default function SportsbookCard({
           target="_blank"
           rel="noopener noreferrer"
           className="sb-card-cta"
+          data-cursor-label="GO"
         >
-          Open Account →
+          OPEN ACCOUNT →
         </a>
       </div>
     </SpotlightCard>

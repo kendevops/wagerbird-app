@@ -21,13 +21,14 @@ const defaultSections: FooterSection[] = [
     links: [
       { label: "Terminal", href: "/terminal" },
       { label: "Hotsheet", href: "/hotsheet" },
-      { label: "Packs", href: "/packs" },
-      { label: "Signals", href: "/signals" },
+      { label: "Sportsbooks", href: "/sportsbooks" },
+      { label: "Learn", href: "/learn" },
     ],
   },
   {
     title: "Resources",
     links: [
+      { label: "Affiliates", href: "/affiliates" },
       { label: "Results", href: "/results" },
       { label: "Live Odds", href: "/live-odds" },
       { label: "FAQ", href: "/faq" },
@@ -56,7 +57,7 @@ export default function Footer({
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-[48px] lg:gap-[80px] pb-[64px]">
           {/* Brand column */}
           <div className="flex flex-col gap-[24px] max-w-full lg:max-w-[300px]">
-            <a href="/" className="inline-flex shrink-0" aria-label="WagerBird Home">
+            <a href="/" data-cursor-label="HOME" className="inline-flex shrink-0" aria-label="WagerBird Home">
               <svg width="177" height="28" viewBox="0 0 177 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-[28px] w-auto block">
                 <g clipPath="url(#clip0_footer)">
                   <mask id="mask0_footer" style={{maskType:"luminance"}} maskUnits="userSpaceOnUse" x="0" y="0" width="177" height="28">
@@ -85,7 +86,7 @@ export default function Footer({
                 </defs>
               </svg>
             </a>
-            <p className="font-mono text-[11px] font-400 leading-[1.8] tracking-[0.3px] text-nav-text-muted m-0">
+            <p className="font-[family-name:var(--font-barlow-condensed)] text-[13px] font-normal leading-[1.6] text-nav-text-muted m-0">
               {description}
             </p>
           </div>
@@ -94,11 +95,11 @@ export default function Footer({
           <div className="flex flex-wrap lg:flex-nowrap gap-[32px] md:gap-[40px] lg:gap-[80px]">
             {sections.map((section) => (
               <div key={section.title} className="flex flex-col gap-[20px]">
-                <h3 className="font-mono text-[11px] font-400 tracking-[1.5px] uppercase text-nav-text-muted m-0 pb-[12px] border-b border-nav-border min-w-[140px] md:min-w-[120px] lg:min-w-[160px]">{section.title}</h3>
-                <ul className="flex flex-col gap-[16px] list-none m-0 p-0">
+                <h3 className="font-[family-name:var(--font-barlow-condensed)] text-[13px] font-bold tracking-[2px] uppercase text-nav-text-muted m-0 pb-[12px] border-b border-nav-border min-w-[140px] md:min-w-[120px] lg:min-w-[160px]">{section.title}</h3>
+                <ul className="flex flex-col gap-[14px] list-none m-0 p-0">
                   {section.links.map((link) => (
                     <li key={link.href}>
-                      <a href={link.href} className="font-mono text-[11px] font-400 tracking-[1.5px] uppercase text-nav-text hover:text-white transition-colors">{link.label}</a>
+                      <a href={link.href} data-cursor-label="GO" className="font-[family-name:var(--font-barlow-condensed)] text-[15px] font-semibold uppercase tracking-[0.5px] text-nav-text hover:text-white transition-colors">{link.label}</a>
                     </li>
                   ))}
                 </ul>
@@ -108,8 +109,8 @@ export default function Footer({
         </div>
 
         <div className="flex flex-col md:flex-row items-start justify-between gap-[16px] md:gap-[40px] py-[24px] border-t border-nav-border">
-          <p className="font-mono text-[11px] font-400 tracking-[0.5px] text-nav-text-muted m-0 whitespace-nowrap">{copyright}</p>
-          <p className="font-mono text-[11px] font-400 tracking-[0.3px] leading-[1.8] text-nav-text-muted m-0 text-left md:text-right max-w-full md:max-w-[420px]">
+          <p className="font-[family-name:var(--font-barlow-condensed)] text-[12px] font-normal tracking-[0.5px] text-nav-text-muted m-0 whitespace-nowrap">{copyright}</p>
+          <p className="font-[family-name:var(--font-barlow-condensed)] text-[12px] font-normal leading-[1.7] text-nav-text-muted m-0 text-left md:text-right max-w-full md:max-w-[420px]">
             {disclaimer}
           </p>
         </div>

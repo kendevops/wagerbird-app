@@ -120,11 +120,11 @@ export default function SportsbooksHero() {
 
           {/* CTA buttons */}
           <div className="sportsbooks-hero-ctas">
-            <a href="#offers" className="sportsbooks-hero-cta-primary">
-              <ShinyText text="Find My Sportsbooks" color="inherit" shineColor="#fff" speed={3} /> <span className="sportsbooks-hero-cta-arrow">→</span>
+            <a href="#partner-sportsbooks" className="sportsbooks-hero-cta-primary" data-cursor-label="GO">
+              FIND MY SPORTSBOOKS <span className="sportsbooks-hero-cta-arrow">→</span>
             </a>
-            <a href="#how-it-works" className="sportsbooks-hero-cta-secondary">
-              How It Works
+            <a href="#how-it-works" className="sportsbooks-hero-cta-secondary" data-cursor-label="HOW">
+              HOW IT WORKS
             </a>
           </div>
         </motion.div>

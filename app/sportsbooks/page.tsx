@@ -1,5 +1,3 @@
-"use client";
-
 import SportsbooksHero from "@/components/SportsbooksHero";
 import SportsbooksSection from "@/components/SportsbooksSection";
 import { SportsbookCardProps } from "@/components/SportsbookCard";
@@ -55,38 +53,9 @@ const sportsbooksSteps = [
 
 const sportsbooks: SportsbookCardProps[] = [
   {
-    name: "DraftKings",
-    brandColor: "#1B5E2E",
-    description: "One of the largest U.S. books. Deep markets, strong live betting.",
-    pointsPack: "+1 FREE POINTS PACK ($39)",
-    ctaHref: "https://www.draftkings.com",
-    states: [
-      "Arizona", "Colorado", "Connecticut", "Illinois", "Indiana", "Iowa",
-      "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts",
-      "Michigan", "Montana", "Nebraska", "New Hampshire", "New Jersey",
-      "New York", "North Carolina", "Ohio", "Oregon", "Pennsylvania",
-      "Rhode Island", "Tennessee", "Vermont", "Virginia", "West Virginia",
-      "Wyoming",
-    ],
-  },
-  {
-    name: "FanDuel",
-    brandColor: "#1A4FC4",
-    description: "Top-rated mobile experience. Competitive odds, fast payouts.",
-    pointsPack: "+1 FREE POINTS PACK ($39)",
-    ctaHref: "https://www.fanduel.com",
-    states: [
-      "Arizona", "Colorado", "Connecticut", "Illinois", "Indiana", "Iowa",
-      "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts",
-      "Michigan", "Montana", "Nebraska", "New Hampshire", "New Jersey",
-      "New York", "North Carolina", "Ohio", "Pennsylvania", "Rhode Island",
-      "Tennessee", "Vermont", "Virginia", "West Virginia", "Wyoming",
-    ],
-  },
-  {
     name: "BetMGM",
     brandColor: "#8B7D2A",
-    description: "Casino + sports under one login. Wide parlay coverage.",
+    description: "Wide parlay coverage and exclusive BetMGM rewards. The 'King of Sportsbooks' delivers deep markets across all major leagues.",
     pointsPack: "+1 FREE POINTS PACK ($39)",
     ctaHref: "https://www.betmgm.com",
     states: [
@@ -100,7 +69,7 @@ const sportsbooks: SportsbookCardProps[] = [
   {
     name: "Caesars",
     brandColor: "#4A4A1A",
-    description: "Generous rewards program. Best for loyalty-focused bettors.",
+    description: "The gold standard in sportsbook rewards. Caesars offers premium odds, massive boosts, and a legendary betting experience.",
     pointsPack: "+1 FREE POINTS PACK ($39)",
     ctaHref: "https://www.caesars.com/sportsbook",
     states: [
@@ -112,50 +81,73 @@ const sportsbooks: SportsbookCardProps[] = [
     ],
   },
   {
-    name: "ESPN Bet",
-    brandColor: "#CC1F1F",
-    description: "Seamless integration with ESPN stats and live game data.",
+    name: "DraftKings",
+    brandColor: "#1B5E2E",
+    description: "The industry leader in live betting and same-game parlays. Fast, reliable, and featuring the most betting markets available.",
     pointsPack: "+1 FREE POINTS PACK ($39)",
-    ctaHref: "https://www.espnbet.com",
+    ctaHref: "https://www.draftkings.com",
     states: [
-      "Arizona", "Colorado", "Illinois", "Indiana", "Iowa", "Kansas",
-      "Kentucky", "Louisiana", "Maryland", "Massachusetts", "Michigan",
-      "New Jersey", "North Carolina", "Ohio", "Pennsylvania", "Tennessee",
-      "Virginia", "West Virginia", "Wyoming",
-    ],
-  },
-  {
-    name: "bet365",
-    brandColor: "#1A6B3A",
-    description: "Global leader. Exceptional live streaming and in-play markets.",
-    pointsPack: "+1 FREE POINTS PACK ($39)",
-    ctaHref: "https://www.bet365.com",
-    states: [
-      "Colorado", "Indiana", "Iowa", "Kentucky", "Louisiana", "New Jersey",
-      "Ohio", "Virginia",
-    ],
-  },
-  {
-    name: "PointsBet",
-    brandColor: "#C0392B",
-    description: "Unique PointsBetting format — ideal for high-conviction plays.",
-    pointsPack: "+1 FREE POINTS PACK ($39)",
-    ctaHref: "https://www.pointsbet.com",
-    states: [
-      "Colorado", "Illinois", "Indiana", "Iowa", "Kansas", "Michigan",
-      "New Jersey", "New York", "Pennsylvania", "Virginia", "West Virginia",
-    ],
-  },
-  {
-    name: "Hard Rock Bet",
-    brandColor: "#7B1F1F",
-    description: "Strong Florida presence. Fast, clean mobile experience.",
-    pointsPack: "+1 FREE POINTS PACK ($39)",
-    ctaHref: "https://www.hardrock.bet",
-    states: [
-      "Indiana", "Iowa", "New Jersey", "Ohio", "Tennessee", "Virginia",
+      "Arizona", "Colorado", "Connecticut", "Illinois", "Indiana", "Iowa",
+      "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts",
+      "Michigan", "Montana", "Nebraska", "New Hampshire", "New Jersey",
+      "New York", "North Carolina", "Ohio", "Oregon", "Pennsylvania",
+      "Rhode Island", "Tennessee", "Vermont", "Virginia", "West Virginia",
       "Wyoming",
     ],
+  },
+  {
+    name: "Fanatics",
+    brandColor: "#000000",
+    description: "A new standard in sportsbook experiences. Integrated rewards and a mobile-first platform built for the modern bettor.",
+    pointsPack: "+1 FREE POINTS PACK ($39)",
+    ctaHref: "https://www.fanatics.com/sportsbook",
+    states: ["Arizona", "Colorado", "Connecticut", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Maryland", "Massachusetts", "Michigan", "New Jersey", "New York", "North Carolina", "Ohio", "Pennsylvania", "Tennessee", "Vermont", "Virginia", "West Virginia", "Wyoming"],
+  },
+  {
+    name: "FanDuel",
+    brandColor: "#1A4FC4",
+    description: "America's #1 sportsbook. Top-rated mobile experience, competitive odds, and the fastest payouts in the game.",
+    pointsPack: "+1 FREE POINTS PACK ($39)",
+    ctaHref: "https://www.fanduel.com",
+    states: [
+      "Arizona", "Colorado", "Connecticut", "Illinois", "Indiana", "Iowa",
+      "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts",
+      "Michigan", "Montana", "Nebraska", "New Hampshire", "New Jersey",
+      "New York", "North Carolina", "Ohio", "Pennsylvania", "Rhode Island",
+      "Tennessee", "Vermont", "Virginia", "West Virginia", "Wyoming",
+    ],
+  },
+  {
+    name: "Onyx",
+    brandColor: "#5D3FD3",
+    description: "Premium sports betting platform for sophisticated traders. Onyx delivers sharp lines and a high-conviction experience.",
+    pointsPack: "+1 FREE POINTS PACK ($39)",
+    ctaHref: "https://www.onyx.io",
+    states: ["Arizona", "Colorado", "Indiana", "Iowa", "New Jersey", "Ohio", "Pennsylvania", "Virginia"],
+  },
+  {
+    name: "Rebet",
+    brandColor: "#FF4500",
+    description: "The social sportsbook built for squads. Share your picks, tail your friends, and bet together in a new social environment.",
+    pointsPack: "+1 FREE POINTS PACK ($39)",
+    ctaHref: "https://rebet.me",
+    states: ["Arizona", "Colorado", "Indiana", "Iowa", "New Jersey", "Ohio", "Pennsylvania", "Virginia"],
+  },
+  {
+    name: "Sleeper",
+    brandColor: "#2F95DC",
+    description: "The home of fantasy and prop betting. Sleeper combines elite social features with a fast, modern betting interface.",
+    pointsPack: "+1 FREE POINTS PACK ($39)",
+    ctaHref: "https://sleeper.com",
+    states: ["Arizona", "California", "Colorado", "Florida", "Georgia", "Illinois", "Indiana", "Kansas", "Kentucky", "Maryland", "Massachusetts", "Michigan", "Minnesota", "New York", "North Carolina", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "South Carolina", "Tennessee", "Texas", "Utah", "Virginia", "Washington", "Wisconsin"],
+  },
+  {
+    name: "Underdog",
+    brandColor: "#FFD700",
+    description: "The ultimate destination for daily fantasy and best ball. Fast, fun, and built for players who want to win.",
+    pointsPack: "+1 FREE POINTS PACK ($39)",
+    ctaHref: "https://underdogfantasy.com",
+    states: ["Arizona", "California", "Colorado", "Florida", "Georgia", "Illinois", "Indiana", "Kansas", "Kentucky", "Maryland", "Massachusetts", "Michigan", "Minnesota", "New York", "North Carolina", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "South Carolina", "Tennessee", "Texas", "Utah", "Virginia", "Washington", "Wisconsin"],
   },
 ];
 
@@ -227,7 +219,7 @@ export default function SportsbooksPage() {
           </>
         }
         subtitle="Takes 30 minutes. Points never expire. Start winning with credits on us."
-        ctaLabel="Find My Sportsbooks →"
+        ctaLabel="FIND MY SPORTSBOOKS →"
         ctaHref="#partner-sportsbooks"
       />
     </main>

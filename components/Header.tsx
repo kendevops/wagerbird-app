@@ -16,10 +16,11 @@ interface HeaderProps {
 }
 
 const defaultNavLinks = [
-  { label: "Signals",      href: "/signals" },
-  { label: "Sportsbooks",  href: "/sportsbooks" },
+  { label: "Terminal",      href: "/terminal" },
   { label: "Hotsheet",     href: "/hotsheet" },
+  { label: "Sportsbooks",  href: "/sportsbooks" },
   { label: "Pricing",      href: "/pricing" },
+  { label: "Odds",          href: "/odds" },
 ];
 
 export default function Header({
@@ -37,7 +38,7 @@ export default function Header({
       <nav className="flex items-center justify-between h-full px-[20px] md:px-[48px] gap-[16px] md:gap-[32px]">
 
         {/* Logo */}
-        <a href="/" className="flex items-center shrink-0 cursor-target" aria-label="WagerBird Home">
+        <a href="/" data-cursor-label="HOME" className="flex items-center shrink-0 cursor-target" aria-label="WagerBird Home">
           <svg width="177" height="28" viewBox="0 0 177 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-[22px] md:h-[28px] w-auto block">
             <g clipPath="url(#clip0_2501_1394)">
               <mask id="mask0_2501_1394" style={{maskType:"luminance"}} maskUnits="userSpaceOnUse" x="0" y="0" width="177" height="28">
@@ -75,6 +76,7 @@ export default function Header({
               <li key={href}>
                 <a
                   href={href}
+                  data-cursor-label="GO"
                   className={`font-mono text-[11px] font-400 tracking-[1.5px] uppercase transition-colors cursor-target ${
                     isActive
                       ? "text-brand-yellow font-bold"
@@ -98,6 +100,7 @@ export default function Header({
           </a>
           <a
             href={getAccessHref}
+            data-cursor-label="GO"
             className="hidden sm:flex items-center justify-center px-[14px] md:px-[22px] py-[8px] md:py-[10px] h-[36px] bg-brand-yellow font-mono text-[11px] font-bold tracking-[1px] uppercase text-brand-blue whitespace-nowrap hover:bg-[#cdd91e] transition-colors clip-btn cursor-target"
           >
             Get Access
@@ -133,7 +136,7 @@ export default function Header({
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed inset-0 z-[105] bg-[#050510]/80 backdrop-blur-lg flex flex-col pt-[84px] px-[20px]"
+            className="fixed inset-0 z-[105] bg-[#050510] backdrop-blur-lg flex flex-col pt-[84px] px-[20px]"
           >
             <div className="flex flex-col gap-[32px]">
               <ul className="flex flex-col gap-[24px] list-none p-0 m-0">

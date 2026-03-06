@@ -26,7 +26,7 @@ export default function CtaBanner({
     <section className="cta-section">
       <motion.span
         initial={{ opacity: 0, scale: 0.9 }}
-        whileInView={{ opacity: 0.1, scale: 1 }}
+        whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 1.5, ease: "easeOut" }}
         className="cta-watermark"
@@ -47,7 +47,7 @@ export default function CtaBanner({
         <p className="cta-subtext">
           {subtitle}
         </p>
-        <a href={ctaHref} className="cta-btn clip-btn">
+        <a href={ctaHref} data-cursor-label="GO" className="cta-btn clip-btn">
           {ctaLabel}
         </a>
       </motion.div>

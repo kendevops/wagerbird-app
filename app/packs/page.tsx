@@ -1,5 +1,5 @@
-import { redirect } from "next/navigation";
+import PricingPage from "../pricing/page";
 
 export default function PacksPage() {
-  redirect("/pricing");
+  return <PricingPage />;
 }

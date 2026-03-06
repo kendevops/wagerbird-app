@@ -1,5 +1,3 @@
-"use client";
-
 import Hero from "@/components/Hero";
 import Ticker from "@/components/Ticker";
 import Signals from "@/components/Signals";

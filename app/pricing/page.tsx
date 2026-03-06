@@ -1,5 +1,3 @@
-"use client";
-
 import Hero from "@/components/Hero";
 import Packs from "@/components/Packs";
 import ValueStrip from "@/components/ValueStrip";

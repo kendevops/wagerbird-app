@@ -157,43 +157,51 @@ export default function Hero({
         </div>
 
         {/* Right column — rightWord, video, or animated signal stack */}
-        {rightWord ? (
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, delay: 0.3 }}
-            className="hidden md:flex relative overflow-hidden items-center justify-center"
-            aria-hidden="true"
-          >
-            {/* Subtle yellow radial glow behind the word */}
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_60%_50%,rgba(228,242,34,0.07)_0%,transparent_65%)] pointer-events-none" />
-            <motion.span
-              initial={{ opacity: 0, scale: 0.92 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1.1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="hero-right-word select-none"
-            >
-              {rightWord}
-            </motion.span>
-          </motion.div>
-        ) : videoUrl ? (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1.2, delay: 0.3 }}
-            className="hidden md:block relative overflow-hidden"
-          >
-            <video
-              src={videoUrl}
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="absolute inset-0 w-full h-full object-cover"
-            />
-            {/* Subtle left-edge gradient fade to blend with left panel */}
-            <div className="absolute inset-y-0 left-0 w-[120px] bg-gradient-to-r from-[#050510] to-transparent pointer-events-none z-10" aria-hidden="true" />
-          </motion.div>
+        {(rightWord || videoUrl) ? (
+          <div className="hidden md:flex relative overflow-hidden items-center justify-center">
+            {videoUrl && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1.2, delay: 0.3 }}
+                className="absolute inset-0 w-full h-full"
+              >
+                <video
+                  src={videoUrl}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="w-full h-full object-cover"
+                />
+                {/* Subtle left-edge gradient fade to blend with left panel */}
+                <div className="absolute inset-y-0 left-0 w-[120px] bg-gradient-to-r from-[#050510] to-transparent pointer-events-none z-10" aria-hidden="true" />
+              </motion.div>
+            )}
+
+            {rightWord && (
+              <motion.div
+                initial={{ opacity: 0, x: 40 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 1, delay: 0.3 }}
+                className="relative z-20 flex items-center justify-center"
+                aria-hidden="true"
+              >
+                {/* Subtle yellow radial glow behind the word — only when no video or as light overlay */}
+                {!videoUrl && (
+                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_60%_50%,rgba(228,242,34,0.07)_0%,transparent_65%)] pointer-events-none" />
+                )}
+                <motion.span
+                  initial={{ opacity: 0, scale: 0.92 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 1.1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                  className="hero-right-word select-none"
+                >
+                  {rightWord}
+                </motion.span>
+              </motion.div>
+            )}
+          </div>
         ) : (
           <div className="hidden md:flex relative overflow-hidden items-center justify-center">
             <HeroSignalStack />

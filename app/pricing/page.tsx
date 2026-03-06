@@ -55,6 +55,7 @@ export default function PricingPage() {
         secondaryCtaLabel="How It Works"
         secondaryCtaHref="#how-it-works"
         rightWord="PICKS."
+        videoUrl="https://cdn.builder.io/o/assets%2F72558899b84e49bc881d9b8ba6c19012%2Facd816a4a4224fd3a5e1d21181806042?alt=media&token=47fac893-2250-40d5-8e0f-5a4ae82a910a&apiKey=72558899b84e49bc881d9b8ba6c19012"
       />
 
       <div id="packs">

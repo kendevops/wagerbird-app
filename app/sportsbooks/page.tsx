@@ -1,5 +1,3 @@
-"use client";
-
 import SportsbooksHero from "@/components/SportsbooksHero";
 import SportsbooksSection from "@/components/SportsbooksSection";
 import { SportsbookCardProps } from "@/components/SportsbookCard";

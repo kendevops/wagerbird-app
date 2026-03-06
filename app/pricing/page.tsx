@@ -87,7 +87,7 @@ export default function PricingPage() {
         }
         subtitle="Join 12,000+ bettors who trade with confidence-scored signals."
         ctaLabel="Buy a Pack Now →"
-        ctaHref="#packs"
+        ctaHref="https://app.wagerbird.com/register"
       />
     </main>
   );

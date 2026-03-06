@@ -12,7 +12,7 @@ const VIDEO_URL =
 
 export default function HotsheetPromo({
   ctaLabel = "Get Hotsheet →",
-  ctaHref = "/hotsheet",
+  ctaHref = "https://app.wagerbird.com/register",
 }: HotsheetPromoProps) {
   return (
     <section className="hs-promo">
@@ -45,7 +45,13 @@ export default function HotsheetPromo({
           $2/day · Cancel anytime · No commitment
         </p>
 
-        <a href={ctaHref} data-cursor-label="BUY" className="hs-promo__cta clip-btn">
+        <a
+          href={ctaHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-cursor-label="BUY"
+          className="hs-promo__cta clip-btn"
+        >
           {ctaLabel}
         </a>
       </motion.div>

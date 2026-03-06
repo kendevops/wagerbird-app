@@ -161,7 +161,7 @@ export default function HotsheetPage() {
         }
         subtitle="No login. No subscription. Just the picks that matter, before game time."
         ctaLabel="Get Hotsheet →"
-        ctaHref="#"
+        ctaHref="https://app.wagerbird.com/register"
       />
     </main>
   );

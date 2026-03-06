@@ -98,7 +98,7 @@ const PricingCard = ({
   price,
   features,
   ctaLabel,
-  ctaHref = "#",
+  ctaHref = "https://app.wagerbird.com/register",
   footer,
 }: PricingCardProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -213,7 +213,12 @@ const PricingCard = ({
             ))}
           </ul>
 
-          <a href={ctaHref} className={`hsp-card-cta ${popular ? "hsp-card-cta--popular" : ""}`}>
+          <a
+            href={ctaHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`hsp-card-cta ${popular ? "hsp-card-cta--popular" : ""}`}
+          >
             {ctaLabel}
           </a>
 

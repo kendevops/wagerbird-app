@@ -1,4 +1,8 @@
-import ComingSoonPage from "../coming-soon/page";
+import ComingSoon from "@/components/ComingSoon";
 export default function LearnPage() {
-  return <ComingSoonPage />;
+  return (
+    <main>
+      <ComingSoon />
+    </main>
+  );
 }

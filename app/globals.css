@@ -438,8 +438,8 @@ body {
 /* Footnote */
 .packs-footnote {
   font-family: var(--font-space-mono), monospace;
-  font-size: 12px;
-  font-weight: 400;
+  font-size: 15px;
+  font-weight: 500;
   line-height: 1.85;
   color: rgba(240, 240, 232, 0.35);
   text-align: center;

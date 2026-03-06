@@ -1,5 +1,3 @@
-"use client";
-
 import Hotsheet from "@/components/Hotsheet";
 import ValueStrip from "@/components/ValueStrip";
 import Ticker from "@/components/Ticker";

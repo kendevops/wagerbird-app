@@ -47,7 +47,7 @@ const CuratedSignalsCard = () => (
       {[
         { matchup: "BRAVES VS PADRES", score: 91, active: true },
         { matchup: "CHIEFS VS RAVENS", score: 85, active: true },
-        { matchup: "LAKERS VS WARRIORS", score: 79, active: false },
+        { matchup: "LAKERS VS WARRIORS", score: 74, active: false },
       ].map((s) => (
         <div key={s.matchup} className="hsf-signals__row">
           <div className="hsf-signals__row-inner">

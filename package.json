@@ -6,25 +6,32 @@
     "dev": "next dev --webpack",
     "build": "next build --webpack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "seed:sanity": "tsx scripts/seed-sanity/run.ts"
   },
   "dependencies": {
     "@builder.io/dev-tools": "^1.28.16",
     "@builder.io/react": "^9.1.2",
     "@builder.io/sdk": "^6.2.1",
+    "@sanity/image-url": "^2.0.3",
+    "@sanity/vision": "^5.13.0",
     "framer-motion": "^12.34.3",
     "next": "16.1.6",
+    "next-sanity": "^12.1.0",
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "sanity": "^5.13.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "dotenv": "^16.6.1",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
     "tailwindcss": "^4",
+    "tsx": "^4.21.0",
     "typescript": "^5"
   }
 }

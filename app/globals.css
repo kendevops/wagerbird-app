@@ -68,6 +68,21 @@ body {
   }
 }
 
+/* ─── Hero Right: Large typographic word display ─── */
+.hero-right-word {
+  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
+  font-size: clamp(80px, 13vw, 200px);
+  font-weight: 900;
+  font-style: italic;
+  line-height: 0.88;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: var(--color-yellow, #E4F222);
+  white-space: nowrap;
+  user-select: none;
+  pointer-events: none;
+}
+
 /* Ticker component */
 .ticker-wrapper {
   width: 100%;

@@ -36,6 +36,7 @@ interface HeroProps {
   secondaryCtaHref?: string;
   imageUrl?: string;
   videoUrl?: string;
+  rightWord?: string;
   titleText?: string;
   stats?: StatItemProps[];
 }
@@ -58,6 +59,7 @@ export default function Hero({
   secondaryCtaHref = "/picks",
   imageUrl = "https://api.builder.io/api/v1/image/assets/TEMP/e7a48826f4f3592b62edc4a4adaa3da19d8075e3",
   videoUrl,
+  rightWord,
   titleText,
   stats,
 }: HeroProps) {
@@ -76,7 +78,8 @@ export default function Hero({
   }, []);
 
   return (
-    <section className="relative w-full min-h-[calc(100vh-64px)] bg-[#050510] flex flex-col overflow-hidden" style={{ backgroundColor: videoUrl ? '#0a0a0a' : '#050510' }}>
+    <section className="relative w-full min-h-[calc(100vh-64px)] bg-[#050510] flex flex-col overflow-hidden">
+      {/* Blue radial glow — only when no video is present */}
       {!videoUrl && (
         <div className="absolute right-0 top-0 w-[58%] h-full bg-[radial-gradient(ellipse_at_55%_40%,rgba(32,95,255,0.38)_0%,rgba(10,10,100,0.18)_45%,transparent_72%)] pointer-events-none z-0" aria-hidden="true" />
       )}
@@ -147,12 +150,33 @@ export default function Hero({
             className="flex flex-col sm:flex-row items-start sm:items-center gap-[12px] md:gap-[20px]"
           >
             <a href={primaryCtaHref} data-cursor-label="BUY" className="w-full sm:w-auto inline-flex items-center justify-center px-[32px] py-[15px] bg-brand-yellow font-mono text-[11px] font-bold tracking-[1.5px] uppercase text-black whitespace-nowrap transition-all hover:bg-white hover:-translate-y-[1px] cursor-target clip-btn">{primaryCtaLabel}</a>
-            <a href={secondaryCtaHref} data-cursor-label="FREE" className="w-full sm:w-auto inline-flex items-center justify-center px-[32px] py-[14px] border border-nav-text/15 font-mono text-[11px] font-400 tracking-[1.5px] uppercase text-nav-text/55 whitespace-nowrap transition-all hover:border-nav-text/40 hover:text-white hover:bg-white/3 cursor-target">{secondaryCtaLabel}</a>
+            {secondaryCtaLabel && secondaryCtaHref && (
+              <a href={secondaryCtaHref} data-cursor-label="FREE" className="w-full sm:w-auto inline-flex items-center justify-center px-[32px] py-[14px] border border-nav-text/15 font-mono text-[11px] font-400 tracking-[1.5px] uppercase text-nav-text/55 whitespace-nowrap transition-all hover:border-nav-text/40 hover:text-white hover:bg-white/3 cursor-target">{secondaryCtaLabel}</a>
+            )}
           </motion.div>
         </div>
 
-        {/* Right column — video or animated signal stack */}
-        {videoUrl ? (
+        {/* Right column — rightWord, video, or animated signal stack */}
+        {rightWord ? (
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, delay: 0.3 }}
+            className="hidden md:flex relative overflow-hidden items-center justify-center"
+            aria-hidden="true"
+          >
+            {/* Subtle yellow radial glow behind the word */}
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_60%_50%,rgba(228,242,34,0.07)_0%,transparent_65%)] pointer-events-none" />
+            <motion.span
+              initial={{ opacity: 0, scale: 0.92 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1.1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className="hero-right-word select-none"
+            >
+              {rightWord}
+            </motion.span>
+          </motion.div>
+        ) : videoUrl ? (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -168,7 +192,7 @@ export default function Hero({
               className="absolute inset-0 w-full h-full object-cover"
             />
             {/* Subtle left-edge gradient fade to blend with left panel */}
-            <div className="absolute inset-y-0 left-0 w-[120px] bg-gradient-to-r from-[#0a0a0a] to-transparent pointer-events-none z-10" aria-hidden="true" />
+            <div className="absolute inset-y-0 left-0 w-[120px] bg-gradient-to-r from-[#050510] to-transparent pointer-events-none z-10" aria-hidden="true" />
           </motion.div>
         ) : (
           <div className="hidden md:flex relative overflow-hidden items-center justify-center">

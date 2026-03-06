@@ -48,7 +48,7 @@ export default function HotsheetPage() {
           { value: "76+", label: "Min Confidence Score", description: "Only signals scoring 76 or higher make the cut" },
           { value: "2-6", label: "Signals Per Email", description: "Focused, curated picks — not noise" },
           { value: "$2", label: "Per Day Average", description: "Less than a coffee for daily winning intel" },
-          { value: "5", label: "Sports Covered", description: "NFL · NBA · MLB · NHL · Soccer" },
+          { value: "5+", label: "Sports Covered", description: "NFL · NBA · MLB · NHL · Soccer" },
         ]}
       />
 

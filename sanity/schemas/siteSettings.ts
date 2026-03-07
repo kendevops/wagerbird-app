@@ -9,8 +9,8 @@ export const siteSettingsType = defineType({
       name: "siteName",
       title: "Site Name",
       type: "string",
-      description: "Brand/site name used in titles (e.g. Wagerbird)",
-      initialValue: "Wagerbird",
+      description: "Brand/site name used in titles (e.g. WAGERBIRD)",
+      initialValue: "WAGERBIRD",
     }),
     defineField({
       name: "defaultMetaTitle",

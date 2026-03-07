@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { trackInitiateCheckout } from "@/lib/tracking";
 
 interface CtaBannerProps {
   watermark?: string;
@@ -52,6 +53,7 @@ export default function CtaBanner({
           target="_blank"
           rel="noopener noreferrer"
           data-cursor-label="GO"
+          onClick={() => trackInitiateCheckout("cta_banner")}
           className="cta-btn clip-btn"
         >
           {ctaLabel}

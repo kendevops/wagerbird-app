@@ -71,7 +71,7 @@ export default function SportsbooksHero() {
         transition={{ duration: 1 }}
         className="sportsbooks-ticker-bar"
       >
-        <span className="sportsbooks-ticker-left">Wagerbird Sportsbooks — Open Accounts. Earn Free Picks.</span>
+        <span className="sportsbooks-ticker-left">WAGERBIRD Sportsbooks — Open Accounts. Earn Free Picks.</span>
         <div className="sportsbooks-ticker-center">
           <span className="sportsbooks-ticker-dot" aria-hidden="true" />
           New Accounts Eligible
@@ -112,7 +112,7 @@ export default function SportsbooksHero() {
           {/* Bordered description */}
           <div className="sportsbooks-hero-description-wrap">
             <p className="sportsbooks-hero-description">
-              Open new sportsbook accounts through WagerBird and earn a{" "}
+              Open new sportsbook accounts through WAGERBIRD and earn a{" "}
               <span className="sportsbooks-hero-description-highlight">free $39 Points Pack</span>{" "}
               for each one. Three accounts = 1,800 points = $117 in free picks. New accounts only.
             </p>

@@ -1,5 +1,7 @@
 "use client";
 
+import { trackInitiateCheckout } from "@/lib/tracking";
+
 import { motion } from "framer-motion";
 
 export interface PriceCardProps {
@@ -74,6 +76,7 @@ export default function PriceCard({
           href={ctaHref}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackInitiateCheckout("price_card", name)}
           className={`price-card-cta${popular ? " price-card-cta--popular" : ""}`}
         >
           {ctaLabel}

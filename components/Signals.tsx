@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { trackInitiateCheckout } from "@/lib/tracking";
 import SignalCard, { SignalCardProps } from "./SignalCard";
 
 interface SignalsProps {
@@ -60,6 +61,7 @@ export default function Signals({
           href={ctaHref}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackInitiateCheckout("signals")}
           className="signals-cta clip-btn"
         >
           {ctaLabel}

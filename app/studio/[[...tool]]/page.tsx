@@ -1,7 +1,7 @@
 import StudioClient from "./StudioClient";
 
 export const metadata = {
-  title: "Wagerbird CMS",
+  title: "WAGERBIRD CMS",
   robots: "noindex",
 };
 

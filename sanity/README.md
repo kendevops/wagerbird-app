@@ -1,6 +1,6 @@
-# Wagerbird Sanity CMS
+# WAGERBIRD Sanity CMS
 
-This folder contains the Sanity Studio configuration and schemas for the Wagerbird app.
+This folder contains the Sanity Studio configuration and schemas for the WAGERBIRD app.
 
 ## Setup
 

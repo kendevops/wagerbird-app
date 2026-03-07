@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { trackInitiateCheckout } from "@/lib/tracking";
 
 interface ComparisonRow {
   label: string;
@@ -131,6 +132,7 @@ export default function AccessModels({
                 href={packsCtaHref}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackInitiateCheckout("access_models_packs")}
                 className="access-cta access-cta--packs"
               >
                 {packsCtaLabel}
@@ -141,6 +143,7 @@ export default function AccessModels({
                 href={terminalCtaHref}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackInitiateCheckout("access_models_terminal")}
                 className="access-cta access-cta--terminal"
               >
                 {terminalCtaLabel}

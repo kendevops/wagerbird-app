@@ -32,7 +32,7 @@ export default function ConditionalSiteLayout({
       {children}
       <Footer
         description="Confidence-scored betting signals for every sport. Priced by conviction. Backed by the model. Not a sportsbook."
-        copyright="© 2028 WagerBird. All rights reserved."
+        copyright="© 2028 WAGERBIRD. All rights reserved."
         sections={[
           {
             title: "Products",

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { trackInitiateCheckout } from "@/lib/tracking";
 import { MagicBento, MagicBentoCard } from "./animations/MagicBento";
 
 interface HotsheetProps {
@@ -103,6 +104,7 @@ export default function Hotsheet({
           href={ctaHref}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackInitiateCheckout("hotsheet")}
           className="hotsheet-hero__cta clip-btn"
         >
           {ctaLabel}

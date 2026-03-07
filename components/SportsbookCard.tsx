@@ -1,6 +1,7 @@
 "use client";
 
 import SpotlightCard from "./animations/SpotlightCard";
+import { trackInitiateCheckout } from "@/lib/tracking";
 
 export interface SportsbookCardProps {
   name: string;
@@ -31,6 +32,7 @@ export default function SportsbookCard({
           href={ctaHref}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackInitiateCheckout("sportsbook_card", name)}
           className="sb-card-cta"
           data-cursor-label="GO"
         >

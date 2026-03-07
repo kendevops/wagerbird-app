@@ -3,7 +3,7 @@ import Hero from "@/components/Hero";
 export default function ComingSoon() {
   return (
     <Hero
-      tickerText="Wagerbird Development — New Features Incoming"
+      tickerText="WAGERBIRD Development — New Features Incoming"
       badgeText="COMING SOON · STAY TUNED"
       title={
         <>

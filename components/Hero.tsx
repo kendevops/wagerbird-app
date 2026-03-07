@@ -194,13 +194,17 @@ export default function Hero({
 
         {/* Right column — rightWord, video, or animated signal stack */}
         {rightWord || videoUrl ? (
-          <div className="hidden md:flex relative overflow-hidden items-center justify-center">
+          <div
+            className={`relative overflow-hidden items-center justify-center bg-[#050510] min-h-[280px] md:min-h-0 ${
+              videoUrl ? "flex" : "hidden md:flex"
+            }`}
+          >
             {videoUrl && (
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1.2, delay: 0.3 }}
-                className="absolute inset-0 w-full h-full"
+                className="absolute inset-0 w-full h-full -scale-x-100"
               >
                 <video
                   src={videoUrl}
@@ -208,7 +212,7 @@ export default function Hero({
                   muted
                   loop
                   playsInline
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-[90%_50%]"
                 />
                 {/* Subtle left-edge gradient fade to blend with left panel */}
                 <div

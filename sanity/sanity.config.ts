@@ -10,7 +10,7 @@ const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET ?? "production";
 
 export default defineConfig({
   name: "wagerbird",
-  title: "Wagerbird CMS",
+  title: "WAGERBIRD CMS",
   projectId,
   dataset,
   basePath: "/studio",

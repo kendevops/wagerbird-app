@@ -71,7 +71,7 @@ export default function HowItWorks({
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section className="hiw-section">
+    <section id="how-it-works" className="hiw-section">
       <div className="hiw-container">
         {/* Header */}
         <motion.div

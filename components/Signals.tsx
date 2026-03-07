@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { trackInitiateCheckout } from "@/lib/tracking";
 import SignalCard, { SignalCardProps } from "./SignalCard";
 
 interface SignalsProps {
@@ -37,7 +38,7 @@ export default function Signals({
   footerText = "+ 47 more signals locked — Buy points to unlock"
 }: SignalsProps) {
   return (
-    <section className="signals-section">
+    <section id="terminal" className="signals-section">
       {/* Left — copy */}
       <motion.div
         initial={{ opacity: 0, x: -30 }}
@@ -60,6 +61,7 @@ export default function Signals({
           href={ctaHref}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackInitiateCheckout("signals")}
           className="signals-cta clip-btn"
         >
           {ctaLabel}

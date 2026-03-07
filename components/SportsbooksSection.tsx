@@ -59,7 +59,7 @@ export default function SportsbooksSection({
   ),
   description = "All partners are licensed, regulated U.S. sportsbooks. Select your state to see which books are available where you are.",
   sportsbooks,
-  disclaimer = "More partner sportsbooks being added regularly.\nNew accounts only · Availability varies by state · WagerBird partners with licensed, regulated U.S. operators only.",
+  disclaimer = "More partner sportsbooks being added regularly.\nNew accounts only · Availability varies by state · WAGERBIRD partners with licensed, regulated U.S. operators only.",
 }: SportsbooksSectionProps) {
   const [selectedState, setSelectedState] = useState("All states (default)");
   const [activeState, setActiveState] = useState("All states (default)");
@@ -74,7 +74,7 @@ export default function SportsbooksSection({
   };
 
   return (
-    <section className="sb-section">
+    <section id="partner-sportsbooks" className="sb-section">
       <div className="sb-section-inner">
         {/* Header row */}
         <div className="sb-section-header">

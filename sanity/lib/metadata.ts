@@ -23,12 +23,12 @@ export async function getSiteSettings(preview = false): Promise<SiteSettingsResu
 export function buildMetadataFromSite(site: SiteSettingsResult): Metadata {
   if (!site) {
     return {
-      title: { default: "Wagerbird", template: "%s | Wagerbird" },
+      title: { default: "WAGERBIRD", template: "%s | WAGERBIRD" },
       description: "Confidence-scored betting signals.",
     };
   }
 
-  const siteName = site.siteName ?? "Wagerbird";
+  const siteName = site.siteName ?? "WAGERBIRD";
   const defaultTitle = site.defaultMetaTitle?.trim() || undefined;
   const defaultDescription = site.defaultMetaDescription?.trim() || undefined;
   const defaultOgImageUrl = urlForImage(site.defaultOgImage);

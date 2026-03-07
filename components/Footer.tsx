@@ -48,8 +48,8 @@ const defaultSections: FooterSection[] = [
 export default function Footer({
   description = "Confidence-scored betting signals for every sport. Priced by conviction. Backed by the model. Not a sportsbook.",
   sections = defaultSections,
-  copyright = "© 2028 WagerBird. All rights reserved.",
-  disclaimer = "WagerBird does not facilitate wagering. All signals are for informational purposes only. Must be 21+ and located in a jurisdiction where sports betting is legal."
+  copyright = "© 2028 WAGERBIRD. All rights reserved.",
+  disclaimer = "WAGERBIRD does not facilitate wagering. All signals are for informational purposes only. Must be 21+ and located in a jurisdiction where sports betting is legal."
 }: FooterProps) {
   return (
     <footer className="w-full bg-brand-blue border-t border-yellow-border">
@@ -57,7 +57,7 @@ export default function Footer({
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-[48px] lg:gap-[80px] pb-[64px]">
           {/* Brand column */}
           <div className="flex flex-col gap-[24px] max-w-full lg:max-w-[300px]">
-            <a href="/" data-cursor-label="HOME" className="inline-flex shrink-0" aria-label="WagerBird Home">
+            <a href="/" data-cursor-label="HOME" className="inline-flex shrink-0" aria-label="WAGERBIRD Home">
               <svg width="177" height="28" viewBox="0 0 177 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-[28px] w-auto block">
                 <g clipPath="url(#clip0_footer)">
                   <mask id="mask0_footer" style={{maskType:"luminance"}} maskUnits="userSpaceOnUse" x="0" y="0" width="177" height="28">

@@ -53,8 +53,8 @@ interface MapSectionProps {
 
 export default function MapSection({
   heading = "Licensed.\nRegulated.\nResponsible.",
-  description = "WagerBird partners exclusively with state-licensed, regulated U.S. sportsbooks. We never hold your funds, process wagers, or operate as a sportsbook. All rewards are issued by WagerBird as Points Packs — not by the sportsbook operators.",
-  disclaimer = "Free Points Pack applies to new sportsbook accounts opened through WagerBird referral links only... Availability varies by state. Must be 21 or older. Gambling problem? Call 1-800-GAMBLER.",
+  description = "WAGERBIRD partners exclusively with state-licensed, regulated U.S. sportsbooks. We never hold your funds, process wagers, or operate as a sportsbook. All rewards are issued by WAGERBIRD as Points Packs — not by the sportsbook operators.",
+  disclaimer = "Free Points Pack applies to new sportsbook accounts opened through WAGERBIRD referral links only... Availability varies by state. Must be 21 or older. Gambling problem? Call 1-800-GAMBLER.",
 }: MapSectionProps) {
   return (
     <section className="map-section">

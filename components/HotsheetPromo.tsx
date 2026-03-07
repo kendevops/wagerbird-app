@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { trackInitiateCheckout } from "@/lib/tracking";
 
 interface HotsheetPromoProps {
   ctaLabel?: string;
@@ -50,6 +51,7 @@ export default function HotsheetPromo({
           target="_blank"
           rel="noopener noreferrer"
           data-cursor-label="BUY"
+          onClick={() => trackInitiateCheckout("hotsheet_promo")}
           className="hs-promo__cta clip-btn"
         >
           {ctaLabel}

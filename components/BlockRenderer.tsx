@@ -179,7 +179,10 @@ export default function BlockRenderer({ blocks }: { blocks: Block[] }) {
                 watermark={block.watermark as string | undefined}
                 title={
                   block.title ? (
-                    <RichTitle value={block.title as PortableTextBlock[]} />
+                    <RichTitle
+                      value={block.title as PortableTextBlock[]}
+                      accentClass="cta-heading-accent"
+                    />
                   ) : undefined
                 }
                 subtitle={block.subtitle as string | undefined}

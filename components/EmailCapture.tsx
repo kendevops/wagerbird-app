@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { trackLead } from "@/lib/tracking";
 
 interface EmailCaptureProps {
   label?: string;
@@ -36,6 +37,7 @@ export default function EmailCapture({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    trackLead("email_capture");
     // Handle form submission
   };
 

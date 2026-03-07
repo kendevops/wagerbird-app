@@ -13,7 +13,7 @@ const defaultFaqs = [
   {
     question: "Do my points expire?",
     answer:
-      "No — your WagerBird points never expire. Once you earn or purchase points, they stay in your account until you use them. You can hold onto them for any upcoming game or season without worry.",
+      "No — your WAGERBIRD points never expire. Once you earn or purchase points, they stay in your account until you use them. You can hold onto them for any upcoming game or season without worry.",
   },
   {
     question: "How does confidence scoring work?",

@@ -55,7 +55,7 @@ export default function Packs({
   )
 }: PacksProps) {
   return (
-    <section className="packs-section">
+    <section id="packs" className="packs-section">
       {/* Header */}
       <PacksHeader label={label} title={title} description={description} />
 

@@ -1,11 +1,26 @@
 import type { Metadata } from "next";
 import { draftMode } from "next/headers";
-import { Geist, Geist_Mono, Space_Mono, Oswald, Barlow_Condensed } from "next/font/google";
+import Script from "next/script";
+import {
+  Geist,
+  Geist_Mono,
+  Space_Mono,
+  Oswald,
+  Barlow_Condensed,
+} from "next/font/google";
 import "./globals.css";
 import DynamicCursor from "@/components/animations/DynamicCursor";
 import ConditionalSiteLayout from "@/components/ConditionalSiteLayout";
 import VisualEditingWrapper from "@/components/VisualEditingWrapper";
 import { getSiteMetadata } from "@/sanity/lib/metadata";
+
+const POP6_TRACKING_TOKEN =
+  process.env.NEXT_PUBLIC_POP6_TRACKING_TOKEN;
+const POP6_SHOP = process.env.NEXT_PUBLIC_POP6_SHOP ?? "wagerbird.com";
+const POP6_SCRIPT_SRC =
+  POP6_TRACKING_TOKEN
+    ? `https://pop6serve.com/popsixle.php?t=${POP6_TRACKING_TOKEN}&shop=${encodeURIComponent(POP6_SHOP)}`
+    : null;
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -53,6 +68,9 @@ export default async function RootLayout({
         <DynamicCursor />
         <ConditionalSiteLayout>{children}</ConditionalSiteLayout>
         {draft?.isEnabled && <VisualEditingWrapper />}
+        {POP6_SCRIPT_SRC && (
+          <Script src={POP6_SCRIPT_SRC} strategy="afterInteractive" />
+        )}
       </body>
     </html>
   );

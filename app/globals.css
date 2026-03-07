@@ -50,6 +50,14 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Scroll targets: offset for sticky header so in-page links land visibly */
+#packs,
+#how-it-works,
+#partner-sportsbooks,
+#terminal {
+  scroll-margin-top: 5rem;
+}
+
 /* ─── Homepage Hero Heading ───────────────────────── */
 .hero-heading {
   font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
@@ -3125,6 +3133,7 @@ body {
 
 .cta-heading-accent {
   font-style: italic;
+  color: #07070F;
 }
 
 .cta-subtext {
@@ -3218,7 +3227,7 @@ body {
   font-weight: 400;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.35);
+  color: var(--color-nav-text);
 }
 
 @media (max-width: 768px) {
@@ -3256,7 +3265,7 @@ body {
   font-weight: 400;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.35);
+  color: var(--color-nav-text);
   text-align: right;
 }
 
@@ -3517,6 +3526,11 @@ body {
   font-size: 20px;
   font-weight: 700;
   margin-left: 8px;
+  vertical-align: middle;
+  line-height: 1;
+  position: relative;
+  top: -3px;
+  transform: translateY(-1px);
 }
 
 /* Right column */

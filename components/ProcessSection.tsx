@@ -65,7 +65,7 @@ export default function ProcessSection({
   steps = defaultSteps,
 }: ProcessSectionProps) {
   return (
-    <section className="process-section">
+    <section id="how-it-works" className="process-section">
       <div className="process-inner">
         {/* Header */}
         <motion.div

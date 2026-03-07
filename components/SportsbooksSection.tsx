@@ -74,7 +74,7 @@ export default function SportsbooksSection({
   };
 
   return (
-    <section className="sb-section">
+    <section id="partner-sportsbooks" className="sb-section">
       <div className="sb-section-inner">
         {/* Header row */}
         <div className="sb-section-header">

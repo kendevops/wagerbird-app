@@ -1,9 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import SpotlightCard from "./animations/SpotlightCard";
-import ShinyText from "./animations/ShinyText";
 import SplitText from "./animations/SplitText";
 
 interface RewardRow {
@@ -47,19 +45,12 @@ const heroStats = [
 ];
 
 export default function SportsbooksHero() {
-  const [dateStr, setDateStr] = useState("");
-
-  useEffect(() => {
-    const now = new Date();
-    setDateStr(
-      now.toLocaleDateString("en-US", {
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      })
-    );
-  }, []);
+  const dateStr = new Date().toLocaleDateString("en-US", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 
   return (
     <section className="sportsbooks-hero-section">

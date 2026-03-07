@@ -50,10 +50,9 @@ export default function CtaBanner({
         </p>
         <a
           href={ctaHref}
-          target="_blank"
-          rel="noopener noreferrer"
+          {...(ctaHref?.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
           data-cursor-label="GO"
-          onClick={() => trackInitiateCheckout("cta_banner")}
+          onClick={() => ctaHref?.startsWith("http") && trackInitiateCheckout("cta_banner")}
           className="cta-btn clip-btn"
         >
           {ctaLabel}

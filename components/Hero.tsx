@@ -103,7 +103,7 @@ export default function Hero({
         className="border-b border-white/5 bg-black/25 relative z-1 shrink-0"
       >
         <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto_1fr] items-center px-[20px] md:px-[48px] py-[8px] md:py-[10px] gap-2 sm:gap-0">
-          <span className="font-mono text-[10px] font-400 tracking-[1.5px] uppercase text-nav-text/35 text-center sm:text-left">
+          <span className="font-mono text-[10px] font-400 tracking-[1.5px] uppercase text-nav-text text-center sm:text-left">
             {tickerText}
           </span>
           <div className="flex items-center justify-center gap-[8px] text-white min-w-0 sm:min-w-[200px] font-mono text-[10px] font-400 tracking-[1.5px] uppercase">
@@ -113,7 +113,7 @@ export default function Hero({
             />
             Live Signals Active
           </div>
-          <span className="hidden sm:block font-mono text-[10px] font-400 tracking-[1.5px] uppercase text-nav-text/35 text-right">
+          <span className="hidden sm:block font-mono text-[10px] font-500 tracking-[1.5px] uppercase text-nav-text text-right">
             {dateStr}
           </span>
         </div>
@@ -172,10 +172,9 @@ export default function Hero({
           >
             <a
               href={primaryCtaHref}
-              target="_blank"
-              rel="noopener noreferrer"
+              {...(primaryCtaHref?.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
               data-cursor-label="BUY"
-              onClick={() => trackInitiateCheckout("hero_primary")}
+              onClick={() => primaryCtaHref?.startsWith("http") && trackInitiateCheckout("hero_primary")}
               className="w-full sm:w-auto inline-flex items-center justify-center px-[32px] py-[15px] bg-brand-yellow font-mono text-[11px] font-bold tracking-[1.5px] uppercase text-black whitespace-nowrap transition-all hover:bg-white hover:-translate-y-px cursor-target clip-btn"
             >
               {primaryCtaLabel}
@@ -183,6 +182,7 @@ export default function Hero({
             {secondaryCtaLabel && secondaryCtaHref && (
               <a
                 href={secondaryCtaHref}
+                {...(secondaryCtaHref.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                 data-cursor-label="FREE"
                 className="w-full sm:w-auto inline-flex items-center justify-center px-[32px] py-[14px] border border-nav-text/15 font-mono text-[11px] font-400 tracking-[1.5px] uppercase text-nav-text/55 whitespace-nowrap transition-all hover:border-nav-text/40 hover:text-white hover:bg-white/3 cursor-target"
               >

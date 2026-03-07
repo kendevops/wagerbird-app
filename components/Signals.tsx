@@ -38,7 +38,7 @@ export default function Signals({
   footerText = "+ 47 more signals locked — Buy points to unlock"
 }: SignalsProps) {
   return (
-    <section className="signals-section">
+    <section id="terminal" className="signals-section">
       {/* Left — copy */}
       <motion.div
         initial={{ opacity: 0, x: -30 }}

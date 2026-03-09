@@ -11,15 +11,19 @@ import {
 import "./globals.css";
 import DynamicCursor from "@/components/animations/DynamicCursor";
 import ConditionalSiteLayout from "@/components/ConditionalSiteLayout";
+import PopsixleDevCheck from "@/components/PopsixleDevCheck";
 import VisualEditingWrapper from "@/components/VisualEditingWrapper";
 import { getSiteMetadata } from "@/sanity/lib/metadata";
 
-const POP6_TRACKING_TOKEN =
-  process.env.NEXT_PUBLIC_POP6_TRACKING_TOKEN;
-const POP6_SHOP = process.env.NEXT_PUBLIC_POP6_SHOP ?? "wagerbird.com";
+const POP6_TRACKING_TOKEN = (
+  process.env.NEXT_PUBLIC_POP6_TRACKING_TOKEN ?? ""
+).trim();
+const POP6_SHOP = (
+  process.env.NEXT_PUBLIC_POP6_SHOP ?? "wagerbird.com"
+).trim();
 const POP6_SCRIPT_SRC =
-  POP6_TRACKING_TOKEN
-    ? `https://pop6serve.com/popsixle.php?t=${POP6_TRACKING_TOKEN}&shop=${encodeURIComponent(POP6_SHOP)}`
+  POP6_TRACKING_TOKEN.length > 0
+    ? `https://pop6serve.com/popsixle.php?t=${encodeURIComponent(POP6_TRACKING_TOKEN)}&shop=${encodeURIComponent(POP6_SHOP)}`
     : null;
 
 const geistSans = Geist({
@@ -66,10 +70,15 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${spaceMono.variable} ${oswald.variable} ${barlowCondensed.variable} antialiased`}
       >
         <DynamicCursor />
+        <PopsixleDevCheck />
         <ConditionalSiteLayout>{children}</ConditionalSiteLayout>
         {draft?.isEnabled && <VisualEditingWrapper />}
         {POP6_SCRIPT_SRC && (
-          <Script src={POP6_SCRIPT_SRC} strategy="afterInteractive" />
+          <Script
+            src={POP6_SCRIPT_SRC}
+            strategy="beforeInteractive"
+            data-testid="popsixle-script"
+          />
         )}
       </body>
     </html>

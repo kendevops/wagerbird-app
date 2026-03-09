@@ -92,7 +92,7 @@ export default function SignInPage() {
               />
             </div>
 
-            <button type="submit" className="signin-submit-btn">
+            <button type="submit" className="signin-submit-btn clip-btn">
               Sign In
               <svg
                 width="16"

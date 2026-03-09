@@ -16,7 +16,7 @@ import VisualEditingWrapper from "@/components/VisualEditingWrapper";
 import { getSiteMetadata } from "@/sanity/lib/metadata";
 
 
-const POP6_SCRIPT_SRC =`https://pop6serve.com/popsixle.php?t="9ed022bf44365607240a763124b5af7732d355bc0a219fcd0bfbd5c57960dde5"&shop=wagerbird.com`;
+const POP6_SCRIPT_SRC =`https://pop6serve.com/popsixle.php?t=9ed022bf44365607240a763124b5af7732d355bc0a219fcd0bfbd5c57960dde5&shop=wagerbird.com`;
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

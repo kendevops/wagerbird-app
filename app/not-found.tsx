@@ -2,19 +2,61 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <main className="min-h-screen bg-[#050510] flex items-center justify-center p-8">
-      <div className="text-center">
-        <h1 className="text-brand-yellow font-black text-6xl uppercase italic mb-4">404</h1>
-        <h2 className="text-white font-bold text-3xl uppercase mb-8 italic">Page Not Found</h2>
-        <p className="text-white/60 font-mono text-sm max-w-md mx-auto mb-12 uppercase tracking-widest leading-relaxed">
-          The signal has been lost. The page you are looking for does not exist or has been moved to a new terminal.
+    <main className="not-found-page">
+      {/* Grid overlay */}
+      <div className="not-found-grid" aria-hidden="true" />
+
+      {/* Circular glow ring behind the 404 */}
+      <div className="not-found-ring" aria-hidden="true" />
+
+      <div className="not-found-content">
+        {/* Eyebrow */}
+        <p className="not-found-eyebrow">
+          <span className="not-found-eyebrow-error">// Error</span>
+          <span className="not-found-eyebrow-dot" aria-hidden="true">·</span>
+          <span className="not-found-eyebrow-label">Page Not Found</span>
         </p>
-        <Link
-          href="/"
-          className="inline-flex items-center justify-center px-8 py-4 bg-brand-yellow font-mono text-xs font-bold tracking-widest uppercase text-black hover:bg-white transition-all clip-btn"
-        >
-          Go Back Home →
-        </Link>
+
+        {/* 404 display */}
+        <div className="not-found-code" aria-label="404">
+          <span className="not-found-digit">4</span>
+          <span className="not-found-zero">0</span>
+          <span className="not-found-digit">4</span>
+        </div>
+
+        {/* Heading */}
+        <h1 className="not-found-heading">Signal Lost.</h1>
+
+        {/* Description */}
+        <p className="not-found-description">
+          The page you&apos;re looking for went out of bounds. It may have been
+          moved, deleted, or never existed.
+        </p>
+
+        {/* CTA buttons */}
+        <div className="not-found-actions">
+          <Link href="/" className="not-found-btn-primary">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <path
+                d="M6.66667 12.6667L2 8.00004M2 8.00004L6.66667 3.33337M2 8.00004H14"
+                stroke="currentColor"
+                strokeWidth="1.66667"
+                strokeLinecap="square"
+              />
+            </svg>
+            Back to Home
+          </Link>
+          <Link href="/terminal" className="not-found-btn-secondary">
+            View Signals
+          </Link>
+        </div>
       </div>
     </main>
   );

@@ -5,7 +5,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 
 const STUDIO_PATH = "/studio";
-const NO_FOOTER_PATHS = ["/signin", "/register"];
+const NO_FOOTER_PATHS = ["/signin", "/register", "/coming-soon"];
 
 export default function ConditionalSiteLayout({
   children,

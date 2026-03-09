@@ -221,7 +221,7 @@ export default function RegisterPage() {
               />
             </div>
 
-            <button type="submit" className="signin-submit-btn signup-submit-btn">
+            <button type="submit" className="signin-submit-btn signup-submit-btn clip-btn">
               Create Account
               <svg
                 width="16"

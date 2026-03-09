@@ -3,8 +3,8 @@
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
-// Target date — 30 days from now as a reasonable default; swap for a real date
-const TARGET_DATE = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000);
+// Target date — swap for a real launch date
+const TARGET_DATE = new Date("2028-01-01T00:00:00Z");
 
 const TICKER_ITEMS = [
   "Coming Soon",
@@ -51,7 +51,12 @@ export default function ComingSoonPage() {
   const { days, hours, mins, secs } = useCountdown(TARGET_DATE);
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const trackRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleNotify = (e: React.FormEvent) => {
     e.preventDefault();
@@ -59,10 +64,10 @@ export default function ComingSoonPage() {
   };
 
   const countdownUnits = [
-    { value: pad(days), label: "Days" },
-    { value: pad(hours), label: "Hours" },
-    { value: pad(mins), label: "Mins" },
-    { value: pad(secs), label: "Secs" },
+    { value: mounted ? pad(days) : "00", label: "Days" },
+    { value: mounted ? pad(hours) : "00", label: "Hours" },
+    { value: mounted ? pad(mins) : "00", label: "Mins" },
+    { value: mounted ? pad(secs) : "00", label: "Secs" },
   ];
 
   return (

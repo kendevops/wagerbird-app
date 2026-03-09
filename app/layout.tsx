@@ -15,16 +15,8 @@ import PopsixleDevCheck from "@/components/PopsixleDevCheck";
 import VisualEditingWrapper from "@/components/VisualEditingWrapper";
 import { getSiteMetadata } from "@/sanity/lib/metadata";
 
-const POP6_TRACKING_TOKEN = (
-  process.env.NEXT_PUBLIC_POP6_TRACKING_TOKEN ?? ""
-).trim();
-const POP6_SHOP = (
-  process.env.NEXT_PUBLIC_POP6_SHOP ?? "wagerbird.com"
-).trim();
-const POP6_SCRIPT_SRC =
-  POP6_TRACKING_TOKEN.length > 0
-    ? `https://pop6serve.com/popsixle.php?t=${encodeURIComponent(POP6_TRACKING_TOKEN)}&shop=${encodeURIComponent(POP6_SHOP)}`
-    : null;
+
+const POP6_SCRIPT_SRC =`https://pop6serve.com/popsixle.php?t="9ed022bf44365607240a763124b5af7732d355bc0a219fcd0bfbd5c57960dde5"&shop=wagerbird.com`;
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

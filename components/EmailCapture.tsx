@@ -1,8 +1,12 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "framer-motion";
-import { trackLead } from "@/lib/tracking";
+
+const SUBSTACK_PUBLICATION = (process.env.NEXT_PUBLIC_SUBSTACK_PUBLICATION ?? "").trim();
+const SUBSTACK_EMBED_URL = SUBSTACK_PUBLICATION
+  ? `https://${SUBSTACK_PUBLICATION}.substack.com/embed`
+  : "";
+const substackReady = Boolean(SUBSTACK_EMBED_URL);
 
 interface EmailCaptureProps {
   label?: string;
@@ -18,29 +22,22 @@ export default function EmailCapture({
   label = "// Free Daily Picks",
   title = (
     <>
-      Today&rsquo;s Top Signals.<br />
+      Today&rsquo;s Top Signals.
+      <br />
       <em className="email-capture-heading-accent">Free, In Your Inbox.</em>
     </>
   ),
   subtitle = (
     <>
-      No credit card. No fluff. Just the model&rsquo;s top 3 picks,<br className="email-capture-br" />
+      No credit card. No fluff. Just the model&rsquo;s top 3 picks,
+      <br className="email-capture-br" />
       every morning before game time.
     </>
   ),
   cardTitle = "Join 12,000+ Sharp Bettors",
   cardSubtitle = "Get the model\u2019s top picks before game time \u2014 free, every day.",
-  buttonLabel = "Send My Picks",
-  disclaimer = "No spam. Unsubscribe anytime. Your data stays private."
+  disclaimer = "No spam. Unsubscribe anytime. Your data stays private.",
 }: EmailCaptureProps) {
-  const [email, setEmail] = useState("");
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    trackLead("email_capture");
-    // Handle form submission
-  };
-
   return (
     <section className="email-capture-section">
       <div className="email-capture-inner">
@@ -81,25 +78,22 @@ export default function EmailCapture({
         >
           <div className="email-capture-card">
             <h3 className="email-capture-card-heading">{cardTitle}</h3>
-            <p className="email-capture-card-sub">
-              {cardSubtitle}
-            </p>
-            <form className="email-capture-form" onSubmit={handleSubmit}>
-              <input
-                type="email"
-                className="email-capture-input"
-                placeholder="your@email.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-              <button type="submit" className="email-capture-btn">
-                {buttonLabel}
-              </button>
-            </form>
-            <p className="email-capture-disclaimer">
-              {disclaimer}
-            </p>
+            <p className="email-capture-card-sub">{cardSubtitle}</p>
+            {substackReady ? (
+              <div className="email-capture-embed-wrap">
+                <iframe
+                  src={SUBSTACK_EMBED_URL}
+                  className="email-capture-embed"
+                  title="Subscribe to newsletter"
+                  tabIndex={-1}
+                />
+              </div>
+            ) : (
+              <p className="email-capture-error">
+                Set NEXT_PUBLIC_SUBSTACK_PUBLICATION to enable signup.
+              </p>
+            )}
+            <p className="email-capture-disclaimer">{disclaimer}</p>
           </div>
         </motion.div>
       </div>

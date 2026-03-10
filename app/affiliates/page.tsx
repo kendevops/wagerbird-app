@@ -109,11 +109,13 @@ export default function AffiliatesPage() {
       {/* ── PARTNER RESOURCES ── */}
       <PartnerResources />
 
+      {/* ── CTA BANNER ── */}
+      <AffiliateCTA />
+
       {/* ── FAQ ── */}
       <AffiliateFAQ />
 
-      {/* ── CTA BANNER ── */}
-      <AffiliateCTA />
+
     </div>
   );
 }

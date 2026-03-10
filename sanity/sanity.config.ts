@@ -34,8 +34,18 @@ export default defineConfig({
                   .title("Pages")
                   .defaultOrdering([{ field: "order", direction: "asc" }])
               ),
+            S.listItem()
+              .title("Affiliates Page")
+              .child(
+                S.document()
+                  .schemaType("affiliatesPage")
+                  .documentId("affiliatesPage")
+              ),
             ...S.documentTypeListItems().filter(
-              (item) => item.getId() !== "page" && item.getId() !== "siteSettings"
+              (item) =>
+                item.getId() !== "page" &&
+                item.getId() !== "siteSettings" &&
+                item.getId() !== "affiliatesPage"
             ),
           ]),
     }),

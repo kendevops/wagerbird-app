@@ -2,8 +2,9 @@
 
 import { useState, useRef } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
+import type { AffiliatesPageResult } from "@/sanity/lib/queries";
 
-const FAQS = [
+const DEFAULT_FAQS = [
   {
     id: "what-is",
     question: "What is the WagerBird Affiliate Program?",
@@ -55,7 +56,7 @@ function FAQItem({
   onToggle,
   inView,
 }: {
-  item: (typeof FAQS)[0];
+  item: { id: string; question: string; answer: string };
   index: number;
   isOpen: boolean;
   onToggle: () => void;
@@ -98,10 +99,18 @@ function FAQItem({
   );
 }
 
-export default function AffiliateFAQ() {
-  const [openId, setOpenId] = useState<string | null>(FAQS[0].id);
+export default function AffiliateFAQ({ data }: { data?: AffiliatesPageResult | null }) {
+  const faqs =
+    data?.faqItems?.length && data.faqItems.every((f) => f.id && f.question && f.answer)
+      ? (data.faqItems as { id: string; question: string; answer: string }[])
+      : DEFAULT_FAQS;
+  const [openId, setOpenId] = useState<string | null>(faqs[0]?.id ?? null);
   const sectionRef = useRef<HTMLElement>(null);
   const inView = useInView(sectionRef, { once: true, margin: "-60px" });
+
+  const eyebrow = data?.faqEyebrow ?? "// Questions";
+  const heading1 = data?.faqHeading1 ?? "Frequently Asked.";
+  const heading2 = data?.faqHeading2 ?? "Clearly Answered.";
 
   return (
     <section ref={sectionRef} className="faq-section">
@@ -114,7 +123,7 @@ export default function AffiliateFAQ() {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.45, ease: "easeOut" }}
           >
-            // Questions
+            {eyebrow}
           </motion.p>
 
           <motion.h2
@@ -123,16 +132,16 @@ export default function AffiliateFAQ() {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.55, ease: "easeOut", delay: 0.08 }}
           >
-            <span className="faq-heading-dark">Frequently Asked.</span>
+            <span className="faq-heading-dark">{heading1}</span>
             <br />
-            <span className="faq-heading-blue">Clearly Answered.</span>
+            <span className="faq-heading-blue">{heading2}</span>
           </motion.h2>
         </div>
 
         {/* ── Accordion ── */}
         <div className="faq-list" role="list">
           <div className="faq-top-divider" />
-          {FAQS.map((item, i) => (
+          {faqs.map((item, i) => (
             <FAQItem
               key={item.id}
               item={item}

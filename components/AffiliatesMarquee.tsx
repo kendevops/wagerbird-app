@@ -1,8 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
+import type { AffiliatesPageResult } from "@/sanity/lib/queries";
 
-const ITEMS = [
+const DEFAULT_ITEMS = [
   "30% Commission",
   "Real-Time Tracking",
   "No Subscription Required",
@@ -13,9 +14,9 @@ const ITEMS = [
   "Instant Approval",
 ];
 
-export default function AffiliatesMarquee() {
-  // Duplicate items so the seamless loop works at any screen width
-  const track = [...ITEMS, ...ITEMS, ...ITEMS];
+export default function AffiliatesMarquee({ data }: { data?: AffiliatesPageResult | null }) {
+  const items = data?.marqueeItems?.length ? data.marqueeItems : DEFAULT_ITEMS;
+  const track = [...items, ...items, ...items];
 
   return (
     <div className="aff-marquee-wrapper" aria-hidden="true">

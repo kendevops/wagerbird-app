@@ -3,6 +3,8 @@
 import { useState } from "react";
 import Link from "next/link";
 
+const APP_URL = process.env.NEXT_PUBLIC_WAGERBIRD_APP_URL ?? "https://app.wagerbird.com";
+
 const COUNTRY_CODES = [
   { code: "+1", flag: "🇺🇸", label: "US" },
   { code: "+1", flag: "🇨🇦", label: "CA" },
@@ -53,10 +55,46 @@ export default function RegisterPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle registration logic here
+    if (password !== confirmPassword) {
+      setError("Passwords do not match");
+      return;
+    }
+    if (password.length < 8) {
+      setError("Password must be at least 8 characters");
+      return;
+    }
+    setError(null);
+    setLoading(true);
+    try {
+      const res = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email,
+          password,
+          firstName: firstName || undefined,
+          lastName: lastName || undefined,
+          phone: phone || undefined,
+          countryCode: countryCode || undefined,
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        setError(data?.error ?? data?.message ?? "Registration failed");
+        return;
+      }
+      const redirectUrl = data?.redirectUrl ?? APP_URL;
+      window.location.href = redirectUrl;
+    } catch {
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -104,6 +142,11 @@ export default function RegisterPage() {
           </div>
 
           <form className="signup-form" onSubmit={handleSubmit}>
+            {error && (
+              <div className="signup-error" role="alert">
+                {error}
+              </div>
+            )}
             {/* First + Last Name row */}
             <div className="signup-name-row">
               <div className="signin-field-group">
@@ -221,8 +264,8 @@ export default function RegisterPage() {
               />
             </div>
 
-            <button type="submit" className="signin-submit-btn signup-submit-btn clip-btn">
-              Create Account
+            <button type="submit" className="signin-submit-btn signup-submit-btn clip-btn" disabled={loading}>
+              {loading ? "Creating account…" : "Create Account"}
               <svg
                 width="16"
                 height="16"

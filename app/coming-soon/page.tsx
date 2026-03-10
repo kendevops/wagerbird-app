@@ -22,23 +22,34 @@ const TICKER_ITEMS = [
 ];
 
 function useCountdown(target: Date) {
-  const getTimeLeft = () => {
-    const diff = Math.max(0, target.getTime() - Date.now());
-    return {
-      days: Math.floor(diff / (1000 * 60 * 60 * 24)),
-      hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
-      mins: Math.floor((diff / (1000 * 60)) % 60),
-      secs: Math.floor((diff / 1000) % 60),
-    };
-  };
-
-  const [timeLeft, setTimeLeft] = useState(getTimeLeft);
+  // Start with a stable zero state so SSR and first client render match.
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    mins: 0,
+    secs: 0,
+  });
 
   useEffect(() => {
-    const id = setInterval(() => setTimeLeft(getTimeLeft()), 1000);
-    return () => clearInterval(id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    const getTimeLeft = () => {
+      const diff = Math.max(0, target.getTime() - Date.now());
+      return {
+        days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
+        mins: Math.floor((diff / (1000 * 60)) % 60),
+        secs: Math.floor((diff / 1000) % 60),
+      };
+    };
+
+    // Defer initial update to avoid synchronous setState in effect (cascading renders).
+    const tick = () => setTimeLeft(getTimeLeft());
+    const timeoutId = setTimeout(tick, 0);
+    const id = setInterval(tick, 1000);
+    return () => {
+      clearTimeout(timeoutId);
+      clearInterval(id);
+    };
+  }, [target]);
 
   return timeLeft;
 }
@@ -51,12 +62,7 @@ export default function ComingSoonPage() {
   const { days, hours, mins, secs } = useCountdown(TARGET_DATE);
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
-  const [mounted, setMounted] = useState(false);
   const trackRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const handleNotify = (e: React.FormEvent) => {
     e.preventDefault();
@@ -64,10 +70,10 @@ export default function ComingSoonPage() {
   };
 
   const countdownUnits = [
-    { value: mounted ? pad(days) : "00", label: "Days" },
-    { value: mounted ? pad(hours) : "00", label: "Hours" },
-    { value: mounted ? pad(mins) : "00", label: "Mins" },
-    { value: mounted ? pad(secs) : "00", label: "Secs" },
+    { value: pad(days), label: "Days" },
+    { value: pad(hours), label: "Hours" },
+    { value: pad(mins), label: "Mins" },
+    { value: pad(secs), label: "Secs" },
   ];
 
   return (
@@ -92,7 +98,7 @@ export default function ComingSoonPage() {
       {/* Main content */}
       <main className="cs-main">
         {/* Eyebrow */}
-        <p className="cs-eyebrow">// Something Big Is Coming</p>
+        <p className="cs-eyebrow">{"// Something Big Is Coming"}</p>
 
         {/* Hero heading */}
         <h1 className="cs-hero">

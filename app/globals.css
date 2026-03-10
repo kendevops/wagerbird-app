@@ -220,6 +220,15 @@ body {
   margin-bottom: 0;
 }
 
+.signin-error {
+  padding: 12px 16px;
+  background: rgba(220, 53, 69, 0.1);
+  border: 1px solid rgba(220, 53, 69, 0.4);
+  color: #c92a2a;
+  font-size: 13px;
+  border-radius: 4px;
+}
+
 .signin-field-group {
   display: flex;
   flex-direction: column;
@@ -299,6 +308,11 @@ body {
 
 .signin-submit-btn:hover {
   background: #0025c8;
+}
+
+.signin-submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
 /* Divider */
@@ -547,6 +561,15 @@ body {
   flex-direction: column;
   gap: 16px;
   width: 100%;
+}
+
+.signup-error {
+  padding: 12px 16px;
+  background: rgba(220, 53, 69, 0.1);
+  border: 1px solid rgba(220, 53, 69, 0.4);
+  color: #c92a2a;
+  font-size: 13px;
+  border-radius: 4px;
 }
 
 /* Name row — two fields side by side */
@@ -7659,14 +7682,31 @@ body {
 }
 
 .why-item {
+  position: relative;
   display: flex;
   flex-direction: column;
   cursor: default;
   transition: background 0.25s;
 }
 
+.why-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--color-yellow, #e4f222);
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
 .why-item:hover {
   background: rgba(228, 242, 34, 0.04);
+}
+
+.why-item:hover::before {
+  opacity: 1;
 }
 
 .why-item:hover .why-item-num {

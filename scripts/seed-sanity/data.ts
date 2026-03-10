@@ -13,6 +13,391 @@ export const siteSettings = {
   twitterHandle: "",
 };
 
+export const signInPage = {
+  _id: "signInPage",
+  _type: "signInPage" as const,
+  leftEyebrow: "// Welcome back",
+  leftHeroLine1: "Back in",
+  leftHeroLine2: "The Game.",
+  leftTagline:
+    "Your signals are waiting. Log in to access today's picks and your Points balance.",
+  stats: [
+    { value: "68%", label: "Win Rate" },
+    { value: "12K+", label: "Bettors" },
+    { value: "10+", label: "Leagues" },
+  ],
+  formEyebrow: "// Sign in",
+  formTitle: "Welcome Back",
+  emailLabel: "Email",
+  emailPlaceholder: "your@email.com",
+  passwordLabel: "Password",
+  passwordPlaceholder: "••••••••",
+  forgotLabel: "Forgot?",
+  submitLabel: "Sign In",
+  signupPrompt: "Don't have an account?",
+  signupLinkLabel: "Sign up →",
+  signupLinkHref: "/register",
+  finePrint: "Points never expire · Cancel anytime",
+  formAction: null,
+};
+
+export const registerPage = {
+  _id: "registerPage",
+  _type: "registerPage" as const,
+  leftEyebrow: "// Get Started",
+  leftHeroLine1: "Your Edge",
+  leftHeroLine2: "Starts Here",
+  leftTagline:
+    "Join thousands bettors using confidence-scored signals to make smarter plays across every sport.",
+  featureBullets: [
+    { bold: "Pay per pick.", rest: " No subscription required." },
+    { bold: "Points never expire.", rest: " Buy once, use anytime." },
+    { bold: "10+ leagues.", rest: " NFL, NBA, MLB, NHL, CBB and more." },
+    { bold: "68% win rate.", rest: " Backed by the model." },
+  ],
+  formEyebrow: "// Create Account",
+  formTitle: "Get Started",
+  formSubtitle: "Free to join. Buy Points when you're ready.",
+  firstNameLabel: "First Name",
+  firstNamePlaceholder: "First",
+  lastNameLabel: "Last Name",
+  lastNamePlaceholder: "Last",
+  phoneLabel: "Phone Number",
+  phonePlaceholder: "(555) 000-0000",
+  emailLabel: "Email",
+  emailPlaceholder: "your@email.com",
+  passwordLabel: "Password",
+  passwordPlaceholder: "Min 8 characters",
+  confirmPasswordLabel: "Confirm Password",
+  confirmPasswordPlaceholder: "Re-enter password",
+  submitLabel: "Create Account",
+  legalText:
+    "By signing up you agree to our Terms of Service and Privacy Policy. Must be 21+ to bet.",
+  termsHref: "/terms-of-service",
+  privacyHref: "/privacy-policy",
+  signinPrompt: "Already have an account?",
+  signinLinkLabel: "Sign In →",
+  signinLinkHref: "/signin",
+  formAction: null,
+};
+
+export const notFoundPage = {
+  _id: "notFoundPage",
+  _type: "notFoundPage" as const,
+  eyebrowPrefix: "// Error",
+  eyebrowLabel: "Page Not Found",
+  heading: "Signal Lost.",
+  description:
+    "The page you're looking for went out of bounds. It may have been moved, deleted, or never existed.",
+  primaryCtaLabel: "Back to Home",
+  primaryCtaHref: "/",
+  secondaryCtaLabel: "View Signals",
+  secondaryCtaHref: "/terminal",
+};
+
+export const error500Page = {
+  _id: "error500Page",
+  _type: "error500Page" as const,
+  statusLeft: "System Error",
+  statusRight: "Server Unresponsive",
+  recoveryLabel: "System Recovery",
+  eyebrow: "// Error · Internal Server Failure",
+  heading: "System Down.",
+  description:
+    "Something went wrong on our end. Our team has been notified and is working on a fix.",
+  tracePrefix: "ERR_INTERNAL · TRACE_ID:",
+  primaryCtaLabel: "Try Again",
+  secondaryCtaLabel: "Back to Home",
+  secondaryCtaHref: "/",
+};
+
+export const comingSoonMeta = {
+  _id: "comingSoonPage",
+  _type: "comingSoonPage" as const,
+  tickerItems: [
+    "Coming Soon",
+    "Wagerbird",
+    "Stay Tuned",
+    "New Feature",
+    "Signal Stream",
+    "The Model",
+  ],
+  eyebrow: "// Something Big Is Coming",
+  heroWhite: "Coming",
+  heroYellow: "Soon.",
+  description:
+    "We're building something that will change how you bet. Be the first to know when it drops.",
+  targetDate: "2028-01-01T00:00:00.000Z",
+  emailPlaceholder: "Enter your email for early access",
+  notifyLabel: "Notify Me",
+  finePrint: "No spam. Unsubscribe anytime.",
+};
+
+export const affiliatesPage = {
+  _id: "affiliatesPage",
+  _type: "affiliatesPage" as const,
+  heroHeading: "Get Paid to\nShare the Edge.",
+  heroDescription:
+    "Earn 30% on every first-time purchase your audience makes on WagerBird — HOTSHEET, PointsPacks, or Terminal access. Flat rate. No tiers. No forced subscriptions.",
+  commissionMeta: "// Commission · First Purchase · No Cap",
+  programStatus: "Program Open · Paying Out From Day One",
+  primaryCtaLabel: "Apply to the Program",
+  primaryCtaHref: "/register",
+  secondaryCtaLabel: "See How It Works",
+  secondaryCtaHref: "#how-it-works",
+  calcEyebrow: "// Your Potential Earnings",
+  calcHeading: "See What Your Cut Looks Like.",
+  calcDescription:
+    "Pick the product. Drag the slider. See exactly what 30% means for your audience — no ambiguity, no fine print.",
+  calcProducts: [
+    { id: "hotsheet", name: "Hotsheet", price: 25, label: "$25 per purchase" },
+    { id: "pointspacks", name: "PointsPacks", price: 49, label: "$49 per purchase" },
+    { id: "terminal", name: "Terminal", price: 99, label: "$99 per purchase" },
+  ],
+  whyEyebrow: "// Why This Program",
+  whyHeading: "Platform.",
+  whyDescription:
+    "WagerBird runs on process. Clean structure, no noise, everything visible. The affiliate program works exactly the same way.",
+  whyCtaLabel: "Apply Now",
+  whyReasons: [
+    {
+      num: "01",
+      body: "Most programs make you earn your rate. WagerBird pays 30% from your first referral. The same rate whether you send 1 or 100. No quarterly quotas, no loyalty ladders.",
+      tag: "From Day One",
+    },
+    {
+      num: "02",
+      body: "WagerBird is pay-per-pick. Your referrals buy what they need — a Hotsheet release, a Points Pack — and leave. No recurring commitment required. That's a far easier conversion than a monthly SaaS plan.",
+      tag: "Lower Barrier to Buy",
+    },
+    {
+      num: "03",
+      body: "Your dashboard shows every click, every purchase, every commission in real time. Nothing is batched, delayed, or ambiguous. You know exactly where you stand at all times.",
+      tag: "Real-Time Dashboard",
+    },
+    {
+      num: "04",
+      body: "WagerBird isn't a generic picks service. It's confidence-scored, process-driven, and built for bettors who take their bankroll seriously. That story resonates. It converts because it's true.",
+      tag: "Story Sells Itself",
+    },
+    {
+      num: "05",
+      body: "Once approved, you receive your tracking link and a full creative kit — banners, copy blocks, angle suggestions. You can go from approval to your first post within the hour.",
+      tag: "Ship Same Day",
+    },
+  ],
+  marqueeItems: [
+    "30% Commission",
+    "Real-Time Tracking",
+    "No Subscription Required",
+    "Flat Rate From Day One",
+    "Full Creative Kit",
+    "First-Purchase Payout",
+    "Unlimited Referrals",
+    "Instant Approval",
+  ],
+  wypEyebrow: "// What You Promote",
+  wypHeading1: "Two Products.",
+  wypHeading2: "One Clean Commission.",
+  wypDescription:
+    "Promote WagerBird's core products. Every first-time purchase through your link earns 30% — no exceptions, no fine print.",
+  wypFootnote:
+    "Commission applies to first-time purchases. All activity tracked in real time inside your partner dashboard.",
+  wypProducts: [
+    {
+      id: "terminal",
+      badges: [{ label: "Full Platform Access", filled: false }],
+      title: "Terminal / PointsPacks",
+      subtags: ["Confidence-Scored Signals", "WagerVision", "Calculator"],
+      description:
+        "Access to the full WagerBird Terminal — the complete signal library, performance tracking, WagerVision overlays, and the bankroll Calculator. Purchased via Points, not a subscription.",
+      tiers: [
+        { label: "Starter Pack", price: 39, earn: 11.7 },
+        { label: "Pro Pack", price: 99, earn: 29.7 },
+      ],
+    },
+    {
+      id: "hotsheet",
+      badges: [
+        { label: "Popular", filled: true },
+        { label: "Daily Signal Digest", filled: false },
+      ],
+      title: "Hotsheet",
+      subtags: ["AM + PM Releases", "Up to 3 Signals per Release"],
+      description:
+        "High-confidence signals delivered on a set schedule, twice daily. Your audience picks what they need — a single release or the full-day pass. No ongoing commitment.",
+      tiers: [
+        { label: "Single Release", price: 25, earn: 7.5 },
+        { label: "Day Pass", price: 40, earn: 12.0 },
+      ],
+    },
+  ],
+  procEyebrow: "// The Process",
+  procSubtitle:
+    "Four steps. Clean process. You'll hear back quickly — no lengthy vetting, just a real audience check.",
+  procHeading: "Get Paid.",
+  procSteps: [
+    {
+      num: "01",
+      body: "Submit your application. Our team reviews it quickly — no lengthy vetting, just a check that your audience is a real fit.",
+    },
+    {
+      num: "02",
+      body: "Approved affiliates receive their unique tracking link plus a full creative kit — ready to use across any channel or format.",
+    },
+    {
+      num: "03",
+      body: "Promote however you work — content, video, social, email. If your audience clicks your link and buys, you earn. Simple.",
+    },
+    {
+      num: "04",
+      body: "Your dashboard shows every click, conversion, and commission in real time. No black boxes. No delays.",
+    },
+  ],
+  wsaEyebrow: "// Who Should Apply",
+  wsaHeading1: "Built for Anyone",
+  wsaHeading2: "a Relevant Audience.",
+  wsaDescription:
+    "If your audience has a genuine interest in sports betting, bankroll management, fantasy sports, or DFS — there's a real fit here. We review every application to confirm it.",
+  wsaAudiences: [
+    {
+      num: "01",
+      title: "Sports Betting Content Creators",
+      body: "Writers, bloggers, and analysts covering betting strategy, picks breakdowns, and bankroll management. Your audience already buys — point them somewhere that pays you.",
+      span: 3,
+    },
+    {
+      num: "02",
+      title: "Podcast & Newsletter Hosts",
+      body: "Trusted voices with engaged audiences. WagerBird fits naturally into a pre-roll, mid-roll, or a newsletter placement. Low friction for your audience to convert.",
+      span: 3,
+    },
+    {
+      num: "03",
+      title: "YouTube & Video Creators",
+      body: "Demo-driven content and sports breakdowns. WagerBird's dashboard is visual and compelling on screen — your audience can see exactly what they're buying.",
+      span: 2,
+    },
+    {
+      num: "04",
+      title: "Social Media Sports Accounts",
+      body: "High-follower sports and betting accounts across X, Instagram, and TikTok. Fast conversions, low-cost entry point for your audience, straightforward link placement.",
+      span: 2,
+    },
+    {
+      num: "05",
+      title: "Fantasy & DFS Analysts",
+      body: "The overlap between DFS and sports betting is significant. WagerBird's signal structure resonates with an audience already thinking in terms of edges and probabilities.",
+      span: 2,
+    },
+  ],
+  prEyebrow: "// Partner Resources",
+  prHeading1: "Everything you need to",
+  prHeading2: "Start Promoting.",
+  prDescription:
+    "You handle the audience. We handle the assets. Approved affiliates can ship on day one.",
+  prResources: [
+    {
+      id: "materials",
+      title: "Marketing Materials",
+      body: "Banners, copy blocks, and creative assets aligned with the WagerBird brand — ready to drop into any format.",
+      href: "/register",
+      highlighted: false,
+    },
+    {
+      id: "link",
+      title: "Unique Tracking Link",
+      body: "Your personal link tracks every click and purchase tied to your audience. Attribution is clear. No gaps.",
+      href: "/register",
+      highlighted: false,
+    },
+    {
+      id: "commission",
+      title: "30% Flat Commission",
+      body: "No tiers. No climbing. 30% on every first-time purchase from day one — Hotsheet or PointsPacks.",
+      href: "/affiliates#calculator",
+      highlighted: true,
+    },
+    {
+      id: "dashboard",
+      title: "Partner Dashboard",
+      body: "Real-time view of all clicks, conversions, and commissions. Full visibility — no delays, no batching.",
+      href: "/register",
+      highlighted: false,
+    },
+    {
+      id: "platform",
+      title: "Platform Access",
+      body: "Approved affiliates get direct access to WagerBird. Speak from experience, not theory. Your audience will feel the difference.",
+      href: "/register",
+      highlighted: false,
+    },
+    {
+      id: "support",
+      title: "Dedicated Support",
+      body: "Our team helps with creative strategy, campaign angles, and questions. You won't be figuring things out alone.",
+      href: "/register",
+      highlighted: false,
+    },
+  ],
+  ctaEyebrow: "// Get Started — Affiliate Program",
+  ctaHeading1: "Build Your Edge.",
+  ctaHeading2: "And Your Income.",
+  ctaDescription:
+    "Apply now. Start earning 30% on every first-time purchase your audience makes on WagerBird.",
+  ctaButtonLabel: "Apply to the Affiliate Program",
+  ctaButtonHref: "/register",
+  ctaFooterText: "Questions?",
+  ctaFooterEmail: "partners@wagerbird.com",
+  faqEyebrow: "// Questions",
+  faqHeading1: "Frequently Asked.",
+  faqHeading2: "Clearly Answered.",
+  faqItems: [
+    {
+      id: "what-is",
+      question: "What is the WagerBird Affiliate Program?",
+      answer:
+        "The WagerBird Affiliate Program lets you earn 30% commission by referring your audience to WagerBird. When someone clicks your unique link and makes their first purchase — whether that's a HOTSHEET release, a PointsPack, or Terminal access — you earn 30% of that transaction. No subscriptions required from your audience. No minimums from you.",
+    },
+    {
+      id: "commission",
+      question: "How does the 30% commission work exactly?",
+      answer:
+        "Every time someone from your audience clicks your unique affiliate link and completes their first purchase on WagerBird, you earn 30% of that transaction value — flat, from day one. There are no tiers to climb and no thresholds to hit before you start getting paid. Commissions are tracked in real-time on your partner dashboard.",
+    },
+    {
+      id: "qualifies",
+      question: "Who qualifies to become an affiliate?",
+      answer:
+        "Anyone with a relevant audience in the sports, betting, fantasy, or DFS space can apply. This includes content creators, podcast hosts, YouTubers, newsletter writers, social media accounts, and analysts. We review every application manually and approve partners whose audiences align with WagerBird's products.",
+    },
+    {
+      id: "materials",
+      question: "What marketing materials will I receive?",
+      answer:
+        "Approved affiliates get access to a full creative kit — banners, copy blocks, graphics, and brand assets formatted for social, email, and web. Everything is aligned with the WagerBird brand so you can launch immediately without having to design anything from scratch.",
+    },
+    {
+      id: "tracking",
+      question: "How do I track my performance?",
+      answer:
+        "You'll have access to a dedicated partner dashboard with real-time data on clicks, conversions, and commissions. Attribution is tied directly to your unique link — no delays, no batching, no ambiguity. You always know exactly what your audience is doing.",
+    },
+    {
+      id: "restrictions",
+      question: "Are there restrictions on how I can promote WagerBird?",
+      answer:
+        "Yes — we have a few brand standards to maintain quality and compliance. You may not make false or misleading claims, guarantee outcomes, or target audiences under 18. Paid advertising using WagerBird trademarks requires prior approval. Beyond that, you have flexibility in how you promote.",
+    },
+    {
+      id: "disclose",
+      question: "Do I need to disclose my affiliate relationship?",
+      answer:
+        'Yes. FTC guidelines require disclosure whenever you\'re compensated for a recommendation. This means clearly noting your affiliate relationship in your content — e.g., "#ad," "#sponsored," or "I earn commission from this link." It\'s required, and we expect all partners to comply.',
+    },
+  ],
+};
+
 export const homePage = {
   _id: "page-home",
   _type: "page" as const,
@@ -494,6 +879,97 @@ metaTitle: "Partner Sportsbooks — WAGERBIRD",
   ],
 };
 
+export const affiliatesLandingPage = {
+  _id: "page-affiliates",
+  _type: "page" as const,
+  order: 6,
+  icon: "UsersIcon",
+  title: "Affiliates",
+  slug: { _type: "slug" as const, current: "affiliates" },
+  seo: {
+    metaTitle: "Affiliates — WAGERBIRD",
+    metaDescription:
+      "Earn 30% commission on every first-time purchase. No tiers. No forced subscriptions. Paying out from day one.",
+  },
+  blocks: [
+    {
+      _type: "heroBlock" as const,
+      _key: key(),
+      badgeText: "AFFILIATE PROGRAM · EARN 30%",
+      title: portableText([
+        "Get Paid to",
+        ["Share the ", { text: "Edge.", accent: true }],
+      ]),
+      description:
+        "Earn 30% on every first-time purchase your audience makes on WAGERBIRD — HOTSHEET, PointsPacks, or Terminal access. Flat rate. No tiers. No forced subscriptions.",
+      primaryCtaLabel: "Apply to the Program",
+      primaryCtaHref: "/register",
+      secondaryCtaLabel: "See How It Works",
+      secondaryCtaHref: "#how-it-works",
+    },
+    {
+      _type: "valueStripBlock" as const,
+      _key: key(),
+      items: [
+        {
+          _type: "valueStripItem",
+          value: "30%",
+          label: "Flat Commission",
+          description: "Earn on every first-time purchase — no tiers.",
+        },
+        {
+          _type: "valueStripItem",
+          value: "No",
+          label: "Subscription Required",
+          description: "Your audience can buy HOTSHEET, PointsPacks, or Terminal a la carte.",
+        },
+        {
+          _type: "valueStripItem",
+          value: "Day 1",
+          label: "Payouts",
+          description: "Commissions start from your first referred purchase.",
+        },
+      ],
+    },
+    {
+      _type: "faqBlock" as const,
+      _key: key(),
+      label: "// Questions",
+      title: portableText(["Frequently Asked.", { text: "Clearly Answered.", accent: true }]),
+      items: [
+        {
+          _type: "faqItem",
+          question: "What is the WAGERBIRD Affiliate Program?",
+          answer:
+            "The WAGERBIRD Affiliate Program lets you earn 30% commission by referring your audience to WAGERBIRD. When someone clicks your unique link and makes their first purchase — HOTSHEET, PointsPack, or Terminal access — you earn 30% of that transaction.",
+        },
+        {
+          _type: "faqItem",
+          question: "Who can apply?",
+          answer:
+            "Creators, analysts, newsletters, podcasts, and communities in the sports, betting, fantasy, or DFS space are encouraged to apply. We manually review every application for brand fit.",
+        },
+        {
+          _type: "faqItem",
+          question: "How are commissions tracked?",
+          answer:
+            "You get a unique affiliate link tied to a partner dashboard. Clicks, conversions, and commissions are tracked in real time so you always know what you're earning.",
+        },
+      ],
+    },
+    {
+      _type: "ctaBannerBlock" as const,
+      _key: key(),
+      watermark: "PARTNER",
+      title: portableText(["Build Your Edge.", "And Your Income."]),
+      subtitle:
+        "Apply now and start earning 30% on every first-time purchase your audience makes on WAGERBIRD.",
+      ctaLabel: "Apply to the Program →",
+      ctaHref: "/register",
+    },
+  ],
+};
+
 // Coming-soon style pages: single block or minimal content so routes work
 const comingSoonBlock = (slug: string, title: string, order: number) => ({
   _id: `page-${slug}`,
@@ -507,7 +983,8 @@ const comingSoonBlock = (slug: string, title: string, order: number) => ({
       _type: "heroBlock" as const,
       _key: key(),
       title: portableText([title, "Coming soon."]),
-      description: "We're working on it. Check back soon or explore Terminal, Hotsheet, and Pricing.",
+      description:
+        "We're working on it. Check back soon or explore Terminal, Hotsheet, and Pricing.",
       primaryCtaLabel: "Go to Home →",
       primaryCtaHref: "/",
     },
@@ -516,14 +993,13 @@ const comingSoonBlock = (slug: string, title: string, order: number) => ({
 
 export const comingSoonPages = [
   comingSoonBlock("about", "About", 10),
-  comingSoonBlock("affiliates", "Affiliates", 11),
-  comingSoonBlock("contact", "Contact", 12),
-  comingSoonBlock("faq", "FAQ", 13),
-  comingSoonBlock("learn", "Learn", 14),
-  comingSoonBlock("live-odds", "Live Odds", 15),
-  comingSoonBlock("results", "Results", 16),
-  comingSoonBlock("privacy-policy", "Privacy Policy", 17),
-  comingSoonBlock("terms-of-service", "Terms of Service", 18),
+  comingSoonBlock("contact", "Contact", 11),
+  comingSoonBlock("faq", "FAQ", 12),
+  comingSoonBlock("learn", "Learn", 13),
+  comingSoonBlock("live-odds", "Live Odds", 14),
+  comingSoonBlock("results", "Results", 15),
+  comingSoonBlock("privacy-policy", "Privacy Policy", 16),
+  comingSoonBlock("terms-of-service", "Terms of Service", 17),
 ];
 
 export const allPages = [
@@ -533,5 +1009,6 @@ export const allPages = [
   oddsPage,
   hotsheetPage,
   sportsbooksPage,
+  affiliatesLandingPage,
   ...comingSoonPages,
 ];

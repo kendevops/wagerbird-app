@@ -3,13 +3,36 @@
 import { useState } from "react";
 import Link from "next/link";
 
+const APP_URL = process.env.NEXT_PUBLIC_WAGERBIRD_APP_URL ?? "https://app.wagerbird.com";
+
 export default function SignInPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle sign in logic here
+    setError(null);
+    setLoading(true);
+    try {
+      const res = await fetch("/api/auth/signin", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        setError(data?.error ?? data?.message ?? "Sign in failed");
+        return;
+      }
+      const redirectUrl = data?.redirectUrl ?? APP_URL;
+      window.location.href = redirectUrl;
+    } catch {
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -57,6 +80,11 @@ export default function SignInPage() {
           </div>
 
           <form className="signin-form" onSubmit={handleSubmit}>
+            {error && (
+              <div className="signin-error" role="alert">
+                {error}
+              </div>
+            )}
             <div className="signin-field-group">
               <label className="signin-field-label" htmlFor="email">
                 Email
@@ -92,8 +120,8 @@ export default function SignInPage() {
               />
             </div>
 
-            <button type="submit" className="signin-submit-btn clip-btn">
-              Sign In
+            <button type="submit" className="signin-submit-btn clip-btn" disabled={loading}>
+              {loading ? "Signing in…" : "Sign In"}
               <svg
                 width="16"
                 height="16"

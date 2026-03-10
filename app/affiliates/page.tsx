@@ -4,6 +4,7 @@ import AffiliatesCalculator from "@/components/AffiliatesCalculator";
 import WhyProgramSection from "@/components/WhyProgramSection";
 import AffiliatesMarquee from "@/components/AffiliatesMarquee";
 import WhatYouPromote from "@/components/WhatYouPromote";
+import TheProcess from "@/components/TheProcess";
 
 export const metadata: Metadata = {
   title: "Affiliates — WagerBird",
@@ -114,37 +115,8 @@ export default function AffiliatesPage() {
       {/* ── WHAT YOU PROMOTE ── */}
       <WhatYouPromote />
 
-      {/* ── HOW IT WORKS ── */}
-      <section className="aff-how-section" id="how-it-works">
-        <p className="aff-section-eyebrow">// How It Works</p>
-        <h2 className="aff-section-heading">Simple. Transparent. Profitable.</h2>
-
-        <div className="aff-steps">
-          {[
-            {
-              num: "01",
-              title: "Apply",
-              body: "Fill out a short application. Get approved within 24 hours.",
-            },
-            {
-              num: "02",
-              title: "Share",
-              body: "Get your unique referral link and share it with your audience.",
-            },
-            {
-              num: "03",
-              title: "Earn",
-              body: "Earn 30% on every first purchase made through your link. No expiry.",
-            },
-          ].map(({ num, title, body }) => (
-            <div key={num} className="aff-step">
-              <span className="aff-step-num">{num}</span>
-              <h3 className="aff-step-title">{title}</h3>
-              <p className="aff-step-body">{body}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      {/* ── THE PROCESS ── */}
+      <TheProcess />
 
       {/* ── PERKS ── */}
       <section className="aff-perks-section">

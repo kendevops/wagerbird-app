@@ -7749,6 +7749,214 @@ body {
 }
 
 /* ═══════════════════════════════════════════════════════════
+   THE PROCESS SECTION
+   ═══════════════════════════════════════════════════════════ */
+
+.proc-section {
+  background: linear-gradient(135deg, #0B1028 0%, #050816 55%, #03040C 100%);
+  padding: 80px 64px 96px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* subtle grid pattern overlay */
+.proc-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+
+/* ── Top row ── */
+.proc-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 48px;
+  margin-bottom: 48px;
+  position: relative;
+}
+
+.proc-eyebrow {
+  font-family: var(--font-space-mono, 'Space Mono', monospace);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 3.3px;
+  text-transform: uppercase;
+  color: var(--color-yellow);
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.proc-subtitle {
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.65;
+  color: #656E8A;
+  margin: 0;
+  text-align: right;
+  max-width: 360px;
+}
+
+/* ── Heading ── */
+.proc-heading {
+  font-family: var(--font-barlow-condensed, 'Barlow Condensed', sans-serif);
+  font-size: clamp(72px, 10vw, 130px);
+  font-weight: 900;
+  font-style: italic;
+  line-height: 0.9;
+  letter-spacing: -3px;
+  text-transform: uppercase;
+  color: var(--color-yellow);
+  margin: 0 0 72px;
+  position: relative;
+}
+
+/* ── Timeline grid ── */
+.proc-timeline {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  position: relative;
+}
+
+.proc-col {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  cursor: default;
+}
+
+/* ── Track (box + line) ── */
+.proc-track {
+  display: flex;
+  align-items: center;
+}
+
+/* Step number box */
+.proc-box {
+  width: 48px;
+  height: 48px;
+  background: #0D1124;
+  border: 1px solid rgba(255,255,255,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
+}
+
+.proc-col--hovered .proc-box {
+  border-color: var(--color-yellow);
+  background: rgba(228, 242, 34, 0.08);
+  box-shadow: 0 0 24px rgba(228, 242, 34, 0.2);
+}
+
+.proc-num {
+  font-family: var(--font-space-mono, 'Space Mono', monospace);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: rgba(255,255,255,0.7);
+  transition: color 0.25s;
+}
+
+.proc-col--hovered .proc-num {
+  color: var(--color-yellow);
+}
+
+/* ── Connecting line ── */
+.proc-line-wrap {
+  flex: 1;
+  height: 1px;
+  position: relative;
+  overflow: hidden;
+}
+
+.proc-line-rail {
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.1);
+}
+
+.proc-line-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--color-yellow);
+  transform-origin: left center;
+  box-shadow: 0 0 8px rgba(228,242,34,0.6);
+}
+
+/* ── Description ── */
+.proc-desc {
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: #656E8A;
+  margin: 0;
+  padding-right: 32px;
+  transition: color 0.25s;
+}
+
+.proc-col--hovered .proc-desc {
+  color: #9AA3BE;
+}
+
+/* ── Responsive ── */
+@media (max-width: 960px) {
+  .proc-section {
+    padding: 60px 32px 72px;
+  }
+
+  .proc-top {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .proc-subtitle {
+    text-align: left;
+  }
+}
+
+@media (max-width: 700px) {
+  .proc-section {
+    padding: 48px 20px 64px;
+  }
+
+  .proc-timeline {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px 0;
+  }
+
+  /* Hide lines in 2-col layout — they don't align well */
+  .proc-line-wrap {
+    display: none;
+  }
+
+  .proc-heading {
+    font-size: 68px;
+    margin-bottom: 48px;
+  }
+
+  .proc-desc {
+    padding-right: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .proc-timeline {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
    WHAT YOU PROMOTE SECTION
    ═══════════════════════════════════════════════════════════ */
 

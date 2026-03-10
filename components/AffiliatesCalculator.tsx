@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { motion, useInView, animate } from "framer-motion";
+import { motion, useInView, animate, type Variants } from "framer-motion";
 
 const PRODUCTS = [
   { id: "hotsheet",    name: "Hotsheet",    price: 25,  label: "$25 per purchase" },
@@ -37,12 +37,12 @@ function AnimatedDollar({ value, decimals = 2 }: { value: number; decimals?: num
   return <>${decimals === 0 ? Math.round(animated).toLocaleString() : animated.toFixed(decimals)}</>;
 }
 
-const sectionVariants = {
+const sectionVariants: Variants = {
   hidden: { opacity: 0, y: 48 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: "easeOut" } },
 };
 
-const panelVariants = {
+const panelVariants: Variants = {
   hidden: { opacity: 0, x: 40 },
   visible: { opacity: 1, x: 0, transition: { duration: 0.65, ease: "easeOut", delay: 0.15 } },
 };

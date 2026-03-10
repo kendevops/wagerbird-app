@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, type Variants } from "framer-motion";
 import Link from "next/link";
 
 const REASONS = [
@@ -32,7 +32,7 @@ const REASONS = [
   },
 ];
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: {},
   visible: {
     transition: {
@@ -42,7 +42,7 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, x: 32 },
   visible: {
     opacity: 1,
@@ -51,7 +51,7 @@ const itemVariants = {
   },
 };
 
-const leftVariants = {
+const leftVariants: Variants = {
   hidden: { opacity: 0, x: -40 },
   visible: {
     opacity: 1,

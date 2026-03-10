@@ -1861,6 +1861,428 @@ body {
   }
 }
 
+/* ─── Affiliates Earnings Calculator ────────────── */
+.calc-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 48px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Left copy */
+.calc-eyebrow {
+  font-family: var(--font-space-mono), 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--color-yellow);
+  margin: 0 0 20px 0;
+}
+
+.calc-heading {
+  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
+  font-size: clamp(44px, 6vw, 72px);
+  font-weight: 900;
+  line-height: 0.92;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin: 0 0 24px 0;
+}
+
+.calc-heading-accent {
+  color: var(--color-yellow);
+  font-style: italic;
+}
+
+.calc-description {
+  font-family: Inter, var(--font-geist-sans), sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.45);
+  max-width: 380px;
+  margin: 0 0 40px 0;
+}
+
+/* Stat pills */
+.calc-stat-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.calc-stat-pill {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.calc-pill-value {
+  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
+  font-size: 28px;
+  font-weight: 900;
+  font-style: italic;
+  color: var(--color-yellow);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.calc-pill-label {
+  font-family: var(--font-space-mono), 'Space Mono', monospace;
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* ── Calculator Panel ── */
+.calc-panel {
+  background: #0C1020;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+/* Product tabs */
+.calc-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.calc-tab {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 20px 20px 18px;
+  background: transparent;
+  border: none;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.calc-tab:last-child {
+  border-right: none;
+}
+
+.calc-tab:hover:not(.calc-tab--active) {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.calc-tab--active {
+  background: rgba(0, 45, 255, 0.08);
+  border-bottom-color: #002DFF;
+}
+
+.calc-tab-name {
+  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.45);
+  transition: color 0.2s;
+}
+
+.calc-tab--active .calc-tab-name {
+  color: #ffffff;
+}
+
+.calc-tab-price {
+  font-family: var(--font-space-mono), 'Space Mono', monospace;
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.calc-tab-referral {
+  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
+  font-size: 26px;
+  font-weight: 900;
+  font-style: italic;
+  color: var(--color-yellow);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: baseline;
+  gap: 0;
+}
+
+.calc-tab-ref-label {
+  font-family: var(--font-space-mono), 'Space Mono', monospace;
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+  font-style: normal;
+  margin-left: 4px;
+  align-self: flex-end;
+  margin-bottom: 3px;
+}
+
+/* Slider section */
+.calc-slider-section {
+  padding: 28px 24px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.calc-slider-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.calc-slider-label {
+  font-family: var(--font-space-mono), 'Space Mono', monospace;
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.calc-slider-value {
+  display: flex;
+  align-items: baseline;
+  gap: 0;
+}
+
+.calc-slider-count {
+  display: inline-block;
+  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
+  font-size: 36px;
+  font-weight: 900;
+  font-style: italic;
+  color: var(--color-yellow);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.calc-slider-unit {
+  font-family: var(--font-space-mono), 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--color-yellow);
+  opacity: 0.7;
+  margin-left: 2px;
+}
+
+/* Custom slider track */
+.calc-slider-track-wrap {
+  position: relative;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  margin-bottom: 12px;
+}
+
+.calc-slider-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: var(--color-yellow);
+  pointer-events: none;
+  transition: width 0.05s linear;
+}
+
+.calc-slider-input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+}
+
+.calc-slider-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 0;
+  background: var(--color-yellow);
+  border: 2px solid #0C1020;
+  cursor: grab;
+  margin-top: -7px;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.calc-slider-input::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 12px rgba(228, 242, 34, 0.5);
+}
+
+.calc-slider-input::-webkit-slider-thumb:active {
+  cursor: grabbing;
+  transform: scale(1.15);
+}
+
+.calc-slider-input::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 0;
+  background: var(--color-yellow);
+  border: 2px solid #0C1020;
+  cursor: grab;
+}
+
+.calc-slider-input:focus {
+  outline: none;
+}
+
+.calc-slider-marks {
+  display: flex;
+  justify-content: space-between;
+}
+
+.calc-slider-mark {
+  font-family: var(--font-space-mono), 'Space Mono', monospace;
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.2);
+}
+
+/* Summary row */
+.calc-summary-row {
+  display: flex;
+  align-items: stretch;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.calc-summary-cell {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 24px;
+}
+
+.calc-summary-divider {
+  width: 1px;
+  background: rgba(255, 255, 255, 0.06);
+  flex-shrink: 0;
+}
+
+.calc-summary-meta {
+  font-family: var(--font-space-mono), 'Space Mono', monospace;
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.calc-summary-amount {
+  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
+  font-size: 40px;
+  font-weight: 900;
+  font-style: italic;
+  color: var(--color-yellow);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.calc-summary-sub {
+  font-family: var(--font-space-mono), 'Space Mono', monospace;
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.2);
+}
+
+/* Annual projection */
+.calc-annual {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.calc-annual-label {
+  font-family: var(--font-space-mono), 'Space Mono', monospace;
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.calc-annual-amount {
+  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
+  font-size: clamp(52px, 7vw, 80px);
+  font-weight: 900;
+  font-style: italic;
+  color: var(--color-yellow);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+}
+
+.calc-annual-sub {
+  font-family: var(--font-space-mono), 'Space Mono', monospace;
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .calc-section {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    padding: 64px 24px;
+  }
+
+  .calc-description {
+    max-width: 100%;
+  }
+
+  .calc-tabs {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 540px) {
+  .calc-tabs {
+    grid-template-columns: 1fr;
+  }
+
+  .calc-tab {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .calc-tab--active {
+    border-bottom-color: #002DFF;
+  }
+}
+
 /* Scroll targets: offset for sticky header so in-page links land visibly */
 #packs,
 #how-it-works,

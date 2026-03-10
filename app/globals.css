@@ -7805,14 +7805,21 @@ body {
 
 .pr-heading {
   font-family: var(--font-barlow-condensed, 'Barlow Condensed', sans-serif);
-  font-size: clamp(64px, 9vw, 112px);
+  font-size: clamp(56px, 8vw, 112px);
   font-weight: 900;
   font-style: italic;
   line-height: 0.9;
   letter-spacing: -3px;
   text-transform: uppercase;
-  color: var(--color-yellow);
   margin: 0;
+}
+
+.pr-heading-white {
+  color: #ffffff;
+}
+
+.pr-heading-yellow {
+  color: var(--color-yellow);
 }
 
 .pr-description {

@@ -120,7 +120,11 @@ export default function PartnerResources() {
           <span className="pr-eyebrow-dot" aria-hidden="true" />
           // Partner Resources
         </p>
-        <h2 className="pr-heading">Start Promoting.</h2>
+        <h2 className="pr-heading">
+          <span className="pr-heading-white">Partner Resources.</span>
+          <br />
+          <span className="pr-heading-yellow">Start Promoting.</span>
+        </h2>
         <p className="pr-description">
           You handle the audience. We handle the assets. Approved affiliates can
           ship on day one.

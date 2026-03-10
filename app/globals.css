@@ -8742,7 +8742,7 @@ body {
 .acta-heading {
   font-family: var(--font-barlow-condensed, 'Barlow Condensed', sans-serif);
   font-size: clamp(72px, 11vw, 148px);
-  font-weight: 900;
+  font-weight: 700;
   line-height: 0.88;
   letter-spacing: -3px;
   text-transform: uppercase;

@@ -7706,3 +7706,44 @@ body {
     font-size: 14px;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════
+   AFFILIATES MARQUEE BANNER
+   ═══════════════════════════════════════════════════════════ */
+
+.aff-marquee-wrapper {
+  width: 100%;
+  background: var(--color-yellow);
+  overflow: hidden;
+  padding: 14px 0;
+  display: flex;
+  flex-shrink: 0;
+  border-top: 2px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.08);
+}
+
+.aff-marquee-track {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  will-change: transform;
+}
+
+.aff-marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  padding: 0 20px;
+  font-family: var(--font-space-mono), 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #07070F;
+}
+
+.aff-marquee-sep {
+  color: rgba(7, 7, 15, 0.35);
+  font-size: 16px;
+  font-weight: 400;
+}

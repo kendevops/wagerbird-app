@@ -7749,6 +7749,197 @@ body {
 }
 
 /* ═══════════════════════════════════════════════════════════
+   PARTNER RESOURCES SECTION
+   ═══════════════════════════════════════════════════════════ */
+
+.pr-section {
+  background: #ffffff;
+  padding: 72px 48px 80px;
+}
+
+/* ── Header ── */
+.pr-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+  margin-bottom: 48px;
+}
+
+.pr-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-space-mono, 'Space Mono', monospace);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--color-yellow);
+  margin: 0;
+}
+
+.pr-eyebrow-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-yellow);
+  flex-shrink: 0;
+}
+
+.pr-heading {
+  font-family: var(--font-barlow-condensed, 'Barlow Condensed', sans-serif);
+  font-size: clamp(64px, 9vw, 112px);
+  font-weight: 900;
+  font-style: italic;
+  line-height: 0.9;
+  letter-spacing: -3px;
+  text-transform: uppercase;
+  color: var(--color-yellow);
+  margin: 0;
+}
+
+.pr-description {
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.65;
+  color: #8A93B2;
+  max-width: 520px;
+  margin: 4px 0 0;
+}
+
+/* ── Grid ── */
+.pr-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border: 1px solid rgba(255,255,255,0.04);
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+/* ── Card wrapper ── */
+.pr-card-wrap {
+  position: relative;
+  border-top: 2px solid transparent;
+  transition: border-color 0.25s;
+}
+
+.pr-card-wrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(255,255,255,0.06);
+  pointer-events: none;
+  transition: border-color 0.25s;
+}
+
+.pr-card-wrap--highlighted {
+  border-top-color: var(--color-yellow);
+}
+
+.pr-card-wrap:hover::after {
+  border-color: rgba(228,242,34,0.2);
+}
+
+/* ── Card (the link) ── */
+.pr-card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 36px 32px 40px;
+  background: #0D1124;
+  text-decoration: none;
+  height: 100%;
+  transition: background 0.25s;
+}
+
+.pr-card:hover {
+  background: #111830;
+}
+
+/* ── Icon box ── */
+.pr-icon-box {
+  width: 44px;
+  height: 44px;
+  border: 1.5px solid rgba(228,242,34,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-yellow);
+  flex-shrink: 0;
+  transition: border-color 0.25s, background 0.25s;
+}
+
+.pr-card:hover .pr-icon-box {
+  border-color: var(--color-yellow);
+  background: rgba(228,242,34,0.08);
+}
+
+/* ── Card text ── */
+.pr-card-title {
+  font-family: var(--font-barlow-condensed, 'Barlow Condensed', sans-serif);
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.15;
+  transition: color 0.2s;
+}
+
+.pr-card-title--highlighted {
+  color: var(--color-yellow);
+}
+
+.pr-card:hover .pr-card-title:not(.pr-card-title--highlighted) {
+  color: rgba(255,255,255,0.95);
+}
+
+.pr-card-body {
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: #656E8A;
+  margin: 0;
+  transition: color 0.25s;
+}
+
+.pr-card:hover .pr-card-body {
+  color: #8A93B2;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .pr-section {
+    padding: 56px 32px 64px;
+  }
+
+  .pr-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .pr-section {
+    padding: 48px 20px 56px;
+  }
+
+  .pr-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pr-heading {
+    font-size: 60px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
    WHO SHOULD APPLY SECTION
    ═══════════════════════════════════════════════════════════ */
 

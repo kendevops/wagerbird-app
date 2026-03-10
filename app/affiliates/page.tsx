@@ -6,31 +6,13 @@ import AffiliatesMarquee from "@/components/AffiliatesMarquee";
 import WhatYouPromote from "@/components/WhatYouPromote";
 import TheProcess from "@/components/TheProcess";
 import WhoShouldApply from "@/components/WhoShouldApply";
+import PartnerResources from "@/components/PartnerResources";
 
 export const metadata: Metadata = {
   title: "Affiliates — WagerBird",
   description:
     "Earn 30% commission on every first-time purchase. No tiers. No forced subscriptions. Paying out from day one.",
 };
-
-const PROGRAM_PERKS = [
-  {
-    label: "30% Commission",
-    detail: "On every first-time purchase your audience makes. Flat rate, no tiers.",
-  },
-  {
-    label: "No Cap",
-    detail: "Unlimited earning potential. The more you refer, the more you earn.",
-  },
-  {
-    label: "Instant Payouts",
-    detail: "Paying out from day one. No waiting periods or thresholds.",
-  },
-  {
-    label: "All Products",
-    detail: "HOTSHEET, PointsPacks, Terminal access — every purchase counts.",
-  },
-];
 
 export default function AffiliatesPage() {
   return (
@@ -122,23 +104,8 @@ export default function AffiliatesPage() {
       {/* ── WHO SHOULD APPLY ── */}
       <WhoShouldApply />
 
-      {/* ── PERKS ── */}
-      <section className="aff-perks-section">
-        <p className="aff-section-eyebrow">// Program Details</p>
-        <h2 className="aff-section-heading">Everything You Need to Know</h2>
-
-        <div className="aff-perks-grid">
-          {PROGRAM_PERKS.map(({ label, detail }) => (
-            <div key={label} className="aff-perk-card">
-              <span className="aff-perk-check" aria-hidden="true">✓</span>
-              <div>
-                <h3 className="aff-perk-label">{label}</h3>
-                <p className="aff-perk-detail">{detail}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+      {/* ── PARTNER RESOURCES ── */}
+      <PartnerResources />
 
       {/* ── CTA BANNER ── */}
       <section className="aff-cta-section">

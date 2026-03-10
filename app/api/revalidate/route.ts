@@ -19,23 +19,32 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Invalid secret" }, { status: 401 });
   }
 
-  const body = await request.json().catch(() => ({}));
-  const path = (body.path ?? body.slug?.current ?? body.slug ?? request.nextUrl.searchParams.get("path")) as
-    | string
-    | undefined;
-  const slug = typeof path === "string" ? path.replace(/^\//, "") : undefined;
+  const body = await request.json().catch(() => ({})) as {
+    _type?: string;
+    path?: string;
+    slug?: { current?: string } | string;
+  };
+  const docType = body._type;
+  const slugVal = body.slug;
+  const pathRaw = body.path ?? (typeof slugVal === "string" ? slugVal : slugVal?.current) ?? request.nextUrl.searchParams.get("path");
+  const path = typeof pathRaw === "string" ? pathRaw : undefined;
+  const slug = path ? path.replace(/^\//, "") : undefined;
+
+  // siteSettings affects all pages (metadata, favicon, etc.) — revalidate everything
+  const revalidateAll = docType === "siteSettings" || !slug;
 
   const knownSlugs = [
     "home", "terminal", "pricing", "sportsbooks", "hotsheet", "odds",
     "about", "affiliates", "coming-soon", "contact", "faq", "learn",
     "live-odds", "results", "privacy-policy", "terms-of-service",
+    "signin", "register",
   ];
 
   try {
     revalidatePath("/");
-    if (slug && slug !== "home") {
+    if (slug && slug !== "home" && !revalidateAll) {
       revalidatePath(`/${slug}`);
-    } else if (!slug) {
+    } else if (revalidateAll) {
       knownSlugs.forEach((s) => {
         if (s !== "home") revalidatePath(`/${s}`);
       });

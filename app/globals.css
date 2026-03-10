@@ -220,6 +220,15 @@ body {
   margin-bottom: 0;
 }
 
+.signin-error {
+  padding: 12px 16px;
+  background: rgba(220, 53, 69, 0.1);
+  border: 1px solid rgba(220, 53, 69, 0.4);
+  color: #c92a2a;
+  font-size: 13px;
+  border-radius: 4px;
+}
+
 .signin-field-group {
   display: flex;
   flex-direction: column;
@@ -299,6 +308,11 @@ body {
 
 .signin-submit-btn:hover {
   background: #0025c8;
+}
+
+.signin-submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
 /* Divider */
@@ -547,6 +561,15 @@ body {
   flex-direction: column;
   gap: 16px;
   width: 100%;
+}
+
+.signup-error {
+  padding: 12px 16px;
+  background: rgba(220, 53, 69, 0.1);
+  border: 1px solid rgba(220, 53, 69, 0.4);
+  color: #c92a2a;
+  font-size: 13px;
+  border-radius: 4px;
 }
 
 /* Name row — two fields side by side */

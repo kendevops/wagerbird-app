@@ -1,22 +1,21 @@
 "use client";
 
 import { trackInitiateCheckout } from "@/lib/tracking";
-import { APP_URL } from "@/lib/constants";
 
 import { motion } from "framer-motion";
 
-const PRICE_TO_STRIPE_ID: Record<number, string> = {
-  39: process.env.NEXT_PUBLIC_STRIPE_PRICE_STARTER!,
-  99: process.env.NEXT_PUBLIC_STRIPE_PRICE_CORE!,
-  199: process.env.NEXT_PUBLIC_STRIPE_PRICE_ADVANCED!,
+const PRICE_TO_PLAN: Record<number, string> = {
+  39: "starter",
+  99: "core",
+  199: "advanced",
 };
 
 function buildRegisterHref(price: number): string {
-  const stripePriceId = PRICE_TO_STRIPE_ID[price];
-  if (stripePriceId) {
-    return `${APP_URL}/register?stripePrice=${stripePriceId}`;
+  const plan = PRICE_TO_PLAN[price];
+  if (plan) {
+    return `/get-started?plan=${plan}`;
   }
-  return `${APP_URL}/register`;
+  return `/get-started`;
 }
 
 export interface PriceCardProps {
@@ -90,8 +89,6 @@ export default function PriceCard({
         {/* CTA */}
         <a
           href={href}
-          target="_blank"
-          rel="noopener noreferrer"
           onClick={() => trackInitiateCheckout("price_card", name)}
           className={`price-card-cta${popular ? " price-card-cta--popular" : ""}`}
         >

@@ -1,13 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { RegistrationForm } from "@/components/GetStartedFlow";
 import { APP_URL } from "@/lib/constants";
 
 type Status = "loading" | "complete" | "error";
 
-export default function GetStartedCompletePage() {
+function CompleteFlow() {
   const searchParams = useSearchParams();
   const sessionId = searchParams.get("session_id");
   const [status, setStatus] = useState<Status>("loading");
@@ -35,41 +35,58 @@ export default function GetStartedCompletePage() {
   }, [sessionId]);
 
   return (
+    <>
+      {status === "loading" && (
+        <div className="get-started-status">
+          <div className="get-started-spinner" />
+          <p>Verifying your payment...</p>
+        </div>
+      )}
+
+      {status === "complete" && sessionId && (
+        <>
+          <h1 className="get-started-title">Create Your Account</h1>
+          <p className="get-started-subtitle">
+            One last step — set up your account to access your picks.
+          </p>
+          <RegistrationForm
+            sessionId={sessionId}
+            prefillEmail={customerEmail}
+          />
+        </>
+      )}
+
+      {status === "error" && (
+        <div className="get-started-status">
+          <h1 className="get-started-title">Something Went Wrong</h1>
+          <p className="get-started-subtitle">
+            We couldn&rsquo;t verify your payment. If you were charged, your
+            points will be credited automatically and you&rsquo;ll receive an
+            email to set up your account.
+          </p>
+          <a href={`${APP_URL}/login`} className="get-started-submit">
+            Go to Login
+          </a>
+        </div>
+      )}
+    </>
+  );
+}
+
+export default function GetStartedCompletePage() {
+  return (
     <main className="get-started-page">
       <div className="get-started-wrapper">
-        {status === "loading" && (
-          <div className="get-started-status">
-            <div className="get-started-spinner" />
-            <p>Verifying your payment...</p>
-          </div>
-        )}
-
-        {status === "complete" && sessionId && (
-          <>
-            <h1 className="get-started-title">Create Your Account</h1>
-            <p className="get-started-subtitle">
-              One last step — set up your account to access your picks.
-            </p>
-            <RegistrationForm
-              sessionId={sessionId}
-              prefillEmail={customerEmail}
-            />
-          </>
-        )}
-
-        {status === "error" && (
-          <div className="get-started-status">
-            <h1 className="get-started-title">Something Went Wrong</h1>
-            <p className="get-started-subtitle">
-              We couldn&rsquo;t verify your payment. If you were charged, your
-              points will be credited automatically and you&rsquo;ll receive an
-              email to set up your account.
-            </p>
-            <a href={`${APP_URL}/login`} className="get-started-submit">
-              Go to Login
-            </a>
-          </div>
-        )}
+        <Suspense
+          fallback={
+            <div className="get-started-status">
+              <div className="get-started-spinner" />
+              <p>Verifying your payment...</p>
+            </div>
+          }
+        >
+          <CompleteFlow />
+        </Suspense>
       </div>
     </main>
   );

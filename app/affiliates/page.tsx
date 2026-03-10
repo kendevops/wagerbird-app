@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import AffiliatesCalculator from "@/components/AffiliatesCalculator";
+import WhyProgramSection from "@/components/WhyProgramSection";
 
 export const metadata: Metadata = {
   title: "Affiliates — WagerBird",
@@ -101,6 +102,9 @@ export default function AffiliatesPage() {
 
       {/* ── EARNINGS CALCULATOR ── */}
       <AffiliatesCalculator />
+
+      {/* ── WHY THIS PROGRAM ── */}
+      <WhyProgramSection />
 
       {/* ── HOW IT WORKS ── */}
       <section className="aff-how-section" id="how-it-works">

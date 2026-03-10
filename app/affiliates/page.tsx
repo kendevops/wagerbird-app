@@ -3,6 +3,7 @@ import Link from "next/link";
 import AffiliatesCalculator from "@/components/AffiliatesCalculator";
 import WhyProgramSection from "@/components/WhyProgramSection";
 import AffiliatesMarquee from "@/components/AffiliatesMarquee";
+import WhatYouPromote from "@/components/WhatYouPromote";
 
 export const metadata: Metadata = {
   title: "Affiliates — WagerBird",
@@ -109,6 +110,9 @@ export default function AffiliatesPage() {
 
       {/* ── MARQUEE BANNER ── */}
       <AffiliatesMarquee />
+
+      {/* ── WHAT YOU PROMOTE ── */}
+      <WhatYouPromote />
 
       {/* ── HOW IT WORKS ── */}
       <section className="aff-how-section" id="how-it-works">

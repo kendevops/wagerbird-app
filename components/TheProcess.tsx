@@ -2,8 +2,9 @@
 
 import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
+import type { AffiliatesPageResult } from "@/sanity/lib/queries";
 
-const STEPS = [
+const DEFAULT_STEPS = [
   {
     num: "01",
     body: "Submit your application. Our team reviews it quickly — no lengthy vetting, just a check that your audience is a real fit.",
@@ -22,10 +23,20 @@ const STEPS = [
   },
 ];
 
-export default function TheProcess() {
+export default function TheProcess({ data }: { data?: AffiliatesPageResult | null }) {
   const sectionRef = useRef<HTMLElement>(null);
   const inView = useInView(sectionRef, { once: true, margin: "-60px" });
   const [hovered, setHovered] = useState<string | null>(null);
+
+  const eyebrow = data?.procEyebrow ?? "// The Process";
+  const subtitle =
+    data?.procSubtitle ??
+    "Four steps. Clean process. You'll hear back quickly — no lengthy vetting, just a real audience check.";
+  const heading = data?.procHeading ?? "Get Paid.";
+  const steps =
+    data?.procSteps?.length && data.procSteps.every((s) => s.num && s.body)
+      ? (data.procSteps as { num: string; body: string }[])
+      : DEFAULT_STEPS;
 
   return (
     <section ref={sectionRef} className="proc-section" id="how-it-works">
@@ -37,7 +48,7 @@ export default function TheProcess() {
           animate={inView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.5 }}
         >
-          // The Process
+          {eyebrow}
         </motion.p>
         <motion.p
           className="proc-subtitle"
@@ -45,8 +56,7 @@ export default function TheProcess() {
           animate={inView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.15 }}
         >
-          Four steps. Clean process. You&rsquo;ll hear back quickly&nbsp;&mdash; no
-          lengthy vetting, just a real audience check.
+          {subtitle}
         </motion.p>
       </div>
 
@@ -57,12 +67,12 @@ export default function TheProcess() {
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6, delay: 0.1 }}
       >
-        Get Paid.
+        {heading}
       </motion.h2>
 
       {/* ── Timeline grid ── */}
       <div className="proc-timeline">
-        {STEPS.map((step, i) => (
+        {steps.map((step, i) => (
           <div
             key={step.num}
             className={`proc-col ${hovered === step.num ? "proc-col--hovered" : ""}`}
@@ -82,7 +92,7 @@ export default function TheProcess() {
               </motion.div>
 
               {/* Connecting line (all cols except last) */}
-              {i < STEPS.length - 1 && (
+              {i < steps.length - 1 && (
                 <div className="proc-line-wrap">
                   {/* Background rail */}
                   <div className="proc-line-rail" />

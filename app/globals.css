@@ -7659,14 +7659,31 @@ body {
 }
 
 .why-item {
+  position: relative;
   display: flex;
   flex-direction: column;
   cursor: default;
   transition: background 0.25s;
 }
 
+.why-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--color-yellow, #e4f222);
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
 .why-item:hover {
   background: rgba(228, 242, 34, 0.04);
+}
+
+.why-item:hover::before {
+  opacity: 1;
 }
 
 .why-item:hover .why-item-num {

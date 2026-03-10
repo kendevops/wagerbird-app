@@ -1,6 +1,14 @@
 import { pageType } from "./page";
 import { siteSettingsType } from "./siteSettings";
 import {
+  signInPageType,
+  registerPageType,
+  notFoundPageType,
+  error500PageType,
+  comingSoonMetaType,
+  affiliatesPageType,
+} from "./systemPages";
+import {
   heroBlock,
   tickerBlock,
   signalsBlock,
@@ -27,6 +35,12 @@ import { objectTypes } from "./objects";
 export const schemaTypes = [
   pageType,
   siteSettingsType,
+  signInPageType,
+  registerPageType,
+  notFoundPageType,
+  error500PageType,
+  comingSoonMetaType,
+  affiliatesPageType,
   heroBlock,
   tickerBlock,
   signalsBlock,

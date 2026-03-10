@@ -2,8 +2,9 @@
 
 import { useRef } from "react";
 import { motion, useInView, type Variants } from "framer-motion";
+import type { AffiliatesPageResult } from "@/sanity/lib/queries";
 
-const AUDIENCES = [
+const DEFAULT_AUDIENCES = [
   {
     num: "01",
     title: "Sports Betting Content Creators",
@@ -55,9 +56,20 @@ const headingVariants: Variants = {
   }),
 };
 
-export default function WhoShouldApply() {
+export default function WhoShouldApply({ data }: { data?: AffiliatesPageResult | null }) {
   const sectionRef = useRef<HTMLElement>(null);
   const inView = useInView(sectionRef, { once: true, margin: "-60px" });
+
+  const eyebrow = data?.wsaEyebrow ?? "// Who Should Apply";
+  const heading1 = data?.wsaHeading1 ?? "Built for Anyone";
+  const heading2 = data?.wsaHeading2 ?? "a Relevant Audience.";
+  const description =
+    data?.wsaDescription ??
+    "If your audience has a genuine interest in sports betting, bankroll management, fantasy sports, or DFS — there's a real fit here. We review every application to confirm it.";
+  const audiences =
+    data?.wsaAudiences?.length && data.wsaAudiences.every((a) => a.num && a.title && a.body)
+      ? (data.wsaAudiences as { num: string; title: string; body: string; span?: number }[])
+      : DEFAULT_AUDIENCES;
 
   return (
     <section ref={sectionRef} className="wsa-section">
@@ -71,7 +83,7 @@ export default function WhoShouldApply() {
             animate={inView ? "visible" : "hidden"}
             variants={headingVariants}
           >
-            // Who Should Apply
+            {eyebrow}
           </motion.p>
           <motion.h2
             className="wsa-heading"
@@ -80,13 +92,11 @@ export default function WhoShouldApply() {
             animate={inView ? "visible" : "hidden"}
             variants={headingVariants}
           >
-            Built for Anyone
+            {heading1}
             <br />
             With{" "}
             <em className="wsa-heading-accent">
-              a Relevant
-              <br />
-              Audience.
+              {heading2}
             </em>
           </motion.h2>
         </div>
@@ -96,9 +106,7 @@ export default function WhoShouldApply() {
           animate={inView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.55, delay: 0.25 }}
         >
-          If your audience has a genuine interest in sports betting, bankroll
-          management, fantasy sports, or DFS&nbsp;&mdash; there&rsquo;s a real
-          fit here. We review every application to confirm it.
+          {description}
         </motion.p>
       </div>
 
@@ -109,7 +117,7 @@ export default function WhoShouldApply() {
         animate={inView ? "visible" : "hidden"}
         variants={containerVariants}
       >
-        {AUDIENCES.map((item) => (
+        {audiences.map((item) => (
           <motion.div
             key={item.num}
             className="wsa-card"

@@ -3,8 +3,9 @@
 import { useRef } from "react";
 import { motion, useInView, type Variants } from "framer-motion";
 import Link from "next/link";
+import type { AffiliatesPageResult } from "@/sanity/lib/queries";
 
-const PRODUCTS = [
+const DEFAULT_PRODUCTS = [
   {
     id: "terminal",
     badges: [{ label: "Full Platform Access", filled: false }],
@@ -49,9 +50,23 @@ const headingVariants: Variants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: "easeOut" } },
 };
 
-export default function WhatYouPromote() {
+export default function WhatYouPromote({ data }: { data?: AffiliatesPageResult | null }) {
   const sectionRef = useRef<HTMLElement>(null);
   const inView = useInView(sectionRef, { once: true, margin: "-60px" });
+
+  const eyebrow = data?.wypEyebrow ?? "// What You Promote";
+  const heading1 = data?.wypHeading1 ?? "Two Products.";
+  const heading2 = data?.wypHeading2 ?? "One Clean Commission.";
+  const description =
+    data?.wypDescription ??
+    "Promote WagerBird's core products. Every first-time purchase through your link earns 30% — no exceptions, no fine print.";
+  const footnote =
+    data?.wypFootnote ??
+    "Commission applies to first-time purchases. All activity tracked in real time inside your partner dashboard.";
+  const products =
+    data?.wypProducts?.length && data.wypProducts.every((p) => p.id && p.title)
+      ? (data.wypProducts as typeof DEFAULT_PRODUCTS)
+      : DEFAULT_PRODUCTS;
 
   return (
     <section ref={sectionRef} className="wyp-section">
@@ -63,16 +78,15 @@ export default function WhatYouPromote() {
         variants={containerVariants}
       >
         <motion.p className="wyp-eyebrow" variants={headingVariants}>
-          // What You Promote
+          {eyebrow}
         </motion.p>
         <motion.h2 className="wyp-heading" variants={headingVariants}>
-          <span className="wyp-heading-dark">Two Products.</span>
+          <span className="wyp-heading-dark">{heading1}</span>
           <br />
-          <span className="wyp-heading-blue">One Clean Commission.</span>
+          <span className="wyp-heading-blue">{heading2}</span>
         </motion.h2>
         <motion.p className="wyp-description" variants={headingVariants}>
-          Promote WagerBird&rsquo;s core products. Every first-time purchase
-          through your link earns 30%&nbsp;&mdash; no exceptions, no fine print.
+          {description}
         </motion.p>
       </motion.div>
 
@@ -83,7 +97,7 @@ export default function WhatYouPromote() {
         animate={inView ? "visible" : "hidden"}
         variants={containerVariants}
       >
-        {PRODUCTS.map((product) => (
+        {products.map((product) => (
           <motion.div
             key={product.id}
             className="wyp-card"
@@ -148,10 +162,7 @@ export default function WhatYouPromote() {
       </motion.div>
 
       {/* ── Footer note ── */}
-      <p className="wyp-footnote">
-        Commission applies to first-time purchases. All activity tracked in real
-        time inside your partner dashboard.
-      </p>
+      <p className="wyp-footnote">{footnote}</p>
     </section>
   );
 }

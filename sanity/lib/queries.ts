@@ -41,6 +41,114 @@ export const pageBySlugQuery = groq`
   }
 `;
 
+export const signInPageQuery = groq`
+  *[_type == "signInPage" && _id == "signInPage"][0] {
+    leftEyebrow,
+    leftHeroLine1,
+    leftHeroLine2,
+    leftTagline,
+    stats[] { value, label },
+    formEyebrow,
+    formTitle,
+    emailLabel,
+    emailPlaceholder,
+    passwordLabel,
+    passwordPlaceholder,
+    forgotLabel,
+    submitLabel,
+    signupPrompt,
+    signupLinkLabel,
+    signupLinkHref,
+    finePrint,
+    formAction,
+  }
+`;
+
+export type SignInPageResult = {
+  leftEyebrow?: string;
+  leftHeroLine1?: string;
+  leftHeroLine2?: string;
+  leftTagline?: string;
+  stats?: { value?: string; label?: string }[];
+  formEyebrow?: string;
+  formTitle?: string;
+  emailLabel?: string;
+  emailPlaceholder?: string;
+  passwordLabel?: string;
+  passwordPlaceholder?: string;
+  forgotLabel?: string;
+  submitLabel?: string;
+  signupPrompt?: string;
+  signupLinkLabel?: string;
+  signupLinkHref?: string;
+  finePrint?: string;
+  formAction?: string | null;
+} | null;
+
+export const registerPageQuery = groq`
+  *[_type == "registerPage" && _id == "registerPage"][0] {
+    leftEyebrow,
+    leftHeroLine1,
+    leftHeroLine2,
+    leftTagline,
+    featureBullets[] { bold, rest },
+    formEyebrow,
+    formTitle,
+    formSubtitle,
+    firstNameLabel,
+    firstNamePlaceholder,
+    lastNameLabel,
+    lastNamePlaceholder,
+    phoneLabel,
+    phonePlaceholder,
+    emailLabel,
+    emailPlaceholder,
+    passwordLabel,
+    passwordPlaceholder,
+    confirmPasswordLabel,
+    confirmPasswordPlaceholder,
+    submitLabel,
+    legalText,
+    termsHref,
+    privacyHref,
+    signinPrompt,
+    signinLinkLabel,
+    signinLinkHref,
+    formAction,
+  }
+`;
+
+export type RegisterPageResult = {
+  leftEyebrow?: string;
+  leftHeroLine1?: string;
+  leftHeroLine2?: string;
+  leftTagline?: string;
+  featureBullets?: { bold?: string; rest?: string }[];
+  formEyebrow?: string;
+  formTitle?: string;
+  formSubtitle?: string;
+  firstNameLabel?: string;
+  firstNamePlaceholder?: string;
+  lastNameLabel?: string;
+  lastNamePlaceholder?: string;
+  phoneLabel?: string;
+  phonePlaceholder?: string;
+  emailLabel?: string;
+  emailPlaceholder?: string;
+  passwordLabel?: string;
+  passwordPlaceholder?: string;
+  confirmPasswordLabel?: string;
+  confirmPasswordPlaceholder?: string;
+  submitLabel?: string;
+  legalText?: string;
+  termsHref?: string;
+  privacyHref?: string;
+  signinPrompt?: string;
+  signinLinkLabel?: string;
+  signinLinkHref?: string;
+  formAction?: string | null;
+} | null;
+
 export const affiliatesPageQuery = groq`
   *[_type == "affiliatesPage" && _id == "affiliatesPage"][0] {
     heroHeading,

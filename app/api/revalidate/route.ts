@@ -30,8 +30,9 @@ export async function POST(request: NextRequest) {
   const path = typeof pathRaw === "string" ? pathRaw : undefined;
   const slug = path ? path.replace(/^\//, "") : undefined;
 
-  // siteSettings affects all pages (metadata, favicon, etc.) — revalidate everything
-  const revalidateAll = docType === "siteSettings" || !slug;
+  // siteSettings, signInPage, registerPage affect all / those routes — revalidate everything when they change
+  const revalidateAll =
+    docType === "siteSettings" || docType === "signInPage" || docType === "registerPage" || !slug;
 
   const knownSlugs = [
     "home", "terminal", "pricing", "sportsbooks", "hotsheet", "odds",

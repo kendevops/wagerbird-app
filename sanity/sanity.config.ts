@@ -41,11 +41,27 @@ export default defineConfig({
                   .schemaType("affiliatesPage")
                   .documentId("affiliatesPage")
               ),
+            S.listItem()
+              .title("Sign In Page")
+              .child(
+                S.document()
+                  .schemaType("signInPage")
+                  .documentId("signInPage")
+              ),
+            S.listItem()
+              .title("Register Page")
+              .child(
+                S.document()
+                  .schemaType("registerPage")
+                  .documentId("registerPage")
+              ),
             ...S.documentTypeListItems().filter(
               (item) =>
                 item.getId() !== "page" &&
                 item.getId() !== "siteSettings" &&
-                item.getId() !== "affiliatesPage"
+                item.getId() !== "affiliatesPage" &&
+                item.getId() !== "signInPage" &&
+                item.getId() !== "registerPage"
             ),
           ]),
     }),

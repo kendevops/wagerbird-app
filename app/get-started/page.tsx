@@ -2,7 +2,7 @@ import GetStartedFlow from "@/components/GetStartedFlow";
 
 export const metadata = {
   title: "Get Started | Wagerbird",
-  description: "Create your account and get instant access to premium picks.",
+  description: "Get instant access to premium picks.",
 };
 
 export default async function GetStartedPage({
@@ -17,9 +17,9 @@ export default async function GetStartedPage({
   return (
     <main className="get-started-page">
       <div className="get-started-wrapper">
-        <h1 className="get-started-title">Create Your Account</h1>
+        <h1 className="get-started-title">Secure Checkout</h1>
         <p className="get-started-subtitle">
-          Sign up and pay securely — all in one step.
+          Complete your purchase, then create your account.
         </p>
         <GetStartedFlow plan={selectedPlan} />
       </div>

@@ -7,7 +7,7 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
 
-    const url = `${MONOLITH_URL}/api/v1/register`;
+    const url = `${MONOLITH_URL}/api/v1/checkout-session`;
     const options: RequestInit & { dispatcher?: unknown } = {
       method: "POST",
       headers: {
@@ -18,7 +18,6 @@ export async function POST(request: NextRequest) {
       body: JSON.stringify(body),
     };
 
-    // Allow self-signed certs in local development
     if (process.env.NODE_TLS_REJECT_UNAUTHORIZED === "0") {
       const { Agent } = await import("undici");
       options.dispatcher = new Agent({
@@ -30,7 +29,7 @@ export async function POST(request: NextRequest) {
     const data = await response.json();
     return NextResponse.json(data, { status: response.status });
   } catch (error) {
-    console.error("[register] Proxy error:", error);
+    console.error("[checkout-session] Proxy error:", error);
     return NextResponse.json(
       { success: false, message: "Something went wrong. Please try again." },
       { status: 500 }

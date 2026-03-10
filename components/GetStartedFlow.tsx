@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, FormEvent } from "react";
+import { useState, useCallback, useEffect, FormEvent } from "react";
 import {
   EmbeddedCheckoutProvider,
   EmbeddedCheckout,
@@ -13,26 +13,11 @@ const stripePromise = loadStripe(
 
 const PLAN_DETAILS: Record<
   string,
-  { name: string; points: string; price: number; stripePriceEnvKey: string }
+  { name: string; points: string; price: number }
 > = {
-  starter: {
-    name: "Starter Pack",
-    points: "600 Points",
-    price: 39,
-    stripePriceEnvKey: "NEXT_PUBLIC_STRIPE_PRICE_STARTER",
-  },
-  core: {
-    name: "Core Pack",
-    points: "1,700 Points",
-    price: 99,
-    stripePriceEnvKey: "NEXT_PUBLIC_STRIPE_PRICE_CORE",
-  },
-  advanced: {
-    name: "Advanced Pack",
-    points: "3,600 Points",
-    price: 199,
-    stripePriceEnvKey: "NEXT_PUBLIC_STRIPE_PRICE_ADVANCED",
-  },
+  starter: { name: "Starter Pack", points: "600 Points", price: 39 },
+  core: { name: "Core Pack", points: "1,700 Points", price: 99 },
+  advanced: { name: "Advanced Pack", points: "3,600 Points", price: 199 },
 };
 
 const STRIPE_PRICES: Record<string, string> = {
@@ -40,6 +25,46 @@ const STRIPE_PRICES: Record<string, string> = {
   core: process.env.NEXT_PUBLIC_STRIPE_PRICE_CORE!,
   advanced: process.env.NEXT_PUBLIC_STRIPE_PRICE_ADVANCED!,
 };
+
+export default function GetStartedFlow({ plan }: { plan: string }) {
+  const planInfo = PLAN_DETAILS[plan] || PLAN_DETAILS.core;
+  const stripePrice = STRIPE_PRICES[plan] || STRIPE_PRICES.core;
+
+  const fetchClientSecret = useCallback(async () => {
+    const res = await fetch("/api/auth/checkout-session", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ stripe_price: stripePrice }),
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.message || "Failed to create checkout");
+    return data.data.checkout_client_secret;
+  }, [stripePrice]);
+
+  return (
+    <div className="get-started-container">
+      {/* Pack summary */}
+      <div className="get-started-pack-summary">
+        <span className="get-started-pack-name">{planInfo.name}</span>
+        <span className="get-started-pack-details">
+          {planInfo.points} &middot; ${planInfo.price}
+        </span>
+      </div>
+
+      {/* Embedded Checkout */}
+      <div className="get-started-checkout">
+        <EmbeddedCheckoutProvider
+          stripe={stripePromise}
+          options={{ fetchClientSecret }}
+        >
+          <EmbeddedCheckout />
+        </EmbeddedCheckoutProvider>
+      </div>
+    </div>
+  );
+}
+
+/* ─── Registration form shown after payment ─── */
 
 interface FormData {
   firstName: string;
@@ -53,22 +78,23 @@ interface FormErrors {
   [key: string]: string[];
 }
 
-export default function GetStartedFlow({ plan }: { plan: string }) {
-  const [step, setStep] = useState<1 | 2>(1);
+export function RegistrationForm({
+  sessionId,
+  prefillEmail,
+}: {
+  sessionId: string;
+  prefillEmail: string;
+}) {
   const [formData, setFormData] = useState<FormData>({
     firstName: "",
     lastName: "",
-    email: "",
+    email: prefillEmail,
     password: "",
     passwordConfirmation: "",
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [generalError, setGeneralError] = useState("");
   const [submitting, setSubmitting] = useState(false);
-  const [clientSecret, setClientSecret] = useState("");
-
-  const planInfo = PLAN_DETAILS[plan] || PLAN_DETAILS.core;
-  const stripePrice = STRIPE_PRICES[plan] || STRIPE_PRICES.core;
 
   const handleChange = (field: keyof FormData, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
@@ -97,7 +123,7 @@ export default function GetStartedFlow({ plan }: { plan: string }) {
           email: formData.email,
           password: formData.password,
           password_confirmation: formData.passwordConfirmation,
-          stripe_price: stripePrice,
+          session_id: sessionId,
         }),
       });
 
@@ -112,8 +138,10 @@ export default function GetStartedFlow({ plan }: { plan: string }) {
         return;
       }
 
-      setClientSecret(data.data.checkout_client_secret);
-      setStep(2);
+      // Redirect to monolith auto-login URL
+      if (data.data?.login_url) {
+        window.location.href = data.data.login_url;
+      }
     } catch {
       setGeneralError("Something went wrong. Please try again.");
     } finally {
@@ -121,151 +149,107 @@ export default function GetStartedFlow({ plan }: { plan: string }) {
     }
   };
 
-  const fetchClientSecret = useCallback(() => {
-    return Promise.resolve(clientSecret);
-  }, [clientSecret]);
-
   return (
     <div className="get-started-container">
-      {/* Pack summary */}
-      <div className="get-started-pack-summary">
-        <span className="get-started-pack-name">{planInfo.name}</span>
-        <span className="get-started-pack-details">
-          {planInfo.points} &middot; ${planInfo.price}
-        </span>
+      <div className="get-started-success-banner">
+        <span className="get-started-success-icon-sm">&#10003;</span>
+        Payment successful! Create your account to access your points.
       </div>
 
-      {/* Step indicator */}
-      <div className="get-started-steps">
-        <div className={`get-started-step ${step >= 1 ? "get-started-step--active" : ""}`}>
-          {step > 1 ? (
-            <span className="get-started-step-check">&#10003;</span>
-          ) : (
-            <span className="get-started-step-number">1</span>
-          )}
-          <span>Account</span>
-        </div>
-        <div className="get-started-step-divider" />
-        <div className={`get-started-step ${step >= 2 ? "get-started-step--active" : ""}`}>
-          <span className="get-started-step-number">2</span>
-          <span>Payment</span>
-        </div>
-      </div>
+      <form onSubmit={handleSubmit} className="get-started-form">
+        {generalError && (
+          <div className="get-started-error-banner">{generalError}</div>
+        )}
 
-      {/* Step 1: Registration */}
-      {step === 1 && (
-        <form onSubmit={handleSubmit} className="get-started-form">
-          {generalError && (
-            <div className="get-started-error-banner">{generalError}</div>
-          )}
-
-          <div className="get-started-form-row">
-            <div className="get-started-field">
-              <label htmlFor="firstName">First Name</label>
-              <input
-                id="firstName"
-                type="text"
-                value={formData.firstName}
-                onChange={(e) => handleChange("firstName", e.target.value)}
-                required
-              />
-              {errors.first_name && (
-                <span className="get-started-field-error">
-                  {errors.first_name[0]}
-                </span>
-              )}
-            </div>
-            <div className="get-started-field">
-              <label htmlFor="lastName">Last Name</label>
-              <input
-                id="lastName"
-                type="text"
-                value={formData.lastName}
-                onChange={(e) => handleChange("lastName", e.target.value)}
-                required
-              />
-              {errors.last_name && (
-                <span className="get-started-field-error">
-                  {errors.last_name[0]}
-                </span>
-              )}
-            </div>
-          </div>
-
+        <div className="get-started-form-row">
           <div className="get-started-field">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="firstName">First Name</label>
             <input
-              id="email"
-              type="email"
-              value={formData.email}
-              onChange={(e) => handleChange("email", e.target.value)}
+              id="firstName"
+              type="text"
+              value={formData.firstName}
+              onChange={(e) => handleChange("firstName", e.target.value)}
               required
             />
-            {errors.email && (
+            {errors.first_name && (
               <span className="get-started-field-error">
-                {errors.email[0]}
+                {errors.first_name[0]}
               </span>
             )}
           </div>
-
           <div className="get-started-field">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="lastName">Last Name</label>
             <input
-              id="password"
-              type="password"
-              value={formData.password}
-              onChange={(e) => handleChange("password", e.target.value)}
+              id="lastName"
+              type="text"
+              value={formData.lastName}
+              onChange={(e) => handleChange("lastName", e.target.value)}
               required
-              minLength={8}
             />
-            {errors.password && (
+            {errors.last_name && (
               <span className="get-started-field-error">
-                {errors.password[0]}
+                {errors.last_name[0]}
               </span>
             )}
           </div>
-
-          <div className="get-started-field">
-            <label htmlFor="passwordConfirmation">Confirm Password</label>
-            <input
-              id="passwordConfirmation"
-              type="password"
-              value={formData.passwordConfirmation}
-              onChange={(e) =>
-                handleChange("passwordConfirmation", e.target.value)
-              }
-              required
-              minLength={8}
-            />
-          </div>
-
-          <button
-            type="submit"
-            disabled={submitting}
-            className="get-started-submit"
-          >
-            {submitting ? "Creating account..." : "Continue to Payment"}
-          </button>
-
-          <p className="get-started-terms">
-            By creating an account, you agree to our{" "}
-            <a href="/terms-of-service">Terms of Service</a> and{" "}
-            <a href="/privacy-policy">Privacy Policy</a>.
-          </p>
-        </form>
-      )}
-
-      {/* Step 2: Embedded Checkout */}
-      {step === 2 && clientSecret && (
-        <div className="get-started-checkout">
-          <EmbeddedCheckoutProvider
-            stripe={stripePromise}
-            options={{ fetchClientSecret }}
-          >
-            <EmbeddedCheckout />
-          </EmbeddedCheckoutProvider>
         </div>
-      )}
+
+        <div className="get-started-field">
+          <label htmlFor="email">Email</label>
+          <input
+            id="email"
+            type="email"
+            value={formData.email}
+            readOnly
+            className="get-started-field-locked"
+          />
+        </div>
+
+        <div className="get-started-field">
+          <label htmlFor="password">Password</label>
+          <input
+            id="password"
+            type="password"
+            value={formData.password}
+            onChange={(e) => handleChange("password", e.target.value)}
+            required
+            minLength={8}
+          />
+          {errors.password && (
+            <span className="get-started-field-error">
+              {errors.password[0]}
+            </span>
+          )}
+        </div>
+
+        <div className="get-started-field">
+          <label htmlFor="passwordConfirmation">Confirm Password</label>
+          <input
+            id="passwordConfirmation"
+            type="password"
+            value={formData.passwordConfirmation}
+            onChange={(e) =>
+              handleChange("passwordConfirmation", e.target.value)
+            }
+            required
+            minLength={8}
+          />
+        </div>
+
+        <button
+          type="submit"
+          disabled={submitting}
+          className="get-started-submit"
+        >
+          {submitting ? "Creating account..." : "Create Account & Access Picks"}
+        </button>
+
+        <p className="get-started-terms">
+          By creating an account, you agree to our{" "}
+          <a href="/terms-of-service">Terms of Service</a> and{" "}
+          <a href="/privacy-policy">Privacy Policy</a>.
+        </p>
+      </form>
     </div>
   );
 }

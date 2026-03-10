@@ -80,7 +80,7 @@ function LegalTextWithLinks({
 export default function RegisterPageContent({ data }: { data: RegisterPageResult | null }) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [countryCode, setCountryCode] = useState("+1");
+  const [countryCode, setCountryCode] = useState("+1|US");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -144,7 +144,7 @@ export default function RegisterPageContent({ data }: { data: RegisterPageResult
           firstName: firstName || undefined,
           lastName: lastName || undefined,
           phone: phone || undefined,
-          countryCode: countryCode || undefined,
+          countryCode: countryCode?.split("|")[0] || undefined,
         }),
       });
       const resData = await res.json().catch(() => ({}));
@@ -248,7 +248,7 @@ export default function RegisterPageContent({ data }: { data: RegisterPageResult
                     aria-label="Country code"
                   >
                     {COUNTRY_CODES.map(({ code, flag, label }, i) => (
-                      <option key={i} value={code}>
+                      <option key={i} value={`${code}|${label}`}>
                         {flag} {code} ({label})
                       </option>
                     ))}

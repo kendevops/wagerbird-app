@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { trackInitiateCheckout } from "@/lib/tracking";
+import { APP_URL } from "@/lib/constants";
 import SignalCard, { SignalCardProps } from "./SignalCard";
 
 interface SignalsProps {
@@ -33,7 +34,7 @@ export default function Signals({
   ),
   description = "Each pick is assigned a confidence rating 0–100. Higher confidence = more points required. The model's performance is fully transparent — no cherry-picking, no selective memory.",
   ctaLabel = "Unlock All Signals →",
-  ctaHref = "https://app.wagerbird.com/register",
+  ctaHref = `${APP_URL}/register`,
   items = defaultSignals,
   footerText = "+ 47 more signals locked — Buy points to unlock"
 }: SignalsProps) {

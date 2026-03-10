@@ -1,8 +1,23 @@
 "use client";
 
 import { trackInitiateCheckout } from "@/lib/tracking";
+import { APP_URL } from "@/lib/constants";
 
 import { motion } from "framer-motion";
+
+const PRICE_TO_STRIPE_ID: Record<number, string> = {
+  39: process.env.NEXT_PUBLIC_STRIPE_PRICE_STARTER!,
+  99: process.env.NEXT_PUBLIC_STRIPE_PRICE_CORE!,
+  199: process.env.NEXT_PUBLIC_STRIPE_PRICE_ADVANCED!,
+};
+
+function buildRegisterHref(price: number): string {
+  const stripePriceId = PRICE_TO_STRIPE_ID[price];
+  if (stripePriceId) {
+    return `${APP_URL}/register?stripePrice=${stripePriceId}`;
+  }
+  return `${APP_URL}/register`;
+}
 
 export interface PriceCardProps {
   name: string;
@@ -20,9 +35,10 @@ export default function PriceCard({
   goodFor,
   price,
   ctaLabel,
-  ctaHref = "https://app.wagerbird.com/register",
+  ctaHref,
   popular = false,
 }: PriceCardProps) {
+  const href = ctaHref || buildRegisterHref(price);
   return (
     <div className={`price-card${popular ? " price-card--popular" : ""}`}>
       {/* Most Popular badge */}
@@ -73,7 +89,7 @@ export default function PriceCard({
 
         {/* CTA */}
         <a
-          href={ctaHref}
+          href={href}
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => trackInitiateCheckout("price_card", name)}

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { trackInitiateCheckout } from "@/lib/tracking";
+import { APP_URL } from "@/lib/constants";
 
 interface ComparisonRow {
   label: string;
@@ -59,9 +60,9 @@ export default function AccessModels({
   subtitle = "Packs are for bettors who want flexibility. Terminal Plans are for daily grinders.",
   rows = defaultRows,
   packsCtaLabel = "Get Core Pack →",
-  packsCtaHref = "https://app.wagerbird.com/register",
+  packsCtaHref = `${APP_URL}/register`,
   terminalCtaLabel = "Check Monthly Plans",
-  terminalCtaHref = "https://app.wagerbird.com/register",
+  terminalCtaHref = `${APP_URL}/register`,
 }: AccessModelsProps) {
   const defaultHeading = (
     <>

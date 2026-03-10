@@ -7,6 +7,7 @@ import WhatYouPromote from "@/components/WhatYouPromote";
 import TheProcess from "@/components/TheProcess";
 import WhoShouldApply from "@/components/WhoShouldApply";
 import PartnerResources from "@/components/PartnerResources";
+import AffiliateCTA from "@/components/AffiliateCTA";
 
 export const metadata: Metadata = {
   title: "Affiliates — WagerBird",
@@ -108,34 +109,7 @@ export default function AffiliatesPage() {
       <PartnerResources />
 
       {/* ── CTA BANNER ── */}
-      <section className="aff-cta-section">
-        <h2 className="aff-cta-heading">
-          Ready to Start
-          <br />
-          <em className="aff-hero-accent">Earning?</em>
-        </h2>
-        <p className="aff-cta-body">
-          Join the WagerBird affiliate program and get paid to share the edge.
-        </p>
-        <Link href="/register" className="aff-btn-primary">
-          Apply Now
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 16 16"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-          >
-            <path
-              d="M9.33333 3.33325L14 7.99992M14 7.99992L9.33333 12.6666M14 7.99992H2"
-              stroke="currentColor"
-              strokeWidth="1.67"
-              strokeLinecap="square"
-            />
-          </svg>
-        </Link>
-      </section>
+      <AffiliateCTA />
     </div>
   );
 }

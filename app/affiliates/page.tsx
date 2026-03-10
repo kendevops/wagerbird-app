@@ -9,6 +9,7 @@ import WhoShouldApply from "@/components/WhoShouldApply";
 import PartnerResources from "@/components/PartnerResources";
 import AffiliateCTA from "@/components/AffiliateCTA";
 import AffiliateFAQ from "@/components/AffiliateFAQ";
+import AnimatedCommission from "@/components/AnimatedCommission";
 
 export const metadata: Metadata = {
   title: "Affiliates — WagerBird",
@@ -26,7 +27,7 @@ export default function AffiliatesPage() {
       <section className="aff-hero">
         {/* Big commission number */}
         <div className="aff-commission-display">
-          <span className="aff-commission-value">30%</span>
+          <AnimatedCommission />
           <p className="aff-commission-meta">
             // Commission&nbsp;·&nbsp;First Purchase&nbsp;·&nbsp;No Cap
           </p>

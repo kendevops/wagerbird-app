@@ -7749,6 +7749,207 @@ body {
 }
 
 /* ═══════════════════════════════════════════════════════════
+   WHO SHOULD APPLY SECTION
+   ═══════════════════════════════════════════════════════════ */
+
+.wsa-section {
+  background: linear-gradient(135deg, #0B1028 0%, #050816 55%, #03040C 100%);
+  padding: 80px 64px 96px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── Header ── */
+.wsa-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 48px;
+  margin-bottom: 56px;
+}
+
+.wsa-header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 1;
+}
+
+.wsa-eyebrow {
+  font-family: var(--font-space-mono, 'Space Mono', monospace);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 3.3px;
+  text-transform: uppercase;
+  color: var(--color-yellow);
+  margin: 0;
+}
+
+.wsa-heading {
+  font-family: var(--font-barlow-condensed, 'Barlow Condensed', sans-serif);
+  font-size: clamp(56px, 7vw, 96px);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -2px;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin: 0;
+}
+
+.wsa-heading-accent {
+  color: var(--color-yellow);
+  font-style: italic;
+}
+
+.wsa-header-desc {
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: #656E8A;
+  max-width: 340px;
+  text-align: right;
+  flex-shrink: 0;
+  margin: 0;
+}
+
+/* ── Cards Grid ── */
+.wsa-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 2px;
+  background: #0A0E1A;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+.wsa-card {
+  grid-column: span var(--wsa-span, 2);
+  background: #0D1124;
+  padding: 40px 36px 36px;
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+  border: 1px solid transparent;
+  transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+
+.wsa-card:hover {
+  background: #111830;
+  border-color: rgba(228, 242, 34, 0.2);
+  box-shadow:
+    0 0 0 1px rgba(228, 242, 34, 0.12),
+    0 16px 48px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(228, 242, 34, 0.08);
+  z-index: 1;
+}
+
+/* Watermark number */
+.wsa-card-watermark {
+  position: absolute;
+  top: -8px;
+  left: 16px;
+  font-family: var(--font-barlow-condensed, 'Barlow Condensed', sans-serif);
+  font-size: clamp(100px, 12vw, 148px);
+  font-weight: 900;
+  font-style: italic;
+  line-height: 1;
+  color: rgba(228, 242, 34, 0.08);
+  letter-spacing: -4px;
+  pointer-events: none;
+  user-select: none;
+  transition: color 0.3s;
+}
+
+.wsa-card:hover .wsa-card-watermark {
+  color: rgba(228, 242, 34, 0.14);
+}
+
+/* Card content */
+.wsa-card-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 60px;
+}
+
+.wsa-card-title {
+  font-family: var(--font-barlow-condensed, 'Barlow Condensed', sans-serif);
+  font-size: clamp(18px, 2.2vw, 24px);
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.15;
+  transition: color 0.25s;
+}
+
+.wsa-card:hover .wsa-card-title {
+  color: #fff;
+}
+
+.wsa-card-body {
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: #656E8A;
+  margin: 0;
+  transition: color 0.25s;
+}
+
+.wsa-card:hover .wsa-card-body {
+  color: #8A93B2;
+}
+
+/* ── Responsive ── */
+@media (max-width: 960px) {
+  .wsa-section {
+    padding: 60px 32px 72px;
+  }
+
+  .wsa-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+
+  .wsa-header-desc {
+    text-align: left;
+    max-width: 480px;
+  }
+
+  .wsa-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* All cards span 1 col in 2-col layout */
+  .wsa-card {
+    grid-column: span 1 !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .wsa-section {
+    padding: 48px 20px 64px;
+  }
+
+  .wsa-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .wsa-card {
+    grid-column: span 1 !important;
+    padding: 32px 24px;
+  }
+
+  .wsa-card-watermark {
+    font-size: 90px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
    THE PROCESS SECTION
    ═══════════════════════════════════════════════════════════ */
 

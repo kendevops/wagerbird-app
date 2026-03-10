@@ -5,6 +5,7 @@ import WhyProgramSection from "@/components/WhyProgramSection";
 import AffiliatesMarquee from "@/components/AffiliatesMarquee";
 import WhatYouPromote from "@/components/WhatYouPromote";
 import TheProcess from "@/components/TheProcess";
+import WhoShouldApply from "@/components/WhoShouldApply";
 
 export const metadata: Metadata = {
   title: "Affiliates — WagerBird",
@@ -117,6 +118,9 @@ export default function AffiliatesPage() {
 
       {/* ── THE PROCESS ── */}
       <TheProcess />
+
+      {/* ── WHO SHOULD APPLY ── */}
+      <WhoShouldApply />
 
       {/* ── PERKS ── */}
       <section className="aff-perks-section">

@@ -1,3 +1,8 @@
+"use client";
+
+import { usePathname } from "next/navigation";
+import Link from "next/link";
+
 interface FooterLink {
   label: string;
   href: string;
@@ -44,6 +49,24 @@ const defaultSections: FooterSection[] = [
     ],
   },
 ];
+
+function FooterLink({ label, href }: { label: string; href: string }) {
+  const pathname = usePathname();
+  const isActive = pathname === href;
+  return (
+    <li>
+      <Link
+        href={href}
+        data-cursor-label="GO"
+        className={`font-[family-name:var(--font-barlow-condensed)] text-[15px] font-semibold uppercase tracking-[0.5px] transition-colors ${
+          isActive ? "text-brand-yellow" : "text-nav-text hover:text-white"
+        }`}
+      >
+        {label}
+      </Link>
+    </li>
+  );
+}
 
 export default function Footer({
   description = "Confidence-scored betting signals for every sport. Priced by conviction. Backed by the model. Not a sportsbook.",
@@ -98,9 +121,7 @@ export default function Footer({
                 <h3 className="font-[family-name:var(--font-barlow-condensed)] text-[13px] font-bold tracking-[2px] uppercase text-nav-text-muted m-0 pb-[12px] border-b border-nav-border min-w-[140px] md:min-w-[120px] lg:min-w-[160px]">{section.title}</h3>
                 <ul className="flex flex-col gap-[14px] list-none m-0 p-0">
                   {section.links.map((link) => (
-                    <li key={link.href}>
-                      <a href={link.href} data-cursor-label="GO" className="font-[family-name:var(--font-barlow-condensed)] text-[15px] font-semibold uppercase tracking-[0.5px] text-nav-text hover:text-white transition-colors">{link.label}</a>
-                    </li>
+                    <FooterLink key={link.href} {...link} />
                   ))}
                 </ul>
               </div>

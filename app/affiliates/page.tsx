@@ -8,6 +8,7 @@ import TheProcess from "@/components/TheProcess";
 import WhoShouldApply from "@/components/WhoShouldApply";
 import PartnerResources from "@/components/PartnerResources";
 import AffiliateCTA from "@/components/AffiliateCTA";
+import AffiliateFAQ from "@/components/AffiliateFAQ";
 
 export const metadata: Metadata = {
   title: "Affiliates — WagerBird",
@@ -107,6 +108,9 @@ export default function AffiliatesPage() {
 
       {/* ── PARTNER RESOURCES ── */}
       <PartnerResources />
+
+      {/* ── FAQ ── */}
+      <AffiliateFAQ />
 
       {/* ── CTA BANNER ── */}
       <AffiliateCTA />

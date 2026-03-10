@@ -121,7 +121,7 @@ export default function PartnerResources() {
           // Partner Resources
         </p>
         <h2 className="pr-heading">
-          <span className="pr-heading-white">Partner Resources.</span>
+          <span className="pr-heading-white">Everything you need to</span>
           <br />
           <span className="pr-heading-yellow">Start Promoting.</span>
         </h2>

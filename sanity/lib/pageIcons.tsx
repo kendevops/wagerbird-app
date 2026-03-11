@@ -18,6 +18,8 @@ const iconMap: Record<string, ComponentType<{ style?: React.CSSProperties }>> = 
   DocumentsIcon: Icons.DocumentsIcon,
   CogIcon: Icons.CogIcon,
   LinkIcon: Icons.LinkIcon,
+  CaseIcon: Icons.CaseIcon,
+  LockIcon: Icons.LockIcon,
 };
 
 export const PAGE_ICON_OPTIONS = [
@@ -35,6 +37,8 @@ export const PAGE_ICON_OPTIONS = [
   { title: "Documents", value: "DocumentsIcon" },
   { title: "Cog", value: "CogIcon" },
   { title: "Link", value: "LinkIcon" },
+  { title: "Case", value: "CaseIcon" },
+  { title: "Lock", value: "LockIcon" },
 ];
 
 export function getPageIconComponent(

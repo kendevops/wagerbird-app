@@ -9,7 +9,16 @@ import { createClient } from "@sanity/client";
 
 dotenv.config({ path: ".env.local" });
 dotenv.config({ path: ".env" });
-import { allPages, siteSettings } from "./data";
+import {
+  allPages,
+  siteSettings,
+  signInPage,
+  registerPage,
+  notFoundPage,
+  error500Page,
+  comingSoonMeta,
+  affiliatesPage,
+} from "./data";
 
 async function main() {
   const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
@@ -36,11 +45,32 @@ async function main() {
     token,
   });
 
-  console.log(`Seeding site SEO + ${allPages.length} pages into ${projectId}/${dataset}...`);
+  console.log(
+    `Seeding site SEO + system pages + ${allPages.length} content pages into ${projectId}/${dataset}...`
+  );
 
   const transaction = client.transaction();
   transaction.createOrReplace(siteSettings as any);
   console.log("  - siteSettings: Site SEO & Icons");
+
+  transaction.createOrReplace(signInPage as any);
+  console.log("  - signInPage: Sign In Page");
+
+  transaction.createOrReplace(registerPage as any);
+  console.log("  - registerPage: Register Page");
+
+  transaction.createOrReplace(notFoundPage as any);
+  console.log("  - notFoundPage: 404 Not Found");
+
+  transaction.createOrReplace(error500Page as any);
+  console.log("  - error500Page: 500 Error");
+
+  transaction.createOrReplace(comingSoonMeta as any);
+  console.log("  - comingSoonPage: Coming Soon Meta");
+
+  transaction.createOrReplace(affiliatesPage as any);
+  console.log("  - affiliatesPage: Affiliates Hero");
+
   for (const page of allPages) {
     transaction.createOrReplace(page as any);
     console.log(`  - ${page.slug.current}: ${page.title}`);

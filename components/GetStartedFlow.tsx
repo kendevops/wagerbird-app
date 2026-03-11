@@ -66,10 +66,47 @@ export default function GetStartedFlow({ plan }: { plan: string }) {
 
 /* ─── Registration form shown after payment ─── */
 
+const COUNTRY_CODES = [
+  { code: "+1", flag: "\u{1F1FA}\u{1F1F8}", label: "US" },
+  { code: "+1", flag: "\u{1F1E8}\u{1F1E6}", label: "CA" },
+  { code: "+44", flag: "\u{1F1EC}\u{1F1E7}", label: "GB" },
+  { code: "+61", flag: "\u{1F1E6}\u{1F1FA}", label: "AU" },
+  { code: "+353", flag: "\u{1F1EE}\u{1F1EA}", label: "IE" },
+  { code: "+64", flag: "\u{1F1F3}\u{1F1FF}", label: "NZ" },
+  { code: "+27", flag: "\u{1F1FF}\u{1F1E6}", label: "ZA" },
+  { code: "+91", flag: "\u{1F1EE}\u{1F1F3}", label: "IN" },
+  { code: "+49", flag: "\u{1F1E9}\u{1F1EA}", label: "DE" },
+  { code: "+33", flag: "\u{1F1EB}\u{1F1F7}", label: "FR" },
+  { code: "+34", flag: "\u{1F1EA}\u{1F1F8}", label: "ES" },
+  { code: "+39", flag: "\u{1F1EE}\u{1F1F9}", label: "IT" },
+  { code: "+31", flag: "\u{1F1F3}\u{1F1F1}", label: "NL" },
+  { code: "+46", flag: "\u{1F1F8}\u{1F1EA}", label: "SE" },
+  { code: "+47", flag: "\u{1F1F3}\u{1F1F4}", label: "NO" },
+  { code: "+45", flag: "\u{1F1E9}\u{1F1F0}", label: "DK" },
+  { code: "+358", flag: "\u{1F1EB}\u{1F1EE}", label: "FI" },
+  { code: "+52", flag: "\u{1F1F2}\u{1F1FD}", label: "MX" },
+  { code: "+55", flag: "\u{1F1E7}\u{1F1F7}", label: "BR" },
+  { code: "+54", flag: "\u{1F1E6}\u{1F1F7}", label: "AR" },
+  { code: "+57", flag: "\u{1F1E8}\u{1F1F4}", label: "CO" },
+  { code: "+56", flag: "\u{1F1E8}\u{1F1F1}", label: "CL" },
+  { code: "+81", flag: "\u{1F1EF}\u{1F1F5}", label: "JP" },
+  { code: "+82", flag: "\u{1F1F0}\u{1F1F7}", label: "KR" },
+  { code: "+86", flag: "\u{1F1E8}\u{1F1F3}", label: "CN" },
+  { code: "+65", flag: "\u{1F1F8}\u{1F1EC}", label: "SG" },
+  { code: "+60", flag: "\u{1F1F2}\u{1F1FE}", label: "MY" },
+  { code: "+63", flag: "\u{1F1F5}\u{1F1ED}", label: "PH" },
+  { code: "+66", flag: "\u{1F1F9}\u{1F1ED}", label: "TH" },
+  { code: "+234", flag: "\u{1F1F3}\u{1F1EC}", label: "NG" },
+  { code: "+254", flag: "\u{1F1F0}\u{1F1EA}", label: "KE" },
+  { code: "+233", flag: "\u{1F1EC}\u{1F1ED}", label: "GH" },
+];
+
 interface FormData {
   firstName: string;
   lastName: string;
   email: string;
+  phone: string;
+  countryCode: string;
   password: string;
   passwordConfirmation: string;
 }
@@ -89,6 +126,8 @@ export function RegistrationForm({
     firstName: "",
     lastName: "",
     email: prefillEmail,
+    phone: "",
+    countryCode: "+1|US",
     password: "",
     passwordConfirmation: "",
   });
@@ -124,6 +163,12 @@ export function RegistrationForm({
           password: formData.password,
           password_confirmation: formData.passwordConfirmation,
           session_id: sessionId,
+          phone_number: formData.phone
+            ? `${formData.countryCode.split("|")[0]}${formData.phone.replace(/\D/g, "")}`
+            : undefined,
+          phone_number_country: formData.phone
+            ? formData.countryCode.split("|")[1]
+            : undefined,
         }),
       });
 
@@ -203,6 +248,56 @@ export function RegistrationForm({
             readOnly
             className="get-started-field-locked"
           />
+        </div>
+
+        <div className="get-started-field">
+          <label htmlFor="phone">Phone Number</label>
+          <div className="get-started-phone-row">
+            <div className="get-started-country-select-wrapper">
+              <select
+                className="get-started-country-select"
+                value={formData.countryCode}
+                onChange={(e) => handleChange("countryCode", e.target.value)}
+                aria-label="Country code"
+              >
+                {COUNTRY_CODES.map(({ code, flag, label }, i) => (
+                  <option key={i} value={`${code}|${label}`}>
+                    {flag} {code} ({label})
+                  </option>
+                ))}
+              </select>
+              <svg
+                className="get-started-select-chevron"
+                width="12"
+                height="12"
+                viewBox="0 0 12 12"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M2 4L6 8L10 4"
+                  stroke="#999"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </div>
+            <input
+              id="phone"
+              type="tel"
+              className="get-started-phone-input"
+              placeholder="(555) 000-0000"
+              value={formData.phone}
+              onChange={(e) => handleChange("phone", e.target.value)}
+              autoComplete="tel-national"
+            />
+          </div>
+          {errors.phone_number && (
+            <span className="get-started-field-error">
+              {errors.phone_number[0]}
+            </span>
+          )}
         </div>
 
         <div className="get-started-field">

@@ -63,7 +63,7 @@ export default function Faq({
   items = defaultFaqs
 }: FaqProps) {
   return (
-    <section className="faq-section">
+    <section className="faq-section faq-section--cinder">
       <div className="faq-container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

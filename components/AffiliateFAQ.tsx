@@ -113,7 +113,7 @@ export default function AffiliateFAQ({ data }: { data?: AffiliatesPageResult | n
   const heading2 = data?.faqHeading2 ?? "Clearly Answered.";
 
   return (
-    <section ref={sectionRef} className="faq-section">
+    <section ref={sectionRef} className="faq-section faq-section--affiliate">
       <div className="faq-inner">
         {/* ── Header ── */}
         <div className="faq-header">

@@ -14,6 +14,7 @@
   --font-oswald: var(--font-oswald, 'Oswald', sans-serif);
   --font-barlow-condensed: var(--font-barlow-condensed, 'Barlow Condensed', sans-serif);
   --color-dark-blue: #0025E1;
+  --color-cinder: #131318;
 }
 
 @theme inline {
@@ -4983,9 +4984,9 @@ body {
   box-shadow: 0 0 8px rgba(228, 242, 34, 0.6);
 }
 
-/* ─── FAQ Section ─────────────────────────────────── */
-.faq-section {
-  background: #0C0C0C;
+/* ─── FAQ Section (page blocks: cinder background) ─── */
+.faq-section.faq-section--cinder {
+  background: var(--color-cinder);
   padding: 112px 0 128px;
 }
 
@@ -5012,7 +5013,7 @@ body {
 }
 
 @media (max-width: 480px) {
-  .faq-section {
+  .faq-section.faq-section--cinder {
     padding: 72px 0 88px;
   }
   .faq-container {
@@ -8987,15 +8988,15 @@ body {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   AFFILIATE FAQ SECTION
+   AFFILIATE FAQ SECTION (white background)
    ═══════════════════════════════════════════════════════════ */
 
-.faq-section {
+.faq-section.faq-section--affiliate {
   background: #ffffff;
   padding: 96px 48px 112px;
 }
 
-.faq-inner {
+.faq-section--affiliate .faq-inner {
   max-width: 980px;
   margin: 0 auto;
   display: flex;
@@ -9004,14 +9005,14 @@ body {
 }
 
 /* ── Header ── */
-.faq-header {
+.faq-section--affiliate .faq-header {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 16px;
 }
 
-.faq-eyebrow {
+.faq-section--affiliate .faq-eyebrow {
   font-family: var(--font-space-mono, 'Space Mono', monospace);
   font-size: 11px;
   font-weight: 400;
@@ -9021,7 +9022,7 @@ body {
   margin: 0;
 }
 
-.faq-heading {
+.faq-section--affiliate .faq-heading {
   font-family: var(--font-barlow-condensed, 'Barlow Condensed', sans-serif);
   font-size: clamp(60px, 9vw, 112px);
   font-weight: 900;
@@ -9031,36 +9032,36 @@ body {
   margin: 0;
 }
 
-.faq-heading-dark {
+.faq-section--affiliate .faq-heading-dark {
   color: #0A0E1A;
   font-style: normal;
 }
 
-.faq-heading-blue {
+.faq-section--affiliate .faq-heading-blue {
   color: #002DFF;
   font-style: italic;
 }
 
 /* ── List ── */
-.faq-list {
+.faq-section--affiliate .faq-list {
   display: flex;
   flex-direction: column;
 }
 
-.faq-top-divider,
-.faq-bottom-divider {
+.faq-section--affiliate .faq-top-divider,
+.faq-section--affiliate .faq-bottom-divider {
   height: 1px;
   background: #E2E2E2;
 }
 
 /* ── Item ── */
-.faq-item {
+.faq-section--affiliate .faq-item {
   border-bottom: 1px solid #E2E2E2;
   overflow: hidden;
 }
 
 /* ── Trigger (button row) ── */
-.faq-trigger {
+.faq-section--affiliate .faq-trigger {
   width: 100%;
   display: flex;
   align-items: center;
@@ -9074,11 +9075,11 @@ body {
   transition: opacity 0.2s;
 }
 
-.faq-trigger:hover .faq-question {
+.faq-section--affiliate .faq-trigger:hover .faq-question {
   opacity: 0.75;
 }
 
-.faq-question {
+.faq-section--affiliate .faq-question {
   font-family: var(--font-barlow-condensed, 'Barlow Condensed', sans-serif);
   font-size: 20px;
   font-weight: 900;
@@ -9090,7 +9091,7 @@ body {
 }
 
 /* ── Toggle button ── */
-.faq-toggle {
+.faq-section--affiliate .faq-toggle {
   flex-shrink: 0;
   width: 36px;
   height: 36px;
@@ -9101,11 +9102,11 @@ body {
   transition: background 0.2s;
 }
 
-.faq-toggle--open {
+.faq-section--affiliate .faq-toggle--open {
   background: #002DFF;
 }
 
-.faq-toggle-icon {
+.faq-section--affiliate .faq-toggle-icon {
   font-family: Inter, system-ui, sans-serif;
   font-size: 18px;
   font-weight: 400;
@@ -9114,16 +9115,16 @@ body {
   transition: color 0.2s;
 }
 
-.faq-toggle--open .faq-toggle-icon {
+.faq-section--affiliate .faq-toggle--open .faq-toggle-icon {
   color: #ffffff;
 }
 
 /* ── Answer ── */
-.faq-answer {
+.faq-section--affiliate .faq-answer {
   overflow: hidden;
 }
 
-.faq-answer-text {
+.faq-section--affiliate .faq-answer-text {
   font-family: Inter, system-ui, sans-serif;
   font-size: 15px;
   font-weight: 400;
@@ -9136,37 +9137,37 @@ body {
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
-  .faq-section {
+  .faq-section--affiliate {
     padding: 72px 32px 80px;
   }
 
-  .faq-inner {
+  .faq-section--affiliate .faq-inner {
     gap: 48px;
   }
 
-  .faq-question {
+  .faq-section--affiliate .faq-question {
     font-size: 17px;
   }
 
-  .faq-heading {
+  .faq-section--affiliate .faq-heading {
     letter-spacing: -2px;
   }
 }
 
 @media (max-width: 480px) {
-  .faq-section {
+  .faq-section--affiliate {
     padding: 56px 20px 64px;
   }
 
-  .faq-inner {
+  .faq-section--affiliate .faq-inner {
     gap: 36px;
   }
 
-  .faq-question {
+  .faq-section--affiliate .faq-question {
     font-size: 15px;
   }
 
-  .faq-toggle {
+  .faq-section--affiliate .faq-toggle {
     width: 32px;
     height: 32px;
   }

@@ -7,6 +7,10 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
 
+    // Pass this deployment's origin so the monolith builds the correct
+    // Stripe return_url (works for any Vercel preview / staging URL).
+    const origin = request.nextUrl.origin;
+
     const url = `${MONOLITH_URL}/api/v1/checkout-session`;
     const options: RequestInit & { dispatcher?: unknown } = {
       method: "POST",
@@ -15,7 +19,7 @@ export async function POST(request: NextRequest) {
         Accept: "application/json",
         "X-API-Key": MONOLITH_API_KEY,
       },
-      body: JSON.stringify(body),
+      body: JSON.stringify({ ...body, return_url_origin: origin }),
     };
 
     if (process.env.NODE_TLS_REJECT_UNAUTHORIZED === "0") {

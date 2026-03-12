@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { APP_URL } from "@/lib/constants";
 
 // ─── SVG Sport Court Illustrations ──────────────────────────────────────────
 
@@ -198,7 +199,7 @@ function StackCard({ sport, matchup, market, confidence, min, max, court, locked
             <div className="hss-card__unlock-court">{court}</div>
             {/* Glowing unlock button */}
             <a
-              href={unlockHref ?? "https://app.wagerbird.com/register"}
+              href={unlockHref ?? `${APP_URL}/register`}
               target="_blank"
               rel="noopener noreferrer"
               className="hss-card__unlock-btn"
@@ -243,7 +244,7 @@ const CARDS: StackCardProps[] = [
     min: 82,
     max: 87,
     locked: true,
-    unlockHref: "https://app.wagerbird.com/register",
+    unlockHref: `${APP_URL}/register`,
     court: <BaseballDiamond />,
   },
   {

@@ -4,6 +4,20 @@ import { trackInitiateCheckout } from "@/lib/tracking";
 
 import { motion } from "framer-motion";
 
+const PRICE_TO_PLAN: Record<number, string> = {
+  39: "starter",
+  99: "core",
+  199: "advanced",
+};
+
+function buildRegisterHref(price: number): string {
+  const plan = PRICE_TO_PLAN[price];
+  if (plan) {
+    return `/get-started?plan=${plan}`;
+  }
+  return `/get-started`;
+}
+
 export interface PriceCardProps {
   name: string;
   points: string;
@@ -20,9 +34,10 @@ export default function PriceCard({
   goodFor,
   price,
   ctaLabel,
-  ctaHref = "https://app.wagerbird.com/register",
+  ctaHref,
   popular = false,
 }: PriceCardProps) {
+  const href = ctaHref || buildRegisterHref(price);
   return (
     <div className={`price-card${popular ? " price-card--popular" : ""}`}>
       {/* Most Popular badge */}
@@ -73,9 +88,7 @@ export default function PriceCard({
 
         {/* CTA */}
         <a
-          href={ctaHref}
-          target="_blank"
-          rel="noopener noreferrer"
+          href={href}
           onClick={() => trackInitiateCheckout("price_card", name)}
           className={`price-card-cta${popular ? " price-card-cta--popular" : ""}`}
         >

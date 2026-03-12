@@ -3,6 +3,7 @@
 import React, { useRef, useState } from "react";
 import { motion, useSpring, useMotionValue, useTransform } from "framer-motion";
 import { trackInitiateCheckout } from "@/lib/tracking";
+import { APP_URL } from "@/lib/constants";
 
 // ─── Types ────────────────────────────────────────────
 interface PricingCardProps {
@@ -99,7 +100,7 @@ const PricingCard = ({
   price,
   features,
   ctaLabel,
-  ctaHref = "https://app.wagerbird.com/register",
+  ctaHref = `${APP_URL}/register`,
   footer,
 }: PricingCardProps) => {
   const containerRef = useRef<HTMLDivElement>(null);

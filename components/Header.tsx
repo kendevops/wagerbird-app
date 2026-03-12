@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { trackInitiateCheckout } from "@/lib/tracking";
+import { APP_URL } from "@/lib/constants";
 import Link from "next/link";
 
 /** Hook to ensure we only render portal content after mount (avoids hydration mismatch) */
@@ -33,8 +34,8 @@ const defaultNavLinks = [
 
 export default function Header({
   navLinks = defaultNavLinks,
-  loginHref = "https://app.wagerbird.com/login",
-  getAccessHref = "https://app.wagerbird.com/register"
+  loginHref = `${APP_URL}/login`,
+  getAccessHref = `${APP_URL}/register`
 }: HeaderProps) {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);

@@ -32,8 +32,10 @@ export default function HotsheetPromo({
         <p className="hs-promo__kicker">// Hotsheet</p>
 
         <h2 className="hs-promo__heading">
-          The cheat<br />
-          code. <em className="hs-promo__heading-accent">Built</em><br />
+          The cheat
+          <br />
+          code. <em className="hs-promo__heading-accent">Built</em>
+          <br />
           to hit.
         </h2>
 

@@ -74,8 +74,19 @@ const PhoneMockup = ({
 
 // ─── Check icon ───────────────────────────────────────
 const CheckIcon = ({ popular }: { popular?: boolean }) => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-    <circle cx="8" cy="8" r="8" fill={popular ? "rgba(255,255,255,0.15)" : "rgba(228,242,34,0.15)"} />
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 16 16"
+    fill="none"
+    aria-hidden="true"
+  >
+    <circle
+      cx="8"
+      cy="8"
+      r="8"
+      fill={popular ? "rgba(255,255,255,0.15)" : "rgba(228,242,34,0.15)"}
+    />
     <path
       d="M5 8.5L7 10.5L11 6"
       stroke={popular ? "#fff" : "#E4F222"}
@@ -225,9 +236,7 @@ const PricingCard = ({
             {ctaLabel}
           </a>
 
-          {footer && (
-            <p className="hsp-card-footer">{footer}</p>
-          )}
+          {footer && <p className="hsp-card-footer">{footer}</p>}
         </div>
       </motion.div>
     </div>
@@ -247,7 +256,7 @@ export default function HotsheetPricing() {
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
         >
-          <span className="hsp-label">// Choose Your Window</span>
+          <span className="hsp-label">{`// Choose Your Window`}</span>
           <h2 className="hsp-heading">
             One-Time.
             <br />

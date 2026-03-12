@@ -23,7 +23,7 @@ const TopSignalCard = () => (
 
 const NotificationCard = ({ matchup, sport, score, time }: { matchup: string; sport: string; score: string | number; time?: string }) => (
   <div className="hotsheet-bento__notif">
-    {time && <div className="hotsheet-bento__notif-time">// DELIVERED {time}</div>}
+    {time && <div className="hotsheet-bento__notif-time">{`// DELIVERED ${time}`}</div>}
     <div className="hotsheet-bento__notif-matchup">{matchup}</div>
     <div className="hotsheet-bento__notif-bottom">
       <span className="hotsheet-bento__notif-sport">{sport}</span>
@@ -75,7 +75,7 @@ export default function Hotsheet({
         {/* Kicker */}
         <div className="hotsheet-hero__kicker">
           <span className="hotsheet-hero__dot" aria-hidden="true" />
-          <span className="hotsheet-hero__kicker-text">// Hotsheet</span>
+          <span className="hotsheet-hero__kicker-text">{`// Hotsheet`}</span>
         </div>
 
         {/* Heading */}
@@ -132,7 +132,7 @@ export default function Hotsheet({
 
           {/* Card 3 — Stats: cost */}
           <MagicBentoCard className="hotsheet-bento__card" glowColor="228, 242, 34">
-            <StatCard value="$2" label="Per Day" />
+            <StatCard value="AM/PM" label="Coverage" />
           </MagicBentoCard>
 
           {/* Card 4 — Notification: Chiefs */}

@@ -821,8 +821,8 @@ export const sportsbooksPage = {
   title: "Sportsbooks",
   slug: { _type: "slug" as const, current: "sportsbooks" },
   seo: {
-metaTitle: "Partner Sportsbooks — WAGERBIRD",
-  metaDescription: "Find your state. Find your books. WAGERBIRD works with top sportsbooks.",
+    metaTitle: "Partner Sportsbooks — WAGERBIRD",
+    metaDescription: "Find your state. Find your books. WAGERBIRD works with top sportsbooks.",
   },
   blocks: [
     { _type: "sportsbooksHeroBlock" as const, _key: key() },

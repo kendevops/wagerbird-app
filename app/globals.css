@@ -287,6 +287,35 @@ body {
   border-color: #0A0A14;
 }
 
+.signin-password-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.signin-password-input-wrapper .signin-field-input {
+  padding-right: 48px;
+}
+
+.signin-password-toggle {
+  position: absolute;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  background: none;
+  border: none;
+  color: #5A5A5A;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.signin-password-toggle:hover {
+  color: #0A0A14;
+}
+
 .signin-submit-btn {
   display: flex;
   align-items: center;

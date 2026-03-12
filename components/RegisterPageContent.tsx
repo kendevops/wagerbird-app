@@ -4,7 +4,8 @@ import { useState } from "react";
 import Link from "next/link";
 import type { RegisterPageResult } from "@/sanity/lib/queries";
 
-const APP_URL = process.env.NEXT_PUBLIC_WAGERBIRD_APP_URL ?? "https://app.wagerbird.com";
+const APP_URL =
+  process.env.NEXT_PUBLIC_WAGERBIRD_APP_URL ?? "https://app.wagerbird.com";
 
 const COUNTRY_CODES = [
   { code: "+1", flag: "🇺🇸", label: "US" },
@@ -71,13 +72,17 @@ function LegalTextWithLinks({
           </Link>
         ) : (
           <span key={i}>{part}</span>
-        )
+        ),
       )}
     </>
   );
 }
 
-export default function RegisterPageContent({ data }: { data: RegisterPageResult | null }) {
+export default function RegisterPageContent({
+  data,
+}: {
+  data: RegisterPageResult | null;
+}) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [countryCode, setCountryCode] = useState("+1|US");
@@ -85,6 +90,8 @@ export default function RegisterPageContent({ data }: { data: RegisterPageResult
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -95,10 +102,13 @@ export default function RegisterPageContent({ data }: { data: RegisterPageResult
     leftTagline:
       data?.leftTagline ??
       "Join thousands bettors using confidence-scored signals to make smarter plays across every sport.",
-    featureBullets: data?.featureBullets?.length ? data.featureBullets : DEFAULT_FEATURE_BULLETS,
+    featureBullets: data?.featureBullets?.length
+      ? data.featureBullets
+      : DEFAULT_FEATURE_BULLETS,
     formEyebrow: data?.formEyebrow ?? "// Create Account",
     formTitle: data?.formTitle ?? "Get Started",
-    formSubtitle: data?.formSubtitle ?? "Free to join. Buy Points when you're ready.",
+    formSubtitle:
+      data?.formSubtitle ?? "Free to join. Buy Points when you're ready.",
     firstNameLabel: data?.firstNameLabel ?? "First Name",
     firstNamePlaceholder: data?.firstNamePlaceholder ?? "First",
     lastNameLabel: data?.lastNameLabel ?? "Last Name",
@@ -110,7 +120,8 @@ export default function RegisterPageContent({ data }: { data: RegisterPageResult
     passwordLabel: data?.passwordLabel ?? "Password",
     passwordPlaceholder: data?.passwordPlaceholder ?? "Min 8 characters",
     confirmPasswordLabel: data?.confirmPasswordLabel ?? "Confirm Password",
-    confirmPasswordPlaceholder: data?.confirmPasswordPlaceholder ?? "Re-enter password",
+    confirmPasswordPlaceholder:
+      data?.confirmPasswordPlaceholder ?? "Re-enter password",
     submitLabel: data?.submitLabel ?? "Create Account",
     legalText:
       data?.legalText ??
@@ -301,35 +312,81 @@ export default function RegisterPageContent({ data }: { data: RegisterPageResult
               <label className="signin-field-label" htmlFor="password">
                 {c.passwordLabel}
               </label>
-              <input
-                id="password"
-                type="password"
-                className="signin-field-input"
-                placeholder={c.passwordPlaceholder}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                autoComplete="new-password"
-                minLength={8}
-              />
+              <div className="signin-password-input-wrapper">
+                <input
+                  id="password"
+                  type={showPassword ? "text" : "password"}
+                  className="signin-field-input"
+                  placeholder={c.passwordPlaceholder}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  autoComplete="new-password"
+                  minLength={8}
+                />
+                <button
+                  type="button"
+                  className="signin-password-toggle"
+                  onClick={() => setShowPassword(!showPassword)}
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                  tabIndex={-1}
+                >
+                  {showPassword ? (
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
+                      <line x1="1" y1="1" x2="23" y2="23" />
+                    </svg>
+                  ) : (
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                      <circle cx="12" cy="12" r="3" />
+                    </svg>
+                  )}
+                </button>
+              </div>
             </div>
 
             <div className="signin-field-group">
               <label className="signin-field-label" htmlFor="confirmPassword">
                 {c.confirmPasswordLabel}
               </label>
-              <input
-                id="confirmPassword"
-                type="password"
-                className="signin-field-input"
-                placeholder={c.confirmPasswordPlaceholder}
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                autoComplete="new-password"
-                minLength={8}
-              />
+              <div className="signin-password-input-wrapper">
+                <input
+                  id="confirmPassword"
+                  type={showConfirmPassword ? "text" : "password"}
+                  className="signin-field-input"
+                  placeholder={c.confirmPasswordPlaceholder}
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  autoComplete="new-password"
+                  minLength={8}
+                />
+                <button
+                  type="button"
+                  className="signin-password-toggle"
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  aria-label={showConfirmPassword ? "Hide password" : "Show password"}
+                  tabIndex={-1}
+                >
+                  {showConfirmPassword ? (
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
+                      <line x1="1" y1="1" x2="23" y2="23" />
+                    </svg>
+                  ) : (
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                      <circle cx="12" cy="12" r="3" />
+                    </svg>
+                  )}
+                </button>
+              </div>
             </div>
 
-            <button type="submit" className="signin-submit-btn signup-submit-btn clip-btn" disabled={loading}>
+            <button
+              type="submit"
+              className="signin-submit-btn signup-submit-btn clip-btn"
+              disabled={loading}
+            >
               {loading ? "Creating account…" : c.submitLabel}
               <svg
                 width="16"

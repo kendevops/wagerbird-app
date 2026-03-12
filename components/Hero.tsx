@@ -173,9 +173,14 @@ export default function Hero({
           >
             <a
               href={primaryCtaHref}
-              {...(primaryCtaHref?.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+              {...(primaryCtaHref?.startsWith("http")
+                ? { target: "_blank", rel: "noopener noreferrer" }
+                : {})}
               data-cursor-label="BUY"
-              onClick={() => primaryCtaHref?.startsWith("http") && trackInitiateCheckout("hero_primary")}
+              onClick={() =>
+                primaryCtaHref?.startsWith("http") &&
+                trackInitiateCheckout("hero_primary")
+              }
               className="w-full sm:w-auto inline-flex items-center justify-center px-[32px] py-[15px] bg-brand-yellow font-mono text-[11px] font-bold tracking-[1.5px] uppercase text-black whitespace-nowrap transition-all hover:bg-white hover:-translate-y-px cursor-target clip-btn"
             >
               {primaryCtaLabel}
@@ -183,7 +188,9 @@ export default function Hero({
             {secondaryCtaLabel && secondaryCtaHref && (
               <a
                 href={secondaryCtaHref}
-                {...(secondaryCtaHref.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                {...(secondaryCtaHref.startsWith("http")
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
                 data-cursor-label="FREE"
                 className="w-full sm:w-auto inline-flex items-center justify-center px-[32px] py-[14px] border border-nav-text/15 font-mono text-[11px] font-400 tracking-[1.5px] uppercase text-nav-text/55 whitespace-nowrap transition-all hover:border-nav-text/40 hover:text-white hover:bg-white/3 cursor-target"
               >

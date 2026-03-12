@@ -17,6 +17,8 @@ import ProcessSection from "@/components/ProcessSection";
 import EmailCapture from "@/components/EmailCapture";
 import SportsbooksHero from "@/components/SportsbooksHero";
 import SportsbooksSection from "@/components/SportsbooksSection";
+import type { SportsbookCardProps } from "@/components/SportsbookCard";
+import { urlForImage } from "@/sanity/lib/metadata";
 import AccessModels from "@/components/AccessModels";
 import MapSection from "@/components/MapSection";
 import PortableTextRenderer from "@/components/PortableTextRenderer";
@@ -272,7 +274,16 @@ export default function BlockRenderer({ blocks }: { blocks: Block[] }) {
           case "sportsbooksHeroBlock":
             return <SportsbooksHero key={block._key} />;
 
-          case "sportsbooksSectionBlock":
+          case "sportsbooksSectionBlock": {
+            const rawSportsbooks = (block.sportsbooks ?? []) as Array<
+              SportsbookCardProps & { logo?: { asset?: { _ref?: string; url?: string } } }
+            >;
+            const sportsbooks: SportsbookCardProps[] = rawSportsbooks.map(
+              ({ logo: logoSource, ...rest }) => ({
+                ...rest,
+                logo: urlForImage(logoSource) ?? undefined,
+              })
+            );
             return (
               <SportsbooksSection
                 key={block._key}
@@ -286,14 +297,11 @@ export default function BlockRenderer({ blocks }: { blocks: Block[] }) {
                   ) : undefined
                 }
                 description={block.description as string | undefined}
-                sportsbooks={
-                  block.sportsbooks as Parameters<
-                    typeof SportsbooksSection
-                  >[0]["sportsbooks"]
-                }
+                sportsbooks={sportsbooks}
                 disclaimer={block.disclaimer as string | undefined}
               />
             );
+          }
 
           case "accessModelsBlock":
             return (

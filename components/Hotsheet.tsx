@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { trackInitiateCheckout } from "@/lib/tracking";
+import { APP_URL } from "@/lib/constants";
 import { MagicBento, MagicBentoCard } from "./animations/MagicBento";
 
 interface HotsheetProps {
@@ -55,7 +56,7 @@ const DeliveryCard = () => (
 
 export default function Hotsheet({
   ctaLabel = "Get Hotsheet →",
-  ctaHref = "https://app.wagerbird.com/register",
+  ctaHref = `${APP_URL}/register`,
 }: HotsheetProps) {
   return (
     <section className="hotsheet-hero">

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { trackInitiateCheckout } from "@/lib/tracking";
+import { APP_URL } from "@/lib/constants";
 import SplitText from "./animations/SplitText";
 import HeroSignalStack from "./HeroSignalStack";
 
@@ -62,7 +63,7 @@ export default function Hero({
   ),
   description = "Signals scored by confidence. Priced by conviction. Stop guessing — start winning with the model on your side.",
   primaryCtaLabel = "Buy a Pack →",
-  primaryCtaHref = "https://app.wagerbird.com/register",
+  primaryCtaHref = `${APP_URL}/register`,
   secondaryCtaLabel = "Free Picks via Email",
   secondaryCtaHref = "/picks",
   // imageUrl = "https://api.builder.io/api/v1/image/assets/TEMP/e7a48826f4f3592b62edc4a4adaa3da19d8075e3",

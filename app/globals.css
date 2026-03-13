@@ -6384,6 +6384,48 @@ body {
   flex-shrink: 0;
 }
 
+/* Tabs row (Sportsbooks / DFS-Sweeps) */
+.sb-tabs {
+  display: inline-flex;
+  align-items: stretch;
+  gap: 8px;
+  padding: 4px;
+  border-radius: 999px;
+  background: rgba(6, 13, 46, 0.9);
+}
+
+.sb-tab {
+  border: none;
+  border-radius: 999px;
+  padding: 8px 18px;
+  background: transparent;
+  color: rgba(240, 240, 232, 0.65);
+  font-family: var(--font-space-mono), monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s;
+}
+
+.sb-tab--active {
+  background: var(--color-yellow);
+  color: #07070F;
+}
+
+@media (max-width: 768px) {
+  .sb-tabs {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .sb-tab {
+    flex: 1;
+    text-align: center;
+  }
+}
+
 .sb-filter-select-wrap {
   position: relative;
   display: flex;
@@ -6575,19 +6617,26 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 8px;
   width: 100%;
   padding: 14px 20px;
   margin-top: auto;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.08);
   font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 700;
-  letter-spacing: 2px;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
+  white-space: nowrap;
   color: rgba(240, 240, 232, 0.75);
   text-decoration: none;
   transition: background 0.18s, color 0.18s, border-color 0.18s;
+  cursor: pointer;
+}
+
+button.sb-card-cta {
+  font: inherit;
 }
 
 .sb-card-cta:hover {
@@ -6629,6 +6678,438 @@ body {
   color: rgba(240, 240, 232, 0.2);
   text-align: center;
   margin: 0;
+}
+
+/* ─── Sportsbook Modals (Choose State + Offer) ───────────── */
+.sb-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(7, 7, 15, 0.85);
+  padding: 24px;
+}
+
+.sb-choose-state-modal,
+.sb-offer-modal {
+  background: #0F0F14;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  max-width: 440px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
+}
+
+.sb-offer-modal {
+  max-width: 500px;
+}
+
+.sb-modal-header {
+  position: relative;
+  padding: 24px 56px 20px 24px;
+  color: #fff;
+}
+
+.sb-offer-modal-header {
+  padding-bottom: 16px;
+}
+
+.sb-modal-header-inner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sb-modal-logo-wrap {
+  flex-shrink: 0;
+}
+
+.sb-modal-logo {
+  border-radius: 6px;
+}
+
+.sb-modal-brand-name {
+  font-family: var(--font-barlow-condensed), sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.sb-modal-tagline {
+  display: block;
+  font-family: var(--font-space-mono), mento, monospace;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  opacity: 0.75;
+  margin-top: 4px;
+
+}
+
+.sb-modal-header-sub {
+  font-family: var(--font-space-mono), monospace;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  opacity: 0.8;
+  margin: 12px 0 0;
+}
+
+.sb-modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.sb-modal-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.sb-modal-body {
+  padding: 32px 24px 28px;
+}
+
+.sb-choose-state-pin {
+  display: flex;
+  justify-content: center;
+  color: #EF4444;
+  margin-bottom: 20px;
+}
+
+.sb-modal-title {
+  font-family: var(--font-barlow-condensed), sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #fff;
+  text-align: center;
+  margin: 0 0 12px;
+}
+
+.sb-modal-subtitle {
+  font-family: var(--font-space-mono), monospace;
+  font-size: 12px;
+  line-height: 1.7;
+  color: rgba(240, 240, 232, 0.6);
+  text-align: center;
+  margin: 0 0 24px;
+}
+
+.sb-choose-state-select-wrap {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.sb-choose-state-select {
+  width: 100%;
+  appearance: none;
+  background: #12121A;
+  border: 2px solid var(--color-yellow);
+  border-radius: 8px;
+  color: #fff;
+  font-family: var(--font-space-mono), monospace;
+  font-size: 15px;
+  padding: 16px 48px 16px 20px;
+  cursor: pointer;
+  outline: none;
+}
+
+.sb-choose-state-arrow {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.6);
+  pointer-events: none;
+}
+
+.sb-modal-disclaimer {
+  font-family: var(--font-space-mono), monospace;
+  font-size: 10px;
+  line-height: 1.6;
+  color: rgba(240, 240, 232, 0.4);
+  margin: 0 0 24px;
+}
+
+.sb-modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sb-modal-btn-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 18px 24px;
+  background: var(--color-yellow);
+  color: #07070F;
+  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.sb-modal-btn-primary:hover:not(:disabled) {
+  background: #E5E000;
+  transform: translateY(-1px);
+}
+
+.sb-modal-btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.sb-modal-btn-secondary {
+  padding: 14px 24px;
+  background: transparent;
+  color: rgba(240, 240, 232, 0.7);
+  font-family: var(--font-space-mono), monospace;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.sb-modal-btn-secondary:hover {
+  color: #fff;
+}
+
+/* Offer modal specific */
+.sb-offer-modal-body {
+  padding: 24px 24px 28px;
+}
+
+.sb-offer-state-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.sb-offer-change-state {
+  background: none;
+  border: none;
+  color: rgba(240, 240, 232, 0.8);
+  font-family: var(--font-space-mono), monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.sb-offer-change-state:hover {
+  color: #fff;
+}
+
+.sb-offer-state-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: rgba(228, 242, 34, 0.15);
+  border: 1px solid rgba(228, 242, 34, 0.4);
+  border-radius: 6px;
+  font-family: var(--font-space-mono), monospace;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-yellow);
+}
+
+.sb-offer-state-badge::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  background: var(--color-yellow);
+  border-radius: 50%;
+}
+
+.sb-offer-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 24px;
+  padding: 20px 24px;
+  background: #1A1A24;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.sb-offer-banner-left,
+.sb-offer-banner-right {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sb-offer-banner-left {
+  flex: 1;
+  min-width: 0;
+  min-width: 60%;
+}
+
+.sb-offer-banner-right {
+  flex-shrink: 1;
+  text-align: right;
+  max-width: 160px;
+}
+
+.sb-offer-banner-label {
+  font-family: var(--font-space-mono), monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(240, 240, 232, 0.5);
+}
+
+.sb-offer-banner-text {
+  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+  line-height: 1.25;
+  color: var(--color-yellow);
+  text-align: left;
+}
+
+.sb-offer-banner-right .sb-offer-banner-label {
+  text-align: right;
+}
+
+.sb-offer-banner-reward-value {
+  font-family: var(--font-space-mono), monospace;
+  font-size: 13px;
+  font-weight: 700;
+  color: #4A90E2;
+}
+
+.sb-offer-detail-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  color: #0A0A14;
+}
+
+.sb-offer-detail-logo {
+  margin-bottom: 12px;
+}
+
+.sb-offer-detail-text {
+  font-family: var(--font-barlow-condensed), sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 12px;
+}
+
+.sb-offer-legal {
+  font-family: var(--font-space-mono), monospace;
+  font-size: 10px;
+  line-height: 1.6;
+  color: #5A5A5A;
+  margin: 0;
+}
+
+.sb-offer-legal--clamped {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.sb-legal-toggle {
+  margin-top: 6px;
+  padding: 0;
+  background: none;
+  border: none;
+  font-family: var(--font-space-mono), monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #1D4ED8;
+  cursor: pointer;
+}
+
+.sb-legal-toggle:hover {
+  color: #1D4ED8;
+  opacity: 0.5;
+  text-decoration: underline;
+}
+
+.sb-offer-legal a {
+  color: #4A90E2;
+  text-decoration: none;
+}
+
+.sb-offer-legal a:hover {
+  text-decoration: underline;
+}
+
+.sb-offer-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+}
+
+.sb-offer-feature-item {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 12px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 14px;
+  line-height: 1.65;
+  color: #F1F5F9;
+}
+
+.sb-offer-feature-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 6px;
+  height: 6px;
+  background: var(--color-yellow);
+  border-radius: 50%;
+}
+
+.sb-offer-disclaimer {
+  font-family: var(--font-space-mono), monospace;
+  font-size: 10px;
+  line-height: 1.65;
+  color: rgba(240, 240, 232, 0.35);
+  margin: 24px 0 0;
 }
 
 /* ═══════════════════════════════════════════════════════════

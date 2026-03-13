@@ -4,6 +4,17 @@ import Image from "next/image";
 import SpotlightCard from "./animations/SpotlightCard";
 import { trackInitiateCheckout } from "@/lib/tracking";
 
+export interface StateOfferOverride {
+  states?: string[];
+  ctaHref?: string;
+  offerText?: string;
+  pointsPack?: string;
+  features?: string[];
+  detailText?: string;
+  legalText?: string;
+  disclaimer?: string;
+}
+
 export interface SportsbookCardProps {
   name: string;
   logo?: string;
@@ -12,8 +23,17 @@ export interface SportsbookCardProps {
   pointsPack?: string;
   ctaHref: string;
   states: string[];
+   // Hidden category used for tab filtering (Sportsbooks vs DFS/Sweeps)
+  type?: "sportsbook" | "dfs_sweeps";
   showDescription?: boolean;
   showPointsPack?: boolean;
+  currentOffer?: string;
+  features?: string[];
+  stateOffers?: StateOfferOverride[];
+}
+
+export interface SportsbookCardComponentProps extends SportsbookCardProps {
+  onOpenAccount?: (sportsbook: SportsbookCardProps) => void;
 }
 
 export default function SportsbookCard({
@@ -23,9 +43,44 @@ export default function SportsbookCard({
   description,
   pointsPack = "+1 FREE POINTS PACK ($39)",
   ctaHref,
+  states,
   showDescription = true,
   showPointsPack = true,
-}: SportsbookCardProps) {
+  onOpenAccount,
+  ...rest
+}: SportsbookCardComponentProps) {
+  const sportsbook: SportsbookCardProps = {
+    name,
+    logo,
+    brandColor,
+    description,
+    pointsPack,
+    ctaHref,
+    states,
+    showDescription,
+    showPointsPack,
+    ...rest,
+  };
+
+  const handleClick = () => {
+    trackInitiateCheckout("sportsbook_card", name);
+    if (onOpenAccount) {
+      onOpenAccount(sportsbook);
+    } else {
+      window.open(ctaHref, "_blank", "noopener,noreferrer");
+    }
+  };
+
+  const CtaElement = onOpenAccount ? "button" : "a";
+  const ctaProps = onOpenAccount
+    ? { type: "button" as const, onClick: handleClick }
+    : {
+        href: ctaHref,
+        target: "_blank",
+        rel: "noopener noreferrer",
+        onClick: handleClick,
+      };
+
   return (
     <SpotlightCard
       className="sb-card"
@@ -53,16 +108,13 @@ export default function SportsbookCard({
         {showPointsPack && pointsPack && (
           <div className="sb-card-pack-badge">{pointsPack}</div>
         )}
-        <a
-          href={ctaHref}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={() => trackInitiateCheckout("sportsbook_card", name)}
+        <CtaElement
           className="sb-card-cta"
           data-cursor-label="GO"
+          {...ctaProps}
         >
           OPEN ACCOUNT →
-        </a>
+        </CtaElement>
       </div>
     </SpotlightCard>
   );

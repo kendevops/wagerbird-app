@@ -131,7 +131,7 @@ export default function SportsbooksSection({
               }
               onClick={() => setActiveCategory("sportsbook")}
             >
-              SPORTBOOKS
+              SPORTSBOOKS
             </button>
             <button
               type="button"

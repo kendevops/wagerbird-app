@@ -21,12 +21,13 @@ import AccessModels from "@/components/AccessModels";
 import MapSection from "@/components/MapSection";
 import PortableTextRenderer from "@/components/PortableTextRenderer";
 
-/** Rewrite monolith auth URLs from CMS data to internal Next.js routes. */
+/** Rewrite monolith URLs from CMS data to internal Next.js routes. */
 function localHref(href: string | undefined): string | undefined {
   if (!href) return href;
   // Match any wagerbird domain (app.wagerbird.com, wagerbird.test, etc.)
   const path = href.replace(/^https?:\/\/[^/]*wagerbird[^/]*/, "");
-  if (path === "/register" || path === "/login") return "/pricing#packs";
+  if (path === "/register") return "/register";
+  if (path === "/login") return "/signin";
   return href;
 }
 

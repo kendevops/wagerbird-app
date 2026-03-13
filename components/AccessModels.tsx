@@ -131,8 +131,6 @@ export default function AccessModels({
             <div className="access-table-packs-col">
               <a
                 href={packsCtaHref}
-                target="_blank"
-                rel="noopener noreferrer"
                 onClick={() => trackInitiateCheckout("access_models_packs")}
                 className="access-cta access-cta--packs"
               >
@@ -142,8 +140,6 @@ export default function AccessModels({
             <div className="access-table-terminal-col">
               <a
                 href={terminalCtaHref}
-                target="_blank"
-                rel="noopener noreferrer"
                 onClick={() => trackInitiateCheckout("access_models_terminal")}
                 className="access-cta access-cta--terminal"
               >

@@ -14,7 +14,7 @@ const VIDEO_URL =
 
 export default function HotsheetPromo({
   ctaLabel = "Get Hotsheet →",
-  ctaHref = "/pricing#packs",
+  ctaHref = "/register",
 }: HotsheetPromoProps) {
   return (
     <section className="hs-promo">
@@ -49,8 +49,6 @@ export default function HotsheetPromo({
 
         <a
           href={ctaHref}
-          target="_blank"
-          rel="noopener noreferrer"
           data-cursor-label="BUY"
           onClick={() => trackInitiateCheckout("hotsheet_promo")}
           className="hs-promo__cta clip-btn"

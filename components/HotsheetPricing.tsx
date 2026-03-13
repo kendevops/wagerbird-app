@@ -100,7 +100,7 @@ const PricingCard = ({
   price,
   features,
   ctaLabel,
-  ctaHref = "/pricing#packs",
+  ctaHref = "/register",
   footer,
 }: PricingCardProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -217,8 +217,6 @@ const PricingCard = ({
 
           <a
             href={ctaHref}
-            target="_blank"
-            rel="noopener noreferrer"
             onClick={() => trackInitiateCheckout("hotsheet_pricing", title)}
             className={`hsp-card-cta ${popular ? "hsp-card-cta--popular" : ""}`}
           >

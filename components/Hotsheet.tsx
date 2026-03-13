@@ -56,7 +56,7 @@ const DeliveryCard = () => (
 
 export default function Hotsheet({
   ctaLabel = "Get Hotsheet →",
-  ctaHref = "/pricing#packs",
+  ctaHref = "/register",
 }: HotsheetProps) {
   return (
     <section className="hotsheet-hero">
@@ -103,8 +103,6 @@ export default function Hotsheet({
         {/* CTA */}
         <a
           href={ctaHref}
-          target="_blank"
-          rel="noopener noreferrer"
           onClick={() => trackInitiateCheckout("hotsheet")}
           className="hotsheet-hero__cta clip-btn"
         >

@@ -60,8 +60,6 @@ export default function Signals({
 
         <a
           href={ctaHref}
-          target="_blank"
-          rel="noopener noreferrer"
           onClick={() => trackInitiateCheckout("signals")}
           className="signals-cta clip-btn"
         >

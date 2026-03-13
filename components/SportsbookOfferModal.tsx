@@ -83,6 +83,8 @@ export default function SportsbookOfferModal({
 
   const [showFullLegal, setShowFullLegal] = useState(false);
   const isLongLegal = legalText.length > 220;
+  const showReward =
+    sportsbook.showPointsPack !== false && pointsPack.trim().length > 0;
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -176,10 +178,14 @@ export default function SportsbookOfferModal({
               <span className="sb-offer-banner-label">CURRENT OFFER</span>
               <span className="sb-offer-banner-text">{offerText}</span>
             </div>
-            <div className="sb-offer-banner-right">
-              <span className="sb-offer-banner-label">WAGERBIRD REWARD</span>
-              <span className="sb-offer-banner-reward-value">{pointsPack}</span>
-            </div>
+            {showReward && (
+              <div className="sb-offer-banner-right">
+                <span className="sb-offer-banner-label">WAGERBIRD REWARD</span>
+                <span className="sb-offer-banner-reward-value">
+                  {pointsPack}
+                </span>
+              </div>
+            )}
           </div>
 
           <div className="sb-offer-detail-card">

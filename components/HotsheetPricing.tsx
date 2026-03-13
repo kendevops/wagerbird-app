@@ -281,6 +281,7 @@ export default function HotsheetPricing() {
                 "No subscription required",
               ]}
               ctaLabel="BUY NOW →"
+              ctaHref="/get-started?plan=hotsheet-ondemand"
               footer="🔒  SECURE CHECKOUT · ONE TIME PAYMENT"
             />
           </motion.div>
@@ -309,6 +310,7 @@ export default function HotsheetPricing() {
                 "Full Terminal access for 3 days",
               ]}
               ctaLabel="BUY NOW →"
+              ctaHref="/get-started?plan=hotsheet-fullday"
               footer="INCLUDES FREE 3-DAY TERMINAL TRIAL"
             />
           </motion.div>

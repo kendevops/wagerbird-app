@@ -20,13 +20,13 @@ import SportsbooksSection from "@/components/SportsbooksSection";
 import AccessModels from "@/components/AccessModels";
 import MapSection from "@/components/MapSection";
 import PortableTextRenderer from "@/components/PortableTextRenderer";
-import { APP_URL } from "@/lib/constants";
 
 /** Rewrite monolith auth URLs from CMS data to internal Next.js routes. */
 function localHref(href: string | undefined): string | undefined {
   if (!href) return href;
-  const stripped = href.replace(APP_URL, "");
-  if (stripped === "/register" || stripped === "/login") return "/pricing#packs";
+  // Match any wagerbird domain (app.wagerbird.com, wagerbird.test, etc.)
+  const path = href.replace(/^https?:\/\/[^/]*wagerbird[^/]*/, "");
+  if (path === "/register" || path === "/login") return "/pricing#packs";
   return href;
 }
 

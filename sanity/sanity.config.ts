@@ -42,6 +42,13 @@ export default defineConfig({
                   .documentId("affiliatesPage")
               ),
             S.listItem()
+              .title("Quantum Page")
+              .child(
+                S.document()
+                  .schemaType("quantumPage")
+                  .documentId("quantumPage")
+              ),
+            S.listItem()
               .title("Sign In Page")
               .child(
                 S.document()
@@ -60,6 +67,7 @@ export default defineConfig({
                 item.getId() !== "page" &&
                 item.getId() !== "siteSettings" &&
                 item.getId() !== "affiliatesPage" &&
+                item.getId() !== "quantumPage" &&
                 item.getId() !== "signInPage" &&
                 item.getId() !== "registerPage"
             ),

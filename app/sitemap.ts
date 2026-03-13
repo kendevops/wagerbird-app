@@ -13,6 +13,7 @@ const STATIC_ROUTES = [
   "affiliates",
   "coming-soon",
   "onboarding",
+  "quantum",
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

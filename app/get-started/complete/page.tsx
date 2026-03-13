@@ -2,16 +2,18 @@
 
 import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { RegistrationForm } from "@/components/GetStartedFlow";
+import { RegistrationForm, SignInForm } from "@/components/GetStartedFlow";
 import { APP_URL } from "@/lib/constants";
 
 type Status = "loading" | "complete" | "error";
+type Mode = "register" | "signin";
 
 function CompleteFlow() {
   const searchParams = useSearchParams();
   const sessionId = searchParams.get("session_id");
   const [status, setStatus] = useState<Status>("loading");
   const [customerEmail, setCustomerEmail] = useState("");
+  const [mode, setMode] = useState<Mode>("register");
 
   useEffect(() => {
     if (!sessionId) {
@@ -45,14 +47,46 @@ function CompleteFlow() {
 
       {status === "complete" && sessionId && (
         <>
-          <h1 className="get-started-title">Create Your Account</h1>
-          <p className="get-started-subtitle">
-            One last step — set up your account to access your picks.
-          </p>
-          <RegistrationForm
-            sessionId={sessionId}
-            prefillEmail={customerEmail}
-          />
+          {mode === "register" ? (
+            <>
+              <h1 className="get-started-title">Create Your Account</h1>
+              <p className="get-started-subtitle">
+                One last step — set up your account to access your picks.
+              </p>
+              <RegistrationForm
+                sessionId={sessionId}
+                prefillEmail={customerEmail}
+              />
+              <p className="get-started-toggle">
+                Already have an account?{" "}
+                <button
+                  type="button"
+                  className="get-started-toggle-link"
+                  onClick={() => setMode("signin")}
+                >
+                  Sign in
+                </button>
+              </p>
+            </>
+          ) : (
+            <>
+              <h1 className="get-started-title">Sign In</h1>
+              <p className="get-started-subtitle">
+                Sign in to your existing account to receive your points.
+              </p>
+              <SignInForm />
+              <p className="get-started-toggle">
+                Need an account?{" "}
+                <button
+                  type="button"
+                  className="get-started-toggle-link"
+                  onClick={() => setMode("register")}
+                >
+                  Register
+                </button>
+              </p>
+            </>
+          )}
         </>
       )}
 

@@ -7831,6 +7831,27 @@ body {
   text-decoration: underline;
 }
 
+.get-started-toggle {
+  font-size: 14px;
+  color: rgba(240, 240, 232, 0.5);
+  text-align: center;
+  margin-top: 16px;
+}
+
+.get-started-toggle-link {
+  background: none;
+  border: none;
+  color: #f0f0e8;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 0;
+}
+
+.get-started-toggle-link:hover {
+  color: rgba(240, 240, 232, 0.8);
+}
+
 /* ─── Embedded checkout ────────────────────────── */
 .get-started-checkout {
   border-radius: 12px;

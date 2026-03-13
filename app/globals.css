@@ -11828,6 +11828,18 @@ button.sb-card-cta {
   letter-spacing: -0.01em;
 }
 
+.qb-form-success {
+  font-size: 0.875rem;
+  color: #e4f222;
+  margin: 0 0 1rem 0;
+}
+
+.qb-form-error {
+  font-size: 0.875rem;
+  color: rgba(255, 100, 100, 0.9);
+  margin: 0 0 1rem 0;
+}
+
 .qb-form-footer {
   padding-top: 1.5rem;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
@@ -11882,4 +11894,9 @@ button.sb-card-cta {
 
 .qb-btn-submit:hover {
   background: #e4f222;
+}
+
+.qb-btn-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }

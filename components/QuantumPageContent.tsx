@@ -61,6 +61,63 @@ export default function QuantumPageContent({ data }: { data: QuantumPageResult |
   const [revealed, setRevealed] = useState(false);
   const [gaugesAnimated, setGaugesAnimated] = useState(false);
 
+  const [form, setForm] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    tierOfInterest: "",
+    capitalCommitment: "50k-250k",
+    primaryMarkets: "",
+    confirmed: false,
+  });
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [submitError, setSubmitError] = useState<string | null>(null);
+
+  const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const target = e.target;
+    const value = target.type === "checkbox" ? (target as HTMLInputElement).checked : target.value;
+    setForm((prev) => ({ ...prev, [target.name]: value }));
+  };
+
+  const isFormValid =
+    form.firstName.trim().length > 0 &&
+    form.lastName.trim().length > 0 &&
+    form.email.trim().length > 0 &&
+    form.phone.trim().length > 0 &&
+    form.tierOfInterest.length > 0 &&
+    form.confirmed;
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSubmitStatus("submitting");
+    setSubmitError(null);
+    try {
+      const res = await fetch("/api/quantum-submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          firstName: form.firstName.trim(),
+          lastName: form.lastName.trim(),
+          email: form.email.trim(),
+          phone: form.phone.trim(),
+          tierOfInterest: form.tierOfInterest || undefined,
+          capitalCommitment: form.capitalCommitment || undefined,
+          primaryMarkets: form.primaryMarkets.trim() || undefined,
+        }),
+      });
+      const json = await res.json();
+      if (!res.ok) {
+        throw new Error(json.error ?? "Something went wrong.");
+      }
+      setSubmitStatus("success");
+      setForm({ firstName: "", lastName: "", email: "", phone: "", tierOfInterest: "", capitalCommitment: "50k-250k", primaryMarkets: "", confirmed: false });
+    } catch (err) {
+      setSubmitStatus("error");
+      setSubmitError(err instanceof Error ? err.message : "Failed to submit. Please try again.");
+    }
+  };
+
   const c = {
     heroBadgeText: data?.heroBadgeText ?? "Private Client Program · By Qualification",
     heroTitleLine1: data?.heroTitleLine1 ?? "Where precision",
@@ -431,61 +488,73 @@ export default function QuantumPageContent({ data }: { data: QuantumPageResult |
             </div>
             <form
               className="qb-form"
-              onSubmit={(e) => e.preventDefault()}
+              onSubmit={handleSubmit}
             >
+              {submitStatus === "success" && (
+                <p className="qb-form-success" role="alert">
+                  Thank you. Your application has been received. Our advisory team will review it and be in touch.
+                </p>
+              )}
+              {submitStatus === "error" && submitError && (
+                <p className="qb-form-error" role="alert">
+                  {submitError}
+                </p>
+              )}
               <div className="qb-form-row">
                 <div className="qb-field">
-                  <label>First Name</label>
-                  <input type="text" required />
+                  <label htmlFor="qb-firstName">First Name</label>
+                  <input id="qb-firstName" name="firstName" type="text" required value={form.firstName} onChange={handleFormChange} disabled={submitStatus === "submitting"} />
                 </div>
                 <div className="qb-field">
-                  <label>Last Name</label>
-                  <input type="text" required />
+                  <label htmlFor="qb-lastName">Last Name</label>
+                  <input id="qb-lastName" name="lastName" type="text" required value={form.lastName} onChange={handleFormChange} disabled={submitStatus === "submitting"} />
                 </div>
               </div>
               <div className="qb-form-row">
                 <div className="qb-field">
-                  <label>Email Address</label>
-                  <input type="email" required />
+                  <label htmlFor="qb-email">Email Address</label>
+                  <input id="qb-email" name="email" type="email" required value={form.email} onChange={handleFormChange} disabled={submitStatus === "submitting"} />
                 </div>
                 <div className="qb-field">
-                  <label>Phone Number</label>
-                  <input type="tel" required />
+                  <label htmlFor="qb-phone">Phone Number</label>
+                  <input id="qb-phone" name="phone" type="tel" required value={form.phone} onChange={handleFormChange} disabled={submitStatus === "submitting"} />
                 </div>
               </div>
               <div className="qb-form-row">
                 <div className="qb-field">
-                  <label>Tier of Interest</label>
-                  <select required>
-                    <option value="" disabled>Select Tier</option>
+                  <label htmlFor="qb-tier">Tier of Interest</label>
+                  <select id="qb-tier" name="tierOfInterest" required value={form.tierOfInterest} onChange={handleFormChange} disabled={submitStatus === "submitting"}>
+                    <option value="">Select Tier</option>
                     <option value="ascent">Ascent (Tier I)</option>
                     <option value="summit">Summit (Tier II)</option>
                     <option value="apex">Apex (Tier III)</option>
                   </select>
                 </div>
                 <div className="qb-field">
-                  <label>Capital Commitment</label>
-                  <select>
-                    <option value="">$50k - $250k</option>
-                    <option value="1">$250k - $1M</option>
-                    <option value="2">$1M+</option>
+                  <label htmlFor="qb-capital">Capital Commitment</label>
+                  <select id="qb-capital" name="capitalCommitment" value={form.capitalCommitment} onChange={handleFormChange} disabled={submitStatus === "submitting"}>
+                    <option value="50k-250k">$50k - $250k</option>
+                    <option value="250k-1m">$250k - $1M</option>
+                    <option value="1m+">$1M+</option>
                   </select>
                 </div>
               </div>
               <div className="qb-field">
-                <label>Primary Markets of Interest</label>
-                <input type="text" placeholder="e.g., NFL, Global Soccer, Tennis" />
+                <label htmlFor="qb-markets">Primary Markets of Interest</label>
+                <input id="qb-markets" name="primaryMarkets" type="text" placeholder="e.g., NFL, Global Soccer, Tennis" value={form.primaryMarkets} onChange={handleFormChange} disabled={submitStatus === "submitting"} />
               </div>
               <div className="qb-checkbox-wrap">
                 <label className="qb-checkbox">
-                  <input type="checkbox" required />
+                  <input type="checkbox" name="confirmed" required checked={form.confirmed} onChange={handleFormChange} disabled={submitStatus === "submitting"} />
                   <span className="qb-checkbox-box" />
                   <span className="qb-checkbox-text">{c.applyCheckboxText.split(/\b(relationship)\b/gi).map((part, i) => part.toLowerCase() === "relationship" ? <em key={i}>{part}</em> : part)}</span>
                 </label>
               </div>
               <div className="qb-form-footer">
                 <p className="qb-form-disclaimer">{c.applyDisclaimer}</p>
-                <button type="submit" className="qb-btn-submit">{c.applySubmitLabel}</button>
+                <button type="submit" className="qb-btn-submit" disabled={submitStatus === "submitting" || !isFormValid}>
+                  {submitStatus === "submitting" ? "Submitting…" : c.applySubmitLabel}
+                </button>
               </div>
             </form>
           </div>

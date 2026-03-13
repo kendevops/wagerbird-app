@@ -1,4 +1,5 @@
 import { pageType } from "./page";
+import { quantumSubmissionType } from "./quantumSubmission";
 import { siteSettingsType } from "./siteSettings";
 import {
   signInPageType,
@@ -43,6 +44,7 @@ export const schemaTypes = [
   comingSoonMetaType,
   affiliatesPageType,
   quantumPageType,
+  quantumSubmissionType,
   heroBlock,
   tickerBlock,
   signalsBlock,

@@ -5,6 +5,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 
 const STUDIO_PATH = "/studio";
+const NO_LAYOUT_PATHS = ["/onboarding"];
 const NO_FOOTER_PATHS = ["/signin", "/register", "/coming-soon"];
 
 export default function ConditionalSiteLayout({
@@ -14,9 +15,10 @@ export default function ConditionalSiteLayout({
 }) {
   const pathname = usePathname();
   const isStudio = pathname?.startsWith(STUDIO_PATH) ?? false;
+  const isNoLayout = NO_LAYOUT_PATHS.some((p) => pathname?.startsWith(p));
   const hideFooter = NO_FOOTER_PATHS.includes(pathname ?? "");
 
-  if (isStudio) {
+  if (isStudio || isNoLayout) {
     return <>{children}</>;
   }
 

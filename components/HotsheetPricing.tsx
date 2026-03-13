@@ -23,7 +23,7 @@ interface PricingCardProps {
   footer?: string;
 }
 
-// ─── Phone Mockup Widget ──────────────────────────────
+// ─── Phone Mockup Widget (with tilt on inner card) ────
 const PhoneMockup = ({
   label,
   sublabel,
@@ -32,6 +32,7 @@ const PhoneMockup = ({
   secondary,
   secondaryMeta,
   popular,
+  tiltEnabled,
 }: {
   label: string;
   sublabel?: string;
@@ -40,8 +41,32 @@ const PhoneMockup = ({
   secondary: string;
   secondaryMeta?: string;
   popular?: boolean;
-}) => (
-  <div className={`hsp-mockup ${popular ? "hsp-mockup--popular" : ""}`}>
+  tiltEnabled?: boolean;
+}) => {
+  const mockupRef = useRef<HTMLDivElement>(null);
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const springCfg = { damping: 18, stiffness: 280, mass: 0.5 };
+  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [10, -10]), springCfg);
+  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-10, 10]), springCfg);
+
+  const handleMockupMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!tiltEnabled || !mockupRef.current) return;
+    const rect = mockupRef.current.getBoundingClientRect();
+    const px = (e.clientX - rect.left) / rect.width;
+    const py = (e.clientY - rect.top) / rect.height;
+    x.set(px - 0.5);
+    y.set(py - 0.5);
+  };
+
+  const handleMockupMouseLeave = () => {
+    if (!tiltEnabled) return;
+    x.set(0);
+    y.set(0);
+  };
+
+  const inner = (
+    <div className={`hsp-mockup ${popular ? "hsp-mockup--popular" : ""}`}>
     <div className="hsp-mockup__top">
       <div className="hsp-mockup__top-left">
         <span className="hsp-mockup__label">{label}</span>
@@ -70,7 +95,34 @@ const PhoneMockup = ({
       )}
     </div>
   </div>
-);
+  );
+
+  if (tiltEnabled) {
+    return (
+      <div
+        ref={mockupRef}
+        onMouseMove={handleMockupMouseMove}
+        onMouseLeave={handleMockupMouseLeave}
+        className="hsp-mockup-wrapper"
+      >
+        <motion.div
+          style={{
+            rotateX,
+            rotateY,
+            transformStyle: "preserve-3d",
+          }}
+          className="hsp-mockup-tilt"
+        >
+          {React.cloneElement(inner, {
+            className: [inner.props.className, "hsp-mockup--no-margin"].filter(Boolean).join(" "),
+          })}
+        </motion.div>
+      </div>
+    );
+  }
+
+  return inner;
+};
 
 // ─── Check icon ───────────────────────────────────────
 const CheckIcon = ({ popular }: { popular?: boolean }) => (
@@ -118,11 +170,7 @@ const PricingCard = ({
   const [glowOpacity, setGlowOpacity] = useState(0);
   const [shineOpacity, setShineOpacity] = useState(0);
 
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
   const springCfg = { damping: 18, stiffness: 280, mass: 0.5 };
-  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [10, -10]), springCfg);
-  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-10, 10]), springCfg);
   const scaleSpring = useSpring(1, springCfg);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -130,8 +178,6 @@ const PricingCard = ({
     const rect = containerRef.current.getBoundingClientRect();
     const px = (e.clientX - rect.left) / rect.width;
     const py = (e.clientY - rect.top) / rect.height;
-    x.set(px - 0.5);
-    y.set(py - 0.5);
     containerRef.current.style.setProperty("--glow-x", `${px * 100}%`);
     containerRef.current.style.setProperty("--glow-y", `${py * 100}%`);
     if (popular) setGlowOpacity(1);
@@ -146,8 +192,6 @@ const PricingCard = ({
 
   const handleMouseLeave = () => {
     scaleSpring.set(1);
-    x.set(0);
-    y.set(0);
     setGlowOpacity(0);
     setShineOpacity(0);
   };
@@ -172,10 +216,7 @@ const PricingCard = ({
 
       <motion.div
         style={{
-          rotateX,
-          rotateY,
           scale: scaleSpring,
-          transformStyle: "preserve-3d",
         }}
         className={`hsp-card ${popular ? "hsp-card--popular" : ""}`}
       >
@@ -194,7 +235,7 @@ const PricingCard = ({
           </div>
         )}
 
-        {/* Phone mockup */}
+        {/* Phone mockup (with tilt on inner card) */}
         <PhoneMockup
           label={mockLabel}
           sublabel={mockSublabel}
@@ -203,6 +244,7 @@ const PricingCard = ({
           secondary={mockSecondary}
           secondaryMeta={mockSecondaryMeta}
           popular={popular}
+          tiltEnabled
         />
 
         {/* Plan info */}

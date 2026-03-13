@@ -7,6 +7,7 @@ import {
   error500PageType,
   comingSoonMetaType,
   affiliatesPageType,
+  quantumPageType,
 } from "./systemPages";
 import {
   heroBlock,
@@ -41,6 +42,7 @@ export const schemaTypes = [
   error500PageType,
   comingSoonMetaType,
   affiliatesPageType,
+  quantumPageType,
   heroBlock,
   tickerBlock,
   signalsBlock,

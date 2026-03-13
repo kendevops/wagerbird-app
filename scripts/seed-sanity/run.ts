@@ -18,6 +18,7 @@ import {
   error500Page,
   comingSoonMeta,
   affiliatesPage,
+  quantumPage,
 } from "./data";
 
 async function main() {
@@ -70,6 +71,9 @@ async function main() {
 
   transaction.createOrReplace(affiliatesPage as any);
   console.log("  - affiliatesPage: Affiliates Hero");
+
+  transaction.createOrReplace(quantumPage as any);
+  console.log("  - quantumPage: Quantum Page");
 
   for (const page of allPages) {
     transaction.createOrReplace(page as any);

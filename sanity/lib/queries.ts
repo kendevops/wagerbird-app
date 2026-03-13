@@ -275,6 +275,113 @@ export type AffiliatesPageResult = {
   faqItems?: { id?: string; question?: string; answer?: string }[];
 } | null;
 
+export const quantumPageQuery = groq`
+  *[_type == "quantumPage" && _id == "quantumPage"][0] {
+    heroBadgeText,
+    heroTitleLine1,
+    heroTitleLine2,
+    heroSub,
+    heroPrimaryCtaLabel,
+    heroPrimaryCtaHref,
+    heroSecondaryCtaLabel,
+    heroSecondaryCtaHref,
+    heroVideoUrl,
+    heroMetaItems,
+    introTitle,
+    introParagraph1,
+    introParagraph2,
+    pillarsEyebrow,
+    pillarsTitle,
+    pillarsCards[] { num, title, tag, desc },
+    platformsEyebrow,
+    platformsTitle,
+    platformsDescription,
+    platformAdvisoryTag,
+    platformAdvisoryName,
+    platformAdvisorySub,
+    platformAdvisoryBadge,
+    platformAdvisoryDesc,
+    platformHorizonTag,
+    platformHorizonName,
+    platformHorizonSub,
+    platformHorizonBadge,
+    platformHorizonDesc,
+    platformPulseTag,
+    platformPulseName,
+    platformPulseSub,
+    platformPulseBadge,
+    platformPulseDesc,
+    structureTitle,
+    structureNote,
+    tiers[] { label, name, features[], footerText, featured, featuredBadge },
+    qualRightFitTitle,
+    qualRightFitItems,
+    qualMisalignedTitle,
+    qualMisalignedItems,
+    applyTitle,
+    applyNote,
+    applyDisclaimer,
+    applyCheckboxText,
+    applySubmitLabel
+  }
+`;
+
+export type QuantumPageResult = {
+  heroBadgeText?: string;
+  heroTitleLine1?: string;
+  heroTitleLine2?: string;
+  heroSub?: string;
+  heroPrimaryCtaLabel?: string;
+  heroPrimaryCtaHref?: string;
+  heroSecondaryCtaLabel?: string;
+  heroSecondaryCtaHref?: string;
+  heroVideoUrl?: string | null;
+  heroMetaItems?: string[];
+  introTitle?: string;
+  introParagraph1?: string;
+  introParagraph2?: string;
+  pillarsEyebrow?: string;
+  pillarsTitle?: string;
+  pillarsCards?: { num?: string; title?: string; tag?: string; desc?: string }[];
+  platformsEyebrow?: string;
+  platformsTitle?: string;
+  platformsDescription?: string;
+  platformAdvisoryTag?: string;
+  platformAdvisoryName?: string;
+  platformAdvisorySub?: string;
+  platformAdvisoryBadge?: string;
+  platformAdvisoryDesc?: string;
+  platformHorizonTag?: string;
+  platformHorizonName?: string;
+  platformHorizonSub?: string;
+  platformHorizonBadge?: string;
+  platformHorizonDesc?: string;
+  platformPulseTag?: string;
+  platformPulseName?: string;
+  platformPulseSub?: string;
+  platformPulseBadge?: string;
+  platformPulseDesc?: string;
+  structureTitle?: string;
+  structureNote?: string;
+  tiers?: {
+    label?: string;
+    name?: string;
+    features?: string[];
+    footerText?: string;
+    featured?: boolean;
+    featuredBadge?: string;
+  }[];
+  qualRightFitTitle?: string;
+  qualRightFitItems?: string[];
+  qualMisalignedTitle?: string;
+  qualMisalignedItems?: string[];
+  applyTitle?: string;
+  applyNote?: string;
+  applyDisclaimer?: string;
+  applyCheckboxText?: string;
+  applySubmitLabel?: string;
+} | null;
+
 export type PageBySlugResult = {
   _id: string;
   title: string;

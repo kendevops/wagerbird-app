@@ -985,3 +985,416 @@ export const affiliatesPageType = defineType({
   preview: { prepare: () => ({ title: "Affiliates Page" }) },
 });
 
+export const quantumPageType = defineType({
+  name: "quantumPage",
+  title: "Quantum Page",
+  type: "document",
+  groups: [
+    { name: "hero", title: "Hero" },
+    { name: "intro", title: "Intro" },
+    { name: "pillars", title: "Four Pillars" },
+    { name: "platforms", title: "Quantum Platforms" },
+    { name: "structure", title: "Program Structure (Tiers)" },
+    { name: "qualification", title: "Qualification" },
+    { name: "apply", title: "Application Form" },
+  ],
+  fields: [
+    // Hero
+    defineField({
+      name: "heroBadgeText",
+      title: "Hero Badge Text",
+      type: "string",
+      group: "hero",
+      initialValue: "Private Client Program · By Qualification",
+    }),
+    defineField({
+      name: "heroTitleLine1",
+      title: "Hero Title Line 1",
+      type: "string",
+      group: "hero",
+      initialValue: "Where precision",
+    }),
+    defineField({
+      name: "heroTitleLine2",
+      title: "Hero Title Line 2 (accent word)",
+      type: "string",
+      group: "hero",
+      description: "The italic accent word, e.g. conviction",
+      initialValue: "conviction",
+    }),
+    defineField({
+      name: "heroSub",
+      title: "Hero Subheading",
+      type: "text",
+      group: "hero",
+      initialValue:
+        "Quantum is WagerBird's private advisory program — a dedicated relationship between you, your personal trader, and institutional-grade intelligence that doesn't exist on the open market.",
+    }),
+    defineField({
+      name: "heroPrimaryCtaLabel",
+      title: "Primary CTA Label",
+      type: "string",
+      group: "hero",
+      initialValue: "Request Access",
+    }),
+    defineField({
+      name: "heroPrimaryCtaHref",
+      title: "Primary CTA URL",
+      type: "string",
+      group: "hero",
+      initialValue: "#apply",
+    }),
+    defineField({
+      name: "heroSecondaryCtaLabel",
+      title: "Secondary CTA Label",
+      type: "string",
+      group: "hero",
+      initialValue: "See What's Included",
+    }),
+    defineField({
+      name: "heroSecondaryCtaHref",
+      title: "Secondary CTA URL",
+      type: "string",
+      group: "hero",
+      initialValue: "#program",
+    }),
+    defineField({
+      name: "heroVideoUrl",
+      title: "Hero Video URL",
+      type: "url",
+      group: "hero",
+      description: "Optional. Leave empty to use default video.",
+    }),
+    defineField({
+      name: "heroMetaItems",
+      title: "Hero Meta Tags",
+      type: "array",
+      group: "hero",
+      of: [{ type: "string" }],
+      initialValue: ["Personal Trader Assigned", "Institutional Data Feeds", "Bespoke Signal Delivery"],
+    }),
+
+    // Intro
+    defineField({
+      name: "introTitle",
+      title: "Intro Title",
+      type: "text",
+      rows: 2,
+      group: "intro",
+      initialValue: "A relationship,\nnot a subscription.",
+    }),
+    defineField({
+      name: "introParagraph1",
+      title: "Intro Paragraph 1",
+      type: "text",
+      group: "intro",
+      initialValue:
+        "The retail betting market is designed to extract capital through friction, obscured margins, and emotional volatility. Institutional markets operate on a fundamentally different axis: cold logic, deep data, and absolute discipline.",
+    }),
+    defineField({
+      name: "introParagraph2",
+      title: "Intro Paragraph 2",
+      type: "text",
+      group: "intro",
+      initialValue:
+        "Quantum bridges this divide for high-net-worth individuals. By pairing serious capital with a dedicated relationship manager and proprietary trading feeds, we replace guesswork with systematic edge. You are not buying picks; you are integrating into a private trading desk.",
+    }),
+
+    // Pillars
+    defineField({
+      name: "pillarsEyebrow",
+      title: "Pillars Eyebrow",
+      type: "string",
+      group: "pillars",
+      initialValue: "What you receive",
+    }),
+    defineField({
+      name: "pillarsTitle",
+      title: "Pillars Title",
+      type: "text",
+      rows: 2,
+      group: "pillars",
+      initialValue: "Four pillars.\nOne integrated edge.",
+    }),
+    defineField({
+      name: "pillarsCards",
+      title: "Pillar Cards",
+      type: "array",
+      group: "pillars",
+      of: [
+        {
+          type: "object",
+          fields: [
+            { name: "num", type: "string", title: "Number (e.g. 01)" },
+            { name: "title", type: "string", title: "Title" },
+            { name: "tag", type: "string", title: "Tag Line" },
+            { name: "desc", type: "text", title: "Description" },
+          ],
+        },
+      ],
+      validation: (Rule) => Rule.max(4),
+      initialValue: [
+        { num: "01", title: "Personal Trader", tag: "Direct Comm Line", desc: "A dedicated risk manager assigned to your portfolio. They filter signals, size positions relative to your bankroll, and provide rationale for every execution." },
+        { num: "02", title: "Money Management", tag: "Capital Preservation", desc: "Strict institutional drawdown protocols applied to your account. We prioritize protecting the principal while compounding the alpha generated by our models." },
+        { num: "03", title: "Institutional Feeds", tag: "Unrestricted Access", desc: "Raw access to the same latency-optimized API feeds and sharp money indicators used by our internal proprietary trading desk." },
+        { num: "04", title: "Full Platform", tag: "Command Center", desc: "Log in to your private terminal to view live risk, historical performance analytics, and real-time market sentiment dashboards." },
+      ],
+    }),
+
+    // Platforms (3 cards: Advisory, Horizon, Pulse)
+    defineField({
+      name: "platformsEyebrow",
+      title: "Platforms Eyebrow",
+      type: "string",
+      group: "platforms",
+      initialValue: "Quantum Platforms",
+    }),
+    defineField({
+      name: "platformsTitle",
+      title: "Platforms Title",
+      type: "text",
+      rows: 2,
+      group: "platforms",
+      initialValue: "Three systems.\nOne edge.",
+    }),
+    defineField({
+      name: "platformsDescription",
+      title: "Platforms Description",
+      type: "text",
+      group: "platforms",
+      initialValue:
+        "Quantum clients receive full access to the Terminal and exclusive access to two proprietary platforms unavailable to general subscribers. Each purpose-built for a different layer of the intelligence stack.",
+    }),
+    defineField({
+      name: "platformAdvisoryTag",
+      title: "Advisory Card – Tag",
+      type: "string",
+      group: "platforms",
+      initialValue: "Core Program",
+    }),
+    defineField({
+      name: "platformAdvisoryName",
+      title: "Advisory Card – Name",
+      type: "string",
+      group: "platforms",
+      initialValue: "Quantum Advisory",
+    }),
+    defineField({
+      name: "platformAdvisorySub",
+      title: "Advisory Card – Subtitle",
+      type: "string",
+      group: "platforms",
+      initialValue: "Full advisory relationship",
+    }),
+    defineField({
+      name: "platformAdvisoryBadge",
+      title: "Advisory Card – Badge",
+      type: "string",
+      group: "platforms",
+      initialValue: "All Tiers",
+    }),
+    defineField({
+      name: "platformAdvisoryDesc",
+      title: "Advisory Card – Description",
+      type: "text",
+      group: "platforms",
+      initialValue:
+        "The full advisory relationship. Your trader, your data, your strategy — coordinated through WagerBird's Terminal with institutional precision.",
+    }),
+    defineField({
+      name: "platformHorizonTag",
+      title: "Horizon Card – Tag",
+      type: "string",
+      group: "platforms",
+      initialValue: "Exclusive Platform",
+    }),
+    defineField({
+      name: "platformHorizonName",
+      title: "Horizon Card – Name",
+      type: "string",
+      group: "platforms",
+      initialValue: "Horizon",
+    }),
+    defineField({
+      name: "platformHorizonSub",
+      title: "Horizon Card – Subtitle",
+      type: "string",
+      group: "platforms",
+      initialValue: "Institutional Feed · Live Market",
+    }),
+    defineField({
+      name: "platformHorizonBadge",
+      title: "Horizon Card – Badge",
+      type: "string",
+      group: "platforms",
+      initialValue: "Summit + Apex",
+    }),
+    defineField({
+      name: "platformHorizonDesc",
+      title: "Horizon Card – Description",
+      type: "text",
+      group: "platforms",
+      initialValue:
+        "Surfaces book movement, line drift, and sharp-side pressure in real time — the view professional operations rely on.",
+    }),
+    defineField({
+      name: "platformPulseTag",
+      title: "Pulse Card – Tag",
+      type: "string",
+      group: "platforms",
+      initialValue: "Exclusive Platform",
+    }),
+    defineField({
+      name: "platformPulseName",
+      title: "Pulse Card – Name",
+      type: "string",
+      group: "platforms",
+      initialValue: "Pulse",
+    }),
+    defineField({
+      name: "platformPulseSub",
+      title: "Pulse Card – Subtitle",
+      type: "string",
+      group: "platforms",
+      initialValue: "In-Game Intelligence Display",
+    }),
+    defineField({
+      name: "platformPulseBadge",
+      title: "Pulse Card – Badge",
+      type: "string",
+      group: "platforms",
+      initialValue: "Summit + Apex",
+    }),
+    defineField({
+      name: "platformPulseDesc",
+      title: "Pulse Card – Description",
+      type: "text",
+      group: "platforms",
+      initialValue:
+        "Dynamic market signals and in-game conviction scoring. The fastest read on where the market is moving and why.",
+    }),
+
+    // Structure (tiers)
+    defineField({
+      name: "structureTitle",
+      title: "Structure Title",
+      type: "text",
+      rows: 2,
+      group: "structure",
+      initialValue: "Built for\nserious capital.",
+    }),
+    defineField({
+      name: "structureNote",
+      title: "Structure Note",
+      type: "text",
+      rows: 2,
+      group: "structure",
+      initialValue: "Performance-based only.\nNo upfront advisory fees.",
+    }),
+    defineField({
+      name: "tiers",
+      title: "Tiers",
+      type: "array",
+      group: "structure",
+      of: [
+        {
+          type: "object",
+          fields: [
+            { name: "label", type: "string", title: "Tier Label (e.g. Tier I)" },
+            { name: "name", type: "string", title: "Tier Name (e.g. Ascent)" },
+            { name: "features", type: "array", of: [{ type: "string" }], title: "Features" },
+            { name: "footerText", type: "string", title: "Footer Text" },
+            { name: "featured", type: "boolean", title: "Featured (Summit style)", initialValue: false },
+            { name: "featuredBadge", type: "string", title: "Featured Badge (e.g. Most Selected)" },
+          ],
+        },
+      ],
+      validation: (Rule) => Rule.max(3),
+      initialValue: [
+        { label: "Tier I", name: "Ascent", features: ["Dedicated Associate Trader", "Core Market Feeds", "Standard Risk Protocols"], footerText: "Min. Bankroll: $50k", featured: false },
+        { label: "Tier II", name: "Summit", features: ["Senior Portfolio Manager", "Horizon & Pulse Access", "Custom Hedging Strategy", "Weekly Strategy Briefing"], footerText: "Min. Bankroll: $250k", featured: true, featuredBadge: "Most Selected" },
+        { label: "Tier III", name: "Apex", features: ["Desk Head Assignment", "Bespoke Model Requests", "API Execution Routing"], footerText: "By Invitation Only", featured: false },
+      ],
+    }),
+
+    // Qualification
+    defineField({
+      name: "qualRightFitTitle",
+      title: "Right Fit Title",
+      type: "string",
+      group: "qualification",
+      initialValue: "Right Fit",
+    }),
+    defineField({
+      name: "qualRightFitItems",
+      title: "Right Fit Items",
+      type: "array",
+      group: "qualification",
+      of: [{ type: "string" }],
+      initialValue: [
+        "Investors treating sports markets as an alternative asset class.",
+        "Individuals with strict emotional discipline and long-term horizon.",
+        "Capital bases requiring institutional risk management architecture.",
+      ],
+    }),
+    defineField({
+      name: "qualMisalignedTitle",
+      title: "Misaligned Title",
+      type: "string",
+      group: "qualification",
+      initialValue: "Misaligned",
+    }),
+    defineField({
+      name: "qualMisalignedItems",
+      title: "Misaligned Items",
+      type: "array",
+      group: "qualification",
+      of: [{ type: "string" }],
+      initialValue: [
+        "Recreational bettors looking for daily action or \"locks\".",
+        "Those unable to tolerate variance or adhere to strict unit sizing.",
+        "Individuals seeking immediate, short-term financial returns.",
+      ],
+    }),
+
+    // Apply
+    defineField({
+      name: "applyTitle",
+      title: "Apply Section Title",
+      type: "string",
+      group: "apply",
+      initialValue: "Start the conversation.",
+    }),
+    defineField({
+      name: "applyNote",
+      title: "Apply Section Note",
+      type: "string",
+      group: "apply",
+      initialValue: "Please provide accurate details. Our advisory team reviews applications weekly.",
+    }),
+    defineField({
+      name: "applyDisclaimer",
+      title: "Form Disclaimer",
+      type: "string",
+      group: "apply",
+      initialValue: "Strictly confidential · Limited quarterly enrollment",
+    }),
+    defineField({
+      name: "applyCheckboxText",
+      title: "Checkbox Label",
+      type: "text",
+      group: "apply",
+      initialValue:
+        "I confirm I meet the capital requirements and understand this application is for a private advisory relationship, not a guaranteed return product.",
+    }),
+    defineField({
+      name: "applySubmitLabel",
+      title: "Submit Button Label",
+      type: "string",
+      group: "apply",
+      initialValue: "Submit Application",
+    }),
+  ],
+  preview: { prepare: () => ({ title: "Quantum Page" }) },
+});
+

@@ -4356,7 +4356,20 @@ body {
   flex-shrink: 0;
 }
 
-/* Phone mockup */
+/* Phone mockup (tilt wrapper when tiltEnabled) */
+.hsp-mockup-wrapper {
+  margin: 20px 20px 0;
+  perspective: 600px;
+}
+
+.hsp-mockup-tilt {
+  transform-style: preserve-3d;
+}
+
+.hsp-mockup--no-margin {
+  margin: 0;
+}
+
 .hsp-mockup {
   margin: 20px 20px 0;
   background: #1A1A2E;

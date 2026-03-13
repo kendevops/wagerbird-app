@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { trackInitiateCheckout } from "@/lib/tracking";
-import { APP_URL } from "@/lib/constants";
+
 
 interface CtaBannerProps {
   watermark?: string;
@@ -22,7 +22,7 @@ export default function CtaBanner({
   ),
   subtitle = "Join 12,000+ bettors who trade with confidence-scored signals.",
   ctaLabel = "Buy a Pack Now →",
-  ctaHref = `${APP_URL}/register`
+  ctaHref = "/pricing#packs"
 }: CtaBannerProps) {
   return (
     <section className="cta-section">

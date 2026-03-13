@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { trackInitiateCheckout } from "@/lib/tracking";
-import { APP_URL } from "@/lib/constants";
+
 
 interface ComparisonRow {
   label: string;
@@ -60,9 +60,9 @@ export default function AccessModels({
   subtitle = "Packs are for bettors who want flexibility. Terminal Plans are for daily grinders.",
   rows = defaultRows,
   packsCtaLabel = "Get Core Pack →",
-  packsCtaHref = `${APP_URL}/register`,
+  packsCtaHref = "/pricing#packs",
   terminalCtaLabel = "Check Monthly Plans",
-  terminalCtaHref = `${APP_URL}/register`,
+  terminalCtaHref = "/pricing#packs",
 }: AccessModelsProps) {
   const defaultHeading = (
     <>

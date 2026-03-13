@@ -379,6 +379,8 @@ export function SignInForm() {
 
       if (data.redirectUrl) {
         setLoginUrl(data.redirectUrl);
+      } else {
+        setError("Sign in succeeded but no redirect was provided. Please try again.");
       }
     } catch {
       setError("Something went wrong. Please try again.");

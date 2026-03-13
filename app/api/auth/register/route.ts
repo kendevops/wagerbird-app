@@ -37,7 +37,12 @@ async function proxyToMonolith(payload: Record<string, unknown>) {
   }
 
   const response = await fetch(url, options);
-  const data = await response.json();
+  let data: Record<string, unknown> = {};
+  try {
+    data = await response.json();
+  } catch {
+    // non-JSON response from upstream
+  }
   return { response, data };
 }
 
@@ -54,6 +59,10 @@ export async function POST(request: NextRequest) {
     // Standalone registration flow (no checkout session)
     const email = typeof body?.email === "string" ? body.email.trim() : "";
     const password = typeof body?.password === "string" ? body.password : "";
+    const passwordConfirmation =
+      typeof body?.passwordConfirmation === "string"
+        ? body.passwordConfirmation
+        : password;
     const firstName =
       typeof body?.firstName === "string" ? body.firstName.trim() : "";
     const lastName =
@@ -76,9 +85,9 @@ export async function POST(request: NextRequest) {
     const payload: Record<string, string> = {
       email,
       password,
-      password_confirmation: password,
-      ...(firstName && { first_name: firstName }),
-      ...(lastName && { last_name: lastName }),
+      password_confirmation: passwordConfirmation,
+      first_name: firstName,
+      last_name: lastName,
       ...(phone && { phone_number: phone }),
       ...(countryCode && { phone_number_country: countryCode }),
     };
@@ -89,10 +98,10 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         {
           error:
-            (data as { message?: string }).message ??
-            (data as { error?: string }).error ??
+            (data.message as string) ??
+            (data.error as string) ??
             "Registration failed",
-          ...data,
+          errors: data.errors,
         },
         { status: response.status }
       );
@@ -100,8 +109,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       ok: true,
-      redirectUrl: data.data?.login_url,
-      ...data,
+      redirectUrl: (data.data as { login_url?: string })?.login_url,
     });
   } catch (error) {
     console.error("[register] Proxy error:", error);

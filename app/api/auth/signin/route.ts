@@ -4,10 +4,18 @@ import { NextRequest, NextResponse } from "next/server";
  * Proxies sign-in to the monolith /api/v1/login endpoint.
  * Returns a signed auto-login URL on success.
  *
- * Env: MONOLITH_URL, MONOLITH_API_KEY, NEXT_PUBLIC_WAGERBIRD_APP_URL
+ * Env: MONOLITH_URL, MONOLITH_API_KEY
  */
 const MONOLITH_URL = process.env.MONOLITH_URL!;
 const MONOLITH_API_KEY = process.env.MONOLITH_API_KEY!;
+
+async function safeJson(res: Response): Promise<Record<string, unknown>> {
+  try {
+    return await res.json();
+  } catch {
+    return {};
+  }
+}
 
 export async function POST(request: NextRequest) {
   let body: { email?: string; password?: string };
@@ -52,16 +60,16 @@ export async function POST(request: NextRequest) {
     }
 
     const res = await fetch(url, options);
-    const data = await res.json();
+    const data = await safeJson(res);
 
     if (!res.ok) {
       return NextResponse.json(
         {
           error:
-            (data as { message?: string }).message ??
-            (data as { error?: string }).error ??
+            (data.message as string) ??
+            (data.error as string) ??
             "Sign in failed",
-          ...data,
+          errors: data.errors,
         },
         { status: res.status }
       );
@@ -69,8 +77,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       ok: true,
-      redirectUrl: data.data?.login_url,
-      ...data,
+      redirectUrl: (data.data as { login_url?: string })?.login_url,
     });
   } catch (err) {
     console.error("Auth signin proxy error:", err);

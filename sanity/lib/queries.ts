@@ -22,6 +22,10 @@ export type SiteSettingsResult = {
   twitterHandle?: string;
 } | null;
 
+export const allPageSlugsQuery = groq`
+  *[_type == "page" && defined(slug.current)].slug.current
+`;
+
 export const pageBySlugQuery = groq`
   *[_type == "page" && slug.current == $slug][0] {
     _id,

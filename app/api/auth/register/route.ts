@@ -40,8 +40,9 @@ async function proxyToMonolith(payload: Record<string, unknown>) {
   let data: Record<string, unknown> = {};
   try {
     data = await response.json();
-  } catch {
-    // non-JSON response from upstream
+  } catch (err) {
+    console.error("[register] Failed to parse upstream response:", err);
+    data = { message: "Unexpected response from server." };
   }
   return { response, data };
 }
@@ -62,7 +63,7 @@ export async function POST(request: NextRequest) {
     const passwordConfirmation =
       typeof body?.passwordConfirmation === "string"
         ? body.passwordConfirmation
-        : password;
+        : "";
     const firstName =
       typeof body?.firstName === "string" ? body.firstName.trim() : "";
     const lastName =

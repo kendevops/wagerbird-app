@@ -12,8 +12,9 @@ const MONOLITH_API_KEY = process.env.MONOLITH_API_KEY!;
 async function safeJson(res: Response): Promise<Record<string, unknown>> {
   try {
     return await res.json();
-  } catch {
-    return {};
+  } catch (err) {
+    console.error("[signin] Failed to parse upstream response:", err);
+    return { message: "Unexpected response from server." };
   }
 }
 

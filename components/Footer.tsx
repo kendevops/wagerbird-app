@@ -38,6 +38,7 @@ const defaultSections: FooterSection[] = [
       { label: "Results", href: "/results" },
       { label: "Live Odds", href: "/live-odds" },
       { label: "FAQ", href: "/faq" },
+      { label: "Blog", href: "/blog" },
     ],
   },
   {

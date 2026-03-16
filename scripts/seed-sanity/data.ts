@@ -1095,3 +1095,168 @@ export const allPages = [
   affiliatesLandingPage,
   ...comingSoonPages,
 ];
+
+// ── Seed Blog Posts ──
+
+export const blogPosts = [
+  {
+    _id: "blog-what-is-sports-betting-strategy",
+    _type: "blogPost" as const,
+    title: "What Is a Sports Betting Strategy? How Winning Bettors Approach the Market",
+    slug: { _type: "slug" as const, current: "what-is-a-sports-betting-strategy" },
+    excerpt:
+      "Most casual bettors focus on predicting winners. Professional bettors focus on pricing, probability, and risk management. That distinction is everything.",
+    publishedAt: "2026-03-13T00:00:00.000Z",
+    featured: true,
+    categories: ["strategy"],
+    mainImage: undefined,
+    heroEyebrow: "What Is a Sports Betting Strategy?",
+    heroTitle: "What Is a Sports Betting Strategy?",
+    heroSubtitle: "How Winning Bettors Approach the Market",
+    author: "WagerBird Team",
+    readTimeMinutes: 9,
+    body: [
+      {
+        _type: "block",
+        _key: key(),
+        style: "normal",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text:
+              "The global online sports betting market is projected to grow rapidly. Most of that money flows in one direction — from bettors to sportsbooks. The reason isn't bad luck. It's the absence of structure.",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "normal",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text:
+              "Casual bettors react to what they just watched, chase losses, and rarely compare odds. Professional bettors operate differently — they focus on pricing, probability, and risk management.",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "h2",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text: "What Is a Sports Betting Strategy?",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "normal",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text:
+              "A sports betting strategy is a systematic method for placing bets based on probability, bankroll management, and data-driven decision making. The goal is long-term profitability — not short-term wins.",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    _id: "blog-closing-line-value-metric",
+    _type: "blogPost" as const,
+    title: "Closing Line Value: The One Metric Pro Bettors Actually Track",
+    slug: { _type: "slug" as const, current: "closing-line-value-metric" },
+    excerpt:
+      "Win rate is the stat casual bettors obsess over. Closing Line Value is the one that actually tells you whether your edge is real.",
+    publishedAt: "2026-02-20T00:00:00.000Z",
+    featured: false,
+    categories: ["analytics"],
+    mainImage: undefined,
+    heroEyebrow: "Analytics",
+    heroTitle: "Closing Line Value",
+    heroSubtitle: "The One Metric Pro Bettors Actually Track",
+    author: "WagerBird Team",
+    readTimeMinutes: 7,
+    body: [
+      {
+        _type: "block",
+        _key: key(),
+        style: "normal",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text:
+              "Most bettors judge their performance by win–loss records. Pros care far more about whether they consistently beat the closing line — the final, information-efficient price before a game starts.",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "normal",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text:
+              "If you routinely lock in +135 when the market closes +120, you're capturing value even if short-term results look noisy. Over time, that pricing edge compounds into profit.",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    _id: "blog-unit-sizing-vs-kelly-criterion",
+    _type: "blogPost" as const,
+    title: "Unit-Based vs. Kelly Criterion: Which Staking System Actually Works?",
+    slug: { _type: "slug" as const, current: "unit-sizing-vs-kelly-criterion" },
+    excerpt:
+      "Flat units remove decision fatigue. Kelly maximizes growth — but only if your edge estimates are accurate. Most bettors get this wrong.",
+    publishedAt: "2026-02-28T00:00:00.000Z",
+    featured: false,
+    categories: ["bankroll"],
+    mainImage: undefined,
+    heroEyebrow: "Bankroll Management",
+    heroTitle: "Unit-Based vs. Kelly Criterion",
+    heroSubtitle: "Which Staking System Actually Works?",
+    author: "WagerBird Team",
+    readTimeMinutes: 6,
+    body: [
+      {
+        _type: "block",
+        _key: key(),
+        style: "normal",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text:
+              "Bankroll management is the foundation of any serious betting strategy. Two frameworks dominate the conversation: fixed unit sizing and the Kelly Criterion.",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "normal",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text:
+              "Flat units keep risk simple and predictable, but they ignore differences in edge between bets. Kelly adapts stake size to edge — powerful in theory, dangerous if your assumptions are noisy.",
+          },
+        ],
+      },
+    ],
+  },
+];

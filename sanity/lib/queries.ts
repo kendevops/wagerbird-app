@@ -393,3 +393,75 @@ export type PageBySlugResult = {
   };
   blocks?: unknown[];
 };
+
+// ── Blog ──
+
+export const allBlogPostsQuery = groq`
+  *[_type == "blogPost" && defined(slug.current)] | order(publishedAt desc) {
+    _id,
+    title,
+    "slug": slug.current,
+    excerpt,
+    publishedAt,
+    featured,
+    categories,
+    mainImage { asset-> }
+  }
+`;
+
+export const blogPostBySlugQuery = groq`
+  *[_type == "blogPost" && slug.current == $slug][0] {
+    _id,
+    title,
+    "slug": slug.current,
+    excerpt,
+    publishedAt,
+    featured,
+    categories,
+    mainImage { asset-> },
+    heroEyebrow,
+    heroTitle,
+    heroSubtitle,
+    author,
+    readTimeMinutes,
+    body,
+    seo {
+      metaTitle,
+      metaDescription,
+      ogImage { asset-> }
+    }
+  }
+`;
+
+export type BlogPostSummary = {
+  _id: string;
+  title?: string;
+  slug?: string;
+  excerpt?: string;
+  publishedAt?: string;
+  featured?: boolean;
+  categories?: string[];
+  mainImage?: { asset?: { _ref?: string; url?: string } };
+};
+
+export type BlogPostResult = {
+  _id: string;
+  title?: string;
+  slug?: string;
+  excerpt?: string;
+  publishedAt?: string;
+  featured?: boolean;
+  categories?: string[];
+  mainImage?: { asset?: { _ref?: string; url?: string } };
+  heroEyebrow?: string;
+  heroTitle?: string;
+  heroSubtitle?: string;
+  author?: string;
+  readTimeMinutes?: number;
+  body?: unknown[];
+  seo?: {
+    metaTitle?: string;
+    metaDescription?: string;
+    ogImage?: { asset?: { url?: string } };
+  };
+} | null;

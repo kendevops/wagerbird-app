@@ -57,6 +57,13 @@ export default defineConfig({
                   .defaultOrdering([{ field: "submittedAt", direction: "desc" }])
               ),
             S.listItem()
+              .title("Blog Posts")
+              .child(
+                S.documentTypeList("blogPost")
+                  .title("Blog Posts")
+                  .defaultOrdering([{ field: "publishedAt", direction: "desc" }])
+              ),
+            S.listItem()
               .title("Sign In Page")
               .child(
                 S.document()
@@ -77,6 +84,7 @@ export default defineConfig({
                 item.getId() !== "affiliatesPage" &&
                 item.getId() !== "quantumPage" &&
                 item.getId() !== "quantumSubmission" &&
+                item.getId() !== "blogPost" &&
                 item.getId() !== "signInPage" &&
                 item.getId() !== "registerPage"
             ),

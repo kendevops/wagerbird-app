@@ -92,6 +92,22 @@ export const blogPostType = defineType({
       description: "For 'X min read' display.",
     }),
     defineField({
+      name: "heroStats",
+      title: "Hero Stats",
+      type: "array",
+      description: "Optional stat strip under the hero (e.g. market size, break-even win rate).",
+      of: [
+        defineField({
+          type: "object",
+          name: "stat",
+          fields: [
+            { name: "value", title: "Value", type: "string" },
+            { name: "label", title: "Label", type: "string" },
+          ],
+        }),
+      ],
+    }),
+    defineField({
       name: "body",
       title: "Body",
       type: "array",
@@ -124,6 +140,20 @@ export const blogPostType = defineType({
           },
         },
       ],
+    }),
+    defineField({
+      name: "keyTakeaways",
+      title: "Key Takeaways",
+      type: "array",
+      of: [{ type: "string" }],
+      description: "Optional highlighted bullet list rendered above the article body.",
+    }),
+    defineField({
+      name: "relatedPosts",
+      title: "Related Articles",
+      type: "array",
+      of: [{ type: "reference", to: [{ type: "blogPost" }] }],
+      description: "Optional list of related blog posts shown at the end of the article.",
     }),
     defineField({
       name: "seo",

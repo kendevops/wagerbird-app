@@ -424,7 +424,17 @@ export const blogPostBySlugQuery = groq`
     heroSubtitle,
     author,
     readTimeMinutes,
+    heroStats[] { value, label },
     body,
+    keyTakeaways,
+    relatedPosts[]->{
+      _id,
+      title,
+      "slug": slug.current,
+      excerpt,
+      publishedAt,
+      categories
+    },
     seo {
       metaTitle,
       metaDescription,
@@ -458,7 +468,17 @@ export type BlogPostResult = {
   heroSubtitle?: string;
   author?: string;
   readTimeMinutes?: number;
+  heroStats?: { value?: string; label?: string }[];
   body?: unknown[];
+  keyTakeaways?: string[];
+  relatedPosts?: {
+    _id: string;
+    title?: string;
+    slug?: string;
+    excerpt?: string;
+    publishedAt?: string;
+    categories?: string[];
+  }[];
   seo?: {
     metaTitle?: string;
     metaDescription?: string;

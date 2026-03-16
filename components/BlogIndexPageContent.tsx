@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import type { BlogPostSummary } from "@/sanity/lib/queries";
@@ -12,6 +13,8 @@ const CATEGORY_PILLS = [
   { id: "markets", label: "Markets" },
   { id: "platform", label: "Platform" },
 ] as const;
+
+type CategoryId = (typeof CATEGORY_PILLS)[number]["id"];
 
 function formatDate(dateStr: string | undefined): string {
   if (!dateStr) return "";
@@ -38,8 +41,52 @@ interface BlogIndexPageContentProps {
 }
 
 export default function BlogIndexPageContent({ posts }: BlogIndexPageContentProps) {
+  const [activeCategory, setActiveCategory] = useState<CategoryId>("all");
+  const [search, setSearch] = useState("");
+  const [sort, setSort] = useState<"newest" | "oldest" | "az" | "za">("newest");
+  const [visibleCount, setVisibleCount] = useState(6);
+
   const featuredPost = posts.find((p) => p.featured) ?? posts[0];
-  const gridPosts = featuredPost ? posts.filter((p) => p._id !== featuredPost._id) : posts;
+
+  const filteredGridPosts = useMemo(() => {
+    const base = featuredPost ? posts.filter((p) => p._id !== featuredPost._id) : posts;
+
+    const byCategory = base.filter((post) => {
+      if (activeCategory === "all") return true;
+      const cats = post.categories ?? [];
+      return cats.includes(activeCategory);
+    });
+
+    const q = search.trim().toLowerCase();
+    const bySearch = !q
+      ? byCategory
+      : byCategory.filter((post) => {
+          const haystack = [
+            post.title ?? "",
+            post.excerpt ?? "",
+            ...(post.categories ?? []).map(categoryLabel),
+          ]
+            .join(" ")
+            .toLowerCase();
+          return haystack.includes(q);
+        });
+
+    const sorted = [...bySearch].sort((a, b) => {
+      if (sort === "az") return (a.title ?? "").localeCompare(b.title ?? "");
+      if (sort === "za") return (b.title ?? "").localeCompare(a.title ?? "");
+
+      const aDate = a.publishedAt ?? "";
+      const bDate = b.publishedAt ?? "";
+      if (sort === "oldest") return aDate.localeCompare(bDate);
+      return bDate.localeCompare(aDate);
+    });
+
+    return sorted;
+  }, [activeCategory, search, sort, posts, featuredPost]);
+
+  const totalFiltered = filteredGridPosts.length;
+  const visiblePosts = filteredGridPosts.slice(0, visibleCount);
+  const canLoadMore = visibleCount < totalFiltered;
 
   return (
     <div className="min-h-screen bg-[#030308] text-white">
@@ -143,50 +190,187 @@ export default function BlogIndexPageContent({ posts }: BlogIndexPageContentProp
           </div>
         )}
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-16 pb-24">
-          {gridPosts.map((post) => {
-            if (!post.slug) return null;
-            const cat = post.categories?.[0];
-            return (
-              <Link key={post._id} href={`/blog/${post.slug}`} className="no-underline">
-                <article className="h-full border border-white/[0.07] bg-white/[0.03] overflow-hidden flex flex-col transition-all hover:border-brand-yellow/25 hover:-translate-y-0.5">
-                  <div className="h-[200px] relative overflow-hidden bg-gradient-to-br from-[#0a0a18] to-[#060618]">
-                    {post.mainImageUrl ? (
-                      <Image
-                        src={post.mainImageUrl}
-                        alt=""
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      />
-                    ) : (
-                      <div className="absolute inset-0 bg-[#0a0a18]" />
-                    )}
-                    <span className="absolute top-4 left-4 font-[family-name:var(--font-space-mono)] text-[10px] font-bold tracking-[2px] uppercase text-brand-yellow bg-[rgba(5,5,16,.75)] px-2 py-1 border border-brand-yellow/25 z-[2]">
-                      {cat ? categoryLabel(cat) : "Article"}
-                    </span>
-                  </div>
-                  <div className="p-7 flex flex-col gap-3 flex-1">
-                    <p className="font-[family-name:var(--font-space-mono)] text-[10px] font-bold tracking-[2px] uppercase text-brand-yellow">
-                      {cat ? categoryLabel(cat) : "Article"}
-                    </p>
-                    <h3 className="font-[family-name:var(--font-barlow-condensed)] font-bold uppercase leading-[1.05] text-white text-xl line-clamp-2">
+        {/* Search, sort, and results row */}
+        <div className="mt-6 flex flex-wrap items-center gap-3">
+          <div className="relative flex-1 min-w-[220px] max-w-[400px]">
+            <span className="pointer-events-none absolute left-[14px] top-1/2 -translate-y-1/2 opacity-40">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <circle cx="6" cy="6" r="4.5" stroke="white" strokeWidth="1.5" />
+                <line x1="9.5" y1="9.5" x2="13" y2="13" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
+              </svg>
+            </span>
+            <input
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search articles…"
+              className="w-full rounded-none border border-white/10 bg-white/5 px-3.5 py-2.5 pl-9 text-[13px] text-white/85 outline-none transition-colors placeholder:text-white/30 focus:border-brand-yellow/60"
+            />
+          </div>
+          <div className="relative">
+            <select
+              value={sort}
+              onChange={(e) => setSort(e.target.value as typeof sort)}
+              className="appearance-none rounded-none border border-white/10 bg-white/5 px-3.5 py-2.5 pr-8 text-[10px] font-[family-name:var(--font-space-mono)] uppercase tracking-[1px] text-white/65 outline-none transition-colors focus:border-brand-yellow/60"
+            >
+              <option value="newest">Newest</option>
+              <option value="oldest">Oldest</option>
+              <option value="az">A → Z</option>
+              <option value="za">Z → A</option>
+            </select>
+            <span className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 opacity-40">
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                <path d="M2 3.5L5 6.5L8 3.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </span>
+          </div>
+          <span className="ml-auto font-mono text-[11px] text-white/35 whitespace-nowrap">
+            {totalFiltered > 0 ? `${totalFiltered} article${totalFiltered === 1 ? "" : "s"}` : "No results"}
+          </span>
+        </div>
+
+        {/* Grid + sidebar, like the HTML layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.7fr)_minmax(260px,0.9fr)] gap-10 pt-16 pb-24">
+          {/* Article grid */}
+          <div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-2 gap-6">
+              {visiblePosts.map((post) => {
+                if (!post.slug) return null;
+                const cat = post.categories?.[0];
+                return (
+                  <Link key={post._id} href={`/blog/${post.slug}`} className="no-underline">
+                    <article className="h-full border border-white/[0.07] bg-white/[0.03] overflow-hidden flex flex-col transition-all hover:border-brand-yellow/25 hover:-translate-y-0.5">
+                      <div className="h-[200px] relative overflow-hidden bg-gradient-to-br from-[#0a0a18] to-[#060618]">
+                        {post.mainImageUrl ? (
+                          <Image
+                            src={post.mainImageUrl}
+                            alt=""
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          />
+                        ) : (
+                          <div className="absolute inset-0 bg-[#0a0a18]" />
+                        )}
+                        <span className="absolute top-4 left-4 font-[family-name:var(--font-space-mono)] text-[10px] font-bold tracking-[2px] uppercase text-brand-yellow bg-[rgba(5,5,16,.75)] px-2 py-1 border border-brand-yellow/25 z-[2]">
+                          {cat ? categoryLabel(cat) : "Article"}
+                        </span>
+                      </div>
+                      <div className="p-7 flex flex-col gap-3 flex-1">
+                        <p className="font-[family-name:var(--font-space-mono)] text-[10px] font-bold tracking-[2px] uppercase text-brand-yellow">
+                          {cat ? categoryLabel(cat) : "Article"}
+                        </p>
+                        <h3 className="font-[family-name:var(--font-barlow-condensed)] font-bold uppercase leading-[1.05] text-white text-xl line-clamp-2">
+                          {post.title}
+                        </h3>
+                        <p className="text-sm text-white/55 leading-[1.65] line-clamp-2 flex-1">
+                          {post.excerpt}
+                        </p>
+                        <div className="flex items-center gap-4 font-mono text-[11px] text-white/55 mt-auto">
+                          <span>{formatDate(post.publishedAt)}</span>
+                          <span className="w-1 h-1 rounded-full bg-white/15" />
+                          <span>Read</span>
+                        </div>
+                      </div>
+                    </article>
+                  </Link>
+                );
+              })}
+            </div>
+
+            {/* Load more button */}
+            {canLoadMore && (
+              <div className="mt-12 text-center">
+                <button
+                  type="button"
+                  onClick={() => setVisibleCount((prev) => Math.min(prev + 4, totalFiltered))}
+                  className="border border-white/20 px-8 py-3.5 font-[family-name:var(--font-space-mono)] text-[11px] font-bold uppercase tracking-[1.5px] text-white/70 transition-colors hover:border-brand-yellow/70 hover:text-brand-yellow"
+                >
+                  Load More Articles
+                </button>
+              </div>
+            )}
+          </div>
+
+          {/* Sidebar: newsletter, popular, topics, CTA */}
+          <aside className="space-y-8 pt-2">
+            {/* Newsletter */}
+            <section className="border border-white/10 bg-white/[0.03] px-7 py-8 relative overflow-hidden">
+              <h3 className="font-[family-name:var(--font-barlow-condensed)] text-[20px] font-bold uppercase text-white mb-1.5">
+                Get the Hotsheet
+              </h3>
+              <p className="text-[13px] text-white/60 mb-4 leading-relaxed">
+                Top daily picks delivered before game time. $25/day.
+              </p>
+              <div className="flex flex-col gap-2.5">
+                <input
+                  type="email"
+                  placeholder="your@email.com"
+                  className="w-full border border-white/15 bg-white/5 px-3.5 py-2.5 text-[13px] text-white/85 outline-none placeholder:text-white/35 focus:border-brand-yellow/60"
+                />
+                <button
+                  type="button"
+                  className="mt-1 bg-brand-yellow px-4 py-2.5 text-[11px] font-[family-name:var(--font-space-mono)] font-bold uppercase tracking-[1.5px] text-[#050510] transition-colors hover:bg-white"
+                >
+                  Subscribe
+                </button>
+              </div>
+            </section>
+
+            {/* Popular */}
+            <section>
+              <h3 className="font-[family-name:var(--font-barlow-condensed)] text-[13px] font-bold uppercase tracking-[2px] text-white/60 pb-3 border-b border-white/15 mb-3">
+                Popular
+              </h3>
+              <div className="divide-y divide-white/5">
+                {posts.slice(0, 5).map((post) =>
+                  post.slug ? (
+                    <Link
+                      key={post._id}
+                      href={`/blog/${post.slug}`}
+                      className="block py-2.5 text-[13px] text-white/80 no-underline hover:text-brand-yellow"
+                    >
                       {post.title}
-                    </h3>
-                    <p className="text-sm text-white/55 leading-[1.65] line-clamp-2 flex-1">
-                      {post.excerpt}
-                    </p>
-                    <div className="flex items-center gap-4 font-mono text-[11px] text-white/55 mt-auto">
-                      <span>{formatDate(post.publishedAt)}</span>
-                      <span className="w-1 h-1 rounded-full bg-white/15" />
-                      <span>Read</span>
-                    </div>
-                  </div>
-                </article>
+                    </Link>
+                  ) : null
+                )}
+              </div>
+            </section>
+
+            {/* Topics */}
+            <section>
+              <h3 className="font-[family-name:var(--font-barlow-condensed)] text-[13px] font-bold uppercase tracking-[2px] text-white/60 pb-3 border-b border-white/15 mb-3">
+                Topics
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {["Strategy", "Analytics", "Bankroll", "Markets", "NFL", "NBA", "MLB", "Platform", "CLV", "+EV"].map(
+                  (topic) => (
+                    <span
+                      key={topic}
+                      className="border border-white/15 px-2.5 py-1 text-[10px] font-[family-name:var(--font-space-mono)] uppercase tracking-[1.4px] text-white/60"
+                    >
+                      {topic}
+                    </span>
+                  )
+                )}
+              </div>
+            </section>
+
+            {/* CTA card */}
+            <section className="border border-brand-yellow/25 px-6 py-6 bg-gradient-to-br from-[rgba(0,37,225,.08)] to-[rgba(228,242,34,.05)]">
+              <h3 className="font-[family-name:var(--font-barlow-condensed)] text-[22px] font-bold uppercase text-white mb-2 leading-tight">
+                Enter the <span className="italic text-brand-yellow">Terminal</span>
+              </h3>
+              <p className="text-[12px] text-white/65 mb-4 leading-relaxed">
+                Confidence-scored signals across every sport. Pay per pick.
+              </p>
+              <Link
+                href="/pricing"
+                className="block text-center font-[family-name:var(--font-space-mono)] text-[11px] font-bold uppercase tracking-[1.5px] bg-brand-yellow text-[#050510] py-3 no-underline transition-colors hover:bg-white"
+              >
+                Get Access
               </Link>
-            );
-          })}
+            </section>
+          </aside>
         </div>
 
         {/* CTA */}

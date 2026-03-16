@@ -1115,6 +1115,11 @@ export const blogPosts = [
     heroSubtitle: "How Winning Bettors Approach the Market",
     author: "WagerBird Team",
     readTimeMinutes: 9,
+    heroStats: [
+      { value: "$49.7B", label: "Global betting market 2026" },
+      { value: "52%", label: "Win rate to break even at -110" },
+      { value: "53–56%", label: "Typical pro bettor edge range" },
+    ],
     body: [
       {
         _type: "block",
@@ -1125,7 +1130,7 @@ export const blogPosts = [
           {
             _type: "span",
             text:
-              "The global online sports betting market is projected to grow rapidly. Most of that money flows in one direction — from bettors to sportsbooks. The reason isn't bad luck. It's the absence of structure.",
+              "The global online sports betting market is projected to grow from roughly $49.7 billion in 2026 to $92.5 billion by 2031. Most of that money flows in one direction — from bettors to sportsbooks. The reason isn't bad luck. It's the absence of structure.",
           },
         ],
       },
@@ -1138,7 +1143,33 @@ export const blogPosts = [
           {
             _type: "span",
             text:
-              "Casual bettors react to what they just watched, chase losses, and rarely compare odds. Professional bettors operate differently — they focus on pricing, probability, and risk management.",
+              "Casual bettors approach betting with a short-term mindset. They react to what they just watched on TV. They increase bet sizes after losses. They rarely compare odds across books. By the time they place a bet, sportsbooks have already adjusted their lines using faster data feeds and pricing models — creating an information gap that the house exploits systematically.",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "normal",
+        markDefs: [
+          {
+            _key: "m1",
+            _type: "accent",
+          } as any,
+        ],
+        children: [
+          {
+            _type: "span",
+            text: "Professional bettors operate differently. They focus on ",
+          },
+          {
+            _type: "span",
+            marks: ["m1"],
+            text: "pricing, probability, and risk management",
+          },
+          {
+            _type: "span",
+            text: " — not on predicting who wins. That distinction is everything.",
           },
         ],
       },
@@ -1163,10 +1194,711 @@ export const blogPosts = [
           {
             _type: "span",
             text:
-              "A sports betting strategy is a systematic method for placing bets based on probability, bankroll management, and data-driven decision making. The goal is long-term profitability — not short-term wins.",
+              "A sports betting strategy is a systematic method for placing bets based on probability, bankroll management, and data-driven decision-making. The goal is long-term profitability — not short-term wins.",
           },
         ],
       },
+      {
+        _type: "block",
+        _key: key(),
+        style: "normal",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text: "Key characteristics of a genuine strategy:",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "normal",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text: "01 — Defined bankroll rules",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "normal",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text: "02 — Consistent, criteria-based bet sizing",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "normal",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text: "03 — Clear selection criteria — what qualifies a bet",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "normal",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text: "04 — Tracking and evaluating results over large samples",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "normal",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text:
+              "The fundamental distinction: a sports betting strategy is not about guessing outcomes. It is about identifying bets where the odds offer value relative to the true probability of the outcome.",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "h2",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text: "Why Having a Sports Betting Strategy Matters",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "normal",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text:
+              "Sportsbooks set odds with a built-in margin — the vig. On standard point spread wagers priced at -110, bettors must win approximately 52.4% of bets just to break even. Without a structured approach, most bettors fall well below that threshold.",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "h3",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text: "Strategy Creates Discipline",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "normal",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text:
+              "Emotional betting is the primary cause of bankroll destruction. A well-defined strategy reduces emotional interference by establishing rules in advance — rules that don't bend when a losing streak runs hot or a “sure thing” emerges. It removes the decision from the moment and places it in the framework.",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "h3",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text: "Long-Term Thinking Changes the Game",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "normal",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text:
+              "Professional bettors typically operate with a win rate of 53–56% against the spread. That sounds modest. What it means in practice is that success in sports betting comes from maintaining a small statistical edge across hundreds or thousands of wagers — not from hitting a few big calls.",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "normal",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text:
+              "Win rate alone doesn't tell you much. A bettor who goes 5-for-10 on high-confidence plays while 1-for-1 on a longshot has a 50% win rate but may be up significantly.",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "normal",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text:
+              'Example: Win $100k on a high-confidence play (5 units @ -110). Lose $10k on a speculative longshot (1 unit). Net result: +$90k at a “50%” win rate.',
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "h2",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text: "The 4 Core Pillars of a Successful Sports Betting Strategy",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "h3",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text: "Pillar 01 — Bankroll Management",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "normal",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text:
+              "This is the foundation. Any team, in any game, can lose — and any bettor, regardless of skill, will experience losing streaks. The goal of bankroll management is to minimize drawdowns during those streaks while preserving enough capital to let the edge produce results over a large sample.",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "normal",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text:
+              'The traditional approach defines a “unit” as a percentage of bankroll — typically 1–3%. A $1,000 bankroll with 1-unit = $15 stakes survives significant variance without ruin. The limitation of flat unit sizing is that it treats a 52% confidence play identically to a 91% confidence play. Modern analytical frameworks size bets proportionally to signal quality or estimated edge — not to an arbitrary unit.',
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "h3",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text: "Pillar 02 — Value Betting & Expected Value (+EV)",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "normal",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text:
+              "Expected value measures whether a bet is profitable over the long run. It compares your estimated probability of an outcome to the probability implied by the sportsbook's odds.",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "normal",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text:
+              "Your estimated probability: 55% → Implied win probability at current odds: 50% → Result: Positive expected value. Bet.",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "normal",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text:
+              "Professional bettors don't try to win every bet. Their goal is to consistently place wagers where the market has mispriced probability. Over a large sample, that process produces profit regardless of individual outcomes.",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "normal",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text:
+              "Closing Line Value (CLV) extends this further — it measures whether you consistently bet at better odds than where the line closes. The closing line is the most information-efficient price, incorporating everything the market knows before game time. Beating it consistently is evidence your edge is real.",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "h3",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text: "Pillar 03 — Line Shopping & Odds Comparison",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "normal",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text:
+              "Different sportsbooks offer different odds on the same event. Getting +135 instead of +120 on a bet you'd make at either price doesn't feel significant. Across hundreds of bets, those small pricing differences compound dramatically.",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "normal",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text:
+              "Best practice: maintain active accounts at multiple sportsbooks. Compare prices before every bet. Monitor line movement — steam moves (sharp action) often signal value before the market corrects.",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "h3",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text: "Pillar 04 — Risk Management & Variance",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "normal",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text:
+              "Variance is unavoidable. Even profitable strategies experience losing streaks. Underdogs win. Injuries change games. Random scoring events happen. A good risk management framework accounts for variance by using small relative bet sizes, maintaining large sample sizes before evaluating results, and avoiding emotional decisions during downswings.",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "h2",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text: "Common Types of Sports Betting Strategies",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "h3",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text: "Flat Betting",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "normal",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text:
+              "Betting the same unit size on every wager. Simple. Low-risk. Genuinely protective during losing streaks. Its real value is removing decision fatigue — when every bet is the same size, the only variable is the pick itself.",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "normal",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text:
+              "The limitation: flat betting is agnostic to edge. A flat bettor stakes the same amount on a 52% confidence play as a 91% confidence play. That's not discipline — it's indifference to signal quality. Over a large enough sample, that indifference is expensive.",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "h3",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text: "Kelly Criterion",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "normal",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text:
+              "A mathematical staking method that determines optimal bet size based on your estimated edge and the odds offered. It maximizes long-term bankroll growth — in theory. In practice, it has a fatal dependency: accurate edge estimation.",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "normal",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text:
+              "If you're overconfident in your edge (which most bettors are), Kelly will consistently over-size your bets. That's not a flaw in Kelly — it's a flaw in the inputs. Many bettors use fractional Kelly (25–50% of full Kelly) to reduce this risk.",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "normal",
+        markDefs: [
+          {
+            _key: "m2",
+            _type: "accent",
+          } as any,
+        ],
+        children: [
+          {
+            _type: "span",
+            text: "Where WagerBird fits: ",
+          },
+          {
+            _type: "span",
+            marks: ["m2"],
+            text:
+              "Flat betting ignores edge. Full Kelly demands perfect edge measurement that most bettors can't produce. WagerBird's confidence-weighted proportionality sits between them deliberately — confidence scores provide the calibrated probability input that Kelly requires but rarely gets, then proportional sizing scales exposure to that confidence level.",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "h3",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text: "Value-Based Betting Models",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "normal",
+        markDefs: [
+          {
+            _key: "link-terminal",
+            _type: "link",
+            href: "https://www.wagerbird.com/terminal",
+          } as any,
+        ],
+        children: [
+          {
+            _type: "span",
+            text:
+              "Analytical bettors search for probability mispricing. Predictive models analyze historical performance, situational variables, and market behavior to compare model probabilities against live sportsbook odds in real time. Where a gap exists between model probability and market price, a signal emerges. ",
+          },
+          {
+            _type: "span",
+            marks: ["link-terminal"],
+            text: "WagerBird's Terminal",
+          },
+          {
+            _type: "span",
+            text:
+              " surfaces these signals with confidence scores that reflect the size of the pricing gap — turning wagering from prediction into market analysis.",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "h3",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text: "Situational Betting",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "normal",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text:
+              "Focusing on specific game conditions that create predictable pricing inefficiencies: teams on back-to-backs, travel fatigue, weather conditions in outdoor games, injury news and lineup changes. These situational factors are often incorporated into sportsbook lines quickly — the edge lives in identifying them before the market corrects.",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "h2",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text: "How to Build Your Own Sports Betting Strategy",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "h3",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text: "Step 1: Define Your Bankroll",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "normal",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text:
+              "Decide how much capital you can allocate to betting — financially and psychologically. This is the amount you're comfortable losing entirely if things go wrong. No analytical edge survives poor bankroll management. Treat this capital as separate from your finances.",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "h3",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text: "Step 2: Choose a Bet Sizing Framework",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "normal",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text:
+              "Flat betting is the easiest starting point. As your understanding of edge quality improves, proportional or fractional Kelly sizing becomes appropriate. Most bettors struggle not with understanding these systems but with applying them consistently in real time — especially during losing streaks.",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "h3",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text: "Step 3: Specialize in Specific Markets",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "normal",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text:
+              "Depth of market knowledge produces better results than spreading attention across every sport and bet type. NFL point spreads, NBA totals, MLB moneylines — pick one or two markets, understand their pricing patterns, and build expertise before expanding.",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "h3",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text: "Step 4: Bridge Strategy and Execution",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "normal",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text:
+              "Most bettors understand the principles. Execution is where strategies break down. Applying bankroll rules, sizing bets accurately, and identifying value consistently requires analytical tools and market monitoring at a pace most bettors can't maintain manually.",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "normal",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text:
+              "This is where platforms like WagerBird close the gap — by analyzing large datasets, surfacing pricing inefficiencies, and providing confidence-weighted signals before lines move.",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "h2",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text: "Responsible Betting and Long-Term Thinking",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "normal",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text:
+              "Sports betting should always be approached responsibly. Never bet money you cannot afford to lose. Avoid chasing losses. Treat betting as long-term decision-making, not entertainment that requires emotional investment in individual outcomes.",
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: key(),
+        style: "normal",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            text:
+              "If you or someone you know has a gambling problem and wants help, call 1-800-GAMBLER.",
+          },
+        ],
+      },
+    ],
+    keyTakeaways: [
+      "A sports betting strategy is a structured approach designed to maximize long-term profitability — not just win rate.",
+      "Winning bettors focus on value and probability rather than simply picking winners.",
+      "Bankroll management, expected value, and line shopping form the foundation of most strategies.",
+      "Analytics tools and betting models help identify high-confidence opportunities before lines move.",
+    ],
+    relatedPosts: [
+      { _type: "reference", _ref: "blog-unit-sizing-vs-kelly-criterion" },
+      { _type: "reference", _ref: "blog-closing-line-value-metric" },
     ],
   },
   {
@@ -1185,6 +1917,11 @@ export const blogPosts = [
     heroSubtitle: "The One Metric Pro Bettors Actually Track",
     author: "WagerBird Team",
     readTimeMinutes: 7,
+    heroStats: [
+      { value: "1", label: "Closing line that really matters" },
+      { value: "100s", label: "Of bets needed to judge edge" },
+      { value: "+EV", label: "If you consistently beat the close" },
+    ],
     body: [
       {
         _type: "block",
@@ -1213,6 +1950,15 @@ export const blogPosts = [
         ],
       },
     ],
+    keyTakeaways: [
+      "Closing Line Value (CLV) is a better indicator of edge than short-term win rate.",
+      "Consistently getting better odds than the closing line suggests your model or process is working.",
+      "Short-term results can be noisy; CLV smooths out variance across a large sample.",
+    ],
+    relatedPosts: [
+      { _type: "reference", _ref: "blog-what-is-sports-betting-strategy" },
+      { _type: "reference", _ref: "blog-unit-sizing-vs-kelly-criterion" },
+    ],
   },
   {
     _id: "blog-unit-sizing-vs-kelly-criterion",
@@ -1230,6 +1976,11 @@ export const blogPosts = [
     heroSubtitle: "Which Staking System Actually Works?",
     author: "WagerBird Team",
     readTimeMinutes: 6,
+    heroStats: [
+      { value: "1–3%", label: "Typical unit size of bankroll" },
+      { value: "Kelly", label: "Maximizes growth when edge is accurate" },
+      { value: "Ruin", label: "Risk if you oversize with bad estimates" },
+    ],
     body: [
       {
         _type: "block",
@@ -1257,6 +2008,15 @@ export const blogPosts = [
           },
         ],
       },
+    ],
+    keyTakeaways: [
+      "Flat unit betting keeps things simple and protects you from catastrophic drawdowns.",
+      "The Kelly Criterion can maximize long-term growth but is extremely sensitive to mis-estimated edges.",
+      "Most serious bettors use a fractional Kelly or unit-based hybrid for practical risk management.",
+    ],
+    relatedPosts: [
+      { _type: "reference", _ref: "blog-what-is-sports-betting-strategy" },
+      { _type: "reference", _ref: "blog-closing-line-value-metric" },
     ],
   },
 ];

@@ -7,6 +7,7 @@ import {
   Space_Mono,
   Oswald,
   Barlow_Condensed,
+  DM_Sans,
 } from "next/font/google";
 import "./globals.css";
 import DynamicCursor from "@/components/animations/DynamicCursor";
@@ -45,6 +46,11 @@ const spaceMono = Space_Mono({
   weight: ["400", "700"],
 });
 
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
+  subsets: ["latin"],
+});
+
 export async function generateMetadata(): Promise<Metadata> {
   return getSiteMetadata();
 }
@@ -58,7 +64,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${spaceMono.variable} ${oswald.variable} ${barlowCondensed.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${spaceMono.variable} ${oswald.variable} ${barlowCondensed.variable} ${dmSans.variable} antialiased`}
       >
         <DynamicCursor />
         <PopsixleDevCheck />

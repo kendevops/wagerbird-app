@@ -5,6 +5,9 @@ import { allBlogPostsQuery, type BlogPostSummary } from "@/sanity/lib/queries";
 import { urlForImage } from "@/sanity/lib/metadata";
 import BlogIndexPageContent, { type BlogPostWithUrl } from "@/components/BlogIndexPageContent";
 
+// Revalidate the blog index periodically so new posts appear without a full redeploy.
+export const revalidate = 20; // seconds
+
 export const metadata: Metadata = {
   title: "Blog — WagerBird | The Edge Report",
   description:

@@ -23,6 +23,9 @@ type PageProps = {
   params: Promise<{ slug: string }>;
 };
 
+// Revalidate individual blog post pages periodically so new/updated posts go live without a full redeploy.
+export const revalidate = 20; // seconds
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const slug = (await params).slug;
   if (!hasValidSanityConfig()) return buildMetadataFromSite(null);

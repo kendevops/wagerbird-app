@@ -28,6 +28,9 @@ function CompleteFlow() {
       .then((data) => {
         if (data.data?.status === "complete") {
           setCustomerEmail(data.data.customer_email || "");
+          if (data.data.user_exists) {
+            setMode("signin");
+          }
           setStatus("complete");
         } else {
           setStatus("error");

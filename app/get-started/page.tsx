@@ -11,7 +11,7 @@ export default async function GetStartedPage({
   searchParams: Promise<{ plan?: string }>;
 }) {
   const { plan = "core" } = await searchParams;
-  const validPlans = ["starter", "core", "advanced", "hotsheet-ondemand", "hotsheet-fullday"];
+  const validPlans = ["starter", "core", "advanced"];
   const selectedPlan = validPlans.includes(plan) ? plan : "core";
 
   return (

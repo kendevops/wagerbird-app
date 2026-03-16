@@ -13,21 +13,17 @@ const stripePromise = loadStripe(
 
 const PLAN_DETAILS: Record<
   string,
-  { name: string; description: string; price: number }
+  { name: string; points: string; price: number }
 > = {
-  starter: { name: "Starter Pack", description: "600 Points", price: 39 },
-  core: { name: "Core Pack", description: "1,700 Points", price: 99 },
-  advanced: { name: "Advanced Pack", description: "3,600 Points", price: 199 },
-  "hotsheet-ondemand": { name: "Hotsheet On-Demand", description: "2-3 Best Signals", price: 25 },
-  "hotsheet-fullday": { name: "Hotsheet Full-Day", description: "6+ Signals · Morning + Evening", price: 40 },
+  starter: { name: "Starter Pack", points: "600 Points", price: 39 },
+  core: { name: "Core Pack", points: "1,700 Points", price: 99 },
+  advanced: { name: "Advanced Pack", points: "3,600 Points", price: 199 },
 };
 
 const STRIPE_PRICES: Record<string, string> = {
   starter: process.env.NEXT_PUBLIC_STRIPE_PRICE_STARTER!,
   core: process.env.NEXT_PUBLIC_STRIPE_PRICE_CORE!,
   advanced: process.env.NEXT_PUBLIC_STRIPE_PRICE_ADVANCED!,
-  "hotsheet-ondemand": process.env.NEXT_PUBLIC_STRIPE_PRICE_HOTSHEET_ONDEMAND!,
-  "hotsheet-fullday": process.env.NEXT_PUBLIC_STRIPE_PRICE_HOTSHEET_FULLDAY!,
 };
 
 export default function GetStartedFlow({ plan }: { plan: string }) {
@@ -51,7 +47,7 @@ export default function GetStartedFlow({ plan }: { plan: string }) {
       <div className="get-started-pack-summary">
         <span className="get-started-pack-name">{planInfo.name}</span>
         <span className="get-started-pack-details">
-          {planInfo.description} &middot; ${planInfo.price}
+          {planInfo.points} &middot; ${planInfo.price}
         </span>
       </div>
 

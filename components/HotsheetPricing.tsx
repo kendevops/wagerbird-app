@@ -3,7 +3,7 @@
 import React, { useRef, useState } from "react";
 import { motion, useSpring, useMotionValue, useTransform } from "framer-motion";
 import { trackInitiateCheckout } from "@/lib/tracking";
-import { APP_URL } from "@/lib/constants";
+
 
 // ─── Types ────────────────────────────────────────────
 interface PricingCardProps {
@@ -163,7 +163,7 @@ const PricingCard = ({
   price,
   features,
   ctaLabel,
-  ctaHref = `${APP_URL}/register`,
+  ctaHref = "/register",
   footer,
 }: PricingCardProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -270,8 +270,6 @@ const PricingCard = ({
 
           <a
             href={ctaHref}
-            target="_blank"
-            rel="noopener noreferrer"
             onClick={() => trackInitiateCheckout("hotsheet_pricing", title)}
             className={`hsp-card-cta ${popular ? "hsp-card-cta--popular" : ""}`}
           >

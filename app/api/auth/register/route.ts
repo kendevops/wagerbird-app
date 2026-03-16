@@ -108,9 +108,11 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const responseData = data.data as { login_url?: string; user_uuid?: string } | undefined;
     return NextResponse.json({
       ok: true,
-      redirectUrl: (data.data as { login_url?: string })?.login_url,
+      redirectUrl: responseData?.login_url,
+      userUuid: responseData?.user_uuid,
     });
   } catch (error) {
     console.error("[register] Proxy error:", error);

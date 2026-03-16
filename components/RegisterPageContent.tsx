@@ -164,8 +164,15 @@ export default function RegisterPageContent({
         setError(resData?.error ?? resData?.message ?? "Registration failed");
         return;
       }
-      const redirectUrl = resData?.redirectUrl ?? APP_URL;
-      window.location.href = redirectUrl;
+      const loginUrl = resData?.redirectUrl ?? APP_URL;
+      const userUuid = resData?.userUuid ?? "";
+
+      sessionStorage.setItem("onboarding_login_url", loginUrl);
+      if (userUuid) {
+        sessionStorage.setItem("onboarding_user_uuid", userUuid);
+      }
+
+      window.location.href = "/onboarding";
     } catch {
       setError("Something went wrong. Please try again.");
     } finally {

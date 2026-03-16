@@ -19,6 +19,7 @@ import {
   comingSoonMeta,
   affiliatesPage,
   quantumPage,
+  blogPosts,
 } from "./data";
 
 async function main() {
@@ -47,7 +48,7 @@ async function main() {
   });
 
   console.log(
-    `Seeding site SEO + system pages + ${allPages.length} content pages into ${projectId}/${dataset}...`
+    `Seeding site SEO + system pages + ${allPages.length} content pages + ${blogPosts.length} blog posts into ${projectId}/${dataset}...`
   );
 
   const transaction = client.transaction();
@@ -78,6 +79,11 @@ async function main() {
   for (const page of allPages) {
     transaction.createOrReplace(page as any);
     console.log(`  - ${page.slug.current}: ${page.title}`);
+  }
+
+  for (const post of blogPosts) {
+    transaction.createOrReplace(post as any);
+    console.log(`  - blogPost: ${post.title}`);
   }
 
   await transaction.commit();

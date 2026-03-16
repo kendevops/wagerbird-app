@@ -1,4 +1,5 @@
 import { pageType } from "./page";
+import { blogPostType } from "./blogPost";
 import { quantumSubmissionType } from "./quantumSubmission";
 import { siteSettingsType } from "./siteSettings";
 import {
@@ -45,6 +46,7 @@ export const schemaTypes = [
   affiliatesPageType,
   quantumPageType,
   quantumSubmissionType,
+  blogPostType,
   heroBlock,
   tickerBlock,
   signalsBlock,

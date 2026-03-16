@@ -4,7 +4,6 @@ export const quantumSubmissionType = defineType({
   name: "quantumSubmission",
   title: "Quantum Submission",
   type: "document",
-  readOnly: true,
   fields: [
     defineField({
       name: "firstName",
@@ -69,6 +68,26 @@ export const quantumSubmissionType = defineType({
       readOnly: true,
       initialValue: () => new Date().toISOString(),
     }),
+    defineField({
+      name: "status",
+      title: "Status",
+      type: "string",
+      options: {
+        list: [
+          { title: "Active", value: "active" },
+          { title: "Archived", value: "archived" },
+        ],
+        layout: "radio",
+        direction: "horizontal",
+      },
+      initialValue: "active",
+    }),
+    defineField({
+      name: "internalComment",
+      title: "Internal Comment",
+      type: "text",
+      rows: 3,
+    }),
   ],
   preview: {
     select: {
@@ -76,12 +95,17 @@ export const quantumSubmissionType = defineType({
       lastName: "lastName",
       email: "email",
       submittedAt: "submittedAt",
+      status: "status",
     },
-    prepare({ firstName, lastName, email, submittedAt }) {
+    prepare({ firstName, lastName, email, submittedAt, status }) {
       const date = submittedAt ? new Date(submittedAt).toLocaleDateString() : "";
+      const statusLabel =
+        status === "archived" ? "Archived" : status === "active" || !status ? "Active" : status;
       return {
         title: [firstName, lastName].filter(Boolean).join(" ") || email || "Unknown",
-        subtitle: email ? `${email} · ${date}` : date,
+        subtitle: email
+          ? `${email} · ${date}${statusLabel ? ` · ${statusLabel}` : ""}`
+          : `${date}${statusLabel ? ` · ${statusLabel}` : ""}`,
       };
     },
   },

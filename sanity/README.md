@@ -1,4 +1,4 @@
-# WAGERBIRD Sanity CMS
+# WAGERBIRD NextJS with Sanity CMS
 
 This folder contains the Sanity Studio configuration and schemas for the WAGERBIRD app.
 
@@ -12,9 +12,9 @@ This folder contains the Sanity Studio configuration and schemas for the WAGERBI
    - Optionally `SANITY_API_VIEWER_TOKEN` for draft/preview and Visual Editing (create a token with Viewer permissions in the Sanity project).
    - Optionally `NEXT_PUBLIC_SITE_URL` for the Presentation tool preview URL.
 
-## Seeding existing content
+## Seeding initial content
 
-To load the app’s existing copy into Sanity (home, terminal, pricing, hotsheet, sportsbooks, odds, and coming-soon pages):
+To load the app’s existing copy into Sanity (marketing pages, blog posts, and system pages), use the seeding script:
 
 1. Create an API token with **Editor** or **Admin** permissions at [sanity.io/manage](https://sanity.io/manage) (Project → API → Tokens).
 2. Add it to `.env.local` as `SANITY_API_WRITE_TOKEN` (or reuse a token that has write access).
@@ -22,7 +22,12 @@ To load the app’s existing copy into Sanity (home, terminal, pricing, hotsheet
    ```bash
    npm run seed:sanity
    ```
-4. Open `/studio` and edit any page or block; changes will appear on the site (use Presentation for live editing).
+   This will create/update:
+   - Global `siteSettings` (Site SEO & Icons)
+   - System pages: `signInPage`, `registerPage`, `notFoundPage`, `error500Page`, `comingSoonPage`, `affiliatesPage`, `quantumPage`
+   - All `page` documents defined in `scripts/seed-sanity/data.ts` (home, terminal, pricing, hotsheet, sportsbooks, odds, etc.)
+   - Initial `blogPost` documents for the blog (including a featured “What Is a Sports Betting Strategy?” article and two supporting posts).
+4. Open `/studio` and edit any page, blog post, or block; changes will appear on the site (use Presentation for live editing).
 
 ## Studio
 
@@ -32,9 +37,20 @@ To load the app’s existing copy into Sanity (home, terminal, pricing, hotsheet
 ## Content model
 
 - **Site SEO & Icons**: A single document (open **Site SEO & Icons** in the sidebar) controls app-wide SEO and browser icons: **Site Name**, **Default Meta Title**, **Default Meta Description**, **Default OG Image**, **Favicon / Tab Icon**, **Apple Touch Icon**, and **Twitter Handle**. These apply as defaults; each page can override title, description, and OG image via its **SEO** block.
-- **Pages**: Create documents with type **Page**. Set **Slug** (e.g. `home` for the homepage, `terminal`, `pricing`, etc.) and add **Blocks** (Hero, Ticker, Signals, FAQ, CTA Banner, etc.) in the order you want them to appear.
-- **SEO**: Fill the **SEO** object on each page (Meta Title, Meta Description, OG Image) to override the site defaults for that page.
-- For the site root (`/`) to work, create a page with slug **home**.
+- **Pages (`page`)**: Create documents with type **Page**. Set **Slug** (e.g. `home` for the homepage, `terminal`, `pricing`, `hotsheet`, `sportsbooks`, etc.) and add **Blocks** (Hero, Ticker, Signals, FAQ, CTA Banner, Hotsheet sections, Sportsbooks sections, etc.) in the order you want them to appear.
+  - For the site root (`/`) to work, create a page with slug **home**.
+- **Blog posts (`blogPost`)**: Long-form articles rendered at `/blog/[slug]`.
+  - Key fields:
+    - `title`, `slug`, `excerpt`, `publishedAt`, `featured`
+    - `categories` (Strategy, Analytics, Bankroll, Markets, Platform)
+    - `heroEyebrow`, `heroTitle`, `heroSubtitle`, `author`, `readTimeMinutes`
+    - `heroStats` (triplet of headline stats that render as the strip under the hero)
+    - `keyTakeaways` (bullet list rendered in a callout box at the top of the article)
+    - `body` (Portable Text blocks for the full article body)
+    - `relatedPosts` (references to other `blogPost` docs used in the “Related Articles” grid)
+    - `seo` (per-post meta title/description/OG image)
+  - Blog index `/blog` lists `blogPost` documents via GROQ queries in `sanity/lib/queries.ts`.
+- **Quantum submissions (`quantumSubmission`)**: Form submissions from the Quantum application route, stored as documents for review inside Studio. These are populated by the `app/api/quantum-submit/route.ts` API and are listed under a dedicated “Quantum Submissions” section in the Studio structure.
 
 ## Live editing (Presentation)
 

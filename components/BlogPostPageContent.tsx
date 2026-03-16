@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import type { PortableTextBlock } from "@portabletext/types";
 import type { BlogPostResult } from "@/sanity/lib/queries";
 import BlogBodyRenderer from "./BlogBodyRenderer";
 
@@ -221,7 +222,10 @@ export default function BlogPostPageContent({ post }: BlogPostPageContentProps) 
               </section>
             )}
 
-            <BlogBodyRenderer value={post.body ?? undefined} mode={isLight ? "light" : "dark"} />
+            <BlogBodyRenderer
+              value={(post.body as PortableTextBlock[] | null | undefined) ?? undefined}
+              mode={isLight ? "light" : "dark"}
+            />
           </article>
           {/* Sidebar: TOC, reading mode toggle, CTA */}
           <aside className="hidden lg:block sticky top-20 pt-2 space-y-6">

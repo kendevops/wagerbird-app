@@ -82,7 +82,7 @@ export default function Footer({
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-[48px] lg:gap-[80px] pb-[64px]">
           {/* Brand column */}
           <div className="flex flex-col gap-[24px] max-w-full lg:max-w-[300px]">
-            <a href="/" data-cursor-label="HOME" className="inline-flex shrink-0" aria-label="WAGERBIRD Home">
+            <Link href="/" data-cursor-label="HOME" className="inline-flex shrink-0" aria-label="WAGERBIRD Home">
               <svg width="177" height="28" viewBox="0 0 177 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-[28px] w-auto block">
                 <g clipPath="url(#clip0_footer)">
                   <mask id="mask0_footer" style={{maskType:"luminance"}} maskUnits="userSpaceOnUse" x="0" y="0" width="177" height="28">
@@ -110,7 +110,7 @@ export default function Footer({
                   </clipPath>
                 </defs>
               </svg>
-            </a>
+            </Link>
             <p className="font-[family-name:var(--font-barlow-condensed)] text-[13px] font-normal leading-[1.6] text-nav-text-muted m-0">
               {description}
             </p>

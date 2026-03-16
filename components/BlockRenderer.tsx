@@ -23,6 +23,16 @@ import AccessModels from "@/components/AccessModels";
 import MapSection from "@/components/MapSection";
 import PortableTextRenderer from "@/components/PortableTextRenderer";
 
+/** Rewrite monolith URLs from CMS data to internal Next.js routes. */
+function localHref(href: string | undefined): string | undefined {
+  if (!href) return href;
+  // Match any wagerbird domain (app.wagerbird.com, wagerbird.test, etc.)
+  const path = href.replace(/^https?:\/\/[^/]*wagerbird[^/]*/, "");
+  if (path === "/register") return "/register";
+  if (path === "/login") return "/signin";
+  return href;
+}
+
 type Block = {
   _type: string;
   _key: string;
@@ -70,7 +80,7 @@ export default function BlockRenderer({ blocks }: { blocks: Block[] }) {
                     : undefined
                 }
                 primaryCtaLabel={block.primaryCtaLabel as string | undefined}
-                primaryCtaHref={block.primaryCtaHref as string | undefined}
+                primaryCtaHref={localHref(block.primaryCtaHref as string | undefined)}
                 secondaryCtaLabel={block.secondaryCtaLabel as string | undefined}
                 secondaryCtaHref={block.secondaryCtaHref as string | undefined}
                 imageUrl={block.imageUrl as string | undefined}
@@ -106,7 +116,7 @@ export default function BlockRenderer({ blocks }: { blocks: Block[] }) {
                 }
                 description={block.description as string | undefined}
                 ctaLabel={block.ctaLabel as string | undefined}
-                ctaHref={block.ctaHref as string | undefined}
+                ctaHref={localHref(block.ctaHref as string | undefined)}
                 items={block.items as Parameters<typeof Signals>[0]["items"]}
                 footerText={block.footerText as string | undefined}
               />
@@ -189,7 +199,7 @@ export default function BlockRenderer({ blocks }: { blocks: Block[] }) {
                 }
                 subtitle={block.subtitle as string | undefined}
                 ctaLabel={block.ctaLabel as string | undefined}
-                ctaHref={block.ctaHref as string | undefined}
+                ctaHref={localHref(block.ctaHref as string | undefined)}
               />
             );
 
@@ -208,7 +218,7 @@ export default function BlockRenderer({ blocks }: { blocks: Block[] }) {
               <Hotsheet
                 key={block._key}
                 ctaLabel={block.ctaLabel as string | undefined}
-                ctaHref={block.ctaHref as string | undefined}
+                ctaHref={localHref(block.ctaHref as string | undefined)}
               />
             );
 
@@ -217,7 +227,7 @@ export default function BlockRenderer({ blocks }: { blocks: Block[] }) {
               <HotsheetPromo
                 key={block._key}
                 ctaLabel={block.ctaLabel as string | undefined}
-                ctaHref={block.ctaHref as string | undefined}
+                ctaHref={localHref(block.ctaHref as string | undefined)}
               />
             );
 
@@ -315,9 +325,9 @@ export default function BlockRenderer({ blocks }: { blocks: Block[] }) {
                 }
                 subtitle={block.subtitle as string | undefined}
                 packsCtaLabel={block.packsCtaLabel as string | undefined}
-                packsCtaHref={block.packsCtaHref as string | undefined}
+                packsCtaHref={localHref(block.packsCtaHref as string | undefined)}
                 terminalCtaLabel={block.terminalCtaLabel as string | undefined}
-                terminalCtaHref={block.terminalCtaHref as string | undefined}
+                terminalCtaHref={localHref(block.terminalCtaHref as string | undefined)}
               />
             );
 

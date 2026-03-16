@@ -1,16 +1,22 @@
 import { NextRequest, NextResponse } from "next/server";
 
 /**
- * Proxies sign-in to the WagerBird app API. Set in .env:
- * - WAGERBIRD_APP_URL (server): app base URL, e.g. https://app.wagerbird.com
- * - AUTH_SIGNIN_PATH (server, optional): path, default /api/auth/signin
- * - NEXT_PUBLIC_WAGERBIRD_APP_URL (client): where to redirect after success
+ * Proxies sign-in to the monolith /api/v1/login endpoint.
+ * Returns a signed auto-login URL on success.
+ *
+ * Env: MONOLITH_URL, MONOLITH_API_KEY
  */
-const APP_URL = (process.env.WAGERBIRD_APP_URL ?? "https://app.wagerbird.com").replace(
-  /\/$/,
-  ""
-);
-const SIGNIN_PATH = process.env.AUTH_SIGNIN_PATH ?? "/api/auth/signin";
+const MONOLITH_URL = process.env.MONOLITH_URL!;
+const MONOLITH_API_KEY = process.env.MONOLITH_API_KEY!;
+
+async function safeJson(res: Response): Promise<Record<string, unknown>> {
+  try {
+    return await res.json();
+  } catch (err) {
+    console.error("[signin] Failed to parse upstream response:", err);
+    return { message: "Unexpected response from server." };
+  }
+}
 
 export async function POST(request: NextRequest) {
   let body: { email?: string; password?: string };
@@ -33,36 +39,46 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const url = `${APP_URL}${SIGNIN_PATH}`;
+  const url = `${MONOLITH_URL}/api/v1/login`;
 
   try {
-    const res = await fetch(url, {
+    const options: RequestInit & { dispatcher?: unknown } = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        ...(request.headers.get("user-agent") && {
-          "User-Agent": request.headers.get("user-agent")!,
-        }),
+        "X-API-Key": MONOLITH_API_KEY,
       },
       body: JSON.stringify({ email, password }),
-    });
+    };
 
-    const contentType = res.headers.get("content-type") ?? "";
-    const isJson = contentType.includes("application/json");
-    const data = isJson ? await res.json().catch(() => ({})) : {};
+    // Allow self-signed certs in local development
+    if (process.env.NODE_TLS_REJECT_UNAUTHORIZED === "0") {
+      const { Agent } = await import("undici");
+      options.dispatcher = new Agent({
+        connect: { rejectUnauthorized: false },
+      });
+    }
+
+    const res = await fetch(url, options);
+    const data = await safeJson(res);
 
     if (!res.ok) {
       return NextResponse.json(
-        { error: (data as { message?: string }).message ?? data?.error ?? "Sign in failed", ...data },
+        {
+          error:
+            (data.message as string) ??
+            (data.error as string) ??
+            "Sign in failed",
+          errors: data.errors,
+        },
         { status: res.status }
       );
     }
 
     return NextResponse.json({
       ok: true,
-      redirectUrl: (data as { redirectUrl?: string }).redirectUrl ?? APP_URL,
-      ...data,
+      redirectUrl: (data.data as { login_url?: string })?.login_url,
     });
   } catch (err) {
     console.error("Auth signin proxy error:", err);

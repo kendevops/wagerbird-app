@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useEffect, FormEvent } from "react";
+import { useState, useCallback, FormEvent } from "react";
 import {
   EmbeddedCheckoutProvider,
   EmbeddedCheckout,
@@ -349,6 +349,104 @@ export function RegistrationForm({
           <Link href="/terms-of-service">Terms of Service</Link> and{" "}
           <Link href="/privacy-policy">Privacy Policy</Link>.
         </p>
+      </form>
+    </div>
+  );
+}
+
+/* ─── Sign-in form for returning users on checkout complete ─── */
+
+export function SignInForm() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [loginUrl, setLoginUrl] = useState("");
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    setSubmitting(true);
+    setError("");
+
+    try {
+      const res = await fetch("/api/auth/signin", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setError(data.error || data.message || "Sign in failed.");
+        return;
+      }
+
+      if (data.redirectUrl) {
+        setLoginUrl(data.redirectUrl);
+      } else {
+        setError("Sign in succeeded but no redirect was provided. Please try again.");
+      }
+    } catch {
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  if (loginUrl) {
+    return (
+      <div className="get-started-container">
+        <div className="get-started-success-banner">
+          <span className="get-started-success-icon-sm">&#10003;</span>
+          Payment successful! Points added to your account.
+        </div>
+        <a href={loginUrl} className="get-started-submit">
+          Go to Dashboard
+        </a>
+      </div>
+    );
+  }
+
+  return (
+    <div className="get-started-container">
+      <div className="get-started-success-banner">
+        <span className="get-started-success-icon-sm">&#10003;</span>
+        Payment successful! Sign in to receive your points.
+      </div>
+
+      <form onSubmit={handleSubmit} className="get-started-form">
+        {error && <div className="get-started-error-banner">{error}</div>}
+
+        <div className="get-started-field">
+          <label htmlFor="signin-email">Email</label>
+          <input
+            id="signin-email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
+
+        <div className="get-started-field">
+          <label htmlFor="signin-password">Password</label>
+          <input
+            id="signin-password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+
+        <button
+          type="submit"
+          disabled={submitting}
+          className="get-started-submit"
+        >
+          {submitting ? "Signing in..." : "Sign In & Access Picks"}
+        </button>
       </form>
     </div>
   );

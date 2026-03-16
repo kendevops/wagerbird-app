@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { trackInitiateCheckout } from "@/lib/tracking";
-import { APP_URL } from "@/lib/constants";
+
 import { MagicBento, MagicBentoCard } from "./animations/MagicBento";
 
 interface HotsheetProps {
@@ -85,7 +85,7 @@ const DeliveryCard = () => (
 
 export default function Hotsheet({
   ctaLabel = "Get Hotsheet →",
-  ctaHref = `${APP_URL}/register`,
+  ctaHref = "/register",
 }: HotsheetProps) {
   return (
     <section className="hotsheet-hero">
@@ -140,8 +140,6 @@ export default function Hotsheet({
         {/* CTA */}
         <a
           href={ctaHref}
-          target="_blank"
-          rel="noopener noreferrer"
           onClick={() => trackInitiateCheckout("hotsheet")}
           className="hotsheet-hero__cta clip-btn"
         >

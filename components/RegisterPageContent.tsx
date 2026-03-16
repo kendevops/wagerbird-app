@@ -152,6 +152,7 @@ export default function RegisterPageContent({
         body: JSON.stringify({
           email,
           password,
+          passwordConfirmation: confirmPassword,
           firstName: firstName || undefined,
           lastName: lastName || undefined,
           phone: phone || undefined,

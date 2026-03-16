@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { trackInitiateCheckout } from "@/lib/tracking";
-import { APP_URL } from "@/lib/constants";
+
 
 interface HotsheetPromoProps {
   ctaLabel?: string;
@@ -14,7 +14,7 @@ const VIDEO_URL =
 
 export default function HotsheetPromo({
   ctaLabel = "Get Hotsheet →",
-  ctaHref = `${APP_URL}/register`,
+  ctaHref = "/register",
 }: HotsheetPromoProps) {
   return (
     <section className="hs-promo">
@@ -51,8 +51,6 @@ export default function HotsheetPromo({
 
         <a
           href={ctaHref}
-          target="_blank"
-          rel="noopener noreferrer"
           data-cursor-label="BUY"
           onClick={() => trackInitiateCheckout("hotsheet_promo")}
           className="hs-promo__cta clip-btn"

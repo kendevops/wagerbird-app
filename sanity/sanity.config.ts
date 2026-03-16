@@ -4,6 +4,7 @@ import { visionTool } from "@sanity/vision";
 import { presentationTool } from "sanity/presentation";
 import { schemaTypes } from "./schemas";
 import { locations, mainDocuments } from "./lib/presentation/resolve";
+import { DeleteQuantumSubmissionAction } from "./actions/deleteQuantumSubmission";
 
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ?? "placeholder";
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET ?? "production";
@@ -42,6 +43,20 @@ export default defineConfig({
                   .documentId("affiliatesPage")
               ),
             S.listItem()
+              .title("Quantum Page")
+              .child(
+                S.document()
+                  .schemaType("quantumPage")
+                  .documentId("quantumPage")
+              ),
+            S.listItem()
+              .title("Quantum Submissions")
+              .child(
+                S.documentTypeList("quantumSubmission")
+                  .title("Quantum Submissions")
+                  .defaultOrdering([{ field: "submittedAt", direction: "desc" }])
+              ),
+            S.listItem()
               .title("Sign In Page")
               .child(
                 S.document()
@@ -60,6 +75,8 @@ export default defineConfig({
                 item.getId() !== "page" &&
                 item.getId() !== "siteSettings" &&
                 item.getId() !== "affiliatesPage" &&
+                item.getId() !== "quantumPage" &&
+                item.getId() !== "quantumSubmission" &&
                 item.getId() !== "signInPage" &&
                 item.getId() !== "registerPage"
             ),
@@ -80,5 +97,11 @@ export default defineConfig({
   ],
   schema: {
     types: schemaTypes,
+  },
+  document: {
+    actions: (prev, { schemaType }) =>
+      schemaType === "quantumSubmission"
+        ? [DeleteQuantumSubmissionAction, ...prev]
+        : prev,
   },
 });

@@ -1,44 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { createPortal } from "react-dom";
 import { motion } from "framer-motion";
 import SportsbookCard, { SportsbookCardProps } from "./SportsbookCard";
 import WobbleCard from "./animations/WobbleCard";
-
-const US_STATES = [
-  "All states (default)",
-  "Arizona",
-  "Colorado",
-  "Connecticut",
-  "Delaware",
-  "Illinois",
-  "Indiana",
-  "Iowa",
-  "Kansas",
-  "Kentucky",
-  "Louisiana",
-  "Maine",
-  "Maryland",
-  "Massachusetts",
-  "Michigan",
-  "Montana",
-  "Nebraska",
-  "Nevada",
-  "New Hampshire",
-  "New Jersey",
-  "New York",
-  "North Carolina",
-  "Ohio",
-  "Oregon",
-  "Pennsylvania",
-  "Rhode Island",
-  "Tennessee",
-  "Vermont",
-  "Virginia",
-  "Washington",
-  "West Virginia",
-  "Wyoming",
-];
+import SportsbookChooseStateModal from "./SportsbookChooseStateModal";
+import SportsbookOfferModal from "./SportsbookOfferModal";
+import { trackInitiateCheckout } from "@/lib/tracking";
 
 interface SportsbooksSectionProps {
   label?: string;
@@ -61,17 +30,57 @@ export default function SportsbooksSection({
   sportsbooks,
   disclaimer = "More partner sportsbooks being added regularly.\nNew accounts only · Availability varies by state · WAGERBIRD partners with licensed, regulated U.S. operators only.",
 }: SportsbooksSectionProps) {
-  const [selectedState, setSelectedState] = useState("All states (default)");
-  const [activeState, setActiveState] = useState("All states (default)");
+  const [activeCategory, setActiveCategory] =
+    useState<"sportsbook" | "dfs_sweeps">("sportsbook");
+  const [chooseStateOpen, setChooseStateOpen] = useState(false);
+  const [offerOpen, setOfferOpen] = useState(false);
+  const [selectedSportsbook, setSelectedSportsbook] = useState<SportsbookCardProps | null>(null);
+  const [modalSelectedState, setModalSelectedState] = useState("");
 
-  const filteredBooks =
-    activeState === "All states (default)"
-      ? sportsbooks
-      : sportsbooks.filter((sb) => sb.states.includes(activeState));
+  const filteredBooks = sportsbooks.filter((sb) => {
+    const category = (sb.type ?? "sportsbook") as "sportsbook" | "dfs_sweeps";
+    return category === activeCategory;
+  });
 
-  const handleShowBooks = () => {
-    setActiveState(selectedState);
+  const handleOpenAccountClick = (sb: SportsbookCardProps) => {
+    setSelectedSportsbook(sb);
+    setChooseStateOpen(true);
+    setOfferOpen(false);
   };
+
+  const handleSeeOffer = (state: string) => {
+    setModalSelectedState(state);
+    setChooseStateOpen(false);
+    setOfferOpen(true);
+  };
+
+  const handleChangeState = () => {
+    setOfferOpen(false);
+    setChooseStateOpen(true);
+  };
+
+  const handleOpenAccount = (ctaHref: string) => {
+    if (selectedSportsbook) {
+      trackInitiateCheckout("sportsbook_offer_modal", selectedSportsbook.name);
+      window.open(ctaHref, "_blank", "noopener,noreferrer");
+    }
+    setOfferOpen(false);
+    setSelectedSportsbook(null);
+    setModalSelectedState("");
+  };
+
+  const handleCloseChooseState = () => {
+    setChooseStateOpen(false);
+    if (!offerOpen) setSelectedSportsbook(null);
+  };
+
+  const handleCloseOffer = () => {
+    setOfferOpen(false);
+    setSelectedSportsbook(null);
+    setModalSelectedState("");
+  };
+
+  const isMounted = typeof document !== "undefined";
 
   return (
     <section id="partner-sportsbooks" className="sb-section">
@@ -108,33 +117,31 @@ export default function SportsbooksSection({
           </div>
 
           <motion.div
-            className="sb-section-filter"
+            className="sb-tabs"
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.15 }}
           >
-            <div className="sb-filter-select-wrap">
-              <select
-                className="sb-filter-select"
-                value={selectedState}
-                onChange={(e) => setSelectedState(e.target.value)}
-                aria-label="Select your state"
-              >
-                {US_STATES.map((state) => (
-                  <option key={state} value={state}>
-                    {state}
-                  </option>
-                ))}
-              </select>
-              <span className="sb-filter-select-arrow" aria-hidden="true">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <path d="M4 6L8 10L12 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </span>
-            </div>
-            <button className="sb-filter-btn" onClick={handleShowBooks}>
-              Show Books
+            <button
+              type="button"
+              className={
+                "sb-tab" +
+                (activeCategory === "sportsbook" ? " sb-tab--active" : "")
+              }
+              onClick={() => setActiveCategory("sportsbook")}
+            >
+              SPORTSBOOKS
+            </button>
+            <button
+              type="button"
+              className={
+                "sb-tab" +
+                (activeCategory === "dfs_sweeps" ? " sb-tab--active" : "")
+              }
+              onClick={() => setActiveCategory("dfs_sweeps")}
+            >
+              DFS / SWEEPS
             </button>
           </motion.div>
         </div>
@@ -152,7 +159,7 @@ export default function SportsbooksSection({
                 transition={{ delay: i * 0.07 }}
               >
                 <WobbleCard className="h-full">
-                  <SportsbookCard {...sb} />
+                  <SportsbookCard {...sb} onOpenAccount={handleOpenAccountClick} />
                 </WobbleCard>
               </motion.div>
             ))}
@@ -163,9 +170,37 @@ export default function SportsbooksSection({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           >
-            <p>No partner sportsbooks are currently available in <strong>{activeState}</strong>. Check back soon &mdash; we&rsquo;re adding books regularly.</p>
+            <p>
+              No partner sportsbooks are currently available in this category.
+              Check back soon &mdash; we&rsquo;re adding books regularly.
+            </p>
           </motion.div>
         )}
+
+        {/* Modals */}
+        {isMounted &&
+          selectedSportsbook &&
+          createPortal(
+            <>
+              {chooseStateOpen && (
+                <SportsbookChooseStateModal
+                  sportsbook={selectedSportsbook}
+                  onSeeOffer={handleSeeOffer}
+                  onClose={handleCloseChooseState}
+                />
+              )}
+              {offerOpen && (
+                <SportsbookOfferModal
+                  sportsbook={selectedSportsbook}
+                  selectedState={modalSelectedState}
+                  onChangeState={handleChangeState}
+                  onOpenAccount={handleOpenAccount}
+                  onClose={handleCloseOffer}
+                />
+              )}
+            </>,
+            document.body,
+          )}
 
         {/* Disclaimer */}
         {disclaimer && (

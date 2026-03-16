@@ -16,7 +16,8 @@ export default function CtaBanner({
   watermark = "WIN",
   title = (
     <>
-      Stop Guessing.<br />
+      Stop Guessing.
+      <br />
       Start Winning.
     </>
   ),
@@ -43,17 +44,17 @@ export default function CtaBanner({
         transition={{ duration: 0.8 }}
         className="cta-content"
       >
-        <h2 className="cta-heading">
-          {title}
-        </h2>
-        <p className="cta-subtext">
-          {subtitle}
-        </p>
+        <h2 className="cta-heading">{title}</h2>
+        <p className="cta-subtext">{subtitle}</p>
         <a
           href={ctaHref}
-          {...(ctaHref?.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+          {...(ctaHref?.startsWith("http")
+            ? { target: "_blank", rel: "noopener noreferrer" }
+            : {})}
           data-cursor-label="GO"
-          onClick={() => ctaHref?.startsWith("http") && trackInitiateCheckout("cta_banner")}
+          onClick={() =>
+            ctaHref?.startsWith("http") && trackInitiateCheckout("cta_banner")
+          }
           className="cta-btn clip-btn"
         >
           {ctaLabel}

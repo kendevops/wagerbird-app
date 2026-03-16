@@ -66,7 +66,8 @@ export default function AccessModels({
 }: AccessModelsProps) {
   const defaultHeading = (
     <>
-      Define Your<br />
+      Define Your
+      <br />
       <em className="access-heading-accent">Betting Approach</em>
     </>
   );
@@ -83,9 +84,7 @@ export default function AccessModels({
           transition={{ duration: 0.55 }}
         >
           <span className="access-models-label">{label}</span>
-          <h2 className="access-models-heading">
-            {heading ?? defaultHeading}
-          </h2>
+          <h2 className="access-models-heading">{heading ?? defaultHeading}</h2>
           <p className="access-models-subtitle">{subtitle}</p>
         </motion.div>
 
@@ -101,11 +100,17 @@ export default function AccessModels({
           <div className="access-table-head">
             <div className="access-table-label-col" />
             <div className="access-table-packs-col">
-              <span className="access-col-tag access-col-tag--packs">{"// Recommended"}</span>
-              <span className="access-col-title access-col-title--packs">Points Packs</span>
+              <span className="access-col-tag access-col-tag--packs">
+                {"// Recommended"}
+              </span>
+              <span className="access-col-title access-col-title--packs">
+                Points Packs
+              </span>
             </div>
             <div className="access-table-terminal-col">
-              <span className="access-col-tag access-col-tag--terminal">{"// Alternative"}</span>
+              <span className="access-col-tag access-col-tag--terminal">
+                {"// Alternative"}
+              </span>
               <span className="access-col-title">Terminal Plans</span>
             </div>
           </div>

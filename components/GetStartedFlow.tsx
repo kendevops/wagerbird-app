@@ -6,9 +6,10 @@ import {
   EmbeddedCheckout,
 } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
+import Link from "next/link";
 
 const stripePromise = loadStripe(
-  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
+  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!,
 );
 
 const PLAN_DETAILS: Record<
@@ -185,6 +186,10 @@ export function RegistrationForm({
 
       // Redirect to monolith auto-login URL
       if (data.data?.login_url) {
+        window.open(
+          "https://onepage-campaign.onrender.com/wagerbird",
+          "_blank",
+        );
         window.location.href = data.data.login_url;
       }
     } catch {
@@ -341,8 +346,8 @@ export function RegistrationForm({
 
         <p className="get-started-terms">
           By creating an account, you agree to our{" "}
-          <a href="/terms-of-service">Terms of Service</a> and{" "}
-          <a href="/privacy-policy">Privacy Policy</a>.
+          <Link href="/terms-of-service">Terms of Service</Link> and{" "}
+          <Link href="/privacy-policy">Privacy Policy</Link>.
         </p>
       </form>
     </div>

@@ -397,7 +397,11 @@ export type PageBySlugResult = {
 // ── Blog ──
 
 export const allBlogPostsQuery = groq`
-  *[_type == "blogPost" && defined(slug.current)] | order(publishedAt desc) {
+  *[
+    _type == "blogPost" &&
+    defined(slug.current) &&
+    (!defined(status) || status == "active")
+  ] | order(publishedAt desc) {
     _id,
     title,
     "slug": slug.current,
@@ -410,7 +414,11 @@ export const allBlogPostsQuery = groq`
 `;
 
 export const blogPostBySlugQuery = groq`
-  *[_type == "blogPost" && slug.current == $slug][0] {
+  *[
+    _type == "blogPost" &&
+    slug.current == $slug &&
+    (!defined(status) || status == "active")
+  ][0] {
     _id,
     title,
     "slug": slug.current,

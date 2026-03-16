@@ -52,16 +52,66 @@ export default defineConfig({
             S.listItem()
               .title("Quantum Submissions")
               .child(
-                S.documentTypeList("quantumSubmission")
+                S.list()
                   .title("Quantum Submissions")
-                  .defaultOrdering([{ field: "submittedAt", direction: "desc" }])
+                  .items([
+                    S.listItem()
+                      .title("Active")
+                      .child(
+                        S.documentTypeList("quantumSubmission")
+                          .title("Active Quantum Submissions")
+                          .filter(
+                            '_type == "quantumSubmission" && (!defined(status) || status == "active")'
+                          )
+                          .defaultOrdering([
+                            { field: "submittedAt", direction: "desc" },
+                          ])
+                      ),
+                    S.listItem()
+                      .title("Archived")
+                      .child(
+                        S.documentTypeList("quantumSubmission")
+                          .title("Archived Quantum Submissions")
+                          .filter(
+                            '_type == "quantumSubmission" && status == "archived"'
+                          )
+                          .defaultOrdering([
+                            { field: "submittedAt", direction: "desc" },
+                          ])
+                      ),
+                  ])
               ),
             S.listItem()
               .title("Blog Posts")
               .child(
-                S.documentTypeList("blogPost")
+                S.list()
                   .title("Blog Posts")
-                  .defaultOrdering([{ field: "publishedAt", direction: "desc" }])
+                  .items([
+                    S.listItem()
+                      .title("Active")
+                      .child(
+                        S.documentTypeList("blogPost")
+                          .title("Active Blog Posts")
+                          .filter(
+                            '_type == "blogPost" && (!defined(status) || status == "active")'
+                          )
+                          .defaultOrdering([
+                            { field: "publishedAt", direction: "desc" },
+                          ])
+                      ),
+                    S.listItem()
+                      .title("Archived")
+                      .child(
+                        S.documentTypeList("blogPost")
+                          .title("Archived Blog Posts")
+                          .filter(
+                            '_type == "blogPost" && status == "archived"'
+                          )
+                          .defaultOrdering([
+                            { field: "publishedAt", direction: "desc" },
+                          ])
+                      ),
+                  ])
               ),
             S.listItem()
               .title("Sign In Page")

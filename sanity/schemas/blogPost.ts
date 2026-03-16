@@ -165,14 +165,39 @@ export const blogPostType = defineType({
         { name: "ogImage", title: "OG Image", type: "image" },
       ],
     }),
+    defineField({
+      name: "status",
+      title: "Status",
+      type: "string",
+      options: {
+        list: [
+          { title: "Active", value: "active" },
+          { title: "Archived", value: "archived" },
+        ],
+        layout: "radio",
+        direction: "horizontal",
+      },
+      initialValue: "active",
+    }),
+    defineField({
+      name: "internalComment",
+      title: "Internal Comment",
+      type: "text",
+      rows: 3,
+      description: "Optional internal notes about this post. Not shown on the site.",
+    }),
   ],
   preview: {
-    select: { title: "title", slug: "slug.current", publishedAt: "publishedAt" },
-    prepare({ title, slug, publishedAt }) {
+    select: { title: "title", slug: "slug.current", publishedAt: "publishedAt", status: "status" },
+    prepare({ title, slug, publishedAt, status }) {
       const date = publishedAt ? new Date(publishedAt).toLocaleDateString() : "";
+      const statusLabel =
+        status === "archived" ? "Archived" : status === "active" || !status ? "Active" : status;
       return {
         title: title ?? "Untitled",
-        subtitle: [slug ? `/${slug}` : "", date].filter(Boolean).join(" · "),
+        subtitle: [slug ? `/${slug}` : "", date, statusLabel]
+          .filter(Boolean)
+          .join(" · "),
       };
     },
   },

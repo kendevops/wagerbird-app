@@ -66,7 +66,7 @@ export default async function GetStartedPage({
       </section>
 
       <section className="signup-right-panel">
-        <div className="signup-form-container">
+        <div className="signup-form-container" style={{ maxWidth: "600px" }}>
           <GetStartedFlow plan={selectedPlan} />
         </div>
       </section>

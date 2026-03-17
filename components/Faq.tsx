@@ -4,6 +4,7 @@ import { motion, Variants } from "framer-motion";
 import FaqItem from "./FaqItem";
 
 interface FaqProps {
+  sectionId?: string;
   label?: string;
   title?: React.ReactNode;
   items?: { question: string; answer: string }[];
@@ -53,6 +54,7 @@ const itemVariants: Variants = {
 };
 
 export default function Faq({
+  sectionId,
   label = "// FAQ",
   title = (
     <>
@@ -63,7 +65,7 @@ export default function Faq({
   items = defaultFaqs
 }: FaqProps) {
   return (
-    <section className="faq-section faq-section--cinder">
+    <section id={sectionId} className="faq-section faq-section--cinder">
       <div className="faq-container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -12,6 +12,7 @@ interface Step {
 }
 
 interface HowItWorksProps {
+  sectionId?: string;
   label?: string;
   title?: React.ReactNode;
   steps?: Step[];
@@ -55,6 +56,7 @@ const itemVariants: Variants = {
 };
 
 export default function HowItWorks({
+  sectionId,
   label = "// How It Works",
   title = (
     <>
@@ -71,7 +73,7 @@ export default function HowItWorks({
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section id="how-it-works" className="hiw-section">
+    <section id={sectionId || "how-it-works"} className="hiw-section">
       <div className="hiw-container">
         {/* Header */}
         <motion.div

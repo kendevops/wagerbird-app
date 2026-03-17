@@ -5,6 +5,7 @@ import { trackInitiateCheckout } from "@/lib/tracking";
 
 
 interface CtaBannerProps {
+  sectionId?: string;
   watermark?: string;
   title?: React.ReactNode;
   subtitle?: string;
@@ -13,6 +14,7 @@ interface CtaBannerProps {
 }
 
 export default function CtaBanner({
+  sectionId,
   watermark = "WIN",
   title = (
     <>
@@ -26,7 +28,7 @@ export default function CtaBanner({
   ctaHref = "/pricing#packs"
 }: CtaBannerProps) {
   return (
-    <section className="cta-section">
+    <section id={sectionId} className="cta-section">
       <motion.span
         initial={{ opacity: 0, scale: 0.9 }}
         whileInView={{ opacity: 1, scale: 1 }}

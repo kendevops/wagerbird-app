@@ -63,6 +63,7 @@ export default function BlockRenderer({ blocks }: { blocks: Block[] }) {
             return (
               <Hero
                 key={block._key}
+                sectionId={block.sectionId as string | undefined}
                 tickerText={block.tickerText as string | undefined}
                 badgeText={block.badgeText as string | undefined}
                 title={
@@ -92,6 +93,7 @@ export default function BlockRenderer({ blocks }: { blocks: Block[] }) {
             return (
               <Ticker
                 key={block._key}
+                sectionId={block.sectionId as string | undefined}
                 items={
                   Array.isArray(block.items) && block.items.length > 0
                     ? (block.items as { sport: string; matchup: string; confidence: number }[])
@@ -105,6 +107,7 @@ export default function BlockRenderer({ blocks }: { blocks: Block[] }) {
             return (
               <Signals
                 key={block._key}
+                sectionId={block.sectionId as string | undefined}
                 label={block.label as string | undefined}
                 title={
                   block.title ? (
@@ -126,6 +129,7 @@ export default function BlockRenderer({ blocks }: { blocks: Block[] }) {
             return (
               <Packs
                 key={block._key}
+                sectionId={block.sectionId as string | undefined}
                 label={block.label as string | undefined}
                 title={
                   block.title ? (
@@ -149,6 +153,7 @@ export default function BlockRenderer({ blocks }: { blocks: Block[] }) {
             return (
               <HowItWorks
                 key={block._key}
+                sectionId={block.sectionId as string | undefined}
                 label={block.label as string | undefined}
                 title={
                   block.title ? (
@@ -169,6 +174,7 @@ export default function BlockRenderer({ blocks }: { blocks: Block[] }) {
             return (
               <Faq
                 key={block._key}
+                sectionId={block.sectionId as string | undefined}
                 label={block.label as string | undefined}
                 title={
                   block.title ? (
@@ -188,6 +194,7 @@ export default function BlockRenderer({ blocks }: { blocks: Block[] }) {
             return (
               <CtaBanner
                 key={block._key}
+                sectionId={block.sectionId as string | undefined}
                 watermark={block.watermark as string | undefined}
                 title={
                   block.title ? (
@@ -207,6 +214,7 @@ export default function BlockRenderer({ blocks }: { blocks: Block[] }) {
             return (
               <ValueStrip
                 key={block._key}
+                sectionId={block.sectionId as string | undefined}
                 items={
                   block.items as Parameters<typeof ValueStrip>[0]["items"]
                 }
@@ -232,21 +240,42 @@ export default function BlockRenderer({ blocks }: { blocks: Block[] }) {
             );
 
           case "hotsheetFeaturesBlock":
-            return <HotsheetFeatures key={block._key} />;
+            return (
+              <HotsheetFeatures
+                key={block._key}
+                sectionId={block.sectionId as string | undefined}
+              />
+            );
 
           case "hotsheetPricingBlock":
-            return <HotsheetPricing key={block._key} />;
+            return (
+              <HotsheetPricing
+                key={block._key}
+                sectionId={block.sectionId as string | undefined}
+              />
+            );
 
           case "hotsheetWhyBlock":
-            return <HotsheetWhy key={block._key} />;
+            return (
+              <HotsheetWhy
+                key={block._key}
+                sectionId={block.sectionId as string | undefined}
+              />
+            );
 
           case "proofSectionBlock":
-            return <ProofSection key={block._key} />;
+            return (
+              <ProofSection
+                key={block._key}
+                sectionId={block.sectionId as string | undefined}
+              />
+            );
 
           case "processSectionBlock":
             return (
               <ProcessSection
                 key={block._key}
+                sectionId={block.sectionId as string | undefined}
                 label={block.label as string | undefined}
                 heading={block.heading as string | undefined}
                 description={block.description as string | undefined}
@@ -260,6 +289,7 @@ export default function BlockRenderer({ blocks }: { blocks: Block[] }) {
             return (
               <EmailCapture
                 key={block._key}
+                sectionId={block.sectionId as string | undefined}
                 label={block.label as string | undefined}
                 title={
                   block.title ? (
@@ -282,7 +312,12 @@ export default function BlockRenderer({ blocks }: { blocks: Block[] }) {
             );
 
           case "sportsbooksHeroBlock":
-            return <SportsbooksHero key={block._key} />;
+            return (
+              <SportsbooksHero
+                key={block._key}
+                sectionId={block.sectionId as string | undefined}
+              />
+            );
 
           case "sportsbooksSectionBlock": {
             const rawSportsbooks = (block.sportsbooks ?? []) as Array<
@@ -297,6 +332,7 @@ export default function BlockRenderer({ blocks }: { blocks: Block[] }) {
             return (
               <SportsbooksSection
                 key={block._key}
+                sectionId={block.sectionId as string | undefined}
                 label={block.label as string | undefined}
                 title={
                   block.title ? (

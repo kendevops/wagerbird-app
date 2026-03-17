@@ -9,6 +9,7 @@ interface ValueStripItem {
 }
 
 interface ValueStripProps {
+  sectionId?: string;
   items?: ValueStripItem[];
 }
 
@@ -35,9 +36,9 @@ const defaultItems: ValueStripItem[] = [
   },
 ];
 
-export default function ValueStrip({ items = defaultItems }: ValueStripProps) {
+export default function ValueStrip({ sectionId, items = defaultItems }: ValueStripProps) {
   return (
-    <div className="value-strip">
+    <section id={sectionId} className="value-strip">
       {items.map((item, i) => (
         <motion.div
           key={i}
@@ -52,6 +53,6 @@ export default function ValueStrip({ items = defaultItems }: ValueStripProps) {
           <span className="value-strip-desc">{item.description}</span>
         </motion.div>
       ))}
-    </div>
+    </section>
   );
 }

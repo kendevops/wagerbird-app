@@ -37,9 +37,13 @@ const StarIcon = () => (
   </svg>
 );
 
-export default function ProofSection() {
+interface ProofSectionProps {
+  sectionId?: string;
+}
+
+export default function ProofSection({ sectionId }: ProofSectionProps) {
   return (
-    <section className="proof-section">
+    <section id={sectionId} className="proof-section">
       <div className="proof-inner">
         <motion.div
           className="proof-header"

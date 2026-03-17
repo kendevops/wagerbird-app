@@ -462,6 +462,8 @@ export type BlogPostSummary = {
   mainImage?: { asset?: { _ref?: string; url?: string } };
 };
 
+import type { PortableTextBlock } from "@portabletext/types";
+
 export type BlogPostResult = {
   _id: string;
   title?: string;
@@ -477,7 +479,7 @@ export type BlogPostResult = {
   author?: string;
   readTimeMinutes?: number;
   heroStats?: { value?: string; label?: string }[];
-  body?: unknown[];
+  body?: PortableTextBlock[] | null;
   keyTakeaways?: string[];
   relatedPosts?: {
     _id: string;

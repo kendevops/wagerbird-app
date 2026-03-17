@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import Header from "./Header";
 import Footer from "./Footer";
+import CookieBanner from "./CookieBanner";
 
 const STUDIO_PATH = "/studio";
 const NO_LAYOUT_PATHS = ["/onboarding"];
@@ -71,6 +72,7 @@ export default function ConditionalSiteLayout({
           ]}
         />
       )}
+      <CookieBanner />
     </>
   );
 }

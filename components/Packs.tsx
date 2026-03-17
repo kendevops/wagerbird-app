@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import PriceCard, { PriceCardProps } from "./PriceCard";
 
 interface PacksProps {
+  sectionId?: string;
   label?: string;
   title?: React.ReactNode;
   description?: string;
@@ -37,6 +38,7 @@ const defaultPacks: PriceCardProps[] = [
 ];
 
 export default function Packs({
+  sectionId,
   label = "// Choose Your Pack",
   title = (
     <>
@@ -55,7 +57,7 @@ export default function Packs({
   )
 }: PacksProps) {
   return (
-    <section id="packs" className="packs-section">
+    <section id={sectionId || "packs"} className="packs-section">
       {/* Header */}
       <PacksHeader label={label} title={title} description={description} />
 

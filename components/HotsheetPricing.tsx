@@ -284,9 +284,13 @@ const PricingCard = ({
 };
 
 // ─── Main Section ─────────────────────────────────────
-export default function HotsheetPricing() {
+interface HotsheetPricingProps {
+  sectionId?: string;
+}
+
+export default function HotsheetPricing({ sectionId }: HotsheetPricingProps) {
   return (
-    <section className="hsp-section">
+    <section id={sectionId} className="hsp-section">
       <div className="hsp-inner">
         {/* Header */}
         <motion.div

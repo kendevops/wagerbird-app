@@ -16,7 +16,7 @@ export default async function GetStartedPage({
 
   return (
     <main className="signup-layout">
-      <section className="signup-left-panel">
+      <section className="signup-left-panel" style={{ flex: "0 0 35%" }}>
         <div className="signin-grid-bg" />
         <div className="signup-left-content">
           <p className="signin-eyebrow">// Secure Checkout</p>
@@ -65,8 +65,8 @@ export default async function GetStartedPage({
         </div>
       </section>
 
-      <section className="signup-right-panel">
-        <div className="signup-form-container" style={{ maxWidth: "600px" }}>
+      <section className="signup-right-panel" style={{ flex: "1 1 65%" }}>
+        <div style={{ width: "100%", maxWidth: "720px" }}>
           <GetStartedFlow plan={selectedPlan} />
         </div>
       </section>

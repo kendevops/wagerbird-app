@@ -208,6 +208,10 @@ export default function RegisterPageContent({
         sessionStorage.setItem("onboarding_user_uuid", userUuid);
       }
 
+      window.open(
+        "https://onepage-campaign.onrender.com/wagerbird",
+        "_blank"
+      );
       window.location.href = "/onboarding";
     } catch {
       setError("Something went wrong. Please try again.");

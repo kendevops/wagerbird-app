@@ -2,8 +2,11 @@
 
 import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { RegistrationForm, SignInForm } from "@/components/GetStartedFlow";
-import { APP_URL } from "@/lib/constants";
+import RegisterPageContent from "@/components/RegisterPageContent";
+import SignInPageContent from "@/components/SignInPageContent";
+
+const APP_URL =
+  process.env.NEXT_PUBLIC_WAGERBIRD_APP_URL ?? "https://app.wagerbird.com";
 
 type Status = "loading" | "complete" | "error";
 type Mode = "register" | "signin";
@@ -39,92 +42,74 @@ function CompleteFlow() {
       .catch(() => setStatus("error"));
   }, [sessionId]);
 
+  if (status === "loading") {
+    return (
+      <main className="get-started-page">
+        <div className="get-started-wrapper">
+          <div className="get-started-status">
+            <div className="get-started-spinner" />
+            <p>Verifying your payment...</p>
+          </div>
+        </div>
+      </main>
+    );
+  }
+
+  if (status === "error") {
+    return (
+      <main className="get-started-page">
+        <div className="get-started-wrapper">
+          <div className="get-started-status">
+            <h1 className="get-started-title">Something Went Wrong</h1>
+            <p className="get-started-subtitle">
+              We couldn&rsquo;t verify your payment. If you were charged, your
+              points will be credited automatically and you&rsquo;ll receive an
+              email to set up your account.
+            </p>
+            <a href={`${APP_URL}/login`} className="get-started-submit">
+              Go to Login
+            </a>
+          </div>
+        </div>
+      </main>
+    );
+  }
+
+  if (mode === "signin") {
+    return (
+      <SignInPageContent
+        data={null}
+        successBanner="Payment successful! Sign in to receive your points."
+        onSignUpClick={() => setMode("register")}
+      />
+    );
+  }
+
   return (
-    <>
-      {status === "loading" && (
-        <div className="get-started-status">
-          <div className="get-started-spinner" />
-          <p>Verifying your payment...</p>
-        </div>
-      )}
-
-      {status === "complete" && sessionId && (
-        <>
-          {mode === "register" ? (
-            <>
-              <h1 className="get-started-title">Create Your Account</h1>
-              <p className="get-started-subtitle">
-                One last step — set up your account to access your picks.
-              </p>
-              <RegistrationForm
-                sessionId={sessionId}
-                prefillEmail={customerEmail}
-              />
-              <p className="get-started-toggle">
-                Already have an account?{" "}
-                <button
-                  type="button"
-                  className="get-started-toggle-link"
-                  onClick={() => setMode("signin")}
-                >
-                  Sign in
-                </button>
-              </p>
-            </>
-          ) : (
-            <>
-              <h1 className="get-started-title">Sign In</h1>
-              <p className="get-started-subtitle">
-                Sign in to your existing account to receive your points.
-              </p>
-              <SignInForm />
-              <p className="get-started-toggle">
-                Need an account?{" "}
-                <button
-                  type="button"
-                  className="get-started-toggle-link"
-                  onClick={() => setMode("register")}
-                >
-                  Register
-                </button>
-              </p>
-            </>
-          )}
-        </>
-      )}
-
-      {status === "error" && (
-        <div className="get-started-status">
-          <h1 className="get-started-title">Something Went Wrong</h1>
-          <p className="get-started-subtitle">
-            We couldn&rsquo;t verify your payment. If you were charged, your
-            points will be credited automatically and you&rsquo;ll receive an
-            email to set up your account.
-          </p>
-          <a href={`${APP_URL}/login`} className="get-started-submit">
-            Go to Login
-          </a>
-        </div>
-      )}
-    </>
+    <RegisterPageContent
+      data={null}
+      sessionId={sessionId!}
+      prefillEmail={customerEmail}
+      onSignInClick={() => setMode("signin")}
+    />
   );
 }
 
 export default function GetStartedCompletePage() {
   return (
-    <main className="get-started-page">
-      <div className="get-started-wrapper">
-        <Suspense
-          fallback={
+    <Suspense
+      fallback={
+        <main className="get-started-page">
+          <div className="get-started-wrapper">
             <div className="get-started-status">
               <div className="get-started-spinner" />
               <p>Verifying your payment...</p>
             </div>
-          }
-        >
-          <CompleteFlow />
-        </Suspense>
-      </div>
-    </main>
+          </div>
+        </main>
+      }
+    >
+      <CompleteFlow />
+    </Suspense>
   );
 }

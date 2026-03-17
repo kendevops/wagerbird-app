@@ -15,8 +15,12 @@ const DEFAULT_STATS = [
 
 export default function SignInPageContent({
   data,
+  successBanner,
+  onSignUpClick,
 }: {
   data: SignInPageResult | null;
+  successBanner?: string;
+  onSignUpClick?: () => void;
 }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -104,6 +108,12 @@ export default function SignInPageContent({
           </div>
 
           <form className="signin-form" onSubmit={handleSubmit}>
+            {successBanner && (
+              <div className="get-started-success-banner">
+                <span className="get-started-success-icon-sm">&#10003;</span>
+                {successBanner}
+              </div>
+            )}
             {error && (
               <div className="signin-error" role="alert">
                 {error}
@@ -198,9 +208,19 @@ export default function SignInPageContent({
           <div className="signin-footer-links">
             <p className="signin-signup-row">
               <span className="signin-signup-prompt">{c.signupPrompt}</span>
-              <Link href={c.signupLinkHref} className="signin-signup-link">
-                {c.signupLinkLabel}
-              </Link>
+              {onSignUpClick ? (
+                <button
+                  type="button"
+                  className="signin-signup-link"
+                  onClick={onSignUpClick}
+                >
+                  {c.signupLinkLabel}
+                </button>
+              ) : (
+                <Link href={c.signupLinkHref} className="signin-signup-link">
+                  {c.signupLinkLabel}
+                </Link>
+              )}
             </p>
             <p className="signin-fine-print">{c.finePrint}</p>
           </div>

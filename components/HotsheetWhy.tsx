@@ -158,9 +158,13 @@ const SampleCard = ({ kicker, sport, matchup, market, confidence, locked, featur
 );
 
 // ─── Main component ───────────────────────────────────────
-export default function HotsheetWhy() {
+interface HotsheetWhyProps {
+  sectionId?: string;
+}
+
+export default function HotsheetWhy({ sectionId }: HotsheetWhyProps) {
   return (
-    <section className="hsw-section">
+    <section id={sectionId} className="hsw-section">
       <div className="hsw-bg" aria-hidden="true" />
 
       <div className="hsw-inner">

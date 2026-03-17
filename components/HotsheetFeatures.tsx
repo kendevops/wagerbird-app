@@ -131,9 +131,13 @@ const FeatureCard = ({ children, delay = 0 }: { children: React.ReactNode; delay
 );
 
 // ─── Main Section ──────────────────────────────────────
-export default function HotsheetFeatures() {
+interface HotsheetFeaturesProps {
+  sectionId?: string;
+}
+
+export default function HotsheetFeatures({ sectionId }: HotsheetFeaturesProps) {
   return (
-    <section className="hsf-section">
+    <section id={sectionId} className="hsf-section">
       {/* Background layers matching hero */}
       <div className="hsf-bg" aria-hidden="true" />
       <div className="hsf-stars" aria-hidden="true" />

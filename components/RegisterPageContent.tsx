@@ -208,6 +208,7 @@ export default function RegisterPageContent({
         sessionStorage.setItem("onboarding_user_uuid", userUuid);
       }
 
+      localStorage.setItem("wagerbird_authenticated", "true");
       window.open(
         "https://onepage-campaign.onrender.com/wagerbird",
         "_blank"

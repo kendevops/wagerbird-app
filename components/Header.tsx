@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useSyncExternalStore } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
@@ -42,7 +42,12 @@ export default function Header({
 }: HeaderProps) {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const isMounted = useIsMounted();
+
+  useEffect(() => {
+    setIsAuthenticated(localStorage.getItem("wagerbird_authenticated") === "true");
+  }, []);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -163,20 +168,31 @@ export default function Header({
 
         {/* CTA buttons */}
         <div className="flex items-center gap-[12px] shrink-0">
-          <a
-            href={loginHref}
-            className="hidden lg:flex items-center justify-center px-[20px] py-[9px] border border-nav-border font-mono text-[11px] font-400 tracking-[1px] uppercase text-nav-text-muted hover:border-[#F0F0E8]/50 hover:text-nav-text transition-colors whitespace-nowrap cursor-target"
-          >
-            Login
-          </a>
-          <a
-            href={getAccessHref}
-            data-cursor-label="GO"
-            onClick={() => trackInitiateCheckout("header_desktop")}
-            className="hidden sm:flex items-center justify-center px-[14px] md:px-[22px] py-[8px] md:py-[10px] h-[36px] bg-brand-yellow font-mono text-[11px] font-bold tracking-[1px] uppercase text-brand-blue whitespace-nowrap hover:bg-[#cdd91e] transition-colors clip-btn cursor-target"
-          >
-            Get Access
-          </a>
+          {isAuthenticated ? (
+            <a
+              href={process.env.NEXT_PUBLIC_WAGERBIRD_APP_URL ?? "https://app.wagerbird.com"}
+              className="hidden sm:flex items-center justify-center px-[14px] md:px-[22px] py-[8px] md:py-[10px] h-[36px] bg-brand-yellow font-mono text-[11px] font-bold tracking-[1px] uppercase text-brand-blue whitespace-nowrap hover:bg-[#cdd91e] transition-colors clip-btn cursor-target"
+            >
+              Go to Terminal
+            </a>
+          ) : (
+            <>
+              <a
+                href={loginHref}
+                className="hidden lg:flex items-center justify-center px-[20px] py-[9px] border border-nav-border font-mono text-[11px] font-400 tracking-[1px] uppercase text-nav-text-muted hover:border-[#F0F0E8]/50 hover:text-nav-text transition-colors whitespace-nowrap cursor-target"
+              >
+                Login
+              </a>
+              <a
+                href={getAccessHref}
+                data-cursor-label="GO"
+                onClick={() => trackInitiateCheckout("header_desktop")}
+                className="hidden sm:flex items-center justify-center px-[14px] md:px-[22px] py-[8px] md:py-[10px] h-[36px] bg-brand-yellow font-mono text-[11px] font-bold tracking-[1px] uppercase text-brand-blue whitespace-nowrap hover:bg-[#cdd91e] transition-colors clip-btn cursor-target"
+              >
+                Get Access
+              </a>
+            </>
+          )}
 
           {/* Mobile menu toggle */}
           <button
@@ -249,23 +265,35 @@ export default function Header({
                   <div className="h-px bg-white/10 w-full" />
 
                   <div className="flex flex-col gap-[16px]">
-                    <a
-                      href={loginHref}
-                      onClick={() => setIsMenuOpen(false)}
-                      className="w-full flex items-center justify-center py-[16px] border border-white/10 font-mono text-[13px] font-bold tracking-[1.5px] uppercase text-white"
-                    >
-                      Login
-                    </a>
-                    <a
-                      href={getAccessHref}
-                      onClick={() => {
-                        trackInitiateCheckout("header_mobile");
-                        setIsMenuOpen(false);
-                      }}
-                      className="w-full flex items-center justify-center py-[16px] bg-brand-yellow font-mono text-[13px] font-bold tracking-[1.5px] uppercase text-black clip-btn"
-                    >
-                      Get Access
-                    </a>
+                    {isAuthenticated ? (
+                      <a
+                        href={process.env.NEXT_PUBLIC_WAGERBIRD_APP_URL ?? "https://app.wagerbird.com"}
+                        onClick={() => setIsMenuOpen(false)}
+                        className="w-full flex items-center justify-center py-[16px] bg-brand-yellow font-mono text-[13px] font-bold tracking-[1.5px] uppercase text-black clip-btn"
+                      >
+                        Go to Terminal
+                      </a>
+                    ) : (
+                      <>
+                        <a
+                          href={loginHref}
+                          onClick={() => setIsMenuOpen(false)}
+                          className="w-full flex items-center justify-center py-[16px] border border-white/10 font-mono text-[13px] font-bold tracking-[1.5px] uppercase text-white"
+                        >
+                          Login
+                        </a>
+                        <a
+                          href={getAccessHref}
+                          onClick={() => {
+                            trackInitiateCheckout("header_mobile");
+                            setIsMenuOpen(false);
+                          }}
+                          className="w-full flex items-center justify-center py-[16px] bg-brand-yellow font-mono text-[13px] font-bold tracking-[1.5px] uppercase text-black clip-btn"
+                        >
+                          Get Access
+                        </a>
+                      </>
+                    )}
                   </div>
                 </div>
               </motion.div>

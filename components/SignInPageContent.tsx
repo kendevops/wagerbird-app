@@ -65,6 +65,7 @@ export default function SignInPageContent({
         setError(resData?.error ?? resData?.message ?? "Sign in failed");
         return;
       }
+      localStorage.setItem("wagerbird_authenticated", "true");
       const redirectUrl = resData?.redirectUrl ?? APP_URL;
       window.location.href = redirectUrl;
     } catch {

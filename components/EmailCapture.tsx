@@ -9,6 +9,7 @@ const SUBSTACK_EMBED_URL = SUBSTACK_PUBLICATION
 const substackReady = Boolean(SUBSTACK_EMBED_URL);
 
 interface EmailCaptureProps {
+  sectionId?: string;
   label?: string;
   title?: React.ReactNode;
   subtitle?: React.ReactNode;
@@ -19,6 +20,7 @@ interface EmailCaptureProps {
 }
 
 export default function EmailCapture({
+  sectionId,
   label = "// Free Daily Picks",
   title = (
     <>
@@ -39,7 +41,7 @@ export default function EmailCapture({
   disclaimer = "No spam. Unsubscribe anytime. Your data stays private.",
 }: EmailCaptureProps) {
   return (
-    <section className="email-capture-section">
+    <section id={sectionId} className="email-capture-section">
       <div className="email-capture-inner">
         <motion.span
           initial={{ opacity: 0, y: 10 }}

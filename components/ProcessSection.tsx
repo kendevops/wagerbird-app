@@ -11,6 +11,7 @@ interface ProcessStep {
 }
 
 interface ProcessSectionProps {
+  sectionId?: string;
   label?: string;
   heading?: string;
   description?: string;
@@ -59,13 +60,14 @@ const defaultSteps: ProcessStep[] = [
 ];
 
 export default function ProcessSection({
+  sectionId,
   label = "// Simple Process",
   heading = "Simple Process.\nProfessional Edge.",
   description = "Traditional services sell picks. WAGERBIRD delivers structured signals — scored, confidence-weighted, and professionally reviewed. You only pay for the ones you want.",
   steps = defaultSteps,
 }: ProcessSectionProps) {
   return (
-    <section id="how-it-works" className="process-section">
+    <section id={sectionId || "how-it-works"} className="process-section">
       <div className="process-inner">
         {/* Header */}
         <motion.div

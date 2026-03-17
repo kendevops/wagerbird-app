@@ -6,6 +6,7 @@ import { trackInitiateCheckout } from "@/lib/tracking";
 import SignalCard, { SignalCardProps } from "./SignalCard";
 
 interface SignalsProps {
+  sectionId?: string;
   label?: string;
   title?: React.ReactNode;
   description?: string;
@@ -59,6 +60,7 @@ const defaultSignals: SignalCardProps[] = [
 ];
 
 export default function Signals({
+  sectionId,
   label = "// The Terminal",
   title = (
     <>
@@ -76,7 +78,7 @@ export default function Signals({
   footerText = "+ 47 more signals locked — Buy points to unlock",
 }: SignalsProps) {
   return (
-    <section id="terminal" className="signals-section">
+    <section id={sectionId || "terminal"} className="signals-section">
       {/* Left — copy */}
       <motion.div
         initial={{ opacity: 0, x: -30 }}

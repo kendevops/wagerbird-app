@@ -46,18 +46,20 @@ const badges = [
 ];
 
 interface MapSectionProps {
+  sectionId?: string;
   heading?: string;
   description?: string;
   disclaimer?: string;
 }
 
 export default function MapSection({
+  sectionId,
   heading = "Licensed.\nRegulated.\nResponsible.",
   description = "WAGERBIRD partners exclusively with state-licensed, regulated U.S. sportsbooks. We never hold your funds, process wagers, or operate as a sportsbook. All rewards are issued by WAGERBIRD as Points Packs — not by the sportsbook operators.",
   disclaimer = "Free Points Pack applies to new sportsbook accounts opened through WAGERBIRD referral links only... Availability varies by state. Must be 21 or older. Gambling problem? Call 1-800-GAMBLER.",
 }: MapSectionProps) {
   return (
-    <section className="map-section">
+    <section id={sectionId} className="map-section">
       <div className="map-section-inner">
         {/* Left column */}
         <div className="map-section-left">

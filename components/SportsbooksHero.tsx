@@ -44,7 +44,11 @@ const heroStats = [
   { value: "1,800", label: "Free Points\nEarned" },
 ];
 
-export default function SportsbooksHero() {
+interface SportsbooksHeroProps {
+  sectionId?: string;
+}
+
+export default function SportsbooksHero({ sectionId }: SportsbooksHeroProps) {
   const dateStr = new Date().toLocaleDateString("en-US", {
     weekday: "long",
     year: "numeric",
@@ -53,7 +57,7 @@ export default function SportsbooksHero() {
   });
 
   return (
-    <section className="sportsbooks-hero-section">
+    <section id={sectionId} className="sportsbooks-hero-section">
 
       {/* ── Ticker bar ── */}
       <motion.div

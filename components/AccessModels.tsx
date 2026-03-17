@@ -44,6 +44,7 @@ const defaultRows: ComparisonRow[] = [
 ];
 
 interface AccessModelsProps {
+  sectionId?: string;
   label?: string;
   heading?: React.ReactNode;
   subtitle?: string;
@@ -55,6 +56,7 @@ interface AccessModelsProps {
 }
 
 export default function AccessModels({
+  sectionId,
   label = "// Access Models",
   heading,
   subtitle = "Packs are for bettors who want flexibility. Terminal Plans are for daily grinders.",
@@ -73,7 +75,7 @@ export default function AccessModels({
   );
 
   return (
-    <section className="access-models-section">
+    <section id={sectionId} className="access-models-section">
       <div className="access-models-inner">
         {/* Header */}
         <motion.div

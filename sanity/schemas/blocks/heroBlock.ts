@@ -5,6 +5,17 @@ export const heroBlock = defineType({
   title: "Hero",
   type: "object",
   fields: [
+    defineField({
+      name: "sectionId",
+      title: "Section ID (anchor)",
+      type: "string",
+      description:
+        "Optional. Used for in-page links (e.g. buttons that scroll here). Must be unique on the page and contain no spaces.",
+      validation: (Rule) =>
+        Rule.regex(/^[a-z0-9-]+$/).warning(
+          "Use only lowercase letters, numbers, and hyphens for a valid HTML id.",
+        ),
+    }),
     defineField({ name: "tickerText", title: "Ticker Text", type: "string", description: "Optional; shown in the hero ticker bar" }),
     defineField({ name: "badgeText", title: "Badge Text", type: "string", description: "Optional; small label above the title" }),
     defineField({

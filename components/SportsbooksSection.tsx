@@ -10,6 +10,7 @@ import SportsbookOfferModal from "./SportsbookOfferModal";
 import { trackInitiateCheckout } from "@/lib/tracking";
 
 interface SportsbooksSectionProps {
+  sectionId?: string;
   label?: string;
   title?: React.ReactNode;
   description?: string;
@@ -18,6 +19,7 @@ interface SportsbooksSectionProps {
 }
 
 export default function SportsbooksSection({
+  sectionId,
   label = "// Partner Sportsbooks",
   title = (
     <>
@@ -83,7 +85,7 @@ export default function SportsbooksSection({
   const isMounted = typeof document !== "undefined";
 
   return (
-    <section id="partner-sportsbooks" className="sb-section">
+    <section id={sectionId || "partner-sportsbooks"} className="sb-section">
       <div className="sb-section-inner">
         {/* Header row */}
         <div className="sb-section-header">

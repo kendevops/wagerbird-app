@@ -9,6 +9,7 @@ interface TickerItem {
 }
 
 interface TickerProps {
+  sectionId?: string;
   items?: TickerItem[];
   variant?: "yellow" | "dark";
 }
@@ -32,12 +33,19 @@ function TickerEntry({ sport, matchup, confidence }: TickerItem) {
   );
 }
 
-export default function Ticker({ items = defaultTickerItems, variant = "yellow" }: TickerProps) {
+export default function Ticker({
+  sectionId,
+  items = defaultTickerItems,
+  variant = "yellow",
+}: TickerProps) {
   // Duplicate items to create a seamless loop
   const allItems = [...items, ...items];
 
   return (
-    <div className={`ticker-wrapper${variant === "dark" ? " ticker-wrapper--dark" : ""}`}>
+    <section
+      id={sectionId}
+      className={`ticker-wrapper${variant === "dark" ? " ticker-wrapper--dark" : ""}`}
+    >
       <motion.div
         className="ticker-track"
         animate={{ x: "-50%" }}

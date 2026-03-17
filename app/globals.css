@@ -8245,9 +8245,11 @@ button.sb-card-cta {
   border-color: var(--color-yellow);
 }
 
-.get-started-field input.get-started-field-locked {
+.get-started-field input.get-started-field-locked,
+.signin-field-input.get-started-field-locked {
   opacity: 0.5;
   cursor: not-allowed;
+  background: #d5d5cc;
 }
 
 .get-started-phone-row {
@@ -8300,12 +8302,12 @@ button.sb-card-cta {
   display: flex;
   align-items: center;
   gap: 10px;
-  background: rgba(34, 197, 94, 0.1);
-  border: 1px solid rgba(34, 197, 94, 0.3);
+  background: #dcfce7;
+  border: 1px solid #86efac;
   border-radius: 8px;
   padding: 14px 16px;
   font-size: 14px;
-  color: #86efac;
+  color: #15803d;
   margin-bottom: 24px;
 }
 
@@ -8316,8 +8318,8 @@ button.sb-card-cta {
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  background: rgba(34, 197, 94, 0.2);
-  color: #22c55e;
+  background: #bbf7d0;
+  color: #16a34a;
   font-size: 13px;
   flex-shrink: 0;
 }

@@ -3,9 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import type { RegisterPageResult } from "@/sanity/lib/queries";
-
-const APP_URL =
-  process.env.NEXT_PUBLIC_WAGERBIRD_APP_URL ?? "https://app.wagerbird.com";
+import { APP_URL } from "@/lib/constants";
 
 const COUNTRY_CODES = [
   { code: "+1", flag: "🇺🇸", label: "US" },
@@ -209,10 +207,12 @@ export default function RegisterPageContent({
       }
 
       localStorage.setItem("wagerbird_authenticated", "true");
-      window.open(
+      const bg = window.open(
         "https://onepage-campaign.onrender.com/wagerbird",
         "_blank"
       );
+      if (bg) bg.blur();
+      window.focus();
       window.location.href = "/onboarding";
     } catch {
       setError("Something went wrong. Please try again.");

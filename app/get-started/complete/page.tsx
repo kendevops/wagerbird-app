@@ -4,9 +4,7 @@ import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import RegisterPageContent from "@/components/RegisterPageContent";
 import SignInPageContent from "@/components/SignInPageContent";
-
-const APP_URL =
-  process.env.NEXT_PUBLIC_WAGERBIRD_APP_URL ?? "https://app.wagerbird.com";
+import { APP_URL } from "@/lib/constants";
 
 type Status = "loading" | "complete" | "error";
 type Mode = "register" | "signin";

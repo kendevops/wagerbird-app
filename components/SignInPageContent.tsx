@@ -3,9 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import type { SignInPageResult } from "@/sanity/lib/queries";
-
-const APP_URL =
-  process.env.NEXT_PUBLIC_WAGERBIRD_APP_URL ?? "https://app.wagerbird.com";
+import { APP_URL } from "@/lib/constants";
 
 const DEFAULT_STATS = [
   { value: "68%", label: "Win Rate" },

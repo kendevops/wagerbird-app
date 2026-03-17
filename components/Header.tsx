@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { trackInitiateCheckout } from "@/lib/tracking";
 import Link from "next/link";
+import { APP_URL } from "@/lib/constants";
 
 /** Hook to ensure we only render portal content after mount (avoids hydration mismatch) */
 function useIsMounted() {
@@ -170,7 +171,7 @@ export default function Header({
         <div className="flex items-center gap-[12px] shrink-0">
           {isAuthenticated ? (
             <a
-              href={process.env.NEXT_PUBLIC_WAGERBIRD_APP_URL ?? "https://app.wagerbird.com"}
+              href={APP_URL}
               className="hidden sm:flex items-center justify-center px-[14px] md:px-[22px] py-[8px] md:py-[10px] h-[36px] bg-brand-yellow font-mono text-[11px] font-bold tracking-[1px] uppercase text-brand-blue whitespace-nowrap hover:bg-[#cdd91e] transition-colors clip-btn cursor-target"
             >
               Go to Terminal
@@ -267,7 +268,7 @@ export default function Header({
                   <div className="flex flex-col gap-[16px]">
                     {isAuthenticated ? (
                       <a
-                        href={process.env.NEXT_PUBLIC_WAGERBIRD_APP_URL ?? "https://app.wagerbird.com"}
+                        href={APP_URL}
                         onClick={() => setIsMenuOpen(false)}
                         className="w-full flex items-center justify-center py-[16px] bg-brand-yellow font-mono text-[13px] font-bold tracking-[1.5px] uppercase text-black clip-btn"
                       >

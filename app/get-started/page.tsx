@@ -15,14 +15,61 @@ export default async function GetStartedPage({
   const selectedPlan = validPlans.includes(plan) ? plan : "core";
 
   return (
-    <main className="get-started-page">
-      <div className="get-started-wrapper">
-        <h1 className="get-started-title">Secure Checkout</h1>
-        <p className="get-started-subtitle">
-          Complete your purchase, then create your account.
-        </p>
-        <GetStartedFlow plan={selectedPlan} />
-      </div>
+    <main className="signup-layout">
+      <section className="signup-left-panel">
+        <div className="signin-grid-bg" />
+        <div className="signup-left-content">
+          <p className="signin-eyebrow">// Secure Checkout</p>
+
+          <h1 className="signup-hero-heading">
+            <span className="signup-hero-white">Get Instant</span>
+            <br />
+            <span className="signup-hero-yellow">Access</span>
+          </h1>
+
+          <p className="signup-tagline">
+            Complete your purchase, then create your account to start receiving
+            confidence-scored signals.
+          </p>
+
+          <ul className="signup-feature-list">
+            <li className="signup-feature-item">
+              <span className="signup-bullet-dot" aria-hidden="true" />
+              <span className="signup-feature-text">
+                <strong className="signup-feature-bold">Pay per pick.</strong>
+                {" "}No subscription required.
+              </span>
+            </li>
+            <li className="signup-feature-item">
+              <span className="signup-bullet-dot" aria-hidden="true" />
+              <span className="signup-feature-text">
+                <strong className="signup-feature-bold">Points never expire.</strong>
+                {" "}Buy once, use anytime.
+              </span>
+            </li>
+            <li className="signup-feature-item">
+              <span className="signup-bullet-dot" aria-hidden="true" />
+              <span className="signup-feature-text">
+                <strong className="signup-feature-bold">10+ leagues.</strong>
+                {" "}NFL, NBA, MLB, NHL, CBB and more.
+              </span>
+            </li>
+            <li className="signup-feature-item">
+              <span className="signup-bullet-dot" aria-hidden="true" />
+              <span className="signup-feature-text">
+                <strong className="signup-feature-bold">68% win rate.</strong>
+                {" "}Backed by the model.
+              </span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section className="signup-right-panel">
+        <div className="signup-form-container">
+          <GetStartedFlow plan={selectedPlan} />
+        </div>
+      </section>
     </main>
   );
 }

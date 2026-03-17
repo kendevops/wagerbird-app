@@ -38,7 +38,7 @@ const defaultNavLinks = [
 export default function Header({
   navLinks = defaultNavLinks,
   loginHref = "/signin",
-  getAccessHref = "/register",
+  getAccessHref = "/pricing",
 }: HeaderProps) {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);

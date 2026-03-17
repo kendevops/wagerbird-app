@@ -59,6 +59,6 @@ export default function Ticker({
           <TickerEntry key={index} {...item} />
         ))}
       </motion.div>
-    </div>
+    </section>
   );
 }

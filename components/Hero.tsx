@@ -32,6 +32,7 @@ function StatItem({ value, label }: StatItemProps) {
 }
 
 interface HeroProps {
+  sectionId?: string;
   tickerText?: string;
   badgeText?: string;
   title: React.ReactNode;
@@ -48,6 +49,7 @@ interface HeroProps {
 }
 
 export default function Hero({
+  sectionId,
   tickerText = "WAGERBIRD Terminal — Confidence-Scored Signals",
   badgeText = "MLB · NBA · NFL · NHL — All Sports Covered",
   title = (
@@ -87,7 +89,10 @@ export default function Hero({
   }, []);
 
   return (
-    <section className="relative w-full min-h-[calc(100vh-64px)] bg-[#050510] flex flex-col overflow-hidden">
+    <section
+      id={sectionId}
+      className="relative w-full min-h-[calc(100vh-64px)] bg-[#050510] flex flex-col overflow-hidden"
+    >
       {/* Blue radial glow — only when no video is present */}
       {!videoUrl && (
         <div

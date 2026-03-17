@@ -51,10 +51,13 @@ export default function Packs({
   packs = defaultPacks,
   footnote = (
     <>
-      Points act as credits to unlock signals (<strong>Picks</strong>). Each signal&rsquo;s cost is based on its confidence rating. You can also use points to access{" "}
-      <strong className="packs-footnote-brand">WAGERVISION</strong> (live in-game signals).
+      Points act as credits to unlock signals (<strong>Picks</strong>). Each
+      signal&rsquo;s cost is based on its confidence rating. You can also use
+      points to access{" "}
+      <strong className="packs-footnote-brand">WAGERVISION</strong> (live
+      in-game signals).
     </>
-  )
+  ),
 }: PacksProps) {
   return (
     <section id={sectionId || "packs"} className="packs-section">
@@ -104,12 +107,8 @@ function PacksHeader({ label, title, description }: PacksHeaderProps) {
       className="packs-header"
     >
       <span className="packs-label">{label}</span>
-      <h2 className="packs-heading">
-        {title}
-      </h2>
-      <p className="packs-subtext">
-        {description}
-      </p>
+      <h2 className="packs-heading">{title}</h2>
+      <p className="packs-subtext">{description}</p>
     </motion.div>
   );
 }

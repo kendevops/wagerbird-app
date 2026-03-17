@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, FormEvent } from "react";
+import { useState, useCallback, FormEvent, useEffect } from "react";
 import {
   EmbeddedCheckoutProvider,
   EmbeddedCheckout,
@@ -12,10 +12,13 @@ const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!,
 );
 
-const PLAN_DETAILS: Record<
-  string,
-  { name: string; points: string; price: number }
-> = {
+interface PlanDetails {
+  name: string;
+  points: string;
+  price: number;
+}
+
+const PLAN_DETAILS: Record<string, PlanDetails> = {
   starter: { name: "Starter Pack", points: "600 Points", price: 39 },
   core: { name: "Core Pack", points: "1,700 Points", price: 99 },
   advanced: { name: "Advanced Pack", points: "3,600 Points", price: 199 },
@@ -27,9 +30,58 @@ const STRIPE_PRICES: Record<string, string> = {
   advanced: process.env.NEXT_PUBLIC_STRIPE_PRICE_ADVANCED!,
 };
 
+type PopsixleWindow = Window &
+  Partial<{
+    p6_ensure_datalayer_initialized: () => void;
+    p6_post_event: (name: string) => void;
+    a10x_dl: { vars?: Record<string, unknown> };
+    normalize_email: (value: string) => string;
+    normalize_email_goog: (value: string) => string;
+    normalize_name: (value: string) => string;
+    sha256: (value: string) => string;
+    p6_process_form_field: (fieldType: string, primaryHash: string, secondaryHash?: string) => void;
+  }>;
+
+function trackPopsixleInitiateCheckout(planKey: string, price: number) {
+  if (typeof window === "undefined") return;
+  const w = window as PopsixleWindow;
+  try {
+    if (!w.p6_ensure_datalayer_initialized || !w.p6_post_event || !w.a10x_dl) {
+      return;
+    }
+    w.p6_ensure_datalayer_initialized();
+    const dl = w.a10x_dl;
+    dl.vars = dl.vars || {};
+
+    const details = PLAN_DETAILS[planKey] || PLAN_DETAILS.core;
+
+    dl.vars.cart_data = [
+      {
+        content_id: planKey,
+        content_name: details.name,
+        content_category: "Points Pack",
+        content_type: "product",
+        num_items: 1,
+        value: price,
+        currency: "USD",
+      },
+    ];
+    dl.vars.event_value = price;
+    dl.vars.currency = "USD";
+
+    w.p6_post_event("InitiateCheckout");
+  } catch {
+    // Swallow Popsixle errors so checkout flow is never blocked.
+  }
+}
+
 export default function GetStartedFlow({ plan }: { plan: string }) {
   const planInfo = PLAN_DETAILS[plan] || PLAN_DETAILS.core;
   const stripePrice = STRIPE_PRICES[plan] || STRIPE_PRICES.core;
+
+  useEffect(() => {
+    trackPopsixleInitiateCheckout(plan, planInfo.price);
+  }, [plan, planInfo.price]);
 
   const fetchClientSecret = useCallback(async () => {
     const res = await fetch("/api/auth/checkout-session", {
@@ -152,6 +204,41 @@ export function RegistrationForm({
     setSubmitting(true);
     setErrors({});
     setGeneralError("");
+
+    // Popsixle identity capture (email + name).
+    if (typeof window !== "undefined") {
+      const w = window as PopsixleWindow;
+      try {
+        if (w.p6_ensure_datalayer_initialized) {
+          w.p6_ensure_datalayer_initialized();
+        }
+        if (
+          w.normalize_email &&
+          w.normalize_email_goog &&
+          w.normalize_name &&
+          w.sha256 &&
+          w.p6_process_form_field
+        ) {
+          const rawEmail = formData.email;
+          if (rawEmail) {
+            const norm = w.normalize_email(rawEmail);
+            const goog = w.normalize_email_goog(rawEmail);
+            const emailHash = w.sha256(norm);
+            const emailGoogHash = w.sha256(goog);
+            w.p6_process_form_field("em", emailHash, emailGoogHash);
+          }
+
+          const fullName = `${formData.firstName} ${formData.lastName}`.trim();
+          if (fullName) {
+            const normName = w.normalize_name(fullName);
+            const nameHash = w.sha256(normName);
+            w.p6_process_form_field("fn", nameHash);
+          }
+        }
+      } catch {
+        // Ignore Popsixle errors; do not block registration.
+      }
+    }
 
     try {
       const res = await fetch("/api/auth/register", {

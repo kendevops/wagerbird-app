@@ -3,9 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import type { RegisterPageResult } from "@/sanity/lib/queries";
-
-const APP_URL =
-  process.env.NEXT_PUBLIC_WAGERBIRD_APP_URL ?? "https://app.wagerbird.com";
+import { APP_URL } from "@/lib/constants";
 
 const COUNTRY_CODES = [
   { code: "+1", flag: "🇺🇸", label: "US" },
@@ -80,14 +78,21 @@ function LegalTextWithLinks({
 
 export default function RegisterPageContent({
   data,
+  sessionId,
+  prefillEmail,
+  onSignInClick,
 }: {
   data: RegisterPageResult | null;
+  sessionId?: string;
+  prefillEmail?: string;
+  onSignInClick?: () => void;
 }) {
+  const isPostCheckout = !!sessionId;
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [countryCode, setCountryCode] = useState("+1|US");
   const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(prefillEmail ?? "");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -107,8 +112,9 @@ export default function RegisterPageContent({
       : DEFAULT_FEATURE_BULLETS,
     formEyebrow: data?.formEyebrow ?? "// Create Account",
     formTitle: data?.formTitle ?? "Get Started",
-    formSubtitle:
-      data?.formSubtitle ?? "Free to join. Buy Points when you're ready.",
+    formSubtitle: isPostCheckout
+      ? "One last step — set up your account to access your picks."
+      : data?.formSubtitle ?? "Free to join. Buy Points when you're ready.",
     firstNameLabel: data?.firstNameLabel ?? "First Name",
     firstNamePlaceholder: data?.firstNamePlaceholder ?? "First",
     lastNameLabel: data?.lastNameLabel ?? "Last Name",
@@ -146,26 +152,68 @@ export default function RegisterPageContent({
     setError(null);
     setLoading(true);
     try {
+      const phoneNum = phone
+        ? `${countryCode.split("|")[0]}${phone.replace(/\D/g, "")}`
+        : undefined;
+      const phoneCountry = phone
+        ? countryCode.split("|")[1]
+        : undefined;
+
+      const payload = isPostCheckout
+        ? {
+            session_id: sessionId,
+            first_name: firstName || undefined,
+            last_name: lastName || undefined,
+            email,
+            password,
+            password_confirmation: confirmPassword,
+            phone_number: phoneNum,
+            phone_number_country: phoneCountry,
+          }
+        : {
+            email,
+            password,
+            passwordConfirmation: confirmPassword,
+            firstName: firstName || undefined,
+            lastName: lastName || undefined,
+            phone: phone || undefined,
+            countryCode: countryCode?.split("|")[0] || undefined,
+          };
+
       const res = await fetch("/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email,
-          password,
-          passwordConfirmation: confirmPassword,
-          firstName: firstName || undefined,
-          lastName: lastName || undefined,
-          phone: phone || undefined,
-          countryCode: countryCode?.split("|")[0] || undefined,
-        }),
+        body: JSON.stringify(payload),
       });
       const resData = await res.json().catch(() => ({}));
       if (!res.ok) {
-        setError(resData?.error ?? resData?.message ?? "Registration failed");
+        setError(
+          resData?.error ?? resData?.message ?? "Registration failed"
+        );
         return;
       }
-      const redirectUrl = resData?.redirectUrl ?? APP_URL;
-      window.location.href = redirectUrl;
+
+      const loginUrl = isPostCheckout
+        ? resData?.data?.login_url ?? APP_URL
+        : resData?.redirectUrl ?? APP_URL;
+      const userUuid = isPostCheckout
+        ? resData?.data?.user_uuid ?? ""
+        : resData?.userUuid ?? "";
+
+      sessionStorage.setItem("onboarding_login_url", loginUrl);
+      if (userUuid) {
+        sessionStorage.setItem("onboarding_user_uuid", userUuid);
+      }
+
+      localStorage.setItem("wagerbird_authenticated", "true");
+      if (userUuid) {
+        localStorage.setItem("wagerbird_user_uuid", userUuid);
+      }
+      const campaignUrl =
+        process.env.NEXT_PUBLIC_CAMPAIGN_URL ||
+        "https://onepage-campaign.onrender.com/wagerbird";
+      window.open("/onboarding", "_blank");
+      window.location.href = campaignUrl;
     } catch {
       setError("Something went wrong. Please try again.");
     } finally {
@@ -211,6 +259,12 @@ export default function RegisterPageContent({
           </div>
 
           <form className="signup-form" onSubmit={handleSubmit}>
+            {isPostCheckout && (
+              <div className="get-started-success-banner">
+                <span className="get-started-success-icon-sm">&#10003;</span>
+                Payment successful! Create your account to access your points.
+              </div>
+            )}
             {error && (
               <div className="signup-error" role="alert">
                 {error}
@@ -301,10 +355,11 @@ export default function RegisterPageContent({
               <input
                 id="email"
                 type="email"
-                className="signin-field-input"
+                className={`signin-field-input${isPostCheckout ? " get-started-field-locked" : ""}`}
                 placeholder={c.emailPlaceholder}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                readOnly={isPostCheckout}
                 autoComplete="email"
               />
             </div>
@@ -417,9 +472,19 @@ export default function RegisterPageContent({
             </p>
             <p className="signup-signin-row">
               <span className="signin-signup-prompt">{c.signinPrompt}</span>{" "}
-              <Link href={c.signinLinkHref} className="signin-signup-link">
-                {c.signinLinkLabel}
-              </Link>
+              {onSignInClick ? (
+                <button
+                  type="button"
+                  className="signin-signup-link"
+                  onClick={onSignInClick}
+                >
+                  {c.signinLinkLabel}
+                </button>
+              ) : (
+                <Link href={c.signinLinkHref} className="signin-signup-link">
+                  {c.signinLinkLabel}
+                </Link>
+              )}
             </p>
           </div>
         </div>

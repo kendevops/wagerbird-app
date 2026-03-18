@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 
 // ── Types ──────────────────────────────────────────────────────────────────
@@ -126,6 +126,14 @@ export default function OnboardingPage() {
   const [currentStep, setCurrentStep] = useState(1);
   const [answers, setAnswers] = useState<Record<number, string[]>>({});
   const [isComplete, setIsComplete] = useState(false);
+  const [userUuid, setUserUuid] = useState("");
+  const [loginUrl, setLoginUrl] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+
+  useEffect(() => {
+    setUserUuid(sessionStorage.getItem("onboarding_user_uuid") ?? "");
+    setLoginUrl(sessionStorage.getItem("onboarding_login_url") ?? "");
+  }, []);
 
   const question = QUESTIONS[currentStep - 1];
   const selectedForStep = answers[currentStep] ?? [];
@@ -147,11 +155,36 @@ export default function OnboardingPage() {
     }
   }
 
+  async function submitOnboarding() {
+    setSubmitting(true);
+    try {
+      if (userUuid) {
+        await fetch("/api/onboarding", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            userUuid,
+            bettingExperience: answers[1]?.[0] ?? null,
+            monthlyBankroll: answers[2]?.[0] ?? null,
+            activeSports: answers[3] ?? [],
+            bettingGoal: answers[4]?.[0] ?? null,
+          }),
+        });
+      }
+    } catch (err) {
+      console.error("Failed to save onboarding:", err);
+    }
+    sessionStorage.removeItem("onboarding_user_uuid");
+    sessionStorage.removeItem("onboarding_login_url");
+    setSubmitting(false);
+    setIsComplete(true);
+  }
+
   function handleNext() {
     if (currentStep < TOTAL_STEPS) {
       setCurrentStep((s) => s + 1);
     } else {
-      setIsComplete(true);
+      submitOnboarding();
     }
   }
 
@@ -183,9 +216,9 @@ export default function OnboardingPage() {
             Your Terminal is ready. We&apos;ve tuned your feed based on your
             answers — you can update preferences anytime in your profile.
           </p>
-          <Link href="/" className="ob-browse-btn">
+          <a href={loginUrl || "/"} className="ob-browse-btn">
             BROWSE LIVE PICKS ↓
-          </Link>
+          </a>
         </div>
       </div>
     );
@@ -197,7 +230,7 @@ export default function OnboardingPage() {
       {/* Nav */}
       <nav className="ob-nav">
         <WagerbirdLogo />
-        <button className="ob-skip-btn" onClick={() => setIsComplete(true)}>
+        <button className="ob-skip-btn" onClick={() => submitOnboarding()}>
           SKIP FOR NOW
         </button>
       </nav>
@@ -272,9 +305,9 @@ export default function OnboardingPage() {
           <button
             className="ob-next-btn"
             onClick={handleNext}
-            disabled={selectedForStep.length === 0}
+            disabled={selectedForStep.length === 0 || submitting}
           >
-            NEXT →
+            {submitting ? "SAVING..." : currentStep < TOTAL_STEPS ? "NEXT →" : "FINISH →"}
           </button>
         </div>
       </footer>

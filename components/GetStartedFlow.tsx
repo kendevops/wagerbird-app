@@ -184,13 +184,13 @@ export function RegistrationForm({
         return;
       }
 
-      // Redirect to monolith auto-login URL
+      // Redirect to onboarding for new users
       if (data.data?.login_url) {
-        window.open(
-          "https://onepage-campaign.onrender.com/wagerbird",
-          "_blank",
-        );
-        window.location.href = data.data.login_url;
+        sessionStorage.setItem("onboarding_login_url", data.data.login_url);
+        if (data.data?.user_uuid) {
+          sessionStorage.setItem("onboarding_user_uuid", data.data.user_uuid);
+        }
+        window.location.href = "/onboarding";
       }
     } catch {
       setGeneralError("Something went wrong. Please try again.");

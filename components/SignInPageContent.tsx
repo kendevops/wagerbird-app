@@ -3,9 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import type { SignInPageResult } from "@/sanity/lib/queries";
-
-const APP_URL =
-  process.env.NEXT_PUBLIC_WAGERBIRD_APP_URL ?? "https://app.wagerbird.com";
+import { APP_URL } from "@/lib/constants";
 
 const DEFAULT_STATS = [
   { value: "68%", label: "Win Rate" },
@@ -15,8 +13,12 @@ const DEFAULT_STATS = [
 
 export default function SignInPageContent({
   data,
+  successBanner,
+  onSignUpClick,
 }: {
   data: SignInPageResult | null;
+  successBanner?: string;
+  onSignUpClick?: () => void;
 }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -61,6 +63,10 @@ export default function SignInPageContent({
         setError(resData?.error ?? resData?.message ?? "Sign in failed");
         return;
       }
+      localStorage.setItem("wagerbird_authenticated", "true");
+      if (resData?.userUuid) {
+        localStorage.setItem("wagerbird_user_uuid", resData.userUuid);
+      }
       const redirectUrl = resData?.redirectUrl ?? APP_URL;
       window.location.href = redirectUrl;
     } catch {
@@ -104,6 +110,12 @@ export default function SignInPageContent({
           </div>
 
           <form className="signin-form" onSubmit={handleSubmit}>
+            {successBanner && (
+              <div className="get-started-success-banner">
+                <span className="get-started-success-icon-sm">&#10003;</span>
+                {successBanner}
+              </div>
+            )}
             {error && (
               <div className="signin-error" role="alert">
                 {error}
@@ -198,9 +210,19 @@ export default function SignInPageContent({
           <div className="signin-footer-links">
             <p className="signin-signup-row">
               <span className="signin-signup-prompt">{c.signupPrompt}</span>
-              <Link href={c.signupLinkHref} className="signin-signup-link">
-                {c.signupLinkLabel}
-              </Link>
+              {onSignUpClick ? (
+                <button
+                  type="button"
+                  className="signin-signup-link"
+                  onClick={onSignUpClick}
+                >
+                  {c.signupLinkLabel}
+                </button>
+              ) : (
+                <Link href={c.signupLinkHref} className="signin-signup-link">
+                  {c.signupLinkLabel}
+                </Link>
+              )}
             </p>
             <p className="signin-fine-print">{c.finePrint}</p>
           </div>

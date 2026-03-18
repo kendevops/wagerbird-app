@@ -10,7 +10,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: "Missing uuid" }, { status: 400 });
   }
 
-  const url = `${MONOLITH_URL}/api/v1/me/${uuid}`;
+  const url = `${MONOLITH_URL}/api/v1/auto-login-url/${uuid}`;
 
   try {
     const options: RequestInit & { dispatcher?: unknown } = {

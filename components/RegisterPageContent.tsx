@@ -187,9 +187,8 @@ export default function RegisterPageContent({
       });
       const resData = await res.json().catch(() => ({}));
       if (!res.ok) {
-        const errData = isPostCheckout ? resData : resData;
         setError(
-          errData?.error ?? errData?.message ?? "Registration failed"
+          resData?.error ?? resData?.message ?? "Registration failed"
         );
         return;
       }
@@ -210,9 +209,11 @@ export default function RegisterPageContent({
       if (userUuid) {
         localStorage.setItem("wagerbird_user_uuid", userUuid);
       }
-      window.open("/onboarding", "_blank");
-      window.location.href =
+      const campaignUrl =
+        process.env.NEXT_PUBLIC_CAMPAIGN_URL ||
         "https://onepage-campaign.onrender.com/wagerbird";
+      window.open("/onboarding", "_blank");
+      window.location.href = campaignUrl;
     } catch {
       setError("Something went wrong. Please try again.");
     } finally {

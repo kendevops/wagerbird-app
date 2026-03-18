@@ -47,8 +47,16 @@ export default function Header({
   const isMounted = useIsMounted();
 
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("logged_out") === "1") {
+      localStorage.removeItem("wagerbird_authenticated");
+      localStorage.removeItem("wagerbird_user_uuid");
+      setIsAuthenticated(false);
+      window.history.replaceState({}, "", pathname);
+      return;
+    }
     setIsAuthenticated(localStorage.getItem("wagerbird_authenticated") === "true");
-  }, []);
+  }, [pathname]);
 
   const handleGoToTerminal = async (e: React.MouseEvent) => {
     e.preventDefault();

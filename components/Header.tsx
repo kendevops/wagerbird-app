@@ -50,6 +50,26 @@ export default function Header({
     setIsAuthenticated(localStorage.getItem("wagerbird_authenticated") === "true");
   }, []);
 
+  const handleGoToTerminal = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    const uuid = localStorage.getItem("wagerbird_user_uuid");
+    if (!uuid) {
+      localStorage.removeItem("wagerbird_authenticated");
+      setIsAuthenticated(false);
+      window.location.href = "/signin";
+      return;
+    }
+    try {
+      const res = await fetch(`/api/auth/me?uuid=${uuid}`);
+      const data = await res.json();
+      if (data?.loginUrl) {
+        window.location.href = data.loginUrl;
+        return;
+      }
+    } catch {}
+    window.location.href = "/signin";
+  };
+
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
@@ -172,6 +192,7 @@ export default function Header({
           {isAuthenticated ? (
             <a
               href={APP_URL}
+              onClick={handleGoToTerminal}
               className="hidden sm:flex items-center justify-center px-[14px] md:px-[22px] py-[8px] md:py-[10px] h-[36px] bg-brand-yellow font-mono text-[11px] font-bold tracking-[1px] uppercase text-brand-blue whitespace-nowrap hover:bg-[#cdd91e] transition-colors clip-btn cursor-target"
             >
               Go to Terminal
@@ -269,7 +290,10 @@ export default function Header({
                     {isAuthenticated ? (
                       <a
                         href={APP_URL}
-                        onClick={() => setIsMenuOpen(false)}
+                        onClick={(e) => {
+                          setIsMenuOpen(false);
+                          handleGoToTerminal(e);
+                        }}
                         className="w-full flex items-center justify-center py-[16px] bg-brand-yellow font-mono text-[13px] font-bold tracking-[1.5px] uppercase text-black clip-btn"
                       >
                         Go to Terminal

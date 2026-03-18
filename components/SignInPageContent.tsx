@@ -64,6 +64,9 @@ export default function SignInPageContent({
         return;
       }
       localStorage.setItem("wagerbird_authenticated", "true");
+      if (resData?.userUuid) {
+        localStorage.setItem("wagerbird_user_uuid", resData.userUuid);
+      }
       const redirectUrl = resData?.redirectUrl ?? APP_URL;
       window.location.href = redirectUrl;
     } catch {

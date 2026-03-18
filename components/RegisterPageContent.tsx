@@ -207,13 +207,12 @@ export default function RegisterPageContent({
       }
 
       localStorage.setItem("wagerbird_authenticated", "true");
-      const bg = window.open(
-        "https://onepage-campaign.onrender.com/wagerbird",
-        "_blank"
-      );
-      if (bg) bg.blur();
-      window.focus();
-      window.location.href = "/onboarding";
+      if (userUuid) {
+        localStorage.setItem("wagerbird_user_uuid", userUuid);
+      }
+      window.open("/onboarding", "_blank");
+      window.location.href =
+        "https://onepage-campaign.onrender.com/wagerbird";
     } catch {
       setError("Something went wrong. Please try again.");
     } finally {
